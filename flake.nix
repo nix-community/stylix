@@ -12,6 +12,11 @@
     systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
+    adwaita-for-steam = {
+      flake = false;
+      url = "github:tkashkin/Adwaita-for-Steam";
+    };
+
     base16-fish = {
       url = "github:tomyun/base16-fish";
       flake = false;
