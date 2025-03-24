@@ -24,6 +24,7 @@
         {
           inherit (config.partitions.dev.module.flake.packages.${system})
             all-maintainers
+            subsystem-maintainers
             ;
         }
         (lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
