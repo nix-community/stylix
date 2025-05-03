@@ -30,6 +30,10 @@ uses.
   - `enable` defaults to true; allows for conditionally disabling a testbed
   - `ui` and all of its suboptions are optional. Setting any will enable a
     graphical environment.
+    - `graphicalEnvironment` defaults to "gnome"; takes the string name of the graphical
+      environment to be used for the testbed. See
+      `stylix/testbed/graphicalEnvironments` for a complete list of available
+      graphical environments.
     - `command` takes a command to be run once the graphical environment
       has loaded
       - `text` takes the string of the command
