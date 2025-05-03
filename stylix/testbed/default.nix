@@ -13,19 +13,23 @@ let
       system = lib.nixosSystem {
         inherit (pkgs) system;
 
-        modules = [
-          ./modules/common.nix
-          ./modules/enable.nix
-          ./modules/application.nix
-          inputs.self.nixosModules.stylix
-          inputs.home-manager.nixosModules.home-manager
-          testbed
+        modules =
+          [
+            ./modules/common.nix
+            ./modules/enable.nix
+            ./modules/application.nix
+            inputs.self.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+            testbed
 
-          # modules for external targets
-          inputs.nvf.nixosModules.default
-          inputs.nixvim.nixosModules.nixvim
-          inputs.spicetify-nix.nixosModules.spicetify
-        ];
+            # modules for external targets
+            inputs.nvf.nixosModules.default
+            inputs.nixvim.nixosModules.nixvim
+            inputs.spicetify-nix.nixosModules.spicetify
+          ]
+          ++ map (name: import ./graphical-environments/${name}.nix) (
+            import ./available-graphical-environments.nix { inherit lib; }
+          );
       };
     in
     pkgs.writeShellApplication {
