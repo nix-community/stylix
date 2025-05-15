@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./palette.nix
+    ../colors.nix
     ../fonts.nix
     ../home-manager-integration.nix
     ../opacity.nix

@@ -10,6 +10,7 @@ in
   imports = [
     ./cursor.nix
     ./palette.nix
+    ../colors.nix
     ../cursor.nix
     ../fonts.nix
     ../home-manager-integration.nix
