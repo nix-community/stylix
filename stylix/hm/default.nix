@@ -11,6 +11,7 @@ in
     ./cursor.nix
     ./icons.nix
     ./palette.nix
+    ../colors.nix
     ../cursor.nix
     ../fonts.nix
     ../icons.nix
