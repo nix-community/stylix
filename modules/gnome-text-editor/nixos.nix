@@ -1,9 +1,6 @@
 { mkTarget, ... }:
+# Generates target enable option for overlay.nix
 mkTarget {
   name = "gnome-text-editor";
   humanName = "GNOME Text Editor";
-
-  configElements = {
-    dconf.settings."org/gnome/TextEditor".style-scheme = "stylix";
-  };
 }
