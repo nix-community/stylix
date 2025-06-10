@@ -25,12 +25,47 @@ let
     }) pkgs.formats;
   };
 
+  # A stub config used while evaluating the stylix modules for the docs
+  #
+  # TODO: remove all dependency on `config` and simplify to `noConfig = null`.
+  # Doing that should resolve https://github.com/nix-community/stylix/issues/98
+  noConfig =
+    let
+      configuration = evalDocs {
+        # The config.lib option, as found in NixOS and home-manager.
+        # Required by the `target.nix` module.
+        options.lib = lib.mkOption {
+          type = lib.types.attrsOf lib.types.attrs;
+          description = ''
+            This option allows modules to define helper functions, constants, etc.
+          '';
+          default = { };
+          visible = false;
+        };
+
+        # The target.nix module defines functions that are currently needed to
+        # declare options
+        imports = [ ../stylix/target.nix ];
+      };
+    in
+    {
+      lib.stylix = {
+        inherit (configuration.config.lib.stylix)
+          mkEnableIf
+          mkEnableTarget
+          mkEnableTargetWith
+          mkEnableWallpaper
+          ;
+      };
+    };
+
   evalDocs =
     module:
     lib.evalModules {
       modules = [ ./eval_compat.nix ] ++ lib.toList module;
       specialArgs = {
         pkgs = noPkgs;
+        config = noConfig;
       };
     };
 
