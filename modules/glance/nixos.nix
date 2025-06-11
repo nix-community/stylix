@@ -5,9 +5,9 @@ mkTarget {
 
   configElements = [
     (
-      { polarity }:
+      { theme }:
       {
-        services.glance.settings.theme.light = polarity == "light";
+        services.glance.settings.theme.light = theme.polarity == "light";
       }
     )
     (
