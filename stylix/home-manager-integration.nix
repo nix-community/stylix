@@ -158,15 +158,30 @@ let
         {
           path = [
             "stylix"
+            "targets"
+            "qt"
+            "platform"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "theme"
+            "contrast"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "theme"
             "polarity"
           ];
         }
         {
           path = [
             "stylix"
-            "targets"
-            "qt"
-            "platform"
+            "theme"
+            "scheme"
           ];
         }
         # keep-sorted end
