@@ -113,7 +113,11 @@
               lib.literalExpression "config.stylix.image != null"
             else
               false;
-          example = config.stylix.image == null;
+          example =
+            if autoEnable then
+              lib.literalExpression "config.stylix.image == null"
+            else
+              true;
         };
 
       mkEnableIf =
