@@ -68,7 +68,8 @@ Actions.
 If you modify it, you can easily build it and check your changes locally:
 
 ```sh
-nix run .#doc
+nix build .#doc
+xdg-open result/index.html
 ```
 
 This will build the documentation, start a localhost web-server, and open it in
