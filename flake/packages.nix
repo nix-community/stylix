@@ -1,35 +1,22 @@
-{ lib, inputs, ... }:
+{ lib, partitionStack, ... }:
 {
-
   perSystem =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
-      # Build all packages with 'nix flake check' instead of only verifying they
-      # are derivations.
-      checks = config.packages;
-
-      # Make 'nix run .#docs' serve the docs
-      apps.doc.program = config.packages.serve-docs;
-
       packages = lib.mkMerge [
-        # Testbeds are virtual machines based on NixOS, therefore they are
-        # only available for Linux systems.
-        (lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
-          import ../stylix/testbed/default.nix {
-            inherit pkgs inputs lib;
-          }
-        ))
         {
-          doc = pkgs.callPackage ../doc {
-            inherit inputs;
-            inherit (inputs.nixpkgs.lib) nixosSystem;
-            inherit (inputs.home-manager.lib) homeManagerConfiguration;
-          };
-          serve-docs = pkgs.callPackage ../doc/server.nix {
-            inherit (config.packages) doc;
-          };
           palette-generator = pkgs.callPackage ../palette-generator { };
         }
+        # For any output attrs normally defined by the root flake configuration,
+        # any exceptions must be manually propagated from the `dev` partition.
+        #
+        # NOTE: Attrs should be explicitly propagated at the deepest level.
+        # Otherwise the partition won't be lazy, making it pointless.
+        # E.g. propagate `packages.${system}.foo` instead of `packages.${system}`
+        # See: https://github.com/hercules-ci/flake-parts/issues/258
+        (lib.optionalAttrs (partitionStack == [ ]) {
+          # FIXME: propagate testbeds
+        })
       ];
     };
 }
