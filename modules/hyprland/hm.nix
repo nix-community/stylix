@@ -7,11 +7,16 @@
 mkTarget {
   name = "hyprland";
   humanName = "Hyprland";
-  extraOptions.hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
-    name = "Hyprpaper";
-    autoEnable = config.stylix.image != null;
-    autoEnableExpr = "config.stylix.image != null";
-  };
+  extraOptions =
+    { image }:
+    {
+      hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
+        name = "Hyprpaper";
+        autoEnable = image != null;
+        autoEnableExpr = "config.stylix.image != null";
+      };
+    };
+
   configElements = [
     (
       { colors }:
@@ -44,12 +49,11 @@ mkTarget {
     )
     (
       { cfg }:
-      lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.hyprpaper.enable)
-        {
-          services.hyprpaper.enable = true;
-          stylix.targets.hyprpaper.enable = true;
-          wayland.windowManager.hyprland.settings.misc.disable_hyprland_logo = true;
-        }
+      lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.hyprpaper.enable) {
+        services.hyprpaper.enable = true;
+        stylix.targets.hyprpaper.enable = true;
+        wayland.windowManager.hyprland.settings.misc.disable_hyprland_logo = true;
+      }
     )
   ];
 }
