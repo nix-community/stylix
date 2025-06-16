@@ -201,7 +201,7 @@ let
           builtins.attrNames
         ];
 
-      getStylixAttrs =
+      getArgs =
         fn:
         lib.genAttrs (functionArgNames fn) (
           arg:
@@ -222,26 +222,25 @@ let
         );
 
       # Call the configuration function with its required Stylix arguments.
-      mkConfig = fn: fn (getStylixAttrs fn);
+      applyArgs = fn: fn (getArgs fn);
 
       # Safeguard configuration functions when any of their arguments is
       # disabled, while non-function configurations are unguarded.
-      mkConditionalConfig =
-        c:
-        if builtins.isFunction c then
-          let
-            allAttrsNonNull = lib.pipe c [
-              getStylixAttrs
-              builtins.attrValues
-              (builtins.all (attr: attr != null))
-            ];
-          in
-          lib.mkIf allAttrsNonNull (mkConfig c)
-        else
-          c;
+      conditionalConfig =
+        f:
+        let
+          allAttrsNonNull = lib.pipe f [
+            getArgs
+            builtins.attrValues
+            (builtins.all (attr: attr != null))
+          ];
+        in
+        lib.mkIf allAttrsNonNull (applyArgs f);
     in
     {
-      inherit imports;
+      imports = imports ++ [
+        { options.stylix.targets.${name} = extraOptions; }
+      ];
 
       options.stylix.targets.${name}.enable =
         let
@@ -260,15 +259,14 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.optional (generalConfig != null) (mkConfig generalConfig)
-          ++ map mkConditionalConfig (lib.toList configElements)
+          lib.optional (generalConfig != null) (applyArgs generalConfig)
+          ++ map (c: if builtins.isFunction c then conditionalConfig c else c) (
+            lib.toList configElements
+          )
         )
       );
     };
 in
 {
-  imports = [
-    { options.stylix.targets.${name} = extraOptions; }
-    module
-  ];
+  imports = [ module ];
 }
