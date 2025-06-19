@@ -21,7 +21,7 @@
         ))
         {
           doc = pkgs.callPackage ../doc {
-            inherit inputs;
+            inherit (inputs) self;
           };
           serve-docs = pkgs.callPackage ../doc/server.nix {
             inherit (config.packages) doc;
