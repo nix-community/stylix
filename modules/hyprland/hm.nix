@@ -10,7 +10,7 @@ mkTarget {
   extraOptions.hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
     name = "Hyprpaper";
     autoEnable = config.stylix.image != null;
-    autoEnableExpr = "stylix.image != null";
+    autoEnableExpr = "config.stylix.image != null";
   };
   configElements = [
     (
