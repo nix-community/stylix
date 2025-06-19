@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  inputs,
+  self,
   callPackage,
   writeText,
   stdenvNoCC,
@@ -27,13 +27,13 @@ let
     home_manager = {
       name = "Home Manager";
       configuration = evalDocs [
-        inputs.self.homeModules.stylix
+        self.homeModules.stylix
         ./hm_compat.nix
       ];
     };
     nixos = {
       name = "NixOS";
-      configuration = evalDocs inputs.self.nixosModules.stylix;
+      configuration = evalDocs self.nixosModules.stylix;
     };
   };
 
@@ -324,7 +324,7 @@ let
 
   # Permalink to view a source file on GitHub. If the commit isn't known,
   # then fall back to the latest commit.
-  declarationCommit = inputs.self.rev or "master";
+  declarationCommit = self.rev or "master";
   declarationPermalink = "https://github.com/nix-community/stylix/blob/${declarationCommit}";
 
   # Renders a single option declaration. Example output:
