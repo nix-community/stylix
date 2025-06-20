@@ -1,28 +1,49 @@
 {
   perSystem =
     {
-      pkgs,
       config,
       inputs',
+      lib,
+      pkgs,
       ...
     }:
     let
       stylix-check = pkgs.writeShellApplication {
         name = "stylix-check";
         runtimeInputs = with pkgs; [
-          nix
+          calc
           nix-fast-build
         ];
+
+        # TODO: Implement proper CLI parsing and handling.
+        #
+        # TODO: Consider using 'nice' by default to avoid borking user systems.
+        #       This could be disabled in /.github/workflows/check.yml.
         text = ''
-          cores="$(nproc)"
-          system="$(nix eval --expr builtins.currentSystem --impure --raw)"
+          if ${lib.boolToString pkgs.stdenv.hostPlatform.isLinux}; then
+            memory="$(free --mega | awk '/^Mem:/ { print $2 }')"
+          else
+            memory=512
+          fi
+
+          memory="$(calc "round($memory * ''${1:-.75})")"
+
+          memory_per_worker=$((memory / NIX_BUILD_CORES))
+
+          workers="$((
+            NIX_BUILD_CORES < memory_per_worker ?
+            NIX_BUILD_CORES :
+            memory_per_worker
+          ))"
+
+          memory_per_worker="$((memory / workers))"
+
           nix-fast-build \
-            --eval-max-memory-size 512 \
-            --eval-workers "$cores" \
-            --flake ".#checks.$system" \
+            --eval-max-memory-size "$memory_per_worker" \
+            --eval-workers "$workers" \
             --no-link \
             --skip-cached \
-            "$@"
+            "''${@:2}"
         '';
       };
 
