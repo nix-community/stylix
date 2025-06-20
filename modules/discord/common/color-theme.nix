@@ -1,58 +1,47 @@
-{ colors, fonts }:
-''
-    /**
-    * @name Stylix
-    * @author Stylix
-    * @version 0.0.0
-    * @description Theme configured via NixOS or Home Manager.
-    **/
+colors: ''
+  :root {
+      --base00: #${colors.base00}; /* Black */
+      --base01: #${colors.base01}; /* Bright Black */
+      --base02: #${colors.base02}; /* Grey */
+      --base03: #${colors.base03}; /* Brighter Grey */
+      --base04: #${colors.base04}; /* Bright Grey */
+      --base05: #${colors.base05}; /* White */
+      --base06: #${colors.base06}; /* Brighter White */
+      --base07: #${colors.base07}; /* Bright White */
+      --base08: #${colors.base08}; /* Red */
+      --base09: #${colors.base09}; /* Orange */
+      --base0A: #${colors.base0A}; /* Yellow */
+      --base0B: #${colors.base0B}; /* Green */
+      --base0C: #${colors.base0C}; /* Cyan */
+      --base0D: #${colors.base0D}; /* Blue */
+      --base0E: #${colors.base0E}; /* Purple */
+      --base0F: #${colors.base0F}; /* Magenta */
 
-    :root {
-        --font-primary: ${fonts.sansSerif.name};
-        --font-display: ${fonts.sansSerif.name};
-        --font-code: ${fonts.monospace.name};
-        --base00: #${colors.base00}; /* Black */
-        --base01: #${colors.base01}; /* Bright Black */
-        --base02: #${colors.base02}; /* Grey */
-        --base03: #${colors.base03}; /* Brighter Grey */
-        --base04: #${colors.base04}; /* Bright Grey */
-        --base05: #${colors.base05}; /* White */
-        --base06: #${colors.base06}; /* Brighter White */
-        --base07: #${colors.base07}; /* Bright White */
-        --base08: #${colors.base08}; /* Red */
-        --base09: #${colors.base09}; /* Orange */
-        --base0A: #${colors.base0A}; /* Yellow */
-        --base0B: #${colors.base0B}; /* Green */
-        --base0C: #${colors.base0C}; /* Cyan */
-        --base0D: #${colors.base0D}; /* Blue */
-        --base0E: #${colors.base0E}; /* Purple */
-        --base0F: #${colors.base0F}; /* Magenta */
+      --primary-630: var(--base00); /* Autocomplete background */
+      --primary-660: var(--base00); /* Search input background */
+  }
 
-        --primary-630: var(--base00); /* Autocomplete background */
-        --primary-660: var(--base00); /* Search input background */
-    }
+    /* Copyright (c) 2025 Cole Schaefer
 
-      /* Copyright (c) 2025 Cole Schaefer
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-      Permission is hereby granted, free of charge, to any person obtaining a copy
-      of this software and associated documentation files (the "Software"), to deal
-      in the Software without restriction, including without limitation the rights
-      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-      copies of the Software, and to permit persons to whom the Software is
-      furnished to do so, subject to the following conditions:
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
 
-      The above copyright notice and this permission notice shall be included in all
-      copies or substantial portions of the Software.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE. */
 
-      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-      SOFTWARE. */
-
-      .theme-light,
+  .theme-light,
   .theme-dark,
   .theme-darker,
   .theme-midnight,
