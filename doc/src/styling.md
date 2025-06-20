@@ -86,10 +86,10 @@ over other applications. Examples include the mako notification daemon and
 avizo.
 
 - Window border: base0D
-- Low urgency background color: base06
-- Low urgency text color: base0A
-- High urgency background color: base0F
-- High urgency text color: base08
+- Background color: base00
+- Text color: base05
+- High urgency border color: base08
+- Low urgency border color: base03
 - Incomplete part of progress bar: base01
 - Complete part of progress bar: base02
 
