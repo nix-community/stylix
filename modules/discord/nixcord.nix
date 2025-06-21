@@ -30,7 +30,7 @@ mkTarget {
         inherit (config.programs) nixcord;
       in
       lib.mkIf
-        (cfg.themeBody != (import ./common/theme-header.nix || cfg.extraCss != ""))
+        (cfg.themeBody != (import ./common/theme-header.nix) || cfg.extraCss != "")
         (
           lib.optionalAttrs (builtins.hasAttr "nixcord" options.programs) (
             lib.mkMerge [
