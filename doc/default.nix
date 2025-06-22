@@ -392,6 +392,10 @@ let
       declarationString = toString declaration;
       subPath = lib.removePrefix rootPrefix declarationString;
     in
+    # NOTE: This assertion ensures all options in the docs come from stylix.
+    # See https://github.com/nix-community/stylix/pull/631
+    # It may be necessary to remove or relax this assertion to include options
+    # with arbitrary (non-path) declaration locations.
     lib.throwIfNot (lib.hasPrefix rootPrefix declarationString)
       "declaration not in ${rootPrefix}: ${declarationString}"
       "- [${subPath}](${declarationPermalink}/${subPath})";
