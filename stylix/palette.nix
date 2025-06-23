@@ -133,7 +133,7 @@ in
           cfg.generated.palette;
       defaultText = lib.literalMD ''
         Automatically selected from the background image. The default will
-        throw if `stylix.image` is null.
+        throw if `config.stylix.image` is null.
       '';
     };
 
