@@ -18,6 +18,7 @@ To set a [Tinted Theming](https://github.com/tinted-theming/schemes) color
 scheme, declare:
 
 ```nix
+{ pkgs, ... }:
 {
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 }
@@ -80,6 +81,7 @@ To set a wallpaper, provide a path or an arbitrary derivation:
   ```
 
 - ```nix
+  { pkgs, ... }:
   {
     stylix.image = pkgs.fetchurl {
       url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
@@ -157,6 +159,7 @@ To make things look more uniform, you could replace the serif font with
 the sans-serif font:
 
 ```nix
+{ config, ... }:
 {
   stylix.fonts.serif = config.stylix.fonts.sansSerif;
 }
@@ -165,6 +168,7 @@ the sans-serif font:
 Or even choose monospace for everything:
 
 ```nix
+{ config, ... }:
 {
   stylix.fonts = {
     serif = config.stylix.fonts.monospace;
