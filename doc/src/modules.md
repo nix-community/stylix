@@ -161,6 +161,7 @@ Or you can create a [Mustache](http://mustache.github.io/) template and use
 it as a function. This returns a derivation which builds the template.
 
 ```nix
+{ config, ... }:
 {
   environment.variables.MY_APPLICATION_CONFIG_FILE =
     let

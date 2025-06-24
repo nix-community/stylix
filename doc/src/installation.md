@@ -210,6 +210,7 @@ import it to get the NixOS module as the `nixosModules.stylix` attribute and the
 Home Manager module as the `homeModules.stylix` attribute.
 
 ```nix
+{ pkgs, ... }:
 let
   stylix = pkgs.fetchFromGitHub {
     owner = "nix-community";
