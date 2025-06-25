@@ -5,9 +5,9 @@
 }:
 {
   imports =
-    map
+    lib.mapAttrsToList
       (
-        { name, humanName }:
+        name: humanName:
         lib.modules.importApply ./each-config.nix {
           inherit
             mkTarget
@@ -16,18 +16,9 @@
             ;
         }
       )
-      [
-        {
-          name = "firefox";
-          humanName = "Firefox";
-        }
-        {
-          name = "librewolf";
-          humanName = "LibreWolf";
-        }
-        {
-          name = "floorp";
-          humanName = "Floorp";
-        }
-      ];
+      {
+        "firefox" = "Firefox";
+        "librewolf" = "LibreWolf";
+        "floorp" = "Floorp";
+      };
 }
