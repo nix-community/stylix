@@ -88,7 +88,7 @@ mkTarget {
         '';
       in
       {
-        stylix.targets.waybar.background = lib.default "@base00";
+        stylix.targets.waybar.background = lib.mkDefault "@base00";
         programs.waybar.style =
           with colors.withHashtag;
           ''
