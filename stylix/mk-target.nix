@@ -97,7 +97,7 @@
       { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
 
-    `configElements` (List or attribute set or function)
+    `configElements` (List or attribute set or function or path)
     : Configuration functions that are automatically safeguarded when any of
       their arguments is disabled. The provided `cfg` argument conveniently
       aliases to `config.stylix.targets.${name}`.
@@ -130,7 +130,7 @@
       Underscored arguments are considered unused and should never be accessed.
       Their sole purpose is satisfying `deadnix` in complex configurations.
 
-    `generalConfig` (Attribute set or function)
+    `generalConfig` (Attribute set or function or path)
     : This argument mirrors the `configElements` argument but intentionally
       lacks automatic safeguarding and should only be used for complex
       configurations where `configElements` is unsuitable.
@@ -225,7 +225,7 @@ let
       mkConfig = fn: fn (getStylixAttrs fn);
 
       # Safeguard configuration functions when any of their arguments is
-      # disabled, while non-function configurations are unguarded.
+      # disabled.
       mkConditionalConfig =
         c:
         if builtins.isFunction c then
@@ -260,8 +260,14 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.optional (generalConfig != null) (mkConfig generalConfig)
-          ++ map mkConditionalConfig (lib.toList configElements)
+          lib.optional (generalConfig != null) (
+            mkConfig (
+              if builtins.isPath generalConfig then import generalConfig else generalConfig
+            )
+          )
+          ++ map (c: mkConditionalConfig (if builtins.isPath c then import c else c)) (
+            lib.toList configElements
+          )
         )
       );
     };
