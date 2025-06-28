@@ -12,7 +12,7 @@ mkTarget {
     (
       { fonts }:
       {
-        programs.rofi.font = "${fonts.monospace.name} ${toString fonts.size.popups}";
+        programs.rofi.font = "${fonts.monospace.name} ${toString fonts.sizes.popups}";
       }
     )
     (
