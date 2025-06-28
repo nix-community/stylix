@@ -7,11 +7,16 @@
 mkTarget {
   name = "hyprland";
   humanName = "Hyprland";
-  extraOptions.hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
-    name = "Hyprpaper";
-    autoEnable = config.stylix.image != null;
-    autoEnableExpr = "config.stylix.image != null";
-  };
+  extraOptions =
+    { image }:
+    {
+      hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
+        name = "Hyprpaper";
+        autoEnable = image != null;
+        autoEnableExpr = "config.stylix.image != null";
+      };
+    };
+
   configElements = [
     (
       { colors }:
