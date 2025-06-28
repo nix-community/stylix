@@ -19,11 +19,11 @@
             prePatch =
               let
                 inherit (config.lib.stylix) colors;
-                inherit (builtins) concatStringsSep;
                 inherit (lib)
                   pipe
                   toInt
                   min
+                  concatStrings
                   max
                   toHexString
                   ;
@@ -46,7 +46,7 @@
                     # convert each to hex string
                     (map toHexString)
                     # to one string
-                    (concatStringsSep "")
+                    concatStrings
                   ];
               in
               ''
