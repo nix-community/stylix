@@ -27,9 +27,27 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
+      - id: user-info
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          slug: ${{ steps.generate-token.outputs.app-slug }}
+        run: |
+          name="$slug[bot]"
+          id="$(gh api "/users/$name" --jq .id)"
+          printf \
+            '%s=%s\n' \
+            id "$id" \
+            name "$name" \
+            email "$id+$name@users.noreply.github.com" \
+            >>"$GITHUB_OUTPUT"
+
       - uses: DeterminateSystems/update-flake-lock@v25
         with:
           token: ${{ steps.generate-token.outputs.token }}
+          git-committer-name: ${{ steps.user-info.outputs.name }}
+          git-committer-email: ${{ steps.user-info.outputs.email }}
+          git-author-name: ${{ steps.user-info.outputs.name }}
+          git-author-email: ${{ steps.user-info.outputs.email }}
           branch: update_flake_lock_action_${{ matrix.branch }}
           commit-msg: "flake: update all inputs"
           pr-title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}stylix: update all flake inputs"   # yamllint disable-line rule:line-length
