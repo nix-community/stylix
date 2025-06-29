@@ -1,10 +1,8 @@
-{
-  mkTarget,
-  ...
-}:
+{ mkTarget, ... }:
 mkTarget {
   name = "ashell";
   humanName = "Ashell";
+
   configElements =
     { colors }:
     {
