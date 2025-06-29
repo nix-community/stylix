@@ -1,4 +1,4 @@
-{ mkTarget, ... }:
+{ mkTarget, config, ... }:
 mkTarget {
   name = "ashell";
   humanName = "Ashell";
@@ -18,6 +18,9 @@ mkTarget {
           base09
           base0D
         ];
+
+        opacity = config.stylix.opacity.desktop;
+        menu.opacity = config.stylix.opacity.desktop;
       };
     };
 }
