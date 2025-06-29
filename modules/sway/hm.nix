@@ -8,9 +8,34 @@ let
   };
 in
 {
+  imports = [
+    (
+      { config, ... }:
+      {
+        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig`" config.stylix.targets.sway.exportedBarConfig;
+      }
+    )
+  ];
   options.stylix.targets.sway = {
     enable = config.lib.stylix.mkEnableTarget "Sway" true;
     useWallpaper = config.lib.stylix.mkEnableWallpaper "Sway" true;
+    exportedBarConfig = lib.mkOption {
+      type = lib.types.attrs;
+      description = ''
+        Theming configuration which can be merged with your own:
+        ```nix
+        wayland.windowManager.sway.config.bars = [
+          (
+            {
+              # your configuration
+            }
+            // config.stylix.targets.i3.exportedBarConfig
+          )
+        ];
+        ```
+      '';
+      readOnly = true;
+    };
   };
 
   config =
@@ -69,8 +94,7 @@ in
       })
 
       {
-        # Merge this with your bar configuration using //config.lib.stylix.sway.bar
-        lib.stylix.sway.bar = {
+        stylix.targets.sway.exportedBarConfig = {
           inherit fonts;
 
           colors =
