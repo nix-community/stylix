@@ -1,12 +1,13 @@
+mkTarget:
 {
-  config,
   lib,
   pkgs,
   ...
 }:
-{
-  options.stylix.targets.neovim = {
-    enable = config.lib.stylix.mkEnableTarget "Neovim" true;
+mkTarget {
+  name = "neovim";
+  humanName = "Neovim";
+  extraOptions = {
     plugin = lib.mkOption {
       type = lib.types.enum [
         "base16-nvim"
@@ -20,14 +21,47 @@
       signColumn = lib.mkEnableOption "background transparency for the Neovim sign column";
       numberLine = lib.mkEnableOption "background transparency for the NeoVim number/relativenumber column";
     };
+
+    pluginColorConfig = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      internal = true;
+    };
   };
 
-  config =
-    lib.mkIf (config.stylix.enable && config.stylix.targets.neovim.enable)
+  configElements = [
+    (
+      { colors, cfg }:
       {
-        programs.neovim =
+        stylix.targets.neovim.pluginColorConfig =
+          with colors.withHashtag;
+          if cfg.plugin == "base16-nvim" then
+            ''
+              require('base16-colorscheme').setup({
+                base00 = '${base00}', base01 = '${base01}', base02 = '${base02}', base03 = '${base03}',
+                base04 = '${base04}', base05 = '${base05}', base06 = '${base06}', base07 = '${base07}',
+                base08 = '${base08}', base09 = '${base09}', base0A = '${base0A}', base0B = '${base0B}',
+                base0C = '${base0C}', base0D = '${base0D}', base0E = '${base0E}', base0F = '${base0F}'
+              })
+            ''
+          else
+            ''
+              require('mini.base16').setup({
+                palette = {
+                  base00 = '${base00}', base01 = '${base01}', base02 = '${base02}', base03 = '${base03}',
+                  base04 = '${base04}', base05 = '${base05}', base06 = '${base06}', base07 = '${base07}',
+                  base08 = '${base08}', base09 = '${base09}', base0A = '${base0A}', base0B = '${base0B}',
+                  base0C = '${base0C}', base0D = '${base0D}', base0E = '${base0E}', base0F = '${base0F}'
+                }
+              })
+            '';
+      }
+    )
+    (
+      { cfg }:
+      {
+        programs.neovim.plugins =
           let
-            cfg = config.stylix.targets.neovim;
             transparencyCfg = toString (
               lib.optional cfg.transparentBackground.main ''
                 vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
@@ -43,39 +77,21 @@
               ''
             );
           in
-          {
-            plugins = [
-              (lib.mkIf (cfg.plugin == "base16-nvim") {
-                plugin = pkgs.vimPlugins.base16-nvim;
-                type = "lua";
-                config = with config.lib.stylix.colors.withHashtag; ''
-                  require('base16-colorscheme').setup({
-                    base00 = '${base00}', base01 = '${base01}', base02 = '${base02}', base03 = '${base03}',
-                    base04 = '${base04}', base05 = '${base05}', base06 = '${base06}', base07 = '${base07}',
-                    base08 = '${base08}', base09 = '${base09}', base0A = '${base0A}', base0B = '${base0B}',
-                    base0C = '${base0C}', base0D = '${base0D}', base0E = '${base0E}', base0F = '${base0F}'
-                  })
-
-                  ${transparencyCfg}
-                '';
-              })
-              (lib.mkIf (cfg.plugin == "mini.base16") {
-                plugin = pkgs.vimPlugins.mini-nvim;
-                type = "lua";
-                config = with config.lib.stylix.colors.withHashtag; ''
-                  require('mini.base16').setup({
-                    palette = {
-                      base00 = '${base00}', base01 = '${base01}', base02 = '${base02}', base03 = '${base03}',
-                      base04 = '${base04}', base05 = '${base05}', base06 = '${base06}', base07 = '${base07}',
-                      base08 = '${base08}', base09 = '${base09}', base0A = '${base0A}', base0B = '${base0B}',
-                      base0C = '${base0C}', base0D = '${base0D}', base0E = '${base0E}', base0F = '${base0F}'
-                    }
-                  })
-
-                  ${transparencyCfg}
-                '';
-              })
-            ];
-          };
-      };
+          [
+            {
+              plugin =
+                if cfg.plugin == "mini.base16" then
+                  pkgs.vimPlugins.mini-nvim
+                else
+                  pkgs.vimPlugins.base16-nvim;
+              type = "lua";
+              config = lib.concatLines [
+                cfg.pluginColorConfig
+                transparencyCfg
+              ];
+            }
+          ];
+      }
+    )
+  ];
 }

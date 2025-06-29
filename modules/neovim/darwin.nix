@@ -1,6 +1,7 @@
+{ mkTarget, lib, ... }:
 {
-  imports = [
-    ./nvf.nix
+  imports = map (module: lib.modules.importApply module mkTarget) [
     ./nixvim.nix
+    ./nvf.nix
   ];
 }
