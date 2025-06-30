@@ -1,5 +1,5 @@
 {
   name = "Zed";
-  homepage = "https://zed.brimdata.io/";
+  homepage = "https://zed.dev/";
   maintainers = [ ];
 }
