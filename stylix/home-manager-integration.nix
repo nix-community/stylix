@@ -185,7 +185,8 @@ in
         [`stylix.homeManagerIntegration.autoImport`](#stylixhomemanagerintegrationautoimport).
       '';
       type = lib.types.bool;
-      default = true;
+      default = config.stylix.enable;
+      defaultText = lib.literalExpression "config.stylix.enable";
       example = false;
     };
 
@@ -197,7 +198,8 @@ in
         your NixOS configuration, rather than running Home Manager independently.
       '';
       type = lib.types.bool;
-      default = true;
+      default = config.stylix.enable;
+      defaultText = lib.literalExpression "config.stylix.enable";
       example = false;
     };
 
@@ -210,22 +212,20 @@ in
     };
   };
 
-  config = lib.mkIf config.stylix.enable (
-    lib.optionalAttrs (options ? home-manager) (
-      lib.mkMerge [
-        (lib.mkIf config.stylix.homeManagerIntegration.autoImport {
-          home-manager.sharedModules =
-            [
-              config.stylix.homeManagerIntegration.module
-            ]
-            ++ (lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules);
-        })
-        (lib.mkIf config.home-manager.useGlobalPkgs {
-          home-manager.sharedModules = lib.singleton {
-            config.stylix.overlays.enable = false;
-          };
-        })
-      ]
-    )
+  config = lib.optionalAttrs (options ? home-manager) (
+    lib.mkMerge [
+      (lib.mkIf config.stylix.homeManagerIntegration.autoImport {
+        home-manager.sharedModules =
+          [
+            config.stylix.homeManagerIntegration.module
+          ]
+          ++ (lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules);
+      })
+      (lib.mkIf config.home-manager.useGlobalPkgs {
+        home-manager.sharedModules = lib.singleton {
+          config.stylix.overlays.enable = false;
+        };
+      })
+    ]
   );
 }
