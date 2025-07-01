@@ -2,11 +2,11 @@
 {
   name = "Neovim, Neovide, NixVim, nvf, and Vim";
   homepage = {
-    Neovim = "https://www.neovim.io/";
-    Neovide = "https://neovide.dev/";
+    Neovim = "https://www.neovim.io";
+    Neovide = "https://neovide.dev";
     NixVim = "https://github.com/nix-community/nixvim";
     nvf = "https://github.com/NotAShelf/nvf";
-    Vim = "http://www.vim.org/";
+    Vim = "http://www.vim.org";
   };
   maintainers = with lib.maintainers; [
     butzist
