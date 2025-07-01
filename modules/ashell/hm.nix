@@ -25,7 +25,7 @@ mkTarget {
     (
       { opacity }:
       {
-        prrograms.ashell.settings.appearance = {
+        programs.ashell.settings.appearance = {
           inherit opacity;
           menu.opacity = opacity;
         };
