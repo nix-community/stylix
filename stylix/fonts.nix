@@ -110,10 +110,9 @@ in
 
     packages = lib.mkOption {
       description = ''
-        A list of all the font packages that will be installed.
+        A list of font packages to be installed.
       '';
       type = lib.types.listOf lib.types.package;
-      readOnly = true;
     };
   };
 
