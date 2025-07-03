@@ -41,7 +41,7 @@ jobs:
             email "$id+$name@users.noreply.github.com" \
             >>"$GITHUB_OUTPUT"
 
-      - uses: DeterminateSystems/update-flake-lock@v25
+      - uses: DeterminateSystems/update-flake-lock@v26
         with:
           token: ${{ steps.generate-token.outputs.token }}
           git-committer-name: ${{ steps.user-info.outputs.name }}
