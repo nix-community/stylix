@@ -51,10 +51,10 @@ your existing configuration, so you don't need to run any extra commands when
 you rebuild, and the theme you set in NixOS will automatically be used for Home
 Manager too.
 
-When Stylix is installed to a NixOS configuration, it will automatically set up
-its Home Manager modules if it detects that Home Manager is available. You can
-theoretically use it without installing Home Manager, however most features will
-be unavailable.
+When Stylix is installed and enabled in a NixOS configuration, it will
+automatically set up its Home Manager modules if it detects that Home Manager
+is available. You can theoretically use it without installing Home Manager,
+however most features will be unavailable.
 
 ## nix-darwin
 
