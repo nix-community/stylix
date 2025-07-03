@@ -30,8 +30,11 @@ uses.
   - `enable` defaults to true; allows for conditionally disabling a testbed
   - `ui` and all of its suboptions are optional. Setting any will enable a
     graphical environment.
-    - `command` takes a string command to be run once the graphical environment
+    - `command` takes a command to be run once the graphical environment
       has loaded
+      - `text` takes the string of the command
+      - `useTerminal` takes a boolean which determines whether the command
+        should be run in a terminal
     - `application` takes a desktop application to be run once the graphical
       environment has loaded. If one of its suboptions is set, all must be.
       - `name` takes the string name of the desktop application
