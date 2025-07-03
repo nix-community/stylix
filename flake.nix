@@ -105,6 +105,23 @@
       flake = false;
     };
     # keep-sorted end
+
+    # flakes used for testing
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
   };
 
   outputs =
