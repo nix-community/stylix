@@ -34,7 +34,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: DeterminateSystems/nix-installer-action@v18
 
       - uses: cachix/cachix-action@v16
         with:
