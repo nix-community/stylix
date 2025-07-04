@@ -18,6 +18,7 @@
             inherit (oldAttrs) src;
             prePatch =
               let
+                inherit (builtins) stringLength;
                 inherit (config.lib.stylix) colors;
 
                 inherit (lib)
@@ -27,7 +28,6 @@
                   pipe
                   toHexString
                   toInt
-                  stringLength
                   ;
 
                 baseColorAdd =
