@@ -44,11 +44,17 @@ let
 in
 {
   options.stylix.targets.gnome = {
-    enable = config.lib.stylix.mkEnableTarget "GNOME" true;
+    enable = config.lib.stylix.mkEnableTargetWith {
+      name = "GNOME";
+      autoEnable = pkgs.stdenv.hostPlatform.isLinux;
+      autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
+    };
     useWallpaper = config.lib.stylix.mkEnableWallpaper "GNOME" true;
   };
 
   config = lib.mkIf (config.stylix.enable && cfg.enable) {
+    home.packages = [ pkgs.gnomeExtensions.user-themes ];
+
     dconf.settings = {
       "org/gnome/desktop/background" = {
         color-shading-type = "solid";

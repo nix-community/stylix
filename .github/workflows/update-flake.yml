@@ -1,23 +1,23 @@
 ---
 name: Update flake inputs
 
-on:  # yamllint disable-line rule:truthy
+on:
   schedule:
     - cron: "0 0 1 * *"
   workflow_dispatch:
 
 jobs:
   flake-update:
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'danth'
+    runs-on: ubuntu-24.04
+    if: vars.APP_ID
     strategy:
       matrix:
-        branch: [master, release-24.11]
+        branch: [master, release-25.05]
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
-      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: DeterminateSystems/nix-installer-action@v18
 
       - id: generate-token
         uses: actions/create-github-app-token@v2
@@ -27,18 +27,36 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - uses: DeterminateSystems/update-flake-lock@v25
+      - id: user-info
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          slug: ${{ steps.generate-token.outputs.app-slug }}
+        run: |
+          name="$slug[bot]"
+          id="$(gh api "/users/$name" --jq .id)"
+          printf \
+            '%s=%s\n' \
+            id "$id" \
+            name "$name" \
+            email "$id+$name@users.noreply.github.com" \
+            >>"$GITHUB_OUTPUT"
+
+      - uses: DeterminateSystems/update-flake-lock@v26
         with:
           token: ${{ steps.generate-token.outputs.token }}
+          git-committer-name: ${{ steps.user-info.outputs.name }}
+          git-committer-email: ${{ steps.user-info.outputs.email }}
+          git-author-name: ${{ steps.user-info.outputs.name }}
+          git-author-email: ${{ steps.user-info.outputs.email }}
           branch: update_flake_lock_action_${{ matrix.branch }}
           commit-msg: "flake: update all inputs"
           pr-title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}stylix: update all flake inputs"   # yamllint disable-line rule:line-length
-          pr-labels: dependencies
-          # yamllint disable rule:line-length
-          pr-body: |
-            Automated changes by the [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock) GitHub Action.
+          pr-labels: "topic: dependencies"
+          pr-body: >
+            Automated changes by the
+            [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock)
+            GitHub Action.
 
             ```
             {{ env.GIT_COMMIT_MESSAGE }}
             ```
-          # yamllint enable rule:line-length

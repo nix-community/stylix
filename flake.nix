@@ -54,8 +54,8 @@
     gnome-shell = {
       # TODO: Unlocking the input and pointing to official repository requires
       # updating the patch:
-      # https://github.com/danth/stylix/pull/224#discussion_r1460339607.
-      url = "github:GNOME/gnome-shell/47.2";
+      # https://github.com/nix-community/stylix/pull/224#discussion_r1460339607.
+      url = "github:GNOME/gnome-shell/48.2";
       flake = false;
     };
 
@@ -80,20 +80,13 @@
       # functionality [1], it might be easiest to lock this input to avoid
       # wasted maintenance effort.
       #
-      # [1]: https://github.com/danth/stylix/issues/571
+      # [1]: https://github.com/nix-community/stylix/issues/571
       url = "github:tinted-theming/tinted-foot/fd1b924b6c45c3e4465e8a849e67ea82933fcbe4";
       flake = false;
     };
 
     tinted-kitty = {
-      # Lock the tinted-kitty input to prevent upstream breaking changes.
-      #
-      # Considering that Stylix eventually re-implements this input's
-      # functionality [1], it might be easiest to lock this input to avoid
-      # wasted maintenance effort.
-      #
-      # [1]: https://github.com/danth/stylix/issues/534
-      url = "github:tinted-theming/tinted-kitty/eb39e141db14baef052893285df9f266df041ff8";
+      url = "github:tinted-theming/tinted-kitty";
       flake = false;
     };
 

@@ -1,4 +1,0 @@
-{
-  maintainers = [ ];
-  name = "Vim";
-}

@@ -8,7 +8,7 @@
 
 let
   cfg = config.stylix;
-
+  opts = options.stylix;
 in
 {
   options.stylix = {
@@ -29,7 +29,10 @@ in
     };
 
     image = lib.mkOption {
-      type = with lib.types; nullOr (coercedTo package toString path);
+      type = lib.types.nullOr lib.types.path;
+      # Ensure the path is copied to the store
+      apply =
+        value: if value == null || lib.isDerivation value then value else "${value}";
       description = ''
         Wallpaper image.
 
@@ -114,18 +117,23 @@ in
       '';
       type =
         with lib.types;
-        nullOr (oneOf [
+        oneOf [
           path
           lines
           attrs
-        ]);
-      # defaults to null when cfg.image is also null, in order to trigger the assertion below correctly
-      default = if cfg.image == null then null else cfg.generated.palette;
+        ];
+      # We add an assertion here, because this value is used throughout Stylix.
+      # Using the assertions option is ineffective because it is checked after
+      # the errors caused by reading `base16Scheme` have occurred.
+      # See https://github.com/nix-community/stylix/pull/1408
+      # and https://github.com/nix-community/stylix/pull/1446
+      default =
+        lib.throwIf (cfg.image == null)
+          "stylix: one of `${opts.image}' or `${opts.base16Scheme}' must be set."
+          cfg.generated.palette;
       defaultText = lib.literalMD ''
-        The colors used in the theming.
-
-        Those are automatically selected from the background image by default,
-        but could be overridden manually.
+        Automatically selected from the background image. The default will
+        throw if `config.stylix.image` is null.
       '';
     };
 
@@ -165,16 +173,6 @@ in
     # This attrset can be used like a function too, see
     # https://github.com/SenchoPens/base16.nix/blob/b390e87cd404e65ab4d786666351f1292e89162a/README.md#theme-step-22
     lib.stylix.colors = (cfg.base16.mkSchemeAttrs cfg.base16Scheme).override cfg.override;
-
-    assertions = lib.mkIf cfg.enable [
-      {
-        assertion = !(cfg.image == null && cfg.base16Scheme == null);
-
-        message = ''
-          stylix: one of `stylix.image` or `stylix.base16Scheme` must be set
-        '';
-      }
-    ];
 
     stylix.generated.fileTree = {
       # The raw output of the palette generator.
