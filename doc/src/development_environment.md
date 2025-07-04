@@ -39,6 +39,7 @@ Note that there is also a flake output, `.#checks.«system».git-hooks`, which
 always runs against all files but does not have access to apply changes. This is
 used in GitHub Actions to ensure that `pre-commit` has been applied.
 
+<!-- TODO: Mention and explain CLI arguments. -->
 ## `stylix-check`
 
 When a pull request is opened, we use GitHub Actions to build everything under
