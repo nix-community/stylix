@@ -21,7 +21,7 @@ mkTarget {
       default = [ ];
     };
 
-    colorTheme.enable = lib.mkEnableOption "[Firefox Color](https://color.firefox.com/) on ${humanName}";
+    colorTheme.enable = lib.mkEnableOption "[Firefox Color](https://color.firefox.com) on ${humanName}";
 
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
   };

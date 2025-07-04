@@ -1,5 +1,5 @@
 {
   name = "Xfce";
-  homepage = "https://www.xfce.org/";
+  homepage = "https://www.xfce.org";
   maintainers = [ ];
 }

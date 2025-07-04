@@ -1,5 +1,5 @@
 {
   name = "feh";
-  homepage = "https://feh.finalrewind.org/";
+  homepage = "https://feh.finalrewind.org";
   maintainers = [ ];
 }

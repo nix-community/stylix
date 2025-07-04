@@ -1,5 +1,5 @@
 {
   name = "Zed";
-  homepage = "https://zed.dev/";
+  homepage = "https://zed.dev";
   maintainers = [ ];
 }
