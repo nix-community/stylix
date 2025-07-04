@@ -241,7 +241,9 @@ let
           c;
     in
     {
-      inherit imports;
+      imports = imports ++ [
+        { options.stylix.targets.${name} = mkConfig (lib.toFunction extraOptions); }
+      ];
 
       options.stylix.targets.${name}.enable =
         let
@@ -273,8 +275,5 @@ let
     };
 in
 {
-  imports = [
-    { options.stylix.targets.${name} = extraOptions; }
-    module
-  ];
+  imports = [ module ];
 }

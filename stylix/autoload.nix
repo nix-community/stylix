@@ -42,7 +42,19 @@ builtins.concatLists (
         {
           key = file;
           _file = file;
-          imports = [ (module (args // extraArgs // { inherit mkTarget; })) ];
+          imports = [
+            (module (
+              args
+              // extraArgs
+              // {
+                inherit mkTarget;
+                config = lib.recursiveUpdate config {
+                  stylix = throw "stylix: unguareded `config.stylix` accessed while using mkTarget";
+                  lib.stylix.colors = throw "stylix: unguareded `config.lib.stylix.colors` accessed while using mkTarget";
+                };
+              }
+            ))
+          ];
         }
       else
         file
