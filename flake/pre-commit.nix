@@ -11,20 +11,18 @@
         check.enable = true;
 
         settings.hooks = {
+          # keep-sorted start block=yes
           deadnix = {
             enable = true;
             settings.noUnderscore = true;
           };
-
           editorconfig-checker.enable = true;
           hlint.enable = true;
-
+          statix.enable = true;
           treefmt = {
             enable = true;
             package = config.formatter;
           };
-
-          statix.enable = true;
           typos = {
             enable = true;
             settings.configuration = ''
@@ -33,6 +31,7 @@
             '';
           };
           yamllint.enable = true;
+          # keep-sorted end
         };
       };
     };
