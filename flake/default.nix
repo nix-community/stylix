@@ -14,11 +14,13 @@
       # dev flake is partitioned
       formatter = pkgs.treefmt.withConfig {
         runtimeInputs = with pkgs; [
-          nixfmt-rfc-style
+          # keep-sorted start
           biome
+          keep-sorted
+          nixfmt-rfc-style
           ruff
           stylish-haskell
-          keep-sorted
+          # keep-sorted end
         ];
 
         settings = {
@@ -26,10 +28,7 @@
           tree-root-file = "flake.nix";
 
           formatter = {
-            stylish-haskell = {
-              command = "stylish-haskell";
-              includes = [ "*.hx" ];
-            };
+            # keep-sorted start block=yes
             biome = {
               command = "biome";
               options = [
@@ -55,6 +54,15 @@
                 "modules/swaync/base.css"
               ];
             };
+            keep-sorted = {
+              command = "keep-sorted";
+              includes = [ "*" ];
+            };
+            nixfmt = {
+              command = "nixfmt";
+              options = [ "--width=80" ];
+              includes = [ "*.nix" ];
+            };
             ruff = {
               command = "ruff";
               options = [
@@ -66,15 +74,11 @@
               ];
               includes = [ "*.py" ];
             };
-            nixfmt = {
-              command = "nixfmt";
-              options = [ "--width=80" ];
-              includes = [ "*.nix" ];
+            stylish-haskell = {
+              command = "stylish-haskell";
+              includes = [ "*.hx" ];
             };
-            keep-sorted = {
-              command = "keep-sorted";
-              includes = [ "*" ];
-            };
+            # keep-sorted end
           };
         };
       };
