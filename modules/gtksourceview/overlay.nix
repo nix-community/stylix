@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) optionalAttrs mkEnableOption;
+  inherit (lib) optionalAttrs;
   inherit (config.lib.stylix) colors mkEnableTarget;
 
   cfg = config.stylix.targets.gtksourceview;
@@ -23,14 +23,11 @@ in
 {
   options.stylix.targets.gtksourceview = {
     enable = mkEnableTarget "GTKSourceView" true;
-    overlay.enable = mkEnableOption "the overlay" // {
-      default = !config ? home;
-    };
   };
 
   overlay =
     _final: prev:
-    optionalAttrs (config.stylix.enable && cfg.enable && cfg.overlay.enable) {
+    optionalAttrs (config.stylix.enable && cfg.enable) {
       gnome2.gtksourceview = prev.gnome2.gtksourceview.overrideAttrs (
         attrsOverride "2.0"
       );
