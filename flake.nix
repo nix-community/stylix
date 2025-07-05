@@ -12,11 +12,6 @@
     systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
-    adwaita-for-steam = {
-      flake = false;
-      url = "github:tkashkin/Adwaita-for-Steam";
-    };
-
     base16-fish = {
       # Lock the base16-fish input to a custom patch [2] ("Make autosuggestion
       # and comment base03"), since it is currently impossible to apply patches
