@@ -1,60 +1,50 @@
 {
-  config,
   lib,
   pkgs,
+  mkTarget,
   ...
 }:
 
 let
-  cfg = config.stylix.targets.steam;
-
-  adwaitaCustomCss = config.lib.stylix.colors {
-    template = ./custom.mustache;
-    extension = "css";
+  adwsteamgtk = pkgs.adwsteamgtk.overridePythonAttrs {
+    # See https://github.com/Foldex/AdwSteamGtk/pull/95
+    src = pkgs.fetchFromGitHub {
+      owner = "Foldex";
+      repo = "AdwSteamGtk";
+      rev = "a003d50a6adab743356b5f2538db83bb78ea6e36";
+      hash = "sha256-zBlNKtV8VpElxeJfjXJudOTMpjmfZdzSEOCuu4FgJ0s=";
+    };
   };
-
-  adwaitaTheme = pkgs.stdenv.mkDerivation (_self: {
-    name = "Adwaita-for-Steam";
-    version = "3.1";
-
-    src = config.stylix.inputs.adwaita-for-steam;
-
-    buildInputs = with pkgs; [ python3 ];
-
-    buildPhase = ''
-      mkdir --parents $out/steamui/css
-      touch $out/steamui/css/library.css
-      cp ${adwaitaCustomCss} ./custom/custom.css
-      python3 install.py --custom-css --target $out
-    '';
-  });
 in
-{
-  options.stylix.targets.steam = {
-    enable = config.lib.stylix.mkEnableTarget "Steam" true;
-    adwaitaForSteam.enable = config.lib.stylix.mkEnableTarget "Adwaita for Steam" true;
+mkTarget {
+  name = "steam";
+  humanName = "Steam";
+
+  extraOptions = {
+    adwaitaTheme.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      example = true;
+      description = ''
+        Whether to enable the Adwaita theme for Steam.
+
+        > [!IMPORTANT]
+        > This option will install and configure the AdwSteamGtk application.
+        > The theme can be applied by running this application.
+      '';
+    };
   };
 
-  config =
-    lib.mkIf (config.stylix.enable && cfg.enable && cfg.adwaitaForSteam.enable)
-      {
-        home.activation.backupSteamCss =
-          let
-            shellScript = pkgs.writeShellScript "backup-steam-css" ''
-              css_dir="${config.xdg.dataHome}/Steam/steamui/css"
-              cp --no-clobber "$css_dir/library.css" "$css_dir/library.original.css"
-            '';
-          in
-          config.lib.dag.entryBefore [ "writeBoundary" ] ''
-            run --quiet ${shellScript}
-          '';
+  configElements =
+    { cfg, colors }:
+    lib.mkIf cfg.adwaitaTheme.enable {
+      home.packages = [ adwsteamgtk ];
 
-        xdg.dataFile = {
-          "Steam/steamui/adwaita".source = "${adwaitaTheme}/steamui/adwaita";
-          "Steam/steamui/libraryroot.custom.css".source =
-            "${adwaitaTheme}/steamui/libraryroot.custom.css";
-          "Steam/steamui/css/library.css".source =
-            "${adwaitaTheme}/steamui/css/library.css";
-        };
+      dconf.settings."io/github/Foldex/AdwSteamGtk".prefs-install-custom-css = true;
+
+      xdg.configFile."AdwSteamGtk/custom.css".source = colors {
+        template = ./custom.mustache;
+        extension = ".css";
       };
+    };
 }
