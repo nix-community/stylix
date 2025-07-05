@@ -7,6 +7,8 @@ To keep things consistent, commit messages should follow a format
 «scope»: «summary»
 
 «motivation for change»
+
+«commit metadata»
 ```
 
 Where the scope is one of:
@@ -27,5 +29,14 @@ updates should use whichever scope they are related to.
 The summary should start with a lowercase letter, and should not end with
 punctuation.
 
+> [!TIP]
+> Consider crediting co-authors with `Co-authored-by:` commit tags.
+
+## Squash Merges
+
 Most commits to `master` will also include a pull request number in brackets
 after the summary. GitHub adds this automatically when creating a squash merge.
+See
+[this](https://github.com/nix-community/stylix/commit/d73d8f6a4834716496bf8930a492b115cc3d7d17)
+commit as an example of metadata that stylix maintainers may add when squash
+merging.
