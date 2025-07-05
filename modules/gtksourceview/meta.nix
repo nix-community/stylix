@@ -1,4 +1,6 @@
+{ lib, ... }:
+
 {
-  maintainers = [ ];
+  maintainers = [ lib.maintainers.bricked ];
   name = "GTKSourceView";
 }
