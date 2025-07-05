@@ -12,7 +12,7 @@ in
     (
       { config, ... }:
       {
-        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig`" config.stylix.targets.sway.exportedBarConfig;
+        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.sway.exportedBarConfig;
       }
     )
   ];
@@ -23,13 +23,14 @@ in
       type = lib.types.attrs;
       description = ''
         Theming configuration which can be merged with your own:
+
         ```nix
         wayland.windowManager.sway.config.bars = [
           (
             {
               # your configuration
             }
-            // config.stylix.targets.i3.exportedBarConfig
+            // config.stylix.targets.sway.exportedBarConfig
           )
         ];
         ```

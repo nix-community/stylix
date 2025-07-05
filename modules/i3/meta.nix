@@ -3,8 +3,10 @@
   homepage = "https://i3wm.org/";
   maintainers = [ ];
   description = ''
-    Theming for bars is not automatically applied. See
-    [this option](#stylixtargetsi3exportedbarconfig), which provides the
-    exported configuration.
+    > [!IMPORTANT]
+    >
+    > The `config.xsession.windowManager.i3.config.bars` option is not themed.
+    > Use the [`config.stylix.targets.i3.exportedBarConfig`](
+    > #stylixtargetsswayexportedbarconfig) option to customize it.
   '';
 }
