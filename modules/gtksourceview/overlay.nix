@@ -8,7 +8,7 @@ let
 
   style = colors {
     template = ./template.xml.mustache;
-    extension = "xml";
+    extension = ".xml";
   };
 
   attrsOverride = version: oldAttrs: {
