@@ -8,6 +8,7 @@
   };
 
   programs.steam.enable = true;
+  stylix.targets.steam.adwaitaTheme.enable = true;
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
