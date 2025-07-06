@@ -48,10 +48,13 @@ mkTarget {
         };
       }
     )
-    (lib.mkIf config.stylix.targets.nixos-icons.enable {
-      wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
-        "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
-    })
+    (
+      { targets }:
+      {
+        wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
+          lib.mkIf targets.nixos-icons.enable "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+      }
+    )
     (
       { colors }:
       let
