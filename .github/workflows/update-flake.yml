@@ -41,22 +41,40 @@ jobs:
             email "$id+$name@users.noreply.github.com" \
             >>"$GITHUB_OUTPUT"
 
-      - uses: DeterminateSystems/update-flake-lock@v26
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          git-committer-name: ${{ steps.user-info.outputs.name }}
-          git-committer-email: ${{ steps.user-info.outputs.email }}
-          git-author-name: ${{ steps.user-info.outputs.name }}
-          git-author-email: ${{ steps.user-info.outputs.email }}
-          branch: update_flake_lock_action_${{ matrix.branch }}
-          commit-msg: "flake: update all inputs"
-          pr-title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}stylix: update all flake inputs"   # yamllint disable-line rule:line-length
-          pr-labels: "topic: dependencies"
-          pr-body: >
-            Automated changes by the
-            [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock)
-            GitHub Action.
+      - name: setup git
+        env:
+          name: ${{ steps.user-info.outputs.name }}
+          email: ${{ steps.user-info.outputs.email }}
+        run: |
+          git config --global user.name "$name"
+          git config --global user.email "$email"
 
-            ```
-            {{ env.GIT_COMMIT_MESSAGE }}
-            ```
+      - name: update lock files
+        run: |
+          nix flake update \
+            --commit-lock-file \
+            --option commit-lock-file-summary "flake: update root inputs"
+
+          nix flake update \
+            --commit-lock-file \
+            --flake ./flake/dev \
+            --option commit-lock-file-summary "flake: update dev inputs"
+
+      - name: create pull request
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          base_branch: ${{ matrix.branch }}
+          pr_branch: update_flake_lock_action_${{ matrix.branch }}
+          title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}flake: update public and dev inputs"  # yamllint disable-line rule:line-length
+        run: |
+          git switch --create "$pr_branch"
+
+          git push origin "$pr_branch" \
+            --force \
+            --set-upstream
+
+          gh pr create \
+            --base "$base_branch" \
+            --title "$title" \
+            --label "topic: dependencies" ||
+            echo "Failed to create PR"
