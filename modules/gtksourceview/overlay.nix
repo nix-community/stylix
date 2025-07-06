@@ -4,8 +4,6 @@ let
   inherit (lib) optionalAttrs;
   inherit (config.lib.stylix) colors;
 
-  cfg = config.stylix.targets.gtksourceview;
-
   style = colors {
     template = ./template.xml.mustache;
     extension = ".xml";
@@ -23,12 +21,18 @@ in
 {
   overlay =
     _final: prev:
-    optionalAttrs (config.stylix.enable && cfg.enable) {
-      gnome2.gtksourceview = prev.gnome2.gtksourceview.overrideAttrs (
-        attrsOverride "2.0"
-      );
-      gtksourceview = prev.gtksourceview.overrideAttrs (attrsOverride "3.0");
-      gtksourceview4 = prev.gtksourceview4.overrideAttrs (attrsOverride "4");
-      gtksourceview5 = prev.gtksourceview5.overrideAttrs (attrsOverride "5");
-    };
+    optionalAttrs
+      (
+        config.stylix.enable
+        && config.stylix.targets ? gtksourceview
+        && config.stylix.targets.gtksourceview.enable
+      )
+      {
+        gnome2.gtksourceview = prev.gnome2.gtksourceview.overrideAttrs (
+          attrsOverride "2.0"
+        );
+        gtksourceview = prev.gtksourceview.overrideAttrs (attrsOverride "3.0");
+        gtksourceview4 = prev.gtksourceview4.overrideAttrs (attrsOverride "4");
+        gtksourceview5 = prev.gtksourceview5.overrideAttrs (attrsOverride "5");
+      };
 }
