@@ -51,4 +51,4 @@
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/testbed/**"
-          - "modules/testbed/**"
+          - "modules/*/testbeds/**"
