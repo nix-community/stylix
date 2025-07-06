@@ -1,5 +1,5 @@
 {
   name = "KDE";
-  homepage = "https://kde.org/";
+  homepage = "https://kde.org";
   maintainers = [ ];
 }

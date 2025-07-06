@@ -1,5 +1,5 @@
 {
   name = "Sway";
-  homepage = "https://swaywm.org/";
+  homepage = "https://swaywm.org";
   maintainers = [ ];
 }

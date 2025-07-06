@@ -1,5 +1,5 @@
 {
   name = "Kmscon";
-  homepage = "https://www.freedesktop.org/wiki/Software/kmscon/";
+  homepage = "https://www.freedesktop.org/wiki/Software/kmscon";
   maintainers = [ ];
 }

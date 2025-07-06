@@ -2,7 +2,7 @@
 {
   name = "Discord";
   homepage = {
-    Discord = "https://discordapp.com/";
+    Discord = "https://discordapp.com";
     Nixcord = "https://github.com/KaylorBen/nixcord";
     Vencord = "https://github.com/Vendicated/Vencord";
     Vesktop = "https://github.com/Vencord/Vesktop";

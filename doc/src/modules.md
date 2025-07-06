@@ -157,7 +157,7 @@ You can use the values directly:
 }
 ```
 
-Or you can create a [Mustache](http://mustache.github.io/) template and use
+Or you can create a [Mustache](http://mustache.github.io) template and use
 it as a function. This returns a derivation which builds the template.
 
 ```nix
