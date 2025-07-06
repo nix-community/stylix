@@ -1,5 +1,5 @@
 {
   name = "Helix";
-  homepage = "https://helix-editor.com/";
+  homepage = "https://helix-editor.com";
   maintainers = [ ];
 }

@@ -1,4 +1,4 @@
-# Starship configuration documentation: https://starship.rs/config/
+# Starship configuration documentation: https://starship.rs/config
 { mkTarget, ... }:
 mkTarget {
   name = "starship";
