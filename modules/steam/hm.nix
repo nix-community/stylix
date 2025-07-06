@@ -43,7 +43,7 @@ mkTarget {
       dconf.settings."io/github/Foldex/AdwSteamGtk".prefs-install-custom-css = true;
 
       xdg.configFile."AdwSteamGtk/custom.css".source = colors {
-        template = ./custom.mustache;
+        template = ./custom.css.mustache;
         extension = ".css";
       };
     };
