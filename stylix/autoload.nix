@@ -49,8 +49,8 @@ builtins.concatLists (
               // {
                 inherit mkTarget;
                 config = lib.recursiveUpdate config {
-                  stylix = throw "stylix: unguareded `config.stylix` accessed while using mkTarget";
-                  lib.stylix.colors = throw "stylix: unguareded `config.lib.stylix.colors` accessed while using mkTarget";
+                  stylix = throw "stylix: unguarded `config.stylix` accessed while using mkTarget";
+                  lib.stylix.colors = throw "stylix: unguarded `config.lib.stylix.colors` accessed while using mkTarget";
                 };
               }
             ))
