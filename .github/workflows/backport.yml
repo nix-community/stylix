@@ -1,6 +1,6 @@
 ---
 # Derived from
-# https://github.com/NixOS/nixpkgs/blob/2566f9dcb469b06241519a8185863d67773f943a/.github/workflows/backport.yml
+# https://github.com/NixOS/nixpkgs/blob/b05ffc63b7e95fde20433ac6a7b4ef1712695d56/.github/workflows/backport.yml
 name: Backport
 
 on:
@@ -41,7 +41,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ steps.app-token.outputs.token }}
 
-      - uses: korthout/backport-action@v3
+      - uses: korthout/backport-action@v3.2.1
         with:
           github_token: ${{ steps.app-token.outputs.token }}
           label_pattern: "^backport: ([^ ]+)$"
@@ -50,14 +50,14 @@ jobs:
 
       - name: "Add 'has: port to stable' label"
         if: steps.backport.outputs.created_pull_numbers != ''
-        env:
-          # Not the app on purpose to avoid triggering another workflow run
-          # after adding this label
-          GH_TOKEN: ${{ github.token }}
-          REPOSITORY: ${{ github.repository }}
-          NUMBER: ${{ github.event.number }}
-        run: |
-          gh api \
-            --method POST \
-            /repos/"$REPOSITORY"/issues/"$NUMBER"/labels \
-            -f "labels[]=has: port to stable"
+        uses: actions/github-script@v7.0.1
+        with:
+          # Not using the app on purpose to avoid triggering another workflow
+          # run after adding this label.
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              labels: [ 'has: port to stable' ]
+            })
