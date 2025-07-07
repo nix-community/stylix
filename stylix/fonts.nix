@@ -119,10 +119,12 @@ in
 
   config = lib.mkIf config.stylix.enable {
     stylix.fonts.packages = [
-      cfg.monospace.package
-      cfg.serif.package
-      cfg.sansSerif.package
+      # keep-sorted start
       cfg.emoji.package
+      cfg.monospace.package
+      cfg.sansSerif.package
+      cfg.serif.package
+      # keep-sorted end
     ];
   };
 }

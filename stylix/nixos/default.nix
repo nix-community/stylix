@@ -9,17 +9,19 @@ let
 in
 {
   imports = [
-    ./cursor.nix
-    ./palette.nix
+    # keep-sorted start
     ../cursor.nix
     ../fonts.nix
     ../home-manager-integration.nix
     ../opacity.nix
+    ../overlays.nix
     ../palette.nix
     ../pixel.nix
-    ../target.nix
     ../release.nix
-    ../overlays.nix
+    ../target.nix
+    ./cursor.nix
+    ./palette.nix
+    # keep-sorted end
   ] ++ autoload;
   config.warnings =
     lib.mkIf
