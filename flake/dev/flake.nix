@@ -46,6 +46,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
     # keep-sorted end
   };
 
