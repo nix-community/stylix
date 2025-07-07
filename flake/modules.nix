@@ -1,9 +1,9 @@
 { inputs, self, ... }:
 {
   flake = {
-    # pkgs is specified as an argument even though it isn't used directly in the function body but further down.
-    # We need to tell deadnix to skip linting here to prevent it from complaining because of the unused pkgs argument.
     nixosModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
       # deadnix: skip
       { pkgs, ... }@args:
       {
@@ -20,6 +20,8 @@
       };
 
     homeModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
       # deadnix: skip
       { pkgs, ... }@args:
       {
@@ -35,6 +37,8 @@
       };
 
     darwinModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
       # deadnix: skip
       { pkgs, ... }@args:
       {
@@ -51,6 +55,8 @@
       };
 
     nixOnDroidModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
       # deadnix: skip
       { pkgs, ... }@args:
       {

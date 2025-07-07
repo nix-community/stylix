@@ -33,7 +33,9 @@ in
           "tonal-spot"
         ];
         default = "tonal-spot";
-        description = "Use this option to select a color scheme type.";
+        description = ''
+          [Matugen](https://github.com/InioX/matugen)'s color scheme type.
+        '';
         apply = option: "scheme-${option}";
       };
       contrast = lib.mkOption {

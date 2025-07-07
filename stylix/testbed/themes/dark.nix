@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 let
   images = pkgs.callPackages ../images.nix { };
   inherit (config.stylix.inputs) tinted-schemes;
