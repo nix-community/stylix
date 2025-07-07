@@ -8,8 +8,10 @@
 mkTarget {
   name = "regreet";
   humanName = "ReGreet";
+  
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
+  
   extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
 
   configElements = [
