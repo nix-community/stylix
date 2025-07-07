@@ -1,17 +1,15 @@
 {
   lib,
-  config,
-  ...
+  cfg,
+  colors,
 }:
 let
-  cfg = config.stylix.targets.plymouth;
-
   backgroundColor =
-    with config.lib.stylix.colors;
+    with colors;
     "${base00-dec-r}, ${base00-dec-g}, ${base00-dec-b}";
 
   foregroundColor =
-    with config.lib.stylix.colors;
+    with colors;
     "${base05-dec-r}, ${base05-dec-g}, ${base05-dec-b}";
 in
 builtins.toFile "stylix-plymouth-theme" ''
