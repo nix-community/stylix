@@ -36,14 +36,14 @@ mkTarget {
       { polarity }:
       {
         programs.regreet.settings.GTK.application_prefer_dark_theme =
-          config.stylix.polarity == "dark";
+          polarity == "dark";
       }
     )
     (
       { cfg, image }:
       {
         programs.regreet.settings.background.path =
-          lib.mkIf cfg.useWallpaper config.stylix.image;
+          lib.mkIf cfg.useWallpaper image;
       }
     )
     (
