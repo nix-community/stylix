@@ -1,9 +1,4 @@
-{
-  inputs,
-  self,
-  lib,
-  ...
-}:
+{ inputs, self, ... }:
 {
   flake = {
     nixosModules.stylix =
