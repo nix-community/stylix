@@ -36,7 +36,6 @@ in
         description = ''
           [Matugen](https://github.com/InioX/matugen)'s color scheme type.
         '';
-        apply = option: "scheme-${option}";
       };
       contrast = lib.mkOption {
         type = lib.types.addCheck lib.types.float (x: x >= -1.0 && x <= 1.0);
@@ -132,7 +131,7 @@ in
                   --contrast $CONTRAST \
                   --dry-run \
                   --json rgb \
-                  --type $SCHEME \
+                  --type scheme-$SCHEME \
                   image \
                   "$IMAGE" \
                   > "$out"
