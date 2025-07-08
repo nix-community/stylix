@@ -80,10 +80,7 @@ in
         # settings tile is removed. The value is still used by Epiphany to
         # request dark mode for websites which support it.
         color-scheme =
-          if config.stylix.theme.polarity == "dark" then
-            "prefer-dark"
-          else
-            "default";
+          if config.stylix.theme.polarity == "dark" then "prefer-dark" else "default";
 
         # Some GTK apps will use these font settings if they exist.
         # i.e emacs-pgtk.
