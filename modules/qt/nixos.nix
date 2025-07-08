@@ -2,10 +2,7 @@
 let
   recommendedStyle = {
     gnome =
-      if config.stylix.theme.polarity == "dark" then
-        "adwaita-dark"
-      else
-        "adwaita";
+      if config.stylix.theme.polarity == "dark" then "adwaita-dark" else "adwaita";
     kde = "breeze";
     qtct = "kvantum";
   };
