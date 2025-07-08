@@ -44,15 +44,14 @@
           # Install git-hooks when activating the shell
           shellHook = config.pre-commit.installationScript;
 
-          packages =
-            [
-              stylix-check
-              build-and-run-docs
-              inputs'.home-manager.packages.default
-              config.formatter
-            ]
-            ++ config.pre-commit.settings.enabledPackages
-            ++ config.formatter.runtimeInputs;
+          packages = [
+            stylix-check
+            build-and-run-docs
+            inputs'.home-manager.packages.default
+            config.formatter
+          ] ++ config.pre-commit.settings.enabledPackages;
+
+          inputsFrom = [ config.treefmt.build.devShell ];
         };
 
         ghc = pkgs.mkShell {
