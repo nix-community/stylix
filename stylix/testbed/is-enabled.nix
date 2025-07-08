@@ -17,8 +17,13 @@ let
     modules = [
       ./modules/enable.nix
       module
-      { _module.args = { inherit pkgs; }; }
-      { _module.check = false; }
+
+      {
+        _module = {
+          args = { inherit pkgs; };
+          check = false;
+        };
+      }
     ];
   };
 in
