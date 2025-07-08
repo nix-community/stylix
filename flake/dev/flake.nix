@@ -118,12 +118,13 @@
   #
   #       [1]: https://github.com/NixOS/nix/blob/d4f67fd46dfe2bc950bdfa14273f87b8a4c32e47/doc/manual/source/release-notes/rl-2.26.md?plain=1#L3-L11
   inputs = {
+    dev-nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    
     dev-flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "dev-nixpkgs";
     };
-
-    dev-nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    
     dev-systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
