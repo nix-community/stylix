@@ -14,6 +14,7 @@ let
 
         modules =
           [
+            (lib.modules.importApply ./modules/flake-parts.nix inputs)
             ./modules/common.nix
             ./modules/enable.nix
             ./modules/application.nix
