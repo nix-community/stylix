@@ -15,10 +15,10 @@ module:
 let
   minimal = lib.evalModules {
     modules = [
-      module
       ./modules/enable.nix
-      { _module.check = false; }
+      module
       { _module.args = { inherit pkgs; }; }
+      { _module.check = false; }
     ];
   };
 in
