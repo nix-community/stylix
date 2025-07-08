@@ -20,6 +20,9 @@ let
           inputs.self.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           testbed
+
+          # modules for external targets
+          inputs.spicetify-nix.nixosModules.spicetify
         ];
       };
     in
