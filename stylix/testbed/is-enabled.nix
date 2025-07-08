@@ -15,8 +15,8 @@ module:
 let
   minimal = lib.evalModules {
     modules = [
-      ./modules/enable.nix
       module
+      modules/enable.nix
 
       {
         _module = {

@@ -14,11 +14,11 @@ let
         inherit (pkgs) system;
 
         modules = [
-          ./modules/application.nix
-          ./modules/common.nix
-          ./modules/enable.nix
           inputs.home-manager.nixosModules.home-manager
           inputs.self.nixosModules.stylix
+          modules/application.nix
+          modules/common.nix
+          modules/enable.nix
           testbed
         ];
       };
