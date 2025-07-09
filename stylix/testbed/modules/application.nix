@@ -60,11 +60,12 @@ in
               lib.types.submodule {
                 options = {
                   text = lib.mkOption {
-                    type = lib.types.str;
+                    type = with lib.types; either package str;
                     description = ''
                       The command which will be run once the graphical
                       environment has loaded.
                     '';
+                    apply = value: if lib.isDerivation value then lib.getExe value else value;
                   };
                   useTerminal = lib.mkOption {
                     type = lib.types.bool;
