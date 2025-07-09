@@ -76,7 +76,7 @@ in
                   useTerminal = lib.mkOption {
                     type = lib.types.bool;
                     description = ''
-                      Whether or not to spawn a terminal when running the command.
+                      Whether to spawn a terminal when running the command.
                     '';
                     default = false;
                     example = true;
