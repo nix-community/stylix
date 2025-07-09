@@ -245,6 +245,13 @@ number of maintainers:
 The main responsibility of module maintainers is to update and fix their
 modules.
 
+> [!NOTE]
+> If this is the first time you're adding yourself as a maintainer in Stylix,
+> the `/generated/all-maintainers.nix` file will need to be updated by running
++> `nix run .#all-maintainers`
++> ([pre-commit](./development_environment.md#pre-commit) will also automatically
++> regenerate it).
+
 ## Documentation
 
 Documentation for options is automatically generated. To improve the quality of
