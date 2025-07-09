@@ -230,13 +230,14 @@ let
         c:
         if builtins.isFunction c then
           let
-            allAttrsNonNull = lib.pipe c [
+            allAttrsEnabled = lib.pipe c [
               getStylixAttrs
               builtins.attrValues
-              (builtins.all (attr: attr != null))
+              # If the attr has no enable option, it is instead disabled when null
+              (builtins.all (attr: attr.enable or (attr != null)))
             ];
           in
-          lib.mkIf allAttrsNonNull (mkConfig c)
+          lib.mkIf allAttrsEnabled (mkConfig c)
         else
           c;
     in
