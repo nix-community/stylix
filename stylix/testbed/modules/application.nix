@@ -15,6 +15,7 @@ in
           enable = lib.mkOption {
             type = lib.types.bool;
             default = false;
+            example = true;
             description = ''
               Whether to enable a standard configuration for testing graphical
               applications.
@@ -78,6 +79,7 @@ in
                       Whether or not to spawn a terminal when running the command.
                     '';
                     default = false;
+                    example = true;
                   };
                 };
               }
