@@ -20,11 +20,11 @@ in
               Whether to enable a standard configuration for testing graphical
               applications.
 
-              This will automatically log in as the `${user.username}` user and launch
-              an application or command.
+              This will automatically log in as the `${user.username}` user and
+              launch an application or command.
 
-              This is currently based on GNOME, but the specific desktop environment
-              used may change in the future.
+              This is currently based on GNOME, but the specific desktop
+              environment used may change in the future.
             '';
           };
           graphicalEnvironment = lib.mkOption {
@@ -45,8 +45,8 @@ in
                   name = lib.mkOption {
                     type = lib.types.str;
                     description = ''
-                      The name of the desktop entry for the application, without the
-                      `.desktop` extension.
+                      The name of the desktop entry for the application, without
+                      the `.desktop` extension.
                     '';
                   };
 
@@ -69,8 +69,8 @@ in
                   text = lib.mkOption {
                     type = lib.types.str;
                     description = ''
-                      The command which will be run once the graphical environment has
-                      loaded.
+                      The command which will be run once the graphical
+                      environment has loaded.
                     '';
                   };
                   useTerminal = lib.mkOption {
