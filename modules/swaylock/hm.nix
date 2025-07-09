@@ -71,7 +71,7 @@ mkTarget {
     (
       { cfg, image }:
       {
-        programs.swaylock.settings.image = lib.mkIf cfg.useWallpaper "${image}";
+        programs.swaylock.settings.image = lib.mkIf cfg.useWallpaper image;
       }
     )
     (
