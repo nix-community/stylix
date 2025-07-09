@@ -11,12 +11,9 @@ let
 in
 {
   imports = [
-    (lib.mkRemovedOptionModule
-      [
-        "stylix"
-        "polarity"
-      ]
-      "stylix: `stylix.polarity` has been removed in favor of `stylix.theme.polarity`, and its `either` value is no longer available"
+    (lib.mkRenamedOptionModule
+      [ "stylix" "polarity" ]
+      [ "stylix" "theme" "polarity" ]
     )
   ];
   options.stylix = {
