@@ -1,5 +1,4 @@
 { mkTarget, ... }:
-
 let
   style = {
     template = ./template.xml.mustache;

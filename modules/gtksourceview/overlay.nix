@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 let
   inherit (lib) optionalAttrs;
   inherit (config.lib.stylix) colors;
