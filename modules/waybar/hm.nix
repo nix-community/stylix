@@ -57,7 +57,7 @@ mkTarget {
     (
       { opacity, _colors }:
       {
-        stylix.targets.waybar.background = "alpha(@base00, ${builtins.toString opacity.desktop})";
+        stylix.targets.waybar.background = "alpha(@base00, ${toString opacity.desktop})";
       }
     )
     (
@@ -66,7 +66,7 @@ mkTarget {
         programs.waybar.style = ''
           * {
               font-family: "${fonts.${cfg.font}.name}";
-              font-size: ${builtins.toString fonts.sizes.desktop}pt;
+              font-size: ${toString fonts.sizes.desktop}pt;
           }
         '';
       }

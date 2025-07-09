@@ -3,7 +3,7 @@ let
   host = "127.0.0.1";
 
   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-    extraPolicies.OverrideFirstRunPage = "http://${host}:${builtins.toString port}";
+    extraPolicies.OverrideFirstRunPage = "http://${host}:${toString port}";
   };
 
   port = 1234;

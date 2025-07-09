@@ -130,15 +130,15 @@ mkTarget {
               "${fonts.monospace.name}",
               "${fonts.emoji.name}",
           },
-          font_size = ${builtins.toString fonts.sizes.terminal},
-          command_palette_font_size = ${builtins.toString fonts.sizes.popups},
+          font_size = ${toString fonts.sizes.terminal},
+          command_palette_font_size = ${toString fonts.sizes.popups},
         '';
       }
     )
     (
       { opacity }:
       {
-        stylix.targets.wezterm.luaBody = "window_background_opacity = ${builtins.toString opacity.terminal},";
+        stylix.targets.wezterm.luaBody = "window_background_opacity = ${toString opacity.terminal},";
       }
     )
     (
