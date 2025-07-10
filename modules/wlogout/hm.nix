@@ -33,6 +33,12 @@ mkTarget {
   extraOptions =
     { colors }:
     {
+      background = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        description = "Used to set bg even if `opacity` or `colors` is null";
+        internal = true;
+        default = null;
+      };
       font = lib.mkOption {
         type = lib.types.enum [
           "serif"
@@ -51,10 +57,10 @@ mkTarget {
         description = "Adds fully functional css (otherwise just adds colors and fonts)";
       };
       iconColor = lib.mkOption {
-        type = lib.types.str;
-        default = colors.withHashtag.base0E;
+        type = with lib.types; nullOr str;
+        default = colors.withHashtag.base0E or null;
         example = "#ff0000";
-        defaultText = lib.literalExpression "colors.withHashtag.base0E";
+        defaultText = lib.literalExpression "colors.withHashtag.base0E or null";
         description = "The color of the icons in the stylix.targets.wlogout.coloredIcons package";
       };
       coloredIcons = lib.mkOption {
@@ -72,17 +78,6 @@ mkTarget {
       { cfg }:
       {
         stylix.targets.wlogout.coloredIcons = mkIcons cfg.iconColor;
-      }
-    )
-    (
-      { fonts, cfg }:
-      {
-        programs.wlogout.style = lib.mkBefore ''
-          * {
-            font-family: "${fonts.${cfg.font}.name}";
-            font-size: ${builtins.toString fonts.sizes.desktop}pt;
-          }
-        '';
       }
     )
     (
@@ -104,7 +99,34 @@ mkTarget {
       }
     )
     (
-      { opacity, cfg }:
+      { fonts, cfg }:
+      {
+        programs.wlogout.style = ''
+          * {
+            font-family: "${fonts.${cfg.font}.name}";
+            font-size: ${toString fonts.sizes.desktop}pt;
+          }
+        '';
+      }
+    )
+    (
+      { cfg }:
+      {
+        programs.wlogout.style = lib.mkIf (cfg.addCss && cfg.background != null) ''
+          window {
+            background-color: ${cfg.background};
+          }
+        '';
+      }
+    )
+    (
+      { opacity, colors }:
+      {
+        stylix.targets.wlogout.background = "alpha(@base00, ${toString opacity.popups})";
+      }
+    )
+    (
+      { cfg }:
       {
         programs.wlogout.style = lib.mkIf cfg.addCss (
           let
@@ -118,10 +140,6 @@ mkTarget {
             * {
               background-image: none;
               box-shadow: none;
-            }
-
-            window {
-              background-color: alpha(@base00, ${builtins.toString opacity.popups});
             }
 
             button {
@@ -141,9 +159,8 @@ mkTarget {
               background-color: @base02;
               outline-style: none;
             }
-
-            ${lib.concatStringsSep "\n" (map mkIconStyle iconNames)}
           ''
+          + lib.concatStringsSep "\n" (map mkIconStyle iconNames)
         );
       }
     )
