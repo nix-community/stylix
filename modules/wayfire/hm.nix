@@ -31,12 +31,15 @@ mkTarget {
         '';
       in
       {
-        wayland.windowManager.wayfire.wf-shell.settings = {
-          background.image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
+        wayland.windowManager.wayfire.settings = {
           cube = {
             cubemap_image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
             skydome_texture = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
           };
+        };
+
+        wayland.windowManager.wayfire.wf-shell.settings = {
+          background.image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
           background.fill_mode =
             if imageScalingMode == "stretch" then
               "stretch"
@@ -44,7 +47,6 @@ mkTarget {
               "preserve_aspect"
             else
               "fill_and_crop";
-
         };
       }
     )
