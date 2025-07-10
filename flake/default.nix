@@ -1,11 +1,13 @@
 { inputs, lib, ... }:
 {
   imports = [
-    inputs.flake-parts.flakeModules.partitions
+    # keep-sorted start
     ./deprecation
     ./modules.nix
     ./packages.nix
     ./propagated-packages.nix
+    inputs.flake-parts.flakeModules.partitions
+    # keep-sorted end
   ];
 
   partitions.dev = {
@@ -14,8 +16,10 @@
   };
 
   partitionedAttrs = lib.genAttrs [
+    # keep-sorted start
     "checks"
     "devShells"
     "formatter"
+    # keep-sorted end
   ] (_: "dev");
 }
