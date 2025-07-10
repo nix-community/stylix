@@ -86,8 +86,6 @@ in
                 childBorder = unfocused;
               };
             };
-
-          #        output."*".bg = "${config.stylix.image} fill";
         };
       })
 
