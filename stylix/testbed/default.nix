@@ -6,6 +6,10 @@
 }:
 
 let
+  availableGraphicalEnvironments = import ./available-graphical-environments.nix {
+    inherit lib;
+  };
+
   makeTestbed =
     name: testbed:
     let
@@ -13,18 +17,22 @@ let
       system = lib.nixosSystem {
         inherit (pkgs) system;
 
-        modules = [
-          ./modules/common.nix
-          ./modules/enable.nix
-          ./modules/application.nix
-          inputs.self.nixosModules.stylix
-          inputs.home-manager.nixosModules.home-manager
-          testbed
+        modules =
+          [
+            ./modules/common.nix
+            ./modules/enable.nix
+            ./modules/application.nix
+            inputs.self.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+            testbed
 
-          # modules for external targets
-          inputs.nvf.nixosModules.default
-          inputs.nixvim.nixosModules.nixvim
-        ];
+            # modules for external targets
+            inputs.nvf.nixosModules.default
+            inputs.nixvim.nixosModules.nixvim
+          ]
+          ++ map (
+            name: import ./graphicalEnvironments/${name}.nix
+          ) availableGraphicalEnvironments;
       };
     in
     pkgs.writeShellApplication {
