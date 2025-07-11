@@ -1,18 +1,13 @@
 { lib, pkgs, ... }:
-# We are using VSCodium because VSCode is an unfree package
-let
-  package = pkgs.vscodium;
-in
 {
-  stylix.testbed.ui.application = {
-    name = "codium";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "codium flake-parts/flake.nix";
 
   home-manager.sharedModules = lib.singleton {
     programs.vscode = {
       enable = true;
-      inherit package;
+
+      # We are using VSCodium because VSCode is an unfree package
+      package = pkgs.vscodium;
     };
   };
 }

@@ -1,12 +1,5 @@
 { pkgs, ... }:
-let
-  package = pkgs.gedit;
-in
 {
-  stylix.testbed.ui.application = {
-    name = "org.gnome.gedit";
-    inherit package;
-  };
-
-  environment.systemPackages = [ package ];
+  stylix.testbed.ui.command.text = "gedit flake-parts/flake.nix";
+  environment.systemPackages = [ pkgs.gedit ];
 }
