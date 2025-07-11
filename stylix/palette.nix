@@ -84,7 +84,7 @@ in
         default = pkgs.runCommand "palette.json" { } ''
           ${lib.getExe cfg.paletteGenerator} \
             "${cfg.polarity}" \
-            ${lib.escapeShellArg "${cfg.image}"} \
+            ${cfg.image} \
             "$out"
         '';
       };
