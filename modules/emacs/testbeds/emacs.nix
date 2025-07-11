@@ -1,18 +1,12 @@
 { lib, pkgs, ... }:
 
-let
-  package = pkgs.emacs;
-in
 {
-  stylix.testbed.ui.application = {
-    name = "emacs";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "emacs flake-parts/flake.nix";
 
   home-manager.sharedModules = lib.singleton {
     programs.emacs = {
       enable = true;
-      inherit package;
+      package = pkgs.emacs;
     };
   };
 }
