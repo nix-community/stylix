@@ -1,18 +1,12 @@
 { lib, pkgs, ... }:
-let
-  package = pkgs.neovide;
-in
 {
-  stylix.testbed.ui.application = {
-    name = "neovide";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "neovide flake-parts/flake.nix";
 
   home-manager.sharedModules = lib.singleton {
     programs = {
       neovide = {
         enable = true;
-        inherit package;
+        package = pkgs.neovide;
       };
       neovim.enable = true;
     };
