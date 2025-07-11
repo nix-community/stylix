@@ -2,6 +2,9 @@
 {
   flake = {
     nixosModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
+      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -9,8 +12,6 @@
           {
             stylix = {
               inherit inputs;
-              paletteGenerator =
-                self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
               base16 = inputs.base16.lib args;
               homeManagerIntegration.module = self.homeModules.stylix;
             };
@@ -19,6 +20,9 @@
       };
 
     homeModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
+      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -26,8 +30,6 @@
           {
             stylix = {
               inherit inputs;
-              paletteGenerator =
-                self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
               base16 = inputs.base16.lib args;
             };
           }
@@ -35,6 +37,9 @@
       };
 
     darwinModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
+      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -42,8 +47,6 @@
           {
             stylix = {
               inherit inputs;
-              paletteGenerator =
-                self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
               base16 = inputs.base16.lib args;
               homeManagerIntegration.module = self.homeModules.stylix;
             };
@@ -52,14 +55,15 @@
       };
 
     nixOnDroidModules.stylix =
+      # Although the pkgs argument is unused, it is necessary for propagation.
+      #
+      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
           ../stylix/droid
           {
             stylix = {
-              paletteGenerator =
-                self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
               base16 = inputs.base16.lib args;
               homeManagerIntegration.module = self.homeModules.stylix;
             };
