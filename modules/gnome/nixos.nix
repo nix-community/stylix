@@ -1,31 +1,24 @@
 {
+  mkTarget,
   lib,
   pkgs,
   config,
   ...
 }:
+mkTarget {
+  name = "gnome";
+  humanName = "GNOME and GDM";
+  autoEnable =
+    config.services.desktopManager.gnome.enable
+    || config.services.displayManager.gdm.enable;
+  autoEnableExpr = ''
+    config.services.desktopManager.gnome.enable
+      || config.services.displayManager.gdm.enable
+  '';
 
-let
-  theme = pkgs.callPackage ./theme.nix {
-    inherit (config.lib.stylix) colors;
-    inherit (config.stylix) inputs;
-  };
-
-in
-{
-  options.stylix.targets.gnome.enable =
-    config.lib.stylix.mkEnableTarget "GNOME and GDM" true;
-
-  config =
-    lib.mkIf
-      (
-        config.stylix.enable
-        && config.stylix.targets.gnome.enable
-        && (
-          config.services.desktopManager.gnome.enable
-          || config.services.displayManager.gdm.enable
-        )
-      )
+  configElements = [
+    (
+      { _image }:
       {
         # As Stylix is controlling the wallpaper, there is no need for this
         # pack of default wallpapers to be installed.
@@ -33,10 +26,36 @@ in
         # "${pkgs.gnome-backgrounds}/path/to/your/preferred/background"
         # which will then download the pack regardless of its exclusion below.
         environment.gnome.excludePackages = [ pkgs.gnome-backgrounds ];
+      }
+    )
+    (
+      { cursor }:
+      {
+        environment.systemPackages = [ cursor.package ];
+        programs.dconf.profiles.gdm.databases = [
+          {
+            lockAll = true;
+            settings."org/gnome/desktop/interface" = {
+              cursor-theme = config.stylix.cursor.name;
+              cursor-size = lib.gvariant.mkInt32 config.stylix.cursor.size;
+            };
+          }
+        ];
+      }
+    )
+  ];
 
-        nixpkgs.overlays = [
-          (_: super: {
-            gnome-shell = super.gnome-shell.overrideAttrs (oldAttrs: {
+  generalConfig =
+    { colors, inputs }:
+    let
+      theme = pkgs.callPackage ./theme.nix { inherit colors inputs; };
+    in
+    {
+      nixpkgs.overlays = [
+        (_: super: {
+          gnome-shell = super.gnome-shell.overrideAttrs (
+            oldAttrs:
+            lib.optionalAttrs (colors != null && inputs != null) {
               # Themes are usually applied via an extension, but extensions are
               # not available on the login screen. The only way to change the
               # theme there is by replacing the default.
@@ -49,25 +68,9 @@ in
               patches = (oldAttrs.patches or [ ]) ++ [
                 ./shell_remove_dark_mode.patch
               ];
-            });
-          })
-        ];
-
-        # Cursor settings are usually applied via Home Manager,
-        # but the login screen uses a separate database.
-        environment.systemPackages = lib.mkIf (config.stylix.cursor != null) [
-          config.stylix.cursor.package
-        ];
-        programs.dconf.profiles.gdm.databases =
-          lib.mkIf (config.stylix.cursor != null)
-            [
-              {
-                lockAll = true;
-                settings."org/gnome/desktop/interface" = {
-                  cursor-theme = config.stylix.cursor.name;
-                  cursor-size = lib.gvariant.mkInt32 config.stylix.cursor.size;
-                };
-              }
-            ];
-      };
+            }
+          );
+        })
+      ];
+    };
 }
