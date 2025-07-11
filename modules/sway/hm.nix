@@ -8,14 +8,6 @@ let
   };
 in
 {
-  imports = [
-    (
-      { config, ... }:
-      {
-        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.sway.exportedBarConfig;
-      }
-    )
-  ];
   options.stylix.targets.sway = {
     enable = config.lib.stylix.mkEnableTarget "Sway" true;
     useWallpaper = config.lib.stylix.mkEnableWallpaper "Sway" true;
@@ -95,6 +87,8 @@ in
       })
 
       {
+        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.sway.exportedBarConfig;
+
         stylix.targets.sway.exportedBarConfig = {
           inherit fonts;
 

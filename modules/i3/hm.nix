@@ -10,14 +10,6 @@ let
     };
 in
 {
-  imports = [
-    (
-      { config, ... }:
-      {
-        lib.stylix.i3.bar = builtins.warn "stylix: `config.lib.stylix.i3.bar` has been renamed to `config.stylix.targets.i3.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.i3.exportedBarConfig;
-      }
-    )
-  ];
   options.stylix.targets.i3 = {
     enable = config.lib.stylix.mkEnableTarget "i3" true;
     exportedBarConfig = lib.mkOption {
@@ -90,6 +82,8 @@ in
       })
 
       {
+        lib.stylix.i3.bar = builtins.warn "stylix: `config.lib.stylix.i3.bar` has been renamed to `config.stylix.targets.i3.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.i3.exportedBarConfig;
+
         stylix.targets.i3.exportedBarConfig = {
           inherit fonts;
 
