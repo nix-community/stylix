@@ -22,8 +22,8 @@ screens, and display managers.
       nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          stylix.nixosModules.stylix
           ./configuration.nix
+          stylix.nixosModules.stylix
         ];
       };
     };
@@ -85,8 +85,8 @@ to NixOS via [Flakes][nix-flakes].
       darwinConfigurations."«hostname»" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          stylix.darwinModules.stylix
           ./configuration.nix
+          stylix.darwinModules.stylix
         ];
       };
     };
@@ -129,8 +129,8 @@ similar fashion to NixOS via [Flakes][nix-flakes].
       nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
         pkgs = nixpkgs.legacyPackages."aarch64-linux";
         modules = [
-          stylix.nixOnDroidModules.stylix
           ./nix-on-droid.nix
+          stylix.nixOnDroidModules.stylix
         ];
       };
     };
@@ -176,8 +176,8 @@ by someone else.
       homeConfigurations."«username»" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          stylix.homeModules.stylix
           ./home.nix
+          stylix.homeModules.stylix
         ];
       };
     };

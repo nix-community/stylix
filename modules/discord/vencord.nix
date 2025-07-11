@@ -17,11 +17,11 @@ mkTarget {
     };
   };
 
-  configElements = (import ./common/theme-elements.nix "vencord") ++ [
+  configElements = (import common/theme-elements.nix "vencord") ++ [
     (
       { cfg }:
       lib.mkIf
-        (cfg.themeBody != (import ./common/theme-header.nix) || cfg.extraCss != "")
+        (cfg.themeBody != (import common/theme-header.nix) || cfg.extraCss != "")
         {
           xdg.configFile."Vencord/themes/stylix.theme.css".text =
             cfg.themeBody + cfg.extraCss;

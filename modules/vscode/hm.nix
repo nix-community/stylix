@@ -35,7 +35,7 @@ mkTarget {
                 vscodeExtUniqueId = "stylix.stylix";
                 vscodeExtPublisher = "stylix";
                 version = "0.0.0";
-                theme = builtins.toJSON (import ./templates/theme.nix colors);
+                theme = builtins.toJSON (import templates/theme.nix colors);
                 passAsFile = [ "theme" ];
               }
               ''
@@ -51,7 +51,7 @@ mkTarget {
       { cfg, fonts }:
       {
         programs.vscode.profiles = lib.genAttrs cfg.profileNames (_: {
-          userSettings = import ./templates/settings.nix fonts;
+          userSettings = import templates/settings.nix fonts;
         });
       }
     )

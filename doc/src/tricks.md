@@ -12,7 +12,7 @@ brightness/contrast adjustment to it, and saves the result as a new image file:
 ```nix
 { pkgs, lib, ... }:
 let
-  inputImage = ./path/to/image.jpg;
+  inputImage = path/to/image.jpg;
   brightness = -30;
   contrast = 0;
   fillColor = "black";

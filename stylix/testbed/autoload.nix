@@ -50,8 +50,8 @@ let
     (builtins.mapAttrs (
       name: type:
       lib.throwIfNot (type == "regular")
-        "Unexpected filetype in testbed themes: ${toString ./themes/${name}} is a ${type}."
-        ./themes/${name}
+        "Unexpected filetype in testbed themes: ${toString themes/${name}} is a ${type}."
+        themes/${name}
     ))
     (lib.mapAttrs' (name: lib.nameValuePair (lib.strings.removeSuffix ".nix" name)))
   ];
