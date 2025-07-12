@@ -15,7 +15,6 @@ mkTarget {
                 template = ./template.xml.mustache;
                 extension = ".xml";
               };
-
             }
           )
           [
