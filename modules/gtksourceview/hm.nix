@@ -1,10 +1,4 @@
 { mkTarget, ... }:
-let
-  style = {
-    template = ./template.xml.mustache;
-    extension = ".xml";
-  };
-in
 mkTarget {
   name = "gtksourceview";
   humanName = "GTKSourceView";
@@ -12,11 +6,24 @@ mkTarget {
   configElements =
     { colors, ... }:
     {
-      xdg.dataFile = {
-        "gtksourceview-2.0/styles/stylix.xml".source = colors style;
-        "gtksourceview-3.0/styles/stylix.xml".source = colors style;
-        "gtksourceview-4/styles/stylix.xml".source = colors style;
-        "gtksourceview-5/styles/stylix.xml".source = colors style;
-      };
+      xdg.dataFile = builtins.listToAttrs (
+        map
+          (
+            version:
+            lib.nameValuePair "gtksourceview-${version}/styles/stylix.xml" {
+              source = colors {
+                template = ./template.xml.mustache;
+                extension = ".xml";
+              };
+
+            }
+          )
+          [
+            "2.0"
+            "3.0"
+            "4"
+            "5"
+          ]
+      );
     };
 }
