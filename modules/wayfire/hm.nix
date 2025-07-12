@@ -33,13 +33,13 @@ mkTarget {
       {
         wayland.windowManager.wayfire.settings = {
           cube = {
-            cubemap_image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
-            skydome_texture = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
+            cubemap_image = lib.mkIf cfg.useWallpaper wayfireBackground;
+            skydome_texture = lib.mkIf cfg.useWallpaper wayfireBackground;
           };
         };
 
         wayland.windowManager.wayfire.wf-shell.settings = {
-          background.image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
+          background.image = lib.mkIf cfg.useWallpaper wayfireBackground;
           background.fill_mode =
             if imageScalingMode == "stretch" then
               "stretch"
