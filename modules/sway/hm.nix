@@ -88,7 +88,7 @@ in
 
       {
         lib.stylix.sway.bar =
-          lib.warnIf true
+          lib.warn
             "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11."
             config.stylix.targets.sway.exportedBarConfig;
 
