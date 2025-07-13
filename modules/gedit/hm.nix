@@ -8,7 +8,7 @@ mkTarget {
     {
       xdg.dataFile = {
         "gedit/styles/stylix.xml".source = colors {
-          template = ./template.xml.mustache;
+          template = ../gtksourceview/template.xml.mustache;
           extension = ".xml";
         };
       };

@@ -97,7 +97,7 @@
       { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
 
-    `configElements` (List or attribute set or function)
+    `configElements` (List or attribute set or function or path)
     : Configuration functions that are automatically safeguarded when any of
       their arguments is disabled. The provided `cfg` argument conveniently
       aliases to `config.stylix.targets.${name}`.
@@ -125,7 +125,12 @@
       )
       ```
 
-    `generalConfig` (Attribute set or function)
+      Arguments prefixed with an underscore (`_`) resolve to their non-prefixed
+      counterparts. For example, the `_colors` argument resolves to `colors`.
+      Underscored arguments are considered unused and should never be accessed.
+      Their sole purpose is satisfying `deadnix` in complex configurations.
+
+    `generalConfig` (Attribute set or function or path)
     : This argument mirrors the `configElements` argument but intentionally
       lacks automatic safeguarding and should only be used for complex
       configurations where `configElements` is unsuitable.
@@ -200,40 +205,46 @@ let
         fn:
         lib.genAttrs (functionArgNames fn) (
           arg:
-          if arg == "cfg" then
+          let
+            trimmedArg = lib.removePrefix "_" arg;
+          in
+          if trimmedArg == "cfg" then
             cfg
-          else if arg == "colors" then
+          else if trimmedArg == "colors" then
             config.lib.stylix.colors
           else
-            config.stylix.${arg}
+            config.stylix.${trimmedArg}
               or (throw "stylix: mkTarget expected one of `cfg`, `colors`, ${
                 lib.concatMapStringsSep ", " (name: "`${name}`") (
                   builtins.attrNames config.stylix
                 )
-              }, but got: ${arg}")
+              }, but got: ${trimmedArg}")
         );
 
       # Call the configuration function with its required Stylix arguments.
       mkConfig = fn: fn (getStylixAttrs fn);
 
       # Safeguard configuration functions when any of their arguments is
-      # disabled, while non-function configurations are unguarded.
+      # disabled.
       mkConditionalConfig =
         c:
         if builtins.isFunction c then
           let
-            allAttrsNonNull = lib.pipe c [
+            allAttrsEnabled = lib.pipe c [
               getStylixAttrs
               builtins.attrValues
-              (builtins.all (attr: attr != null))
+              # If the attr has no enable option, it is instead disabled when null
+              (builtins.all (attr: attr.enable or (attr != null)))
             ];
           in
-          lib.mkIf allAttrsNonNull (mkConfig c)
+          lib.mkIf allAttrsEnabled (mkConfig c)
         else
           c;
     in
     {
-      inherit imports;
+      imports = imports ++ [
+        { options.stylix.targets.${name} = mkConfig (lib.toFunction extraOptions); }
+      ];
 
       options.stylix.targets.${name}.enable =
         let
@@ -252,15 +263,18 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.optional (generalConfig != null) (mkConfig generalConfig)
-          ++ map mkConditionalConfig (lib.toList configElements)
+          lib.optional (generalConfig != null) (
+            mkConfig (
+              if builtins.isPath generalConfig then import generalConfig else generalConfig
+            )
+          )
+          ++ map (c: mkConditionalConfig (if builtins.isPath c then import c else c)) (
+            lib.toList configElements
+          )
         )
       );
     };
 in
 {
-  imports = [
-    { options.stylix.targets.${name} = extraOptions; }
-    module
-  ];
+  imports = [ module ];
 }

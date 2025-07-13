@@ -1,5 +1,5 @@
 {
   name = "Forge";
-  homepage = "https://arrayfire.com/";
+  homepage = "https://arrayfire.com";
   maintainers = [ ];
 }

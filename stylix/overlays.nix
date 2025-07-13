@@ -13,7 +13,7 @@
     let
       file = import f;
       attrs =
-        if builtins.typeOf file == "lambda" then
+        if builtins.isFunction file then
           file {
             inherit
               lib

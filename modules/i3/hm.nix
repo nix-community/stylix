@@ -10,7 +10,27 @@ let
     };
 in
 {
-  options.stylix.targets.i3.enable = config.lib.stylix.mkEnableTarget "i3" true;
+  options.stylix.targets.i3 = {
+    enable = config.lib.stylix.mkEnableTarget "i3" true;
+    exportedBarConfig = lib.mkOption {
+      type = lib.types.attrs;
+      description = ''
+        Theming configuration which can be merged with your own:
+
+        ```nix
+        xsession.windowManager.i3.config.bars = [
+          (
+            {
+              # your configuration
+            }
+            // config.stylix.targets.i3.exportedBarConfig
+          )
+        ];
+        ```
+      '';
+      readOnly = true;
+    };
+  };
 
   config =
     with config.lib.stylix.colors.withHashtag;
@@ -58,14 +78,13 @@ in
                 childBorder = unfocused;
               };
             };
-
-          #        output."*".bg = "${config.stylix.image} fill";
         };
       })
 
       {
-        # Merge this with your bar configuration using //config.lib.stylix.i3.bar
-        lib.stylix.i3.bar = {
+        lib.stylix.i3.bar = builtins.warn "stylix: `config.lib.stylix.i3.bar` has been renamed to `config.stylix.targets.i3.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.i3.exportedBarConfig;
+
+        stylix.targets.i3.exportedBarConfig = {
           inherit fonts;
 
           colors =
