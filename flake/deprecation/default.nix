@@ -19,7 +19,7 @@
   # Drop this alias after 26.05
   flake = lib.mkIf (!lib.oldestSupportedReleaseIsAtLeast 2605) {
     homeManagerModules =
-      lib.warnIf true
+      lib.warn
         "stylix: flake output `homeManagerModules` has been renamed to `homeModules` and will be removed after 26.05."
         self.homeModules;
   };
