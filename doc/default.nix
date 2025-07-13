@@ -675,6 +675,7 @@ stdenvNoCC.mkDerivation {
     ${writePages}
     cat $renderedSummaryPath >>src/SUMMARY.md
     cp ${../README.md} src/README.md
+    cp ${../CONTRIBUTING.md} src/contributing.md
     cp ${../gnome.png} src/gnome.png
     cp ${../kde.png} src/kde.png
   '';
