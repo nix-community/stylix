@@ -1,0 +1,151 @@
+/* Common variables affecting all pages */
+@-moz-document url-prefix("about:") {
+  :root {
+    --in-content-page-color: #{{base05-hex}} !important;
+    --color-accent-primary: #{{base08-hex}} !important;
+    --color-accent-primary-hover: #{{base08-hex}} !important;
+    --color-accent-primary-active: #{{base08-hex}} !important;
+    background-color: #{{base00-hex}} !important;
+    --in-content-page-background: #{{base00-hex}} !important;
+  }
+}
+
+/* Variables and styles specific to about:newtab and about:home */
+@-moz-document url("about:newtab"), url("about:home") {
+
+  :root {
+    --newtab-background-color: #{{base00-hex}} !important;
+    --newtab-background-color-secondary: #{{base01-hex}} !important;
+    --newtab-element-hover-color: #{{base01-hex}} !important;
+    --newtab-text-primary-color: #{{base05-hex}} !important;
+    --newtab-wordmark-color: #{{base05-hex}} !important;
+    --newtab-primary-action-background: #{{base08-hex}} !important;
+  }
+
+  .icon {
+    color: #{{base08-hex}} !important;
+  }
+
+  .search-wrapper .logo-and-wordmark .logo {
+    background: url("zen-logo-{{ flavor.identifier }}.svg"), url("https://raw.githubusercontent.com/IAmJafeth/zen-browser/main/themes/{{ flavor.identifier | capitalize}}/{{ accent | capitalize }}/zen-logo-{{ flavor.identifier }}.svg") no-repeat center !important;
+    display: inline-block !important;
+    height: 82px !important;
+    width: 82px !important;
+    background-size: 82px !important;
+  }
+
+  @media (max-width: 609px) {
+    .search-wrapper .logo-and-wordmark .logo {
+      background-size: 64px !important;
+      height: 64px !important;
+      width: 64px !important;
+    }
+  }
+
+  .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
+    color: #{{base08-hex}} !important;
+  }
+
+  .top-site-outer .search-topsite {
+    background-color: #${config.lib.stylix.colors.base0D} !important;
+  }
+
+  .compact-cards .card-outer .card-context .card-context-icon.icon-download {
+    fill: #${config.lib.stylix.colors.base0B} !important;
+  }
+}
+
+/* Variables and styles specific to about:preferences */
+@-moz-document url-prefix("about:preferences") {
+  :root {
+    --zen-colors-tertiary: #{{base02-hex}} !important;
+    --in-content-text-color: #{{base05-hex}} !important;
+    --link-color: #{{base08-hex}} !important;
+    --link-color-hover: #{{base08-hex}} !important;
+    --zen-colors-primary: #{{base01-hex}} !important;
+    --in-content-box-background: #{{base01-hex}} !important;
+    --zen-primary-color: #{{base08-hex}} !important;
+  }
+
+  groupbox , moz-card {
+    background: #{{base00-hex}} !important;
+  }
+
+  button,
+  groupbox menulist {
+    background: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  .main-content {
+    background-color: #{{base03-hex}} !important;
+  }
+
+  .identity-color-blue {
+    --identity-tab-color: #${config.lib.stylix.colors.base0D} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0D} !important;
+  }
+
+  .identity-color-turquoise {
+    --identity-tab-color: #${config.lib.stylix.colors.base0C} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0C} !important;
+  }
+
+  .identity-color-green {
+    --identity-tab-color: #${config.lib.stylix.colors.base0B} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0B} !important;
+  }
+
+  .identity-color-yellow {
+    --identity-tab-color: #${config.lib.stylix.colors.base0A} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0A} !important;
+  }
+
+  .identity-color-orange {
+    --identity-tab-color: #{{base09-hex}} !important;
+    --identity-icon-color: #{{base09-hex}} !important;
+  }
+
+  .identity-color-red {
+    --identity-tab-color: #{{base08-hex}} !important;
+    --identity-icon-color: #{{base08-hex}} !important;
+  }
+
+  .identity-color-pink {
+    --identity-tab-color: #${config.lib.stylix.colors.base0E} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0E} !important;
+  }
+
+  .identity-color-purple {
+    --identity-tab-color: #${config.lib.stylix.colors.base0F} !important;
+    --identity-icon-color: #${config.lib.stylix.colors.base0F} !important;
+  }
+}
+
+/* Variables and styles specific to about:addons */
+@-moz-document url-prefix("about:addons") {
+  :root {
+    --zen-dark-color-mix-base: #{{base02-hex}} !important;
+    --background-color-box: #{{base00-hex}} !important;
+  }
+}
+
+/* Variables and styles specific to about:protections */
+@-moz-document url-prefix("about:protections") {
+  :root {
+    --zen-primary-color: #{{base00-hex}} !important;
+    --social-color: #${config.lib.stylix.colors.base0F} !important;
+    --coockie-color: #${config.lib.stylix.colors.base0C} !important;
+    --fingerprinter-color: #${config.lib.stylix.colors.base0A} !important;
+    --cryptominer-color: #${config.lib.stylix.colors.base0E} !important;
+    --tracker-color: #${config.lib.stylix.colors.base0B} !important;
+    --in-content-primary-button-background-hover: #{{base01-hex}} !important;
+    --in-content-primary-button-text-color-hover: #{{base05-hex}} !important;
+    --in-content-primary-button-background: #{{base01-hex}} !important;
+    --in-content-primary-button-text-color: #{{base05-hex}} !important;
+  }
+
+  .card {
+    background-color: #{{base01-hex}} !important;
+  }
+}
