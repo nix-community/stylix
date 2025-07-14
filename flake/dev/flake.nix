@@ -161,6 +161,14 @@
       };
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        systems.follows = "dev-systems";
+      };
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "dev-nixpkgs";
