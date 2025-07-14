@@ -24,6 +24,7 @@ let
           # modules for external targets
           inputs.nvf.nixosModules.default
           inputs.nixvim.nixosModules.nixvim
+          inputs.spicetify-nix.nixosModules.spicetify
         ];
       };
     in
