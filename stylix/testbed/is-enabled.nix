@@ -2,7 +2,6 @@
   lib,
   pkgs,
 }:
-
 /**
   Creates a minimal configuration to extract the `stylix.testbed.enable` option
   value.

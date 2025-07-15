@@ -1,5 +1,4 @@
 { haskellPackages, stdenvNoCC }:
-
 let
   ghc = haskellPackages.ghcWithPackages (
     ps: with ps; [
@@ -23,7 +22,6 @@ let
     dontInstall = true;
     dontFixup = true;
   };
-
 in
 stdenvNoCC.mkDerivation {
   name = "palette-generator";

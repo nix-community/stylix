@@ -1,6 +1,5 @@
 args:
 { config, lib, ... }:
-
 {
   imports = [ (lib.modules.importApply ../palette.nix args) ];
 
