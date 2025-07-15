@@ -218,7 +218,7 @@ in
             [
               config.stylix.homeManagerIntegration.module
             ]
-            ++ (lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules);
+            ++ lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules;
         })
         (lib.mkIf config.home-manager.useGlobalPkgs {
           home-manager.sharedModules = lib.singleton {
