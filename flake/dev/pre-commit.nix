@@ -14,7 +14,7 @@
           # keep-sorted start block=yes
           deadnix = {
             enable = true;
-            settings.noUnderscore = true;
+            settings.noLambdaPatternNames = true;
           };
           editorconfig-checker.enable = true;
           hlint.enable = true;
