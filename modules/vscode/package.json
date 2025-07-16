@@ -15,7 +15,7 @@
       {
         "label": "Stylix",
         "uiTheme": "vs",
-        "path": "./themes/stylix.json"
+        "path": "themes/stylix.json"
       }
     ]
   }
