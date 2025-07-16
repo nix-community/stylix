@@ -42,8 +42,8 @@ builtins.concatLists (
         {
           key = file;
           _file = file;
-          imports = [
-            (module (
+          imports = lib.singleton (
+            module (
               args
               // extraArgs
               // {
@@ -53,8 +53,8 @@ builtins.concatLists (
                   lib.stylix.colors = throw "stylix: unguarded `config.lib.stylix.colors` accessed while using mkTarget";
                 };
               }
-            ))
-          ];
+            )
+          );
         }
       else
         file

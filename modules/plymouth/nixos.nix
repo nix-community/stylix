@@ -29,11 +29,10 @@ mkTarget {
     };
   };
 
-  imports = [
-    (lib.mkRemovedOptionModule [ "stylix" "targets" "plymouth" "blackBackground" ]
+  imports = lib.singleton (
+    lib.mkRemovedOptionModule [ "stylix" "targets" "plymouth" "blackBackground" ]
       "This was removed since it goes against the chosen color scheme. If you want this, consider disabling the target and configuring Plymouth by hand."
-    )
-  ];
+  );
 
   configElements =
     { cfg, colors }:

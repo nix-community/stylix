@@ -41,8 +41,8 @@ let
       "crop";
 in
 {
-  imports = [
-    (lib.mkRenamedOptionModuleWith {
+  imports = lib.singleton (
+    lib.mkRenamedOptionModuleWith {
       from = [
         "stylix"
         "targets"
@@ -56,8 +56,9 @@ in
         "grub"
         "useWallpaper"
       ];
-    })
-  ];
+    }
+  );
+
   options.stylix.targets.grub = {
     enable = mkEnableTarget "GRUB" true;
     useWallpaper = mkEnableWallpaper "GRUB" false;

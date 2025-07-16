@@ -81,8 +81,8 @@ mkTarget {
       }
     )
   ];
-  imports = [
-    (lib.mkRenamedOptionModuleWith {
+  imports = lib.singleton (
+    lib.mkRenamedOptionModuleWith {
       from = [
         "stylix"
         "targets"
@@ -96,6 +96,6 @@ mkTarget {
         "swaylock"
         "useWallpaper"
       ];
-    })
-  ];
+    }
+  );
 }
