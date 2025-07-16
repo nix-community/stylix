@@ -131,7 +131,7 @@ in
                   --type scheme-$SCHEME \
                   image \
                   "$IMAGE" \
-                  > "$out"
+                  >"$out"
             '';
       };
 
