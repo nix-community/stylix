@@ -37,6 +37,12 @@ let
                 inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
                 nvf = inputs.nvf.nixosModules.default;
+
+                zen-browser = {
+                  home-manager.sharedModules = [
+                    inputs.zen-browser.homeModules.default
+                  ];
+                };
               };
       };
     in
