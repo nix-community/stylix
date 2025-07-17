@@ -2,9 +2,9 @@
 @-moz-document url-prefix("about:") {
   :root {
     --in-content-page-color: #{{base05-hex}} !important;
-    --color-accent-primary: #{{base08-hex}} !important;
-    --color-accent-primary-hover: #{{base08-hex}} !important;
-    --color-accent-primary-active: #{{base08-hex}} !important;
+    --color-accent-primary: #{{base0D-hex}} !important;
+    --color-accent-primary-hover: #{{base0D-hex}} !important;
+    --color-accent-primary-active: #{{base0D-hex}} !important;
     background-color: #{{base00-hex}} !important;
     --in-content-page-background: #{{base00-hex}} !important;
   }
@@ -15,15 +15,15 @@
 
   :root {
     --newtab-background-color: #{{base00-hex}} !important;
-    --newtab-background-color-secondary: #{{base01-hex}} !important;
-    --newtab-element-hover-color: #{{base01-hex}} !important;
+    --newtab-background-color-secondary: #{{base02-hex}} !important;
+    --newtab-element-hover-color: #{{base02-hex}} !important;
     --newtab-text-primary-color: #{{base05-hex}} !important;
     --newtab-wordmark-color: #{{base05-hex}} !important;
-    --newtab-primary-action-background: #{{base08-hex}} !important;
+    --newtab-primary-action-background: #{{base0D-hex}} !important;
   }
 
   .icon {
-    color: #{{base08-hex}} !important;
+    color: #{{base0D-hex}} !important;
   }
 
   .search-wrapper .logo-and-wordmark .logo {
@@ -42,62 +42,62 @@
   }
 
   .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-    color: #{{base08-hex}} !important;
+    color: #{{base0D-hex}} !important;
   }
 
   .top-site-outer .search-topsite {
-    background-color: #${config.lib.stylix.colors.base0D} !important;
+    background-color: #{{base0D-hex}} !important;
   }
 
   .compact-cards .card-outer .card-context .card-context-icon.icon-download {
-    fill: #${config.lib.stylix.colors.base0B} !important;
+    fill: #{{base0B-hex}} !important;
   }
 }
 
 /* Variables and styles specific to about:preferences */
 @-moz-document url-prefix("about:preferences") {
   :root {
-    --zen-colors-tertiary: #{{base02-hex}} !important;
+    --zen-colors-tertiary: #{{base01-hex}} !important;
     --in-content-text-color: #{{base05-hex}} !important;
-    --link-color: #{{base08-hex}} !important;
-    --link-color-hover: #{{base08-hex}} !important;
-    --zen-colors-primary: #{{base01-hex}} !important;
-    --in-content-box-background: #{{base01-hex}} !important;
-    --zen-primary-color: #{{base08-hex}} !important;
+    --link-color: #{{base0D-hex}} !important;
+    --link-color-hover: #{{base0D-hex}} !important;
+    --zen-colors-primary: #{{base02-hex}} !important;
+    --in-content-box-background: #{{base02-hex}} !important;
+    --zen-primary-color: #{{base0D-hex}} !important;
   }
 
-  groupbox , moz-card {
+  groupbox , moz-card{
     background: #{{base00-hex}} !important;
   }
 
   button,
   groupbox menulist {
-    background: #{{base01-hex}} !important;
+    background: #{{base02-hex}} !important;
     color: #{{base05-hex}} !important;
   }
 
   .main-content {
-    background-color: #{{base03-hex}} !important;
+    background-color: #{{base00-hex}} !important;
   }
 
   .identity-color-blue {
-    --identity-tab-color: #${config.lib.stylix.colors.base0D} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0D} !important;
+    --identity-tab-color: #{{base0D-hex}} !important;
+    --identity-icon-color: #{{base0D-hex}} !important;
   }
 
   .identity-color-turquoise {
-    --identity-tab-color: #${config.lib.stylix.colors.base0C} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0C} !important;
+    --identity-tab-color: #{{base0C-hex}} !important;
+    --identity-icon-color: #{{base0C-hex}} !important;
   }
 
   .identity-color-green {
-    --identity-tab-color: #${config.lib.stylix.colors.base0B} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0B} !important;
+    --identity-tab-color: #{{base0B-hex}} !important;
+    --identity-icon-color: #{{base0B-hex}} !important;
   }
 
   .identity-color-yellow {
-    --identity-tab-color: #${config.lib.stylix.colors.base0A} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0A} !important;
+    --identity-tab-color: #{{base0A-hex}} !important;
+    --identity-icon-color: #{{base0A-hex}} !important;
   }
 
   .identity-color-orange {
@@ -111,20 +111,19 @@
   }
 
   .identity-color-pink {
-    --identity-tab-color: #${config.lib.stylix.colors.base0E} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0E} !important;
+    --identity-tab-color: #{{base0E-hex}} !important;
+    --identity-icon-color: #{{base0E-hex}} !important;
   }
 
   .identity-color-purple {
-    --identity-tab-color: #${config.lib.stylix.colors.base0F} !important;
-    --identity-icon-color: #${config.lib.stylix.colors.base0F} !important;
+    --identity-tab-color: #{{base0F-hex}} !important;
+    --identity-icon-color: #{{base0F-hex}} !important;
   }
-}
 
 /* Variables and styles specific to about:addons */
 @-moz-document url-prefix("about:addons") {
   :root {
-    --zen-dark-color-mix-base: #{{base02-hex}} !important;
+    --zen-dark-color-mix-base: #{{base01-hex}} !important;
     --background-color-box: #{{base00-hex}} !important;
   }
 }
@@ -133,18 +132,18 @@
 @-moz-document url-prefix("about:protections") {
   :root {
     --zen-primary-color: #{{base00-hex}} !important;
-    --social-color: #${config.lib.stylix.colors.base0F} !important;
-    --coockie-color: #${config.lib.stylix.colors.base0C} !important;
-    --fingerprinter-color: #${config.lib.stylix.colors.base0A} !important;
-    --cryptominer-color: #${config.lib.stylix.colors.base0E} !important;
-    --tracker-color: #${config.lib.stylix.colors.base0B} !important;
-    --in-content-primary-button-background-hover: #{{base01-hex}} !important;
+    --social-color: #{{base0E-hex}} !important;
+    --coockie-color: #{{base0D-hex}} !important;
+    --fingerprinter-color: #{{base0A-hex}} !important;
+    --cryptominer-color: #{{base0F-hex}} !important;
+    --tracker-color: #{{base0B-hex}} !important;
+    --in-content-primary-button-background-hover: #{{base03-hex}} !important;
     --in-content-primary-button-text-color-hover: #{{base05-hex}} !important;
-    --in-content-primary-button-background: #{{base01-hex}} !important;
+    --in-content-primary-button-background: #{{base03-hex}} !important;
     --in-content-primary-button-text-color: #{{base05-hex}} !important;
   }
 
   .card {
-    background-color: #{{base01-hex}} !important;
+    background-color: #{{base02-hex}} !important;
   }
 }
