@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 let
   inherit (config.stylix.fonts) sansSerif serif monospace;
   fontSize = toString config.stylix.fonts.sizes.applications;
@@ -40,7 +39,6 @@ let
       fi
     '';
   };
-
 in
 {
   options.stylix.targets.gnome = {

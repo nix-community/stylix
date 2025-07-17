@@ -1,5 +1,4 @@
 { lib }:
-
 # string -> [ path ]
 # List include path for either nixos modules or hm modules
 platform:

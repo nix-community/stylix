@@ -9,7 +9,6 @@
   mdbook-alerts,
   mdbook-linkcheck,
 }:
-
 let
   # Prefix to remove from option declaration file paths.
   rootPrefix = toString ../. + "/";
@@ -654,7 +653,6 @@ let
       padding: unset;
     }
   '';
-
 in
 stdenvNoCC.mkDerivation {
   name = "stylix-book";

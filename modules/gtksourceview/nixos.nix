@@ -1,5 +1,4 @@
 { mkTarget, ... }:
-
 mkTarget {
   name = "gtksourceview";
   humanName = "GTKSourceView";

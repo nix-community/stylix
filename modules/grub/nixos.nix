@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.stylix.targets.grub;
   inherit (config.stylix) imageScalingMode fonts;

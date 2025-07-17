@@ -5,7 +5,6 @@
   pkgs,
   ...
 }:
-
 let
   copyModules =
     map
@@ -171,7 +170,6 @@ let
         }
         # keep-sorted end
       ];
-
 in
 {
   options.stylix.homeManagerIntegration = {

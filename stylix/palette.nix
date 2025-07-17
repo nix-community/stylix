@@ -5,7 +5,6 @@
   options,
   ...
 }:
-
 let
   cfg = config.stylix;
   opts = options.stylix;

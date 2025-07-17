@@ -1,5 +1,4 @@
 { lib, pkgs, ... }:
-
 let
   package = pkgs.cavalier;
 in

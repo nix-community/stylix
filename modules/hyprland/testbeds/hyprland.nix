@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";

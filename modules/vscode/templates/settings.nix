@@ -1,8 +1,4 @@
-fonts:
-
-with fonts;
-
-{
+fonts: with fonts; {
   "workbench.colorTheme" = "Stylix";
   "editor.fontFamily" = monospace.name;
   "editor.inlayHints.fontFamily" = monospace.name;

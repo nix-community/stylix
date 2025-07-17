@@ -1,7 +1,4 @@
-colors:
-with colors.withHashtag;
-
-{
+colors: with colors.withHashtag; {
   "$schema" = "vscode://schemas/color-theme";
   name = scheme;
   type = "dark";

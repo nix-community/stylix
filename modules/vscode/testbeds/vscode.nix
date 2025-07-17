@@ -1,5 +1,4 @@
 { lib, pkgs, ... }:
-
 # We are using VSCodium because VSCode is an unfree package
 let
   package = pkgs.vscodium;

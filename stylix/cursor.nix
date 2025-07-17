@@ -1,5 +1,4 @@
 { lib, config, ... }:
-
 {
   options.stylix.cursor = lib.mkOption {
     description = ''
