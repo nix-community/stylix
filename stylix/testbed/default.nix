@@ -26,6 +26,11 @@ let
             inputs.nvf.nixosModules.default
             inputs.nixvim.nixosModules.nixvim
             inputs.spicetify-nix.nixosModules.spicetify
+            {
+              home-manager.sharedModules = [
+                inputs.zen-browser.homeModules.default
+              ];
+            }
           ]
           ++ map (name: import ./graphical-environments/${name}.nix) (
             import ./available-graphical-environments.nix { inherit lib; }
