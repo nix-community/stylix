@@ -2,9 +2,6 @@
 {
   flake = {
     nixosModules.stylix =
-      # Although the pkgs argument is unused, it is necessary for propagation.
-      #
-      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -20,9 +17,6 @@
       };
 
     homeModules.stylix =
-      # Although the pkgs argument is unused, it is necessary for propagation.
-      #
-      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -37,9 +31,6 @@
       };
 
     darwinModules.stylix =
-      # Although the pkgs argument is unused, it is necessary for propagation.
-      #
-      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
@@ -55,9 +46,6 @@
       };
 
     nixOnDroidModules.stylix =
-      # Although the pkgs argument is unused, it is necessary for propagation.
-      #
-      # deadnix: skip
       { pkgs, ... }@args:
       {
         imports = [
