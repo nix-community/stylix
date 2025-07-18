@@ -11,6 +11,6 @@ mkTarget {
         "serif"
         "sansSerif"
         "emoji"
-      ] (family: [ fonts.${family}.name ]);
+      ] (family: lib.mkOrder 600 [ fonts.${family}.name ]);
     };
 }
