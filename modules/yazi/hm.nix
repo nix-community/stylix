@@ -1,9 +1,6 @@
 # Based on the official catppuccin themes https://github.com/yazi-rs/themes
 { mkTarget, ... }:
 mkTarget {
-  name = "yazi";
-  humanName = "Yazi";
-
   config =
     { colors }:
     {

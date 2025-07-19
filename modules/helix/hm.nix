@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "helix";
-  humanName = "Helix";
-
   options.transparent = lib.mkEnableOption "transparent theming" // {
     internal = true;
     default = false;

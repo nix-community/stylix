@@ -1,9 +1,6 @@
 # Starship configuration documentation: https://starship.rs/config
 { mkTarget, ... }:
 mkTarget {
-  name = "starship";
-  humanName = "Starship";
-
   config =
     { colors }:
     {

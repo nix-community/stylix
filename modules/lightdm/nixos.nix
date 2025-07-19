@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "lightdm";
-  humanName = "LightDM";
-
   options.useWallpaper = config.lib.stylix.mkEnableWallpaper "LightDM" true;
 
   config =
