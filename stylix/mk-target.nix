@@ -182,7 +182,7 @@
   configElements ? [ ],
   enableExample ? null,
   extraOptions ? { },
-  generalConfig ? null,
+  generalConfig ? { },
   imports ? [ ],
 }@args:
 let
@@ -191,54 +191,66 @@ let
     let
       cfg = config.stylix.targets.${name};
 
-      # Get the list of function de-structured argument names.
-      functionArgNames =
-        fn:
-        lib.pipe fn [
-          lib.functionArgs
-          builtins.attrNames
-        ];
+      mkConfig =
+        let
+          areArgumentsEnabled = lib.flip lib.pipe [
+            builtins.attrValues
+            (builtins.all (argument: argument.enable or (argument != null)))
+          ];
 
-      getStylixAttrs =
-        fn:
-        lib.genAttrs (functionArgNames fn) (
-          arg:
-          if arg == "cfg" then
-            cfg
-          else if arg == "colors" then
-            config.lib.stylix.colors
+          getArguments =
+            function:
+            lib.genAttrs
+              (lib.pipe function [
+                lib.functionArgs
+                builtins.attrNames
+              ])
+              (
+                argument:
+                if argument == "cfg" then
+                  cfg
+
+                else if argument == "colors" then
+                  config.lib.stylix.colors
+
+                else
+                  config.stylix.${argument} or (throw "stylix: mkTarget expected one of ${
+                    lib.concatMapStringsSep ", " (expected: "`${expected}`") (
+                      lib.naturalSort (
+                        [
+                          "cfg"
+                          "colors"
+                        ]
+                        ++ builtins.attrNames config.stylix
+                      )
+                    )
+                  }, but got: ${argument}")
+              );
+        in
+        safeguard: config':
+        let
+          arguments = getArguments config';
+        in
+        if builtins.isFunction config' then
+          if safeguard then
+            lib.mkIf (areArgumentsEnabled arguments) (config' arguments)
           else
-            config.stylix.${arg}
-              or (throw "stylix: mkTarget expected one of `cfg`, `colors`, ${
-                lib.concatMapStringsSep ", " (name: "`${name}`") (
-                  builtins.attrNames config.stylix
-                )
-              }, but got: ${arg}")
-        );
+            config' arguments
 
-      # Call the configuration function with its required Stylix arguments.
-      mkConfig = fn: fn (getStylixAttrs fn);
+        else if builtins.isAttrs config' then
+          config'
 
-      # Safeguard configuration functions when any of their arguments is
-      # disabled.
-      mkConditionalConfig =
-        c:
-        if builtins.isFunction c then
-          let
-            allAttrsEnabled = lib.pipe c [
-              getStylixAttrs
-              builtins.attrValues
-              # If the attr has no enable option, it is instead disabled when null
-              (builtins.all (attr: attr.enable or (attr != null)))
-            ];
-          in
-          lib.mkIf allAttrsEnabled (mkConfig c)
+        else if builtins.isPath config' then
+          mkConfig safeguard (import config')
+
         else
-          c;
+          throw "stylix: mkTarget expected a configuration to be a function, an attribute set, or a path, but got ${builtins.typeOf config'}: ${
+            lib.generators.toPretty { } config'
+          }";
     in
     {
       imports = imports ++ [
-        { options.stylix.targets.${name} = mkConfig (lib.toFunction extraOptions); }
+        { options.stylix.targets.${name} = mkConfig false extraOptions; }
       ];
 
       options.stylix.targets.${name}.enable =
@@ -258,14 +270,8 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.optional (generalConfig != null) (
-            mkConfig (
-              if builtins.isPath generalConfig then import generalConfig else generalConfig
-            )
-          )
-          ++ map (c: mkConditionalConfig (if builtins.isPath c then import c else c)) (
-            lib.toList configElements
-          )
+          lib.singleton (mkConfig false generalConfig)
+          ++ map (mkConfig true) (lib.toList configElements)
         )
       );
     };
