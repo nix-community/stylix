@@ -22,7 +22,7 @@
     name = "«name»";
     humanName = "«human readable name»";
 
-    generalConfig =
+    unconditionalConfig =
       lib.mkIf complexCondition {
         home.packages = [ pkgs.hello ];
       };
@@ -125,13 +125,13 @@
       { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
 
-    `generalConfig` (Attribute set or function or path)
+    `imports` (List)
+    : The `imports` option forwarded to the Nixpkgs module system.
+
+    `unconditionalConfig` (Attribute set or function or path)
     : This argument mirrors the `configElements` argument but intentionally
       lacks automatic safeguarding and should only be used for complex
       configurations where `configElements` is unsuitable.
-
-    `imports` (List)
-    : The `imports` option forwarded to the Nixpkgs module system.
 
   # Environment
 
@@ -149,7 +149,7 @@
 #       name = "example";
 #       humanName = "Example Target";
 #
-#       generalConfig =
+#       unconditionalConfig =
 #         { lib, pkgs }:
 #         lib.mkIf complexCondition {
 #           home.packages = [ pkgs.hello ];
@@ -182,8 +182,8 @@
   configElements ? [ ],
   enableExample ? null,
   extraOptions ? { },
-  generalConfig ? { },
   imports ? [ ],
+  unconditionalConfig ? { },
 }@args:
 let
   module =
@@ -269,7 +269,7 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.singleton (callModule false generalConfig)
+          lib.singleton (callModule false unconditionalConfig)
           ++ map (callModule true) (lib.toList configElements)
         )
       );
