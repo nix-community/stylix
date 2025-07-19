@@ -82,21 +82,6 @@
 
       The default (`true`) is inherited from `mkEnableTargetWith`.
 
-    `enableExample` (Boolean or literal expression)
-    : An example to include on the enable option. The default is calculated
-      automatically by `mkEnableTargetWith` and depends on `autoEnable` and
-      whether an `autoEnableExpr` is used.
-
-    `extraOptions` (Attribute set)
-    : Additional options to be added in the `stylix.targets.${name}` namespace
-      along the `stylix.targets.${name}.enable` option.
-
-      For example, an extension guard used in the configuration can be declared
-      as follows:
-      ```nix
-      { extension.enable = lib.mkEnableOption "the bloated dependency"; }
-      ```
-
     `configElements` (List or attribute set or function or path)
     : Configuration functions that are automatically safeguarded when any of
       their arguments is disabled. The provided `cfg` argument conveniently
@@ -123,6 +108,21 @@
           programs.«name».extension.enable = cfg.extension.enable;
         }
       )
+      ```
+
+    `enableExample` (Boolean or literal expression)
+    : An example to include on the enable option. The default is calculated
+      automatically by `mkEnableTargetWith` and depends on `autoEnable` and
+      whether an `autoEnableExpr` is used.
+
+    `extraOptions` (Attribute set)
+    : Additional options to be added in the `stylix.targets.${name}` namespace
+      along the `stylix.targets.${name}.enable` option.
+
+      For example, an extension guard used in the configuration can be declared
+      as follows:
+      ```nix
+      { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
 
     `generalConfig` (Attribute set or function or path)
@@ -176,9 +176,9 @@
   autoEnable ? null,
   autoEnableExpr ? null,
   autoWrapEnableExpr ? null,
+  configElements ? [ ],
   enableExample ? null,
   extraOptions ? { },
-  configElements ? [ ],
   generalConfig ? null,
   imports ? [ ],
 }@args:
