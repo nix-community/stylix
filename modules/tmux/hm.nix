@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "tmux";
-  humanName = "Tmux";
-
   config =
     { colors, inputs }:
     {

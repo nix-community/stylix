@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "gtksourceview";
-  humanName = "GTKSourceView";
-
   config =
     { colors, ... }:
     {

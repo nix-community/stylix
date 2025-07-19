@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "spotify-player";
-  humanName = "spotify-player";
-
   config =
     { colors }:
     {

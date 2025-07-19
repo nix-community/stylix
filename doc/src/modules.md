@@ -49,9 +49,6 @@ documentation for more details):
 ```nix
 { config, lib, mkTarget ... }:
 mkTarget {
-  name = "«name»";
-  humanName = "«human readable name»";
-
   config =
     { colors }:
     {
