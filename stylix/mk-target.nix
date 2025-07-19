@@ -193,38 +193,11 @@ let
       callModule =
         let
           areArgumentsEnabled = lib.flip lib.pipe [
-            builtins.attrValues
-            (builtins.all (argument: argument.enable or (argument != null)))
+            lib.attrsToList
+            (builtins.all (
+              { name, value }: value.enable or (value != null) && cfg.${name}.enable or true
+            ))
           ];
-
-          getArguments =
-            function:
-            lib.genAttrs
-              (lib.pipe function [
-                lib.functionArgs
-                builtins.attrNames
-              ])
-              (
-                argument:
-                if argument == "cfg" then
-                  cfg
-
-                else if argument == "colors" then
-                  config.lib.stylix.colors
-
-                else
-                  config.stylix.${argument} or (throw "stylix: mkTarget expected one of ${
-                    lib.concatMapStringsSep ", " (expected: "`${expected}`") (
-                      lib.naturalSort (
-                        [
-                          "cfg"
-                          "colors"
-                        ]
-                        ++ builtins.attrNames config.stylix
-                      )
-                    )
-                  }, but got: ${argument}")
-              );
         in
         safeguard: config':
         let
@@ -240,7 +213,7 @@ let
           config'
 
         else if builtins.isPath config' then
-          callModule safeguard (import config')
+          throw "stylix: unexpected unresolved path: ${toString config'}"
 
         else
           throw "stylix: mkTarget expected a configuration to be a function, an attribute set, or a path, but got ${builtins.typeOf config'}: ${
@@ -248,11 +221,107 @@ let
           }";
 
       cfg = config.stylix.targets.${name};
+
+      getArguments =
+        function:
+        lib.genAttrs
+          (lib.pipe function [
+            lib.functionArgs
+            builtins.attrNames
+          ])
+          (
+            argument:
+            if argument == "cfg" then
+              cfg
+
+            else
+              (
+                config':
+                let
+                  inherit (cfg.${argument}) override;
+                in
+                if override == null then
+                  config'
+                else if builtins.typeOf override != builtins.typeOf config' then
+                  throw "stylix: expected `config.stylix.targets.${name}.${argument}.override` to be a ${builtins.typeOf config'}, but got: ${builtins.typeOf override}"
+                else if builtins.isAttrs override then
+                  lib.recursiveUpdate config' override
+                else
+                  override
+              )
+                (
+                  if argument == "colors" then
+                    config.lib.stylix.colors
+
+                  else
+                    config.stylix.${argument} or (throw "stylix: mkTarget expected one of ${
+                      lib.concatMapStringsSep ", " (expected: "`${expected}`") (
+                        lib.naturalSort (
+                          [
+                            "cfg"
+                            "colors"
+                          ]
+                          ++ builtins.attrNames config.stylix
+                        )
+                      )
+                    }, but got: ${argument}")
+                )
+          );
+
+      normalizeConfig =
+        config:
+        map (lib.fix (
+          self: config':
+          if builtins.isPath config' then self (import config') else config'
+        )) (lib.toList config);
+
+      normalizedConfig = normalizeConfig mkTargetConfig;
     in
     {
-      imports = imports ++ [
-        { options.stylix.targets.${name} = callModule false options; }
-      ];
+      imports =
+        lib.singleton {
+          options.stylix.targets.${name} =
+            lib.genAttrs
+              (lib.concatLists (
+                map (lib.flip lib.pipe [
+                  (
+                    config': lib.optionalAttrs (builtins.isFunction config') (getArguments config')
+                  )
+                  builtins.attrNames
+                  (lib.remove "cfg")
+                ]) (normalizedConfig ++ normalizeConfig options)
+              ))
+              (
+                argument:
+                let
+                  config = "`${
+                    if argument == "colors" then
+                      "config.lib.stylix.colors"
+                    else
+                      "config.stylix.${argument}"
+                  }`";
+                in
+                {
+                  enable = lib.mkEnableOption "${config} for ${humanName}" // {
+                    default = true;
+                    example = false;
+                  };
+
+                  override = lib.mkOption {
+                    default = null;
+
+                    description = ''
+                      Attribute sets are recursively merged with ${config},
+                      while all other non-`null` types override ${config}.
+                    '';
+
+                    type = lib.types.anything;
+                  };
+                }
+              );
+        }
+        ++ imports
+        ++ lib.singleton { options.stylix.targets.${name} = callModule false options; };
 
       options.stylix.targets.${name}.enable =
         let
@@ -271,7 +340,7 @@ let
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
           lib.singleton (callModule false unconditionalConfig)
-          ++ map (callModule true) (lib.toList mkTargetConfig)
+          ++ map (callModule true) normalizedConfig
         )
       );
     };
