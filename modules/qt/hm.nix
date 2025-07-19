@@ -2,21 +2,20 @@
   pkgs,
   config,
   lib,
-  osConfig ? null,
+  nixosConfig ? null,
   ...
 }:
 {
   options.stylix.targets.qt = {
-    # TODO: Remove the osConfig workaround [1] ("qt: puts NixOS systemd on
-    # non-NixOS distro path") once [2] ("bug: setting qt.style.name = kvantum
-    # makes host systemd unusable") is resolved.
+    # TODO: Replace `nixosConfig != null` with
+    # `pkgs.stdenv.hostPlatform.isLinux` once [1] ("bug: setting qt.style.name
+    # = kvantum makes host systemd unusable") is resolved.
     #
-    # [1]: https://github.com/nix-community/stylix/issues/933
-    # [2]: https://github.com/nix-community/home-manager/issues/6565
+    # [1]: https://github.com/nix-community/home-manager/issues/6565
     enable = config.lib.stylix.mkEnableTargetWith {
       name = "QT";
-      autoEnable = pkgs.stdenv.hostPlatform.isLinux && osConfig != null;
-      autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux && osConfig != null";
+      autoEnable = nixosConfig != null;
+      autoEnableExpr = "nixosConfig != null";
     };
 
     platform = lib.mkOption {
