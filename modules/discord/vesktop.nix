@@ -4,13 +4,13 @@ mkTarget {
   name = "vesktop";
   humanName = "Vesktop";
 
-  extraOptions.themeBody = lib.mkOption {
+  options.themeBody = lib.mkOption {
     type = lib.types.lines;
     default = "";
     internal = true;
   };
 
-  configElements = (import ./common/theme-elements.nix "vesktop") ++ [
+  config = (import ./common/theme-elements.nix "vesktop") ++ [
     (
       { cfg }:
       lib.mkIf (cfg.themeBody != (import ./common/theme-header.nix)) {

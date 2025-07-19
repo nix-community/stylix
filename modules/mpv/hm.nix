@@ -2,7 +2,7 @@
 mkTarget {
   name = "mpv";
   humanName = "mpv";
-  configElements = [
+  config = [
     (
       { fonts }:
       {

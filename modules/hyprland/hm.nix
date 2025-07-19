@@ -7,7 +7,7 @@
 mkTarget {
   name = "hyprland";
   humanName = "Hyprland";
-  extraOptions =
+  options =
     { image }:
     {
       hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
@@ -17,7 +17,7 @@ mkTarget {
       };
     };
 
-  configElements = [
+  config = [
     (
       { colors }:
       {

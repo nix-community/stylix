@@ -3,7 +3,7 @@ mkTarget {
   name = "fontconfig";
   humanName = "Fontconfig";
 
-  configElements =
+  config =
     { fonts }:
     {
       fonts.fontconfig.defaultFonts = {

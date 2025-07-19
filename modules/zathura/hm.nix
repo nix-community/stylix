@@ -3,7 +3,7 @@ mkTarget {
   name = "zathura";
   humanName = "Zathura";
 
-  configElements =
+  config =
     { colors, opacity }:
     {
       programs.zathura.options =
