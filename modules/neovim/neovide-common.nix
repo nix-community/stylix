@@ -1,8 +1,8 @@
 # imported from `modules/nixvim/nixvim.nix`
-stylix: {
+opacity: {
   extraConfigLua = ''
     if vim.g.neovide then
-      vim.g.neovide_normal_opacity = ${toString stylix.opacity.terminal}
+      vim.g.neovide_normal_opacity = ${toString opacity.terminal}
     end
   '';
 }
