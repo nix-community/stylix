@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "kitty";
-  humanName = "Kitty";
-
   options = {
     variant256Colors = lib.mkOption {
       description = ''

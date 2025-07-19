@@ -19,9 +19,6 @@
   ```nix
   { mkTarget, lib... }:
   mkTarget {
-    name = "«name»";
-    humanName = "«human readable name»";
-
     unconditionalConfig =
       lib.mkIf complexCondition {
         home.packages = [ pkgs.hello ];
@@ -51,15 +48,7 @@
 
   `config` (Attribute set)
 
-  : `name` (String)
-    : The target name used to generate options in the `stylix.targets.${name}`
-      namespace.
-
-    `humanName` (String)
-    : The descriptive target name passed to the lib.mkEnableOption function
-      when generating the `stylix.targets.${name}.enable` option.
-
-    `autoEnable` (Boolean)
+  : `autoEnable` (Boolean)
     : Whether the target should be automatically enabled by default according
       to the `stylix.autoEnable` option.
 
@@ -115,6 +104,10 @@
       automatically by `mkEnableTargetWith` and depends on `autoEnable` and
       whether an `autoEnableExpr` is used.
 
+    `humanName` (String)
+    : The descriptive target name passed to the lib.mkEnableOption function
+      when generating the `stylix.targets.${name}.enable` option.
+
     `imports` (List)
     : The `imports` option forwarded to the Nixpkgs module system.
 
@@ -127,6 +120,10 @@
       ```nix
       { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
+
+    `name` (String)
+    : The target name used to generate options in the `stylix.targets.${name}`
+      namespace.
 
     `unconditionalConfig` (Attribute set or function or path)
     : This argument mirrors the `config` argument but intentionally lacks
@@ -146,9 +143,6 @@
 # of modules:
 #
 #     {
-#       name = "example";
-#       humanName = "Example Target";
-#
 #       unconditionalConfig =
 #         { lib, pkgs }:
 #         lib.mkIf complexCondition {
@@ -173,15 +167,20 @@
 #         )
 #       ];
 #     }
+{ humanName, name }:
+let
+  humanName' = humanName;
+  name' = name;
+in
 {
-  name,
-  humanName,
   autoEnable ? null,
   autoEnableExpr ? null,
   autoWrapEnableExpr ? null,
   config ? [ ],
   enableExample ? null,
+  humanName ? humanName',
   imports ? [ ],
+  name ? name',
   options ? { },
   unconditionalConfig ? { },
 }@args:

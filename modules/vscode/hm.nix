@@ -6,9 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "vscode";
-  humanName = "VSCode";
-
   options.profileNames = lib.mkOption {
     description = "The VSCode profile names to apply styling on.";
     type = lib.types.listOf lib.types.str;

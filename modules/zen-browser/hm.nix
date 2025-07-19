@@ -6,9 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "zen-browser";
-  humanName = "Zen Browser";
-
   options = {
     profileNames = lib.mkOption {
       description = "The Zen Browser profile names to apply styling on.";

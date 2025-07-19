@@ -1,8 +1,5 @@
 { mkTarget, pkgs, ... }:
 mkTarget {
-  name = "emacs";
-  humanName = "Emacs";
-
   config = [
     (
       { opacity }:

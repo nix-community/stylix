@@ -6,8 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "feh";
-  humanName = "the desktop background using Feh";
   autoEnable =
     with config.services.xserver.windowManager;
     xmonad.enable || i3.enable;

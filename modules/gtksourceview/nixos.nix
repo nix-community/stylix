@@ -1,7 +1,3 @@
 { mkTarget, ... }:
-mkTarget {
-  name = "gtksourceview";
-  humanName = "GTKSourceView";
-
-  # Used to enable overlay.
-}
+# Used to enable overlay.
+mkTarget { }

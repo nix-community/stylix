@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "sxiv";
-  humanName = "Sxiv";
-
   config = [
     (
       { fonts }:

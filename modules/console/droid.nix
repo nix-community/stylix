@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "console";
-  humanName = "the Nix-on-Droid console";
-
   config =
     { colors }:
     {

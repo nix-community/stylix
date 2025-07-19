@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "glance";
-  humanName = "Glance";
-
   config = [
     (
       { polarity }:

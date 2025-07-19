@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "i3";
-  humanName = "i3";
-
   options.exportedBarConfig = lib.mkOption {
     type = lib.types.attrs;
     default = { };

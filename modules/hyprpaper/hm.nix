@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "hyprpaper";
-  humanName = "Hyprpaper";
-
   config =
     { image }:
     {

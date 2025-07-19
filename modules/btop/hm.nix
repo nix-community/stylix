@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "btop";
-  humanName = "btop";
-
   config = [
     (
       { opacity }:

@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "micro";
-  humanName = "micro";
-
   config = {
     # TODO: Provide a real colorscheme once [1] is resolved.
     #

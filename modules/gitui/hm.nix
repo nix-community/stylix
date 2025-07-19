@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "gitui";
-  humanName = "GitUI";
-
   config =
     { colors }:
     {
