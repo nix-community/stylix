@@ -9,13 +9,13 @@ mkTarget {
   name = "vscode";
   humanName = "VSCode";
 
-  extraOptions.profileNames = lib.mkOption {
+  options.profileNames = lib.mkOption {
     description = "The VSCode profile names to apply styling on.";
     type = lib.types.listOf lib.types.str;
     default = [ "default" ];
   };
 
-  configElements = [
+  config = [
     (
       { cfg }:
       {

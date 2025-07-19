@@ -3,7 +3,7 @@ mkTarget {
   name = "spotify-player";
   humanName = "spotify-player";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.spotify-player = {

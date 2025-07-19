@@ -4,15 +4,13 @@ mkTarget {
   name = "yazi";
   humanName = "Yazi";
 
-  extraOptions = {
-    boldDirectory = lib.mkOption {
-      description = "Whether to use bold font for directories.";
-      type = lib.types.bool;
-      default = true;
-    };
+  options.boldDirectory = lib.mkOption {
+    description = "Whether to use bold font for directories.";
+    type = lib.types.bool;
+    default = true;
   };
 
-  configElements =
+  config =
     { cfg, colors }:
     {
       programs.yazi.theme =

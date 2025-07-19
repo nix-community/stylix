@@ -3,7 +3,7 @@ mkTarget {
   name = "kubecolor";
   humanName = "kubecolor";
 
-  configElements = [
+  config = [
     (
       { polarity }:
       {

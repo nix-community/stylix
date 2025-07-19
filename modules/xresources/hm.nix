@@ -3,7 +3,7 @@ mkTarget {
   name = "xresources";
   humanName = "Xresources";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {
