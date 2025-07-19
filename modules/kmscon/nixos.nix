@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "kmscon";
-  humanName = "the kmscon virtual console";
-
   config = [
     (
       { fonts }:

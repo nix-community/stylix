@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "mangohud";
-  humanName = "mangohud";
-
   config = [
     (
       { fonts }:

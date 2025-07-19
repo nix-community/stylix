@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "wayprompt";
-  humanName = "Wayprompt";
-
   config =
     { colors, opacity }:
     let

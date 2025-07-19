@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "plymouth";
-  humanName = "the Plymouth boot screen";
-
   options = {
     logo = lib.mkOption {
       description = "Logo to be used on the boot screen.";

@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "bat";
-  humanName = "Bat";
-
   config =
     { colors }:
     {

@@ -5,8 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "hyprland";
-  humanName = "Hyprland";
   options =
     { image }:
     {
