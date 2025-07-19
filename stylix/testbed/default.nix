@@ -4,12 +4,10 @@
   lib,
   modules ? import ./autoload.nix { inherit pkgs lib; },
 }:
-
 let
   makeTestbed =
     name: testbed:
     let
-
       system = lib.nixosSystem {
         inherit (pkgs) system;
 

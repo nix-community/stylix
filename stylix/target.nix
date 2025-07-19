@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 {
   options.stylix = {
     enable = lib.mkOption {

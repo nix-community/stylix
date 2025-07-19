@@ -1,5 +1,4 @@
 { lib, ... }:
-
 {
   options.stylix.iconTheme = {
     enable = lib.mkOption {

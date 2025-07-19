@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.stylix.fonts;
 
@@ -25,7 +24,6 @@ let
         default = fontName;
       };
     };
-
 in
 {
   options.stylix.fonts = {
