@@ -10,12 +10,11 @@ let
   opts = options.stylix;
 in
 {
-  imports = [
-    (lib.mkRenamedOptionModule
+  imports = lib.singleton (
+    lib.mkRenamedOptionModule
       [ "stylix" "polarity" ]
       [ "stylix" "theme" "polarity" ]
-    )
-  ];
+  );
   options.stylix = {
     theme = {
       scheme = lib.mkOption {
