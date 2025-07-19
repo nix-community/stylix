@@ -29,10 +29,10 @@ mkTarget {
       }
     )
     (
-      { polarity }:
+      { theme }:
       {
         programs.qutebrowser.settings.colors.webpage.preferred_color_scheme = lib.mkIf (
-          polarity == "dark"
+          theme.polarity == "dark"
         ) "dark";
       }
     )
@@ -281,7 +281,6 @@ mkTarget {
               };
             };
           };
-
         };
       }
     )
