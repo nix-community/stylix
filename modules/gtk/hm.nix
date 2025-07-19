@@ -7,9 +7,6 @@
   ...
 }:
 mkTarget {
-  name = "gtk";
-  humanName = "all GTK3, GTK4 and Libadwaita apps";
-
   options = {
     extraCss = lib.mkOption {
       description = ''

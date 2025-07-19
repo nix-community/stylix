@@ -3,9 +3,6 @@
   ...
 }:
 mkTarget {
-  name = "go DiskUsage()";
-  humanName = "go DiskUsage()";
-
   config =
     { colors }:
     {

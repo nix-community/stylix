@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "hyprpanel";
-  humanName = "HyprPanel";
-
   config = [
     (
       { fonts }:

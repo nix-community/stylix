@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "anki";
-  humanName = "Anki";
-
   config =
     { colors }:
     {

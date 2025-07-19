@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "waybar";
-  humanName = "Waybar";
-
   options = {
     background = lib.mkOption {
       type = lib.types.nullOr lib.types.str;

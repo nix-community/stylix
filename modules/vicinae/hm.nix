@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "vicinae";
-  humanName = "Vicinae";
-
   config = lib.optionals (options.programs ? vicinae) [
     (
       { colors, polarity }:

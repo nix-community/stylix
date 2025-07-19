@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "wpaperd";
-  humanName = "wpaperd";
-
   config =
     { imageScalingMode, image }:
     (

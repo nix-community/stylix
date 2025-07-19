@@ -1,9 +1,6 @@
 { mkTarget }:
 { lib, ... }:
 mkTarget {
-  name = "fontconfig";
-  humanName = "Fontconfig";
-
   config =
     { listTargetIndex, fonts }:
     {

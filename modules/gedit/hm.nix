@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "gedit";
-  humanName = "GEdit";
-
   config =
     { colors }:
     {

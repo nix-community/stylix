@@ -5,8 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "wezterm";
-  humanName = "WezTerm";
   options.luaBody = lib.mkOption {
     type = lib.types.lines;
     default = "";

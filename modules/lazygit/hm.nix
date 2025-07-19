@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "lazygit";
-  humanName = "lazygit";
-
   config =
     { colors }:
     {

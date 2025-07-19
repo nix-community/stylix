@@ -12,7 +12,7 @@
   ...
 }:
 mkTarget {
-  inherit name humanName;
+  inherit humanName name;
 
   options = {
     profileNames = lib.mkOption {

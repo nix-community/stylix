@@ -5,9 +5,6 @@
   ...
 }:
 mkTarget {
-  name = "jankyborders";
-  humanName = "JankyBorders";
-
   config =
     { colors, opacity }:
     {
