@@ -9,7 +9,7 @@ mkTarget {
   name = "spicetify";
   humanName = "Spicetify";
 
-  configElements =
+  config =
     { colors }:
     lib.optionalAttrs (options.programs ? spicetify) {
       programs.spicetify = {

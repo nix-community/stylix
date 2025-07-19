@@ -3,7 +3,7 @@ mkTarget {
   name = "kmscon";
   humanName = "the kmscon virtual console";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

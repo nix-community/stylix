@@ -3,7 +3,7 @@ mkTarget {
   name = "halloy";
   humanName = "Halloy";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.halloy = {

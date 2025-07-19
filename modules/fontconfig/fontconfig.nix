@@ -4,7 +4,7 @@ mkTarget {
   name = "fontconfig";
   humanName = "Fontconfig";
 
-  configElements =
+  config =
     { listTargetIndex, fonts }:
     {
       fonts.fontconfig.defaultFonts = lib.genAttrs [

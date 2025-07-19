@@ -5,7 +5,7 @@
 mkTarget {
   name = "alacritty";
   humanName = "Alacritty";
-  configElements = [
+  config = [
     (
       { colors }:
       {

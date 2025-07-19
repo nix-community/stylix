@@ -3,9 +3,9 @@ mkTarget {
   name = "cava";
   humanName = "CAVA";
 
-  extraOptions.rainbow.enable = lib.mkEnableOption "rainbow gradient theming";
+  options.rainbow.enable = lib.mkEnableOption "rainbow gradient theming";
 
-  configElements =
+  config =
     { cfg, colors }:
     let
       mkGradient =

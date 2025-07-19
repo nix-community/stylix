@@ -16,7 +16,7 @@ mkTarget {
     xmonad.enable || i3.enable
   '';
 
-  configElements =
+  config =
     { image, imageScalingMode }:
     {
       services.xserver.displayManager.sessionCommands =

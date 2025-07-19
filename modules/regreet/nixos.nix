@@ -12,7 +12,7 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  extraOptions = {
+  options = {
     useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
     extraCss = lib.mkOption {
       description = ''
@@ -24,7 +24,7 @@ mkTarget {
     };
   };
 
-  configElements = [
+  config = [
     {
       warnings =
         let

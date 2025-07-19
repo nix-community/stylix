@@ -3,7 +3,7 @@ mkTarget {
   name = "glance";
   humanName = "Glance";
 
-  configElements = [
+  config = [
     (
       { polarity }:
       {

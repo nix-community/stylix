@@ -8,12 +8,12 @@ mkTarget {
   name = "helix";
   humanName = "Helix";
 
-  extraOptions.transparent = lib.mkEnableOption "transparent theming" // {
+  options.transparent = lib.mkEnableOption "transparent theming" // {
     internal = true;
     default = false;
   };
 
-  configElements = [
+  config = [
     (
       { opacity }:
       {

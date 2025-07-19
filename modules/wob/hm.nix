@@ -3,7 +3,7 @@ mkTarget {
   name = "wob";
   humanName = "wob";
 
-  configElements =
+  config =
     { colors }:
     {
       services.wob.settings = {
