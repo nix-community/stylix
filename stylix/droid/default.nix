@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
-  autoload = import ../autoload.nix { inherit lib; } "droid";
+  autoload = import ../autoload.nix { inherit lib pkgs; } "droid";
 in
 {
   imports = [

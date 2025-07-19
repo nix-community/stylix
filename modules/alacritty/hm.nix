@@ -3,9 +3,7 @@
 # - `man 5 alacritty`
 { mkTarget, ... }:
 mkTarget {
-  name = "alacritty";
-  humanName = "Alacritty";
-  configElements = [
+  config = [
     (
       { colors }:
       {

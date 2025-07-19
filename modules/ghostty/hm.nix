@@ -3,10 +3,7 @@
 # - `man 5 ghostty`
 { mkTarget, ... }:
 mkTarget {
-  name = "ghostty";
-  humanName = "Ghostty";
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {
