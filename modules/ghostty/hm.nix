@@ -3,9 +3,6 @@
 # - `man 5 ghostty`
 { mkTarget, pkgs, ... }:
 mkTarget {
-  name = "ghostty";
-  humanName = "Ghostty";
-
   config = [
     (
       { fonts }:

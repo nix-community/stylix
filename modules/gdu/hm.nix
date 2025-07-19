@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "gdu";
-  humanName = "go DiskUsage()";
-
   config =
     { colors }:
     {

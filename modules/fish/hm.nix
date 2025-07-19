@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "fish";
-  humanName = "Fish";
-
   config =
     { colors, inputs }:
     {

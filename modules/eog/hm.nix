@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "eog";
-  humanName = "Eye of GNOME Image Viewer";
-
   config =
     { colors }:
     {

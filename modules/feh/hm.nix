@@ -6,8 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "feh";
-  humanName = "the desktop background using Feh";
   autoEnable =
     with config.xsession.windowManager;
     bspwm.enable

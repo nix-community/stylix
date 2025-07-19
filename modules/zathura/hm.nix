@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "zathura";
-  humanName = "Zathura";
-
   config =
     { colors, opacity }:
     {
