@@ -15,10 +15,22 @@
   perSystem =
     { pkgs, system, ... }:
     lib.optionalAttrs (partitionStack == [ ]) {
-      packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
-        lib.mapAttrs (
-          name: _: config.partitions.dev.module.flake.packages.${system}.${name}
-        ) (import ../stylix/testbed/autoload.nix { inherit lib pkgs; })
-      );
+      apps = {
+        inherit (config.partitions.dev.module.flake.apps.${system})
+          all-maintainers
+          ;
+      };
+      packages = lib.mkMerge [
+        {
+          inherit (config.partitions.dev.module.flake.packages.${system})
+            all-maintainers
+            ;
+        }
+        (lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
+          lib.mapAttrs (
+            name: _: config.partitions.dev.module.flake.packages.${system}.${name}
+          ) (import ../stylix/testbed/autoload.nix { inherit lib pkgs; })
+        ))
+      ];
     };
 }

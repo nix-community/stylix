@@ -1,5 +1,6 @@
 {
   imports = [
+    ./all-maintainers.nix
     ./dev-shell.nix
     ./packages.nix
     ./pre-commit.nix
