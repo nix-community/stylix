@@ -3,7 +3,7 @@ mkTarget {
   name = "sxiv";
   humanName = "Sxiv";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

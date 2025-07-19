@@ -3,7 +3,7 @@ mkTarget {
   name = "gtksourceview";
   humanName = "GTKSourceView";
 
-  configElements =
+  config =
     { colors, ... }:
     {
       xdg.dataFile = builtins.listToAttrs (

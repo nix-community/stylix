@@ -4,7 +4,7 @@ mkTarget {
   name = "yazi";
   humanName = "Yazi";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.yazi.theme =
