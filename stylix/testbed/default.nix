@@ -3,6 +3,7 @@
   inputs,
   lib,
   modules ? import ./autoload.nix { inherit pkgs lib; },
+  testbedFieldSeparator ? ":",
 }:
 let
   makeTestbed =
@@ -19,15 +20,24 @@ let
             inputs.self.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             testbed
-
-            # modules for external targets
-            inputs.nvf.nixosModules.default
-            inputs.nixvim.nixosModules.nixvim
-            inputs.spicetify-nix.nixosModules.spicetify
           ]
           ++ map (name: import ./graphical-environments/${name}.nix) (
             import ./available-graphical-environments.nix { inherit lib; }
-          );
+          )
+          ++
+            lib.mapAttrsToList
+              (
+                target:
+                lib.optionalAttrs (
+                  lib.hasPrefix "testbed${testbedFieldSeparator}${target}" name
+                )
+              )
+              {
+                inherit (inputs.nixvim.nixosModules) nixvim;
+                inherit (inputs.spicetify-nix.nixosModules) spicetify;
+
+                nvf = inputs.nvf.nixosModules.default;
+              };
       };
     in
     pkgs.writeShellApplication {
