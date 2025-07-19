@@ -111,9 +111,9 @@
     `imports` (List)
     : The `imports` option forwarded to the Nixpkgs module system.
 
-    `options` (Attribute set)
-    : Additional options to be added in the `stylix.targets.${name}` namespace
-      along the `stylix.targets.${name}.enable` option.
+    `options` (List or attribute set or function or path)
+    : Additional options to be added in the `stylix.targets.${name}` namespace,
+      normalized identically to `config`.
 
       For example, an extension guard used in the configuration can be declared
       as follows:
@@ -181,7 +181,7 @@ in
   humanName ? humanName',
   imports ? [ ],
   name ? name',
-  options ? { },
+  options ? [ ],
   unconditionalConfig ? { },
 }@args:
 let
@@ -276,6 +276,7 @@ let
         )) (lib.toList config);
 
       normalizedConfig = normalizeConfig mkTargetConfig;
+      normalizedOptions = normalizeConfig options;
     in
     {
       imports =
@@ -289,7 +290,7 @@ let
                   )
                   builtins.attrNames
                   (lib.remove "cfg")
-                ]) (normalizedConfig ++ normalizeConfig options)
+                ]) (normalizedConfig ++ normalizedOptions)
               ))
               (
                 argument:
@@ -321,7 +322,9 @@ let
               );
         }
         ++ imports
-        ++ lib.singleton { options.stylix.targets.${name} = callModule false options; };
+        ++ map (option: {
+          options.stylix.targets.${name} = callModule false option;
+        }) normalizedOptions;
 
       options.stylix.targets.${name}.enable =
         let
