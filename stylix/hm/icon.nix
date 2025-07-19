@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 let
   cfg = config.stylix.iconTheme;
   inherit (config.stylix) polarity;

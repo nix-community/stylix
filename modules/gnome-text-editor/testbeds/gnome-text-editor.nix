@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   package = pkgs.gnome-text-editor;
 in

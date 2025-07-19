@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 {
   options.stylix.targets.river.enable =
     config.lib.stylix.mkEnableTarget "River" true;

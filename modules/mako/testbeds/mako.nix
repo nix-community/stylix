@@ -1,5 +1,4 @@
 { lib, pkgs, ... }:
-
 {
   stylix.testbed.ui = {
     # We use Hyprland because Gnome has its own notification daemon

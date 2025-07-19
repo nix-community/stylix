@@ -5,7 +5,6 @@
   lib,
   ...
 }:
-
 mkTarget {
   name = "vscode";
   humanName = "VSCode";

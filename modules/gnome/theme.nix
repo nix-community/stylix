@@ -5,13 +5,11 @@
   colors,
   inputs,
 }:
-
 let
   colorsScss = colors {
     template = ./colors.scss.mustache;
     extension = ".scss";
   };
-
 in
 stdenv.mkDerivation {
   name = "${colors.slug}-gnome-shell-theme";

@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   package = pkgs.gedit;
 in
