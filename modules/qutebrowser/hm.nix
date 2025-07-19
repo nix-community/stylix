@@ -3,7 +3,7 @@ mkTarget {
   name = "qutebrowser";
   humanName = "Qutebrowser";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

@@ -7,7 +7,7 @@ mkTarget:
 mkTarget {
   name = "nvf";
   humanName = "nvf";
-  extraOptions = {
+  options = {
     plugin = lib.mkOption {
       type = lib.types.enum [
         "base16"
@@ -19,7 +19,7 @@ mkTarget {
     transparentBackground = lib.mkEnableOption "background transparency for the main Neovim window";
   };
 
-  configElements = lib.optionals (options.programs ? nvf) [
+  config = lib.optionals (options.programs ? nvf) [
     (
       { colors, cfg }:
       {

@@ -12,9 +12,9 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "GNOME" true;
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "GNOME" true;
 
-  configElements = [
+  config = [
     (
       { cfg, image }:
       {

@@ -24,7 +24,7 @@ mkTarget {
     || xmonad.enable
   '';
 
-  configElements =
+  config =
     { imageScalingMode, image }:
     {
       xsession.initExtra =

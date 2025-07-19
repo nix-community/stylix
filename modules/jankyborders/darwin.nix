@@ -8,7 +8,7 @@ mkTarget {
   name = "jankyborders";
   humanName = "JankyBorders";
 
-  configElements =
+  config =
     { colors, opacity }:
     {
       services.jankyborders =

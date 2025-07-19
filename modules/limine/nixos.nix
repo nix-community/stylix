@@ -8,9 +8,9 @@ mkTarget {
   name = "limine";
   humanName = "Limine";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
 
-  configElements = [
+  config = [
     (
       { colors }:
       {

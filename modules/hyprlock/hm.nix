@@ -8,9 +8,9 @@ mkTarget {
   name = "hyprlock";
   humanName = "Hyprlock";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "Hyprlock" true;
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Hyprlock" true;
 
-  configElements = [
+  config = [
     (
       { cfg, image }:
       {

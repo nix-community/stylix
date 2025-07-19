@@ -6,7 +6,7 @@ mkTarget {
   name = "go DiskUsage()";
   humanName = "go DiskUsage()";
 
-  configElements =
+  config =
     { colors }:
     {
       xdg.configFile."gdu/gdu.yaml" = {

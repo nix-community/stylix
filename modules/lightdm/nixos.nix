@@ -8,9 +8,9 @@ mkTarget {
   name = "lightdm";
   humanName = "LightDM";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "LightDM" true;
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "LightDM" true;
 
-  configElements =
+  config =
     { cfg, image }:
     {
       services.xserver.displayManager.lightdm.background =

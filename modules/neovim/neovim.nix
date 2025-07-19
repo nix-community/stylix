@@ -7,7 +7,7 @@ mkTarget:
 mkTarget {
   name = "neovim";
   humanName = "Neovim";
-  extraOptions = {
+  options = {
     plugin = lib.mkOption {
       type = lib.types.enum [
         "base16-nvim"
@@ -29,7 +29,7 @@ mkTarget {
     };
   };
 
-  configElements = [
+  config = [
     (
       { colors, cfg }:
       {

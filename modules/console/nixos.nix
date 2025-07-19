@@ -3,7 +3,7 @@ mkTarget {
   name = "console";
   humanName = "the Linux kernel console";
 
-  configElements =
+  config =
     { colors }:
     {
       console.colors = with colors; [

@@ -27,7 +27,7 @@
         home.packages = [ pkgs.hello ];
       };
 
-    configElements = [
+    config = [
       { programs.«name».theme.name = "stylix"; }
 
       (
@@ -82,7 +82,7 @@
 
       The default (`true`) is inherited from `mkEnableTargetWith`.
 
-    `configElements` (List or attribute set or function or path)
+    `config` (List or attribute set or function or path)
     : Configuration functions that are automatically safeguarded when any of
       their arguments is disabled. The provided `cfg` argument conveniently
       aliases to `config.stylix.targets.${name}`.
@@ -115,7 +115,10 @@
       automatically by `mkEnableTargetWith` and depends on `autoEnable` and
       whether an `autoEnableExpr` is used.
 
-    `extraOptions` (Attribute set)
+    `imports` (List)
+    : The `imports` option forwarded to the Nixpkgs module system.
+
+    `options` (Attribute set)
     : Additional options to be added in the `stylix.targets.${name}` namespace
       along the `stylix.targets.${name}.enable` option.
 
@@ -125,13 +128,10 @@
       { extension.enable = lib.mkEnableOption "the bloated dependency"; }
       ```
 
-    `imports` (List)
-    : The `imports` option forwarded to the Nixpkgs module system.
-
     `unconditionalConfig` (Attribute set or function or path)
-    : This argument mirrors the `configElements` argument but intentionally
-      lacks automatic safeguarding and should only be used for complex
-      configurations where `configElements` is unsuitable.
+    : This argument mirrors the `config` argument but intentionally lacks
+      automatic safeguarding and should only be used for complex configurations
+      where `config` is unsuitable.
 
   # Environment
 
@@ -155,7 +155,7 @@
 #           home.packages = [ pkgs.hello ];
 #         };
 #
-#       configElements = [
+#       config = [
 #         { programs.example.theme.name = "stylix"; }
 #
 #         (
@@ -179,13 +179,15 @@
   autoEnable ? null,
   autoEnableExpr ? null,
   autoWrapEnableExpr ? null,
-  configElements ? [ ],
+  config ? [ ],
   enableExample ? null,
-  extraOptions ? { },
   imports ? [ ],
+  options ? { },
   unconditionalConfig ? { },
 }@args:
 let
+  mkTargetConfig = config;
+
   module =
     { config, lib, ... }:
     let
@@ -250,7 +252,7 @@ let
     in
     {
       imports = imports ++ [
-        { options.stylix.targets.${name} = callModule false extraOptions; }
+        { options.stylix.targets.${name} = callModule false options; }
       ];
 
       options.stylix.targets.${name}.enable =
@@ -270,7 +272,7 @@ let
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
           lib.singleton (callModule false unconditionalConfig)
-          ++ map (callModule true) (lib.toList configElements)
+          ++ map (callModule true) (lib.toList mkTargetConfig)
         )
       );
     };
