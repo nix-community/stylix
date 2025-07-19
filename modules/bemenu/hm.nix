@@ -3,7 +3,7 @@ mkTarget {
   name = "bemenu";
   humanName = "bemenu";
 
-  extraOptions =
+  options =
     { fonts }:
     {
       fontSize = lib.mkOption {
@@ -24,7 +24,7 @@ mkTarget {
       };
     };
 
-  configElements = [
+  config = [
     (
       { cfg, fonts }:
       {

@@ -7,7 +7,7 @@ mkTarget {
   name = "i3bar-river";
   humanName = "i3bar-river";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {
