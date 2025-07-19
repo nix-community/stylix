@@ -130,6 +130,9 @@
       lacks automatic safeguarding and should only be used for complex
       configurations where `configElements` is unsuitable.
 
+    `imports` (List)
+    : The `imports` option forwarded to the Nixpkgs module system.
+
   # Environment
 
   The function is provided alongside module arguments in any modules imported
