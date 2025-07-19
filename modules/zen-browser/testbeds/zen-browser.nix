@@ -8,7 +8,13 @@ in
   home-manager.sharedModules = lib.singleton {
     programs.zen-browser = {
       enable = true;
-      profiles.${profileName}.isDefault = true;
+      profiles.${profileName} = {
+        isDefault = true;
+        settings = {
+          "app.normandy.first_run" = false;
+          "zen.welcome-screen.seen" = true;
+        };
+      };
     };
 
     stylix.targets.zen-browser.profileNames = [ profileName ];
