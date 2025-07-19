@@ -3,7 +3,7 @@ mkTarget {
   name = "font-packages";
   humanName = "Font packages";
 
-  configElements =
+  config =
     { fonts }:
     {
       home = { inherit (fonts) packages; };

@@ -10,7 +10,7 @@ mkTarget {
   name = "gtk";
   humanName = "all GTK3, GTK4 and Libadwaita apps";
 
-  extraOptions = {
+  options = {
     extraCss = lib.mkOption {
       description = ''
         Extra code added to `gtk-3.0/gtk.css` and `gtk-4.0/gtk.css`.
@@ -26,7 +26,7 @@ mkTarget {
     flatpakSupport.enable = config.lib.stylix.mkEnableTarget "support for theming Flatpak apps" true;
   };
 
-  configElements = [
+  config = [
     {
       warnings =
         lib.optional (config.gtk.gtk3.extraCss != "" || config.gtk.gtk4.extraCss != "")

@@ -3,7 +3,7 @@ mkTarget {
   name = "hyprpaper";
   humanName = "Hyprpaper";
 
-  configElements =
+  config =
     { image }:
     {
       services.hyprpaper.settings = {

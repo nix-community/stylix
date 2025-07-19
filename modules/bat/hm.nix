@@ -3,7 +3,7 @@ mkTarget {
   name = "bat";
   humanName = "Bat";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.bat = {

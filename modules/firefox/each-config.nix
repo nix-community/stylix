@@ -14,7 +14,7 @@
 mkTarget {
   inherit name humanName;
 
-  extraOptions = {
+  options = {
     profileNames = lib.mkOption {
       description = "The ${humanName} profile names to apply styling on.";
       type = lib.types.listOf lib.types.str;
@@ -26,7 +26,7 @@ mkTarget {
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
   };
 
-  configElements = [
+  config = [
     (
       { cfg }:
       {

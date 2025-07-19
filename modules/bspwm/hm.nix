@@ -3,7 +3,7 @@ mkTarget {
   name = "bspwm";
   humanName = "bspwm";
 
-  configElements =
+  config =
     { colors }:
     {
       xsession.windowManager.bspwm.settings = with colors.withHashtag; {

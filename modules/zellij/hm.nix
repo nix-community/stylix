@@ -3,7 +3,7 @@ mkTarget {
   name = "zellij";
   humanName = "zellij";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.zellij.themes.stylix = {

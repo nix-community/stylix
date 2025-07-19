@@ -5,7 +5,7 @@ mkTarget {
   name = "rio";
   humanName = "Rio";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

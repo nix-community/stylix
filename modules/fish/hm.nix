@@ -3,7 +3,7 @@ mkTarget {
   name = "fish";
   humanName = "Fish";
 
-  configElements =
+  config =
     { colors, inputs }:
     {
       programs.fish.interactiveShellInit = import ./prompt.nix {

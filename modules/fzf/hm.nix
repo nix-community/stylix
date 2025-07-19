@@ -3,7 +3,7 @@ mkTarget {
   name = "fzf";
   humanName = "Fzf";
 
-  configElements =
+  config =
     { colors }:
     {
       programs.fzf.colors = with colors.withHashtag; {

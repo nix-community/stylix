@@ -3,7 +3,7 @@ mkTarget {
   name = "mangohud";
   humanName = "mangohud";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

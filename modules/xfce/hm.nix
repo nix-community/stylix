@@ -5,7 +5,7 @@ mkTarget {
   # Disabled by default due to https://github.com/nix-community/stylix/issues/180
   autoEnable = false;
 
-  configElements =
+  config =
     { fonts }:
     {
       xfconf.settings = with fonts; {

@@ -3,7 +3,7 @@ mkTarget {
   name = "wayprompt";
   humanName = "Wayprompt";
 
-  configElements =
+  config =
     { colors, opacity }:
     let
       opacity' = lib.toHexString (builtins.ceil (opacity.popups * 255));

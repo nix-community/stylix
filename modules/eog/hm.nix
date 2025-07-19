@@ -3,7 +3,7 @@ mkTarget {
   name = "eog";
   humanName = "Eye of GNOME Image Viewer";
 
-  configElements =
+  config =
     { colors }:
     {
       dconf.settings."org/gnome/eog/view" = {
