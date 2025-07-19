@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "mako";
-  humanName = "Mako";
-
   # Referenced https://github.com/stacyharper/base16-mako
   config = [
     (

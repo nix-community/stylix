@@ -1,8 +1,5 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "console";
-  humanName = "the Linux kernel console";
-
   config =
     { colors }:
     {

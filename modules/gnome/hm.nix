@@ -6,9 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "gnome";
-  humanName = "GNOME";
-
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 

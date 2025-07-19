@@ -1,8 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "cava";
-  humanName = "CAVA";
-
   options.rainbow.enable = lib.mkEnableOption "rainbow gradient theming";
 
   config =
