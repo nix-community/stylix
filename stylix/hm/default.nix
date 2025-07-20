@@ -9,11 +9,11 @@ in
 {
   imports = [
     ./cursor.nix
-    ./icon.nix
+    ./icon-theme.nix
     ./palette.nix
     ../cursor.nix
     ../fonts.nix
-    ../icon.nix
+    ../icon-theme.nix
     ../opacity.nix
     ../palette.nix
     ../pixel.nix
