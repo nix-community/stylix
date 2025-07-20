@@ -32,11 +32,11 @@
 
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
     let
-      iconTheme =
+      icons =
         if (config.stylix.polarity == "dark") then
-          config.stylix.iconTheme.dark
+          config.stylix.icons.dark
         else
-          config.stylix.iconTheme.light;
+          config.stylix.icons.light;
 
       recommendedStyles = {
         gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
@@ -90,8 +90,8 @@
             + lib.optionalString (config.qt.style ? name) ''
               style=${config.qt.style.name}
             ''
-            + lib.optionalString (iconTheme != null) ''
-              icon_theme=${iconTheme}
+            + lib.optionalString (icons != null) ''
+              icon_theme=${icons}
             '';
 
         in
