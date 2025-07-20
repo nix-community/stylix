@@ -65,7 +65,7 @@ jobs:
           # in sync
           nix run .#all-maintainers
 
-          git add stylix/generated/all-maintainers.nix
+          git add generated/all-maintainers.nix
           git commit --message "stylix: update all-maintainers list" ||
             echo "generated/all-maintainers.nix has no changes"
 
