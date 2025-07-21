@@ -34,6 +34,17 @@ jobs:
         with:
           persist-credentials: false
 
+      # TODO: Lock this Action to a release tag once commit [1] ("fix: relocate
+      # TMPDIR to /mnt to improve Nix installer compatibility") is part of a
+      # release, resolving [2] ("does not work with cachix install nix action").
+      #
+      # [1]: https://github.com/wimpysworld/nothing-but-nix/pull/25
+      # [2]: https://github.com/wimpysworld/nothing-but-nix/issues/24
+      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d  # yamllint disable-line rule:line-length
+        if: runner.os == 'Linux'
+        with:
+          hatchet-protocol: holster
+
       - uses: cachix/install-nix-action@v31
 
       - uses: cachix/cachix-action@v16
