@@ -1,4 +1,8 @@
-{ mkTarget, lib, ... }:
+{
+  mkTarget,
+  lib,
+  ...
+}:
 mkTarget {
   name = "fuzzel";
   humanName = "Fuzzel";
@@ -12,7 +16,10 @@ mkTarget {
       }
     )
     (
-      { colors, opacity }:
+      {
+        colors,
+        opacity,
+      }:
       let
         opacity' = lib.toHexString (builtins.ceil (opacity.popups * 255));
       in
@@ -33,9 +40,12 @@ mkTarget {
       }
     )
     (
-      { polarity, icons }:
       {
-        programs.fuzzel.settings.main."icons" =
+        polarity,
+        icons,
+      }:
+      {
+        programs.fuzzel.settings.main.icon-theme =
           if (polarity == "dark") then icons.dark else icons.light;
       }
     )
