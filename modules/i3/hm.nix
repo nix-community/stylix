@@ -20,7 +20,6 @@ mkTarget {
       ];
       ```
     '';
-    readOnly = true;
   };
 
   imports = lib.singleton (
