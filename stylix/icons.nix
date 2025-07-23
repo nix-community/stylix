@@ -5,11 +5,52 @@
       from = [
         "stylix"
         "iconTheme"
+        "dark"
       ];
       sinceRelease = 2511;
       to = [
         "stylix"
         "icons"
+        "dark"
+      ];
+    })
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "iconTheme"
+        "enable"
+      ];
+      sinceRelease = 2511;
+      to = [
+        "stylix"
+        "icons"
+        "enable"
+      ];
+    })
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "iconTheme"
+        "light"
+      ];
+      sinceRelease = 2511;
+      to = [
+        "stylix"
+        "icons"
+        "light"
+      ];
+    })
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "iconTheme"
+        "package"
+      ];
+      sinceRelease = 2511;
+      to = [
+        "stylix"
+        "icons"
+        "package"
       ];
     })
   ];
