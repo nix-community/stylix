@@ -12,10 +12,7 @@ mkTarget {
       }
     )
     (
-      {
-        colors,
-        opacity,
-      }:
+      { colors, opacity }:
       let
         opacity' = lib.toHexString (builtins.ceil (opacity.popups * 255));
       in
