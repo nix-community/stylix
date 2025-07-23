@@ -9,7 +9,9 @@
   };
 
   light = fetchurl {
-    name = "three-bicycles.jpg";
+    # Includes a space to make sure the path is properly quoted via
+    # `lib.escapeShellArg` when used as a shell argument.
+    name = "three bicycles.jpg";
     url = "https://unsplash.com/photos/hwLAI5lRhdM/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzE2MzYxNDcwfA&force=true";
     hash = "sha256-S0MumuBGJulUekoGI2oZfUa/50Jw0ZzkqDDu1nRkFUA=";
   };
