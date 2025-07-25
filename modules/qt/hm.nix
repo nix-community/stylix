@@ -34,14 +34,17 @@
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
     let
       iconTheme =
-        if (config.stylix.theme.polarity == "dark") then
+        if (config.stylix.colorGeneration.polarity == "dark") then
           config.stylix.iconTheme.dark
         else
           config.stylix.iconTheme.light;
 
       recommendedStyles = {
         gnome =
-          if config.stylix.theme.polarity == "dark" then "adwaita-dark" else "adwaita";
+          if config.stylix.colorGeneration.polarity == "dark" then
+            "adwaita-dark"
+          else
+            "adwaita";
         kde = "breeze";
         qtct = "kvantum";
       };

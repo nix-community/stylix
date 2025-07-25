@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.stylix.iconTheme;
-  inherit (config.stylix.theme) polarity;
+  inherit (config.stylix.colorGeneration) polarity;
 in
 {
   config = lib.mkIf (config.stylix.enable && cfg.enable) {
