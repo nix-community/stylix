@@ -2,6 +2,13 @@
 # This version uses `sync-labels: false`, meaning that a non-match will NOT
 # remove the label
 ---
+# keep-sorted start newline_separated=yes
+"topic: darwin":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "stylix/darwin/**"
+          - "modules/*/darwin.nix"
+
 "topic: dependencies":
   - changed-files:
       - any-glob-to-any-file: "flake.lock"
@@ -12,11 +19,11 @@
           - "doc/**"
           - "README.md"
 
-"topic: nixos":
+"topic: droid":
   - changed-files:
       - any-glob-to-any-file:
-          - "stylix/nixos/*"
-          - "modules/*/nixos.nix"
+          - "stylix/droid/**"
+          - "modules/*/droid.nix"
 
 "topic: home-manager":
   - changed-files:
@@ -24,17 +31,11 @@
           - "stylix/hm/**"
           - "modules/*/hm.nix"
 
-"topic: darwin":
+"topic: nixos":
   - changed-files:
       - any-glob-to-any-file:
-          - "stylix/darwin/**"
-          - "modules/*/darwin.nix"
-
-"topic: droid":
-  - changed-files:
-      - any-glob-to-any-file:
-          - "stylix/droid/**"
-          - "modules/*/droid.nix"
+          - "stylix/nixos/*"
+          - "modules/*/nixos.nix"
 
 "topic: overlay":
   - changed-files:
@@ -47,3 +48,4 @@
       - any-glob-to-any-file:
           - "stylix/testbed/**"
           - "modules/*/testbeds/**"
+# keep-sorted end
