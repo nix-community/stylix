@@ -13,10 +13,10 @@ in
   imports = lib.singleton (
     lib.mkRenamedOptionModule
       [ "stylix" "polarity" ]
-      [ "stylix" "theme" "polarity" ]
+      [ "stylix" "colorGeneration" "polarity" ]
   );
   options.stylix = {
-    theme = {
+    colorGeneration = {
       scheme = lib.mkOption {
         type = lib.types.enum [
           "content"
@@ -111,11 +111,11 @@ in
         # the output of the palette generator will not be protected from
         # garbage collection.
         default =
-          pkgs.runCommand "raw-palette.json"
+          pkgs.runCommand "palette.json"
             {
               nativeBuildInputs = [ pkgs.matugen ];
-              CONTRAST = toString cfg.theme.contrast;
-              SCHEME = cfg.theme.scheme;
+              CONTRAST = toString cfg.colorGeneration.contrast;
+              SCHEME = cfg.colorGeneration.scheme;
               IMAGE = cfg.image;
             }
             ''
@@ -153,10 +153,10 @@ in
                 (
                   builtins.match ''rgb\(([[:digit:]]+)\.0, ([[:digit:]]+)\.0, ([[:digit:]]+)\.0\)'' value
                 )
-            ) (lib.importJSON cfg.generated.json).colors.${cfg.theme.polarity};
+            ) (lib.importJSON cfg.generated.json).colors.${cfg.colorGeneration.polarity};
           in
           with colors;
-          if cfg.theme.polarity == "light" then
+          if cfg.colorGeneration.polarity == "light" then
             {
               base00 = background;
               base01 = surface_container;

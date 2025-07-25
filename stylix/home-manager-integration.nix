@@ -36,6 +36,27 @@ let
         {
           path = [
             "stylix"
+            "colorGeneration"
+            "contrast"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "polarity"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "scheme"
+          ];
+        }
+        {
+          path = [
+            "stylix"
             "cursor"
           ];
           condition = _homeConfig: !pkgs.stdenv.hostPlatform.isDarwin;
@@ -160,27 +181,6 @@ let
             "targets"
             "qt"
             "platform"
-          ];
-        }
-        {
-          path = [
-            "stylix"
-            "theme"
-            "contrast"
-          ];
-        }
-        {
-          path = [
-            "stylix"
-            "theme"
-            "polarity"
-          ];
-        }
-        {
-          path = [
-            "stylix"
-            "theme"
-            "scheme"
           ];
         }
         # keep-sorted end
