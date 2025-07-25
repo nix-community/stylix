@@ -3,6 +3,10 @@
 # remove the label
 ---
 # keep-sorted start newline_separated=yes
+"topic: ci":
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
 "topic: darwin":
   - changed-files:
       - any-glob-to-any-file:
@@ -25,11 +29,22 @@
           - "stylix/droid/**"
           - "modules/*/droid.nix"
 
+"topic: flake":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "flake.lock"
+          - "flake.nix"
+          - "flake/**"
+
 "topic: home-manager":
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/hm/**"
           - "modules/*/hm.nix"
+
+"topic: modules":
+  - changed-files:
+      - any-glob-to-any-file: "modules/**"
 
 "topic: nixos":
   - changed-files:
@@ -42,6 +57,10 @@
       - any-glob-to-any-file:
           - "stylix/overlays.nix"
           - "modules/*/overlay.nix"
+
+"topic: stylix":
+  - changed-files:
+      - any-glob-to-any-file: "stylix/**"
 
 "topic: testbed":
   - changed-files:
