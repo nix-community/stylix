@@ -1,27 +1,23 @@
 
 
-<!--
-^ Please summarise the changes you have done and explain why they are necessary here ^
-
-Please also link any relevant issues or pull requests e.g. `Closes: #<ISSUE-ID>`
--->
+<!-- Describe your PR above, following Stylix commit conventions. -->
 
 ## Submission Checklist
 
 <!--
-Please check what applies. Note that these are not hard requirements but merely
-serve as information for reviewers.
+Unless otherwise specified, the following checkboxes are not mandatory, but
+drastically accelerate the reviewing and merging process of this PR.
 -->
-- [ ] Tested [locally](https://nix-community.github.io/stylix/modules.html#development-setup)
-- [ ] Tested in [testbed](https://nix-community.github.io/stylix/testbeds.html)
-- [ ] Commit message follows [commit convention](https://nix-community.github.io/stylix/commit_convention.html)
-- [ ] Fits [style guide](https://nix-community.github.io/stylix/styling.html)
-- [ ] Respects license of any existing code used
-- [ ] Backport this PR to current stable branch
+- [ ] <!-- MANDATORY --> I certify that I have the right to submit this contribution under the [MIT license](https://github.com/nix-community/stylix/blob/master/LICENSE)
+- [ ] Commit messages adhere to [Stylix commit conventions](https://nix-community.github.io/stylix/commit_convention.html)
+- [ ] Theming changes adhere to the [Stylix style guide](https://nix-community.github.io/stylix/styling.html)
+- [ ] Changes have been [tested locally](https://nix-community.github.io/stylix/modules.html#development-setup)
+- [ ] Changes have been [tested in testbeds](https://nix-community.github.io/stylix/testbeds.html)
+- [ ] Each commit in this PR is suitable for backport to the current stable branch
 
-## Notify maintainers
+## Notify Maintainers
 
 <!---
-If you are editing an existing target, consider pinging relevant
-module maintainers from `modules/<module>/meta.nix`.
+Consider pinging relevant module maintainers declared in
+`modules/<MODULE>/meta.nix`.
 -->
