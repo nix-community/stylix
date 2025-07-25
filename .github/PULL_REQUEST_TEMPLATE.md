@@ -6,7 +6,7 @@
 Please also link any relevant issues or pull requests e.g. `Closes: #<ISSUE-ID>`
 -->
 
-## Things done
+## Submission Checklist
 
 <!--
 Please check what applies. Note that these are not hard requirements but merely
@@ -17,6 +17,7 @@ serve as information for reviewers.
 - [ ] Commit message follows [commit convention](https://nix-community.github.io/stylix/commit_convention.html)
 - [ ] Fits [style guide](https://nix-community.github.io/stylix/styling.html)
 - [ ] Respects license of any existing code used
+- [ ] Backport this PR to current stable branch
 
 ## Notify maintainers
 
