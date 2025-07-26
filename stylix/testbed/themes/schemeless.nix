@@ -5,8 +5,8 @@ in
 {
   stylix = {
     enable = true;
-    image = images.dark;
-    polarity = "dark";
+    image = images.light;
+    polarity = "light";
     cursor = {
       name = "Vanilla-DMZ";
       package = pkgs.vanilla-dmz;

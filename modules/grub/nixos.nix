@@ -134,7 +134,11 @@ in
                 cfg.useWallpaper
               # Make sure the background image is .png by asking to convert it
               then
-                "${lib.getExe' pkgs.imagemagick "convert"} ${config.stylix.image} png32:$out/background.png"
+                ''
+                  ${lib.getExe' pkgs.imagemagick "convert"} \
+                    ${lib.escapeShellArg config.stylix.image} \
+                    "png32:$out/background.png"
+                ''
               else
                 "cp ${pixel "base00"} $out/background.png"
             }
