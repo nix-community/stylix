@@ -31,7 +31,7 @@
               #
               #       nix run .#all-maintainers
               ${lib.pipe ../../stylix/meta.nix [
-                (p: pkgs.callPackage p { })
+                (lib.flip pkgs.callPackage { })
                 builtins.attrValues
                 (builtins.concatMap (target: target.maintainers or [ ]))
                 (map (maintainer: lib.nameValuePair maintainer.github maintainer))
