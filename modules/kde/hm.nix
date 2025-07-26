@@ -108,7 +108,7 @@ let
       value = mkColorTriple hex;
     };
 
-  colors' = lib.listToAttrs (map mkColorMapping (lib.range 0 15));
+  colors' = builtins.listToAttrs (map mkColorMapping (lib.range 0 15));
 
   kdecolors = with colors'; {
     BackgroundNormal = base00;
