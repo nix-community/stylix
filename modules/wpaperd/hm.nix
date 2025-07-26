@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "wpaperd";
-  humanName = "wpaperd";
-
-  configElements =
+  config =
     { imageScalingMode, image }:
     (
       let

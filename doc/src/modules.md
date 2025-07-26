@@ -49,10 +49,7 @@ documentation for more details):
 ```nix
 { config, lib, mkTarget ... }:
 mkTarget {
-  name = "«name»";
-  humanName = "«human readable name»";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.«name».theme.background = colors.base00;
