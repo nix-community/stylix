@@ -2,10 +2,20 @@
 # This version uses `sync-labels: false`, meaning that a non-match will NOT
 # remove the label
 ---
+# keep-sorted start newline_separated=yes
 "backport: release-25.05":
   - changed-files:
+      - any-glob-to-any-file: ".github/workflows/*"
+
+"topic: ci":
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
+"topic: darwin":
+  - changed-files:
       - any-glob-to-any-file:
-          - ".github/workflows/*"
+          - "stylix/darwin/**"
+          - "modules/*/darwin.nix"
 
 "topic: dependencies":
   - changed-files:
@@ -17,11 +27,18 @@
           - "doc/**"
           - "README.md"
 
-"topic: nixos":
+"topic: droid":
   - changed-files:
       - any-glob-to-any-file:
-          - "stylix/nixos/*"
-          - "modules/*/nixos.nix"
+          - "stylix/droid/**"
+          - "modules/*/droid.nix"
+
+"topic: flake":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "flake.lock"
+          - "flake.nix"
+          - "flake/**"
 
 "topic: home-manager":
   - changed-files:
@@ -29,17 +46,15 @@
           - "stylix/hm/**"
           - "modules/*/hm.nix"
 
-"topic: darwin":
+"topic: modules":
   - changed-files:
-      - any-glob-to-any-file:
-          - "stylix/darwin/**"
-          - "modules/*/darwin.nix"
+      - any-glob-to-any-file: "modules/**"
 
-"topic: droid":
+"topic: nixos":
   - changed-files:
       - any-glob-to-any-file:
-          - "stylix/droid/**"
-          - "modules/*/droid.nix"
+          - "stylix/nixos/*"
+          - "modules/*/nixos.nix"
 
 "topic: overlay":
   - changed-files:
@@ -47,8 +62,13 @@
           - "stylix/overlays.nix"
           - "modules/*/overlay.nix"
 
+"topic: stylix":
+  - changed-files:
+      - any-glob-to-any-file: "stylix/**"
+
 "topic: testbed":
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/testbed/**"
           - "modules/*/testbeds/**"
+# keep-sorted end
