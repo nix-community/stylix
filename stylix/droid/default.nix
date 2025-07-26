@@ -11,6 +11,7 @@ in
     ../pixel.nix
     ../target.nix
     ../overlays.nix
+    ../ordering.nix
   ] ++ autoload;
 
   # See https://github.com/nix-community/nix-on-droid/issues/436
