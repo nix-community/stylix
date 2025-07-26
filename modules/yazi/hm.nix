@@ -1,11 +1,19 @@
 # Based on the official catppuccin themes https://github.com/yazi-rs/themes
-{ mkTarget, ... }:
+{ mkTarget, lib, ... }:
 mkTarget {
   name = "yazi";
   humanName = "Yazi";
 
+  extraOptions = {
+    boldDirectory = lib.mkOption {
+      description = "Whether to use bold font for directories.";
+      type = lib.types.bool;
+      default = true;
+    };
+  };
+
   configElements =
-    { colors }:
+    { cfg, colors }:
     {
       programs.yazi.theme =
         with colors.withHashtag;
@@ -141,7 +149,7 @@ mkTarget {
               (mkRule "application/rtf" green)
               (mkRule "application/vnd.*" green)
 
-              ((mkRule "inode/directory" blue) // { bold = true; })
+              ((mkRule "inode/directory" blue) // { bold = cfg.boldDirectory; })
               (mkRule "*" base05)
             ];
         };
