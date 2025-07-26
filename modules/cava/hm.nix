@@ -12,7 +12,7 @@ mkTarget {
     let
       mkGradient =
         colors:
-        lib.listToAttrs (
+        builtins.listToAttrs (
           lib.imap0 (
             i: c: lib.nameValuePair "gradient_color_${toString (i + 1)}" "'#${c}'"
           ) colors
