@@ -34,10 +34,9 @@ mkTarget {
     )
     (
       { colorGeneration, icons }:
-            {
-              programs.fuzzel.settings.main."icon-theme" =
-                if (colorGeneration == "dark") then icons.dark else icons.light;
-            }
+      {
+        programs.fuzzel.settings.main."icon-theme" =
+          if (colorGeneration == "dark") then icons.dark else icons.light;
       }
     )
   ];
