@@ -126,7 +126,7 @@ in
                 matugen \
                   --contrast $CONTRAST \
                   --dry-run \
-                  --json rgb \
+                  --json strip \
                   --type scheme-$SCHEME \
                   image \
                   "$IMAGE" \
