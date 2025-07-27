@@ -84,6 +84,7 @@ in
             );
             default = null;
           };
+          sendNotifications = lib.mkEnableOption "sending notifications of each urgency with libnotify";
         };
       }
     );
@@ -108,6 +109,27 @@ in
               pkgs.writeShellScript "startup" config.stylix.testbed.ui.command.text
             );
             terminal = config.stylix.testbed.ui.command.useTerminal;
+          };
+        }
+      )
+      ++ lib.optional config.stylix.testbed.ui.sendNotifications (
+        pkgs.makeAutostartItem {
+          name = "stylix-notification-check";
+          package = pkgs.makeDesktopItem {
+            name = "stylix-notification-check";
+            desktopName = "stylix-notification-check";
+            terminal = false;
+            exec = pkgs.writeShellScript "stylix-send-notifications" (
+              lib.concatMapStringsSep " && "
+                (
+                  urgency: "${lib.getExe pkgs.libnotify} --urgency ${urgency} ${urgency} urgency"
+                )
+                [
+                  "low"
+                  "normal"
+                  "critical"
+                ]
+            );
           };
         }
       )
