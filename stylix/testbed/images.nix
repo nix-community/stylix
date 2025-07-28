@@ -23,7 +23,7 @@
       # contain spaces.
       directory = runCommandLocal "three-bicycles" { } ''
         mkdir "$out"
-        ln --symbolic ${image} "$out/three bicycles.jpg"
+        cp ${image} "$out/three bicycles.jpg"
       '';
     in
     "${directory}/three bicycles.jpg";
