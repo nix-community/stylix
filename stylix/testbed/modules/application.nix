@@ -132,11 +132,14 @@ in
 
             name' = "stylix-testbed-${name}";
           in
-          lib.optionals condition [
-            application
-            autostartItem
-            desktopItem
-          ]
+          lib.optionals condition (
+            [
+              application
+              autostartItem
+              desktopItem
+            ]
+            ++ packages
+          )
         )
         [
           {
