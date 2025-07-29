@@ -99,46 +99,72 @@ in
       user = user.username;
     };
 
-    # for use when application is set
     environment.systemPackages =
-      lib.optional (config.stylix.testbed.ui.command != null) (
-        pkgs.makeAutostartItem {
-          name = "stylix-testbed";
-          package = pkgs.makeDesktopItem {
-            name = "stylix-testbed";
-            desktopName = "stylix-testbed";
-            exec = toString (
-              pkgs.writeShellScript "startup" config.stylix.testbed.ui.command.text
-            );
+      builtins.concatMap
+        (
+          {
+            condition,
+            name,
+            text,
+            packages ? [ ],
+            terminal ? false,
+          }:
+          let
+            application = pkgs.writeShellApplication {
+              inherit text;
+
+              name = name';
+              runtimeInputs = packages;
+            };
+
+            autostartItem = pkgs.makeAutostartItem {
+              name = name';
+              package = desktopItem;
+            };
+
+            desktopItem = pkgs.makeDesktopItem {
+              inherit terminal;
+
+              desktopName = name';
+              exec = lib.getExe application;
+              name = name';
+            };
+
+            name' = "stylix-testbed-${name}";
+          in
+          lib.optionals condition [
+            application
+            autostartItem
+            desktopItem
+          ]
+        )
+        [
+          {
+            inherit (config.stylix.testbed.ui.command) text;
+
+            condition = config.stylix.testbed.ui.command != null;
+            name = "command";
             terminal = config.stylix.testbed.ui.command.useTerminal;
-          };
-        }
-      )
-      ++ lib.optional config.stylix.testbed.ui.sendNotifications (
-        pkgs.makeAutostartItem {
-          name = "stylix-notification-check";
-          package = pkgs.makeDesktopItem {
-            name = "stylix-notification-check";
-            desktopName = "stylix-notification-check";
-            terminal = false;
-            exec = pkgs.writeShellScript "stylix-send-notifications" (
+          }
+          {
+            condition = config.stylix.testbed.ui.sendNotifications;
+            name = "notification";
+            packages = [ pkgs.libnotify ];
+
+            text =
               lib.concatMapStringsSep " && "
-                (
-                  urgency: "${lib.getExe pkgs.libnotify} --urgency ${urgency} ${urgency} urgency"
-                )
+                (urgency: "notify-send --urgency ${urgency} ${urgency} urgency")
                 [
                   "low"
                   "normal"
                   "critical"
-                ]
-            );
-          };
-        }
-      )
-      ++ lib.optional (config.stylix.testbed.ui.application != null) (
-        pkgs.makeAutostartItem {
-          inherit (config.stylix.testbed.ui.application) name package;
-        }
-      );
+                ];
+          }
+          {
+            condition = config.stylix.testbed.ui.application != null;
+            name = "application";
+            text = lib.getExe config.stylix.testbed.ui.application.package;
+          }
+        ];
   };
 }
