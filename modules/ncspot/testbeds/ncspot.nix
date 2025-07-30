@@ -1,8 +1,8 @@
 { lib, ... }:
 {
   stylix.testbed.ui.command = {
+    terminal = true;
     text = "ncspot";
-    useTerminal = true;
   };
 
   home-manager.sharedModules = lib.singleton {
