@@ -12,8 +12,8 @@ mkTarget {
   configElements =
     { colors }:
     {
-      programs.anki.addons = [
-        (pkgs.ankiAddons.recolor.withConfig {
+      programs.anki.addons = lib.singleton (
+        pkgs.ankiAddons.recolor.withConfig {
           config = {
             colors = {
               ACCENT_CARD = [
@@ -333,7 +333,7 @@ mkTarget {
               minor = 1;
             };
           };
-        })
-      ];
+        }
+      );
     };
 }
