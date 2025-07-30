@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   name = "anki";
   homepage = "https://menzel.lol";
