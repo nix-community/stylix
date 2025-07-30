@@ -95,7 +95,6 @@
     { flake-parts, systems, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ ./flake ];
-
       systems = import systems;
     };
 }
