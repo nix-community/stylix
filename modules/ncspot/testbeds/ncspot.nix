@@ -1,9 +1,10 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.ncspot;
+    text = "ncspot";
     useTerminal = true;
   };
+
   home-manager.sharedModules = lib.singleton {
     programs.ncspot.enable = true;
   };
