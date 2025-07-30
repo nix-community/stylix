@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.qutebrowser;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "org.qutebrowser.qutebrowser";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "qutebrowser";
 
   home-manager.sharedModules = lib.singleton {
-    programs.qutebrowser = {
-      enable = true;
-      inherit package;
-    };
+    programs.qutebrowser.enable = true;
   };
 }

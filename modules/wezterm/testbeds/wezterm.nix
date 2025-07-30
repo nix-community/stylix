@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.wezterm;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "org.wezfurlong.wezterm";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "wezterm";
 
   home-manager.sharedModules = lib.singleton {
-    programs.wezterm = {
-      enable = true;
-      inherit package;
-    };
+    programs.wezterm.enable = true;
   };
 }
