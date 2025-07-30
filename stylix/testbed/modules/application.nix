@@ -45,6 +45,14 @@ in
                     '';
                     default = [ ];
                   };
+                  terminal = lib.mkOption {
+                    type = lib.types.bool;
+                    description = ''
+                      Whether to spawn a terminal when running the command.
+                    '';
+                    default = false;
+                    example = true;
+                  };
                   text = lib.mkOption {
                     type = lib.types.str;
                     description = ''
@@ -54,14 +62,6 @@ in
                       contains one package.
                     '';
                     default = "";
-                  };
-                  useTerminal = lib.mkOption {
-                    type = lib.types.bool;
-                    description = ''
-                      Whether to spawn a terminal when running the command.
-                    '';
-                    default = false;
-                    example = true;
                   };
                 };
               }
@@ -133,11 +133,10 @@ in
         )
         [
           {
-            inherit (config.stylix.testbed.ui.command) packages text;
+            inherit (config.stylix.testbed.ui.command) packages terminal text;
 
             condition = config.stylix.testbed.ui.command != null;
             name = "";
-            terminal = config.stylix.testbed.ui.command.useTerminal;
           }
           {
             condition = config.stylix.testbed.ui.sendNotifications;

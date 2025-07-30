@@ -2,8 +2,8 @@
 {
   stylix.testbed.ui.command = {
     packages = [ pkgs.alsa-utils ];
+    terminal = true;
     text = "aplay /dev/urandom & cava";
-    useTerminal = true;
   };
 
   home-manager.sharedModules = lib.singleton {

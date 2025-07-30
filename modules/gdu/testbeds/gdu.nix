@@ -1,8 +1,8 @@
 { lib, pkgs, ... }:
 {
   stylix.testbed.ui.command = {
+    terminal = true;
     text = "gdu";
-    useTerminal = true;
   };
 
   home-manager.sharedModules = lib.singleton {
