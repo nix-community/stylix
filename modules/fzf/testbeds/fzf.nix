@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.fzf;
+    text = "fzf";
     useTerminal = true;
   };
 

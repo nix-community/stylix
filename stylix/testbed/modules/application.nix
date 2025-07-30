@@ -34,44 +34,26 @@ in
             default = "gnome";
             description = "The graphical environment to use.";
           };
-          application = lib.mkOption {
-            description = ''
-              Options defining an application to be launched using its provided
-              `.desktop` entry.
-            '';
-            type = lib.types.nullOr (
-              lib.types.submodule {
-                options = {
-                  name = lib.mkOption {
-                    type = lib.types.str;
-                    description = ''
-                      The name of the desktop entry for the application, without
-                      the `.desktop` extension.
-                    '';
-                  };
-
-                  package = lib.mkOption {
-                    type = lib.types.package;
-                    description = ''
-                      The package providing the binary and desktop entry of the
-                      application being tested.
-                    '';
-                  };
-                };
-              }
-            );
-            default = null;
-          };
           command = lib.mkOption {
             type = lib.types.nullOr (
               lib.types.submodule {
                 options = {
+                  packages = lib.mkOption {
+                    type = lib.types.listOf lib.types.package;
+                    description = ''
+                      Packages forwarded to `environment.systemPackages`.
+                    '';
+                    default = [ ];
+                  };
                   text = lib.mkOption {
                     type = lib.types.str;
                     description = ''
                       The command which will be run once the graphical
-                      environment has loaded.
+                      environment has loaded, which is deduced from
+                      `config.stylix.testbed.ui.command.packages` when it
+                      contains one package.
                     '';
+                    default = "";
                   };
                   useTerminal = lib.mkOption {
                     type = lib.types.bool;
@@ -111,7 +93,15 @@ in
           }:
           let
             application = pkgs.writeShellApplication {
-              inherit text;
+              text =
+                if text != "" then
+                  text
+                else if builtins.length packages != 1 then
+                  throw "text cannot be deduced from packages: ${
+                    lib.generators.toPretty { } packages
+                  }"
+                else
+                  (builtins.head packages).meta.mainProgram;
 
               name = name';
               runtimeInputs = packages;
@@ -130,7 +120,7 @@ in
               name = name';
             };
 
-            name' = "stylix-testbed-${name}";
+            name' = "stylix-testbed" + lib.optionalString (name != "") "-${name}";
           in
           lib.optionals condition (
             [
@@ -143,10 +133,10 @@ in
         )
         [
           {
-            inherit (config.stylix.testbed.ui.command) text;
+            inherit (config.stylix.testbed.ui.command) packages text;
 
             condition = config.stylix.testbed.ui.command != null;
-            name = "command";
+            name = "";
             terminal = config.stylix.testbed.ui.command.useTerminal;
           }
           {
@@ -162,11 +152,6 @@ in
                   "normal"
                   "critical"
                 ];
-          }
-          {
-            condition = config.stylix.testbed.ui.application != null;
-            name = "application";
-            text = lib.getExe config.stylix.testbed.ui.application.package;
           }
         ];
   };
