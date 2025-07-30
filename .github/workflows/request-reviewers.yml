@@ -75,7 +75,7 @@ jobs:
             )" \
             >>"$GITHUB_OUTPUT"
 
-      - uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
+      - uses: AveryCameronUofR/add-reviewer-gh-action@1.0.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           reviewers: ${{ steps.get-reviewers.outputs.reviewers }}
