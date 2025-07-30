@@ -49,7 +49,7 @@ jobs:
 
       - uses: cachix/cachix-action@v16
         with:
-          name: stylix
+          name: nix-community
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         continue-on-error: true
 
