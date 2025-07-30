@@ -1,0 +1,81 @@
+---
+name: Request Reviewers
+
+on:
+  pull_request_target:
+    types: [opened, ready_for_review, reopened, synchronize]
+    paths:
+      - 'modules/'
+
+jobs:
+  request-reviewers:
+    runs-on: ubuntu-24.04
+    if: vars.APP_ID
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ github.base_ref }}
+
+      - uses: cachix/install-nix-action@v31
+
+      - uses: cachix/cachix-action@v16
+        with:
+          name: nix-community
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+        continue-on-error: true
+
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: read
+          permission-pull-requests: write
+
+      - run: nix build .#subsystem-maintainers
+
+      - id: get-reviewers
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_REVIEWERS: 5
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          printf \
+            'reviewers=%s\n' \
+            "$(
+              gh pr diff --name-only "$PR_NUMBER" |
+                jq \
+                  --argjson max_reviewers "$MAX_REVIEWERS" \
+                  --raw-input \
+                  --raw-output \
+                  --slurp \
+                  --slurpfile maintainers result '
+                    ($maintainers[0] | keys_unsorted) as $subsystems |
+                    split("\n") as $changed_files |
+                    [
+                      $changed_files[] as $changed_file |
+                      (
+                        $maintainers[0][
+                          $subsystems[] |
+                          select(
+                            . as $subsystem |
+                            $changed_file |
+                            startswith($subsystem)
+                          )
+                        ]
+                      )[]
+                    ] |
+                    unique |
+                    if length <= $max_reviewers then
+                      . | join(",")
+                    else
+                      ""
+                    end
+                  '
+            )" \
+            >>"$GITHUB_OUTPUT"
+
+      - uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: ${{ steps.get-reviewers.outputs.reviewers }}
