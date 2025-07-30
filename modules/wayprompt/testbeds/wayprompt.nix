@@ -1,8 +1,7 @@
 { lib, ... }:
 {
-  stylix.testbed = {
-    ui.graphicalEnvironment = "hyprland";
-    ui.command.text = ''
+  stylix.testbed.ui = {
+    command.text = ''
       wayprompt \
         --get-pin \
         --title "Wayprompt stylix test" \
@@ -11,6 +10,8 @@
         --button-not-ok "Not okay" \
         --button-cancel "Cancel"
     '';
+
+    graphicalEnvironment = "hyprland";
   };
 
   home-manager.sharedModules = lib.singleton {

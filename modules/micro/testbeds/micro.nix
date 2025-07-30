@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = "${lib.getExe pkgs.micro} flake-parts/flake.nix";
+    text = "micro flake-parts/flake.nix";
     useTerminal = true;
   };
 

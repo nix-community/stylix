@@ -1,12 +1,8 @@
-{ pkgs, ... }:
-let
-  package = pkgs.chromium;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "chromium-browser";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "chromium";
 
-  environment.systemPackages = [ package ];
+  home-manager.sharedModules = lib.singleton {
+    programs.chromium.enable = true;
+  };
 }

@@ -1,10 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = ''
-      ${lib.getExe pkgs.git} init
-      ${lib.getExe pkgs.lazygit}
-    '';
+    text = "git init && lazygit";
     useTerminal = true;
   };
 

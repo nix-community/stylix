@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = "${lib.getExe pkgs.vim} flake-parts/flake.nix";
+    text = "vim flake-parts/flake.nix";
     useTerminal = true;
   };
 

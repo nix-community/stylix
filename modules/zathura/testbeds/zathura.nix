@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.zathura;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "org.pwmt.zathura";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "zathura";
 
   home-manager.sharedModules = lib.singleton {
-    programs.zathura = {
-      enable = true;
-      inherit package;
-    };
+    programs.zathura.enable = true;
   };
 }
