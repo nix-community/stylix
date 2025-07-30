@@ -37,11 +37,11 @@ uses.
     - `command` takes a command to be run once the graphical environment
       has loaded
       - `packages` are forwarded to `environment.systemPackages`
+      - `terminal` takes a boolean which determines whether the command should
+        be run in a terminal, defaulting to `false`
       - `text` takes the string of the command, which is deduced from
         `config.stylix.testbed.ui.command.packages` when it contains one
         package.
-      - `useTerminal` takes a boolean which determines whether the command
-        should be run in a terminal, defaulting to `false`
 
 ### Home Manager
 
