@@ -32,14 +32,18 @@
 
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
     let
-      icons =
-        if (config.stylix.polarity == "dark") then
-          config.stylix.icons.dark
-        else
-          config.stylix.icons.light;
+    icons =
+          if (config.stylix.colorGeneration.polarity == "dark") then
+            config.stylix.icons.dark
+          else
+            config.stylix.icons.light;
 
       recommendedStyles = {
-        gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
+        gnome =
+          if config.stylix.colorGeneration.polarity == "dark" then
+            "adwaita-dark"
+          else
+            "adwaita";
         kde = "breeze";
         qtct = "kvantum";
       };
@@ -93,7 +97,6 @@
             + lib.optionalString (icons != null) ''
               icon_theme=${icons}
             '';
-
         in
         lib.mkMerge [
           (lib.mkIf (config.qt.style.name == "kvantum") {
