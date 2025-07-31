@@ -17,6 +17,7 @@ in
     ../target.nix
     ../release.nix
     ../overlays.nix
+    ../ordering.nix
   ] ++ autoload;
   config.warnings =
     lib.mkIf
