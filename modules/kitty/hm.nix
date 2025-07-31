@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "kitty";
-  humanName = "Kitty";
-
-  extraOptions = {
+  options = {
     variant256Colors = lib.mkOption {
       description = ''
         Whether to use the [256-color variant](https://github.com/kdrag0n/base16-kitty#256-color-variants)
@@ -14,7 +11,7 @@ mkTarget {
     };
   };
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

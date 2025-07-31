@@ -32,5 +32,5 @@
         attrs.overlay
       ];
     }
-  ) (import ./autoload.nix { inherit lib; } "overlay");
+  ) (import ./autoload.nix { inherit lib pkgs; } "overlay");
 }

@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "k9s";
-  humanName = "k9s";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.k9s = {
