@@ -3,9 +3,6 @@
   stylix.testbed.ui.command.text = "anki";
 
   home-manager.sharedModules = lib.singleton {
-    programs.anki = {
-      enable = true;
-      language = "eo_UY";
-    };
+    programs.anki.enable = true;
   };
 }
