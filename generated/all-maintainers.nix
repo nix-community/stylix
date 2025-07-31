@@ -99,6 +99,13 @@
     githubId = 90054389;
     name = "Devin Droddy";
   };
+  lomenzel = {
+    email = "leonard.menzel@tutanota.com";
+    github = "lomenzel";
+    githubId = 79226837;
+    matrix = "@leonard:menzel.lol";
+    name = "Leonard-Orlando Menzel";
+  };
   louis-thevenet = {
     github = "louis-thevenet";
     githubId = 55986107;

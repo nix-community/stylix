@@ -25,6 +25,13 @@
     github = "gideonwolfe";
     githubId = 32942052;
   };
+  lomenzel = {
+    name = "Leonard-Orlando Menzel";
+    email = "leonard.menzel@tutanota.com";
+    matrix = "@leonard:menzel.lol";
+    github = "lomenzel";
+    githubId = 79226837;
+  };
   make-42 = {
     email = "ontake@ontake.dev";
     name = "Louis Dalibard";
