@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.kitty;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "kitty";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "kitty";
 
   home-manager.sharedModules = lib.singleton {
-    programs.kitty = {
-      enable = true;
-      inherit package;
-    };
+    programs.kitty.enable = true;
   };
 }

@@ -1,24 +1,16 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 {
   stylix.testbed = {
-    # Spotify is not available on arm64.
     enable = lib.meta.availableOn pkgs.stdenv.hostPlatform pkgs.spotify;
-
-    ui.command = {
-      text = lib.getExe config.programs.spicetify.spicedSpotify;
-    };
+    ui.command.text = "spotify";
   };
 
-  programs.spicetify.enable = true;
-
   nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "spotify"
-    ];
+    pkg: builtins.elem (lib.getName pkg) [ "spotify" ];
+
+  programs.spicetify.enable = true;
 }
