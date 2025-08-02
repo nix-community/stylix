@@ -1,6 +1,6 @@
 { lib, ... }:
 {
   name = "anki";
-  homepage = "https://menzel.lol";
+  homepage = "https://apps.ankiweb.net";
   maintainers = [ lib.maintainers.lomenzel ];
 }
