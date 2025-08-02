@@ -15,6 +15,10 @@ mkTarget {
       programs.anki.addons = lib.singleton (
         pkgs.ankiAddons.recolor.withConfig {
           config = {
+            version = {
+              major = 3;
+              minor = 1;
+            };
             colors = {
               ACCENT_CARD = [
                 "Card mode"
@@ -327,10 +331,6 @@ mkTarget {
                 colors.withHashtag.base0A
                 "--state-suspended"
               ];
-            };
-            version = {
-              major = 3;
-              minor = 1;
             };
           };
         }
