@@ -6,8 +6,10 @@ in
   imports = [
     ./fonts.nix
     ./palette.nix
+    ../fonts.nix
     ../home-manager-integration.nix
     ../opacity.nix
+    ../palette.nix
     ../pixel.nix
     ../target.nix
     ../overlays.nix
