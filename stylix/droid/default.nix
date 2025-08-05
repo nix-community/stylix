@@ -4,10 +4,10 @@ let
 in
 {
   imports = [
-    ../fonts.nix
+    ./fonts.nix
+    ./palette.nix
     ../home-manager-integration.nix
     ../opacity.nix
-    ../palette.nix
     ../pixel.nix
     ../target.nix
     ../overlays.nix
