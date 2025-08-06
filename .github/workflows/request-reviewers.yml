@@ -29,6 +29,7 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-members: read
           permission-contents: read
           permission-pull-requests: write
 
