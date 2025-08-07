@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "tmux";
-  humanName = "Tmux";
-
-  configElements =
+  config =
     { colors, inputs }:
     {
       programs.tmux.extraConfig = ''
