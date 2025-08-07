@@ -1,5 +1,5 @@
 {
   name = "Xresources file";
-  homepage = "https://www.x.org/wiki/";
+  homepage = "https://www.x.org/wiki";
   maintainers = [ ];
 }

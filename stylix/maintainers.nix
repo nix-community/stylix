@@ -25,6 +25,13 @@
     github = "gideonwolfe";
     githubId = 32942052;
   };
+  lomenzel = {
+    name = "Leonard-Orlando Menzel";
+    email = "leonard.menzel@tutanota.com";
+    matrix = "@leonard:menzel.lol";
+    github = "lomenzel";
+    githubId = 79226837;
+  };
   make-42 = {
     email = "ontake@ontake.dev";
     name = "Louis Dalibard";
@@ -49,6 +56,11 @@
     keys = [
       { fingerprint = "3C97 1C61 0E9E BE35 3259  C1D3 2CA7 0354 EA17 07B9"; }
     ];
+  osipog = {
+    email = "osibluber@protonmail.com";
+    name = "Osi Bluber";
+    github = "osipog";
+    githubId = 87434959;
   };
   skoove = {
     email = "zie@sturges.com.au";

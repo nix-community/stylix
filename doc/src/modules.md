@@ -157,10 +157,11 @@ You can use the values directly:
 }
 ```
 
-Or you can create a [Mustache](http://mustache.github.io/) template and use
+Or you can create a [Mustache](http://mustache.github.io) template and use
 it as a function. This returns a derivation which builds the template.
 
 ```nix
+{ config, ... }:
 {
   environment.variables.MY_APPLICATION_CONFIG_FILE =
     let
@@ -244,6 +245,13 @@ number of maintainers:
 The main responsibility of module maintainers is to update and fix their
 modules.
 
+> [!NOTE]
+> If this is the first time you're adding yourself as a maintainer in Stylix,
+> the `/generated/all-maintainers.nix` file will need to be updated by running
+> `nix run .#all-maintainers`
+> ([pre-commit](./development_environment.md#pre-commit) will also automatically
+> regenerate it).
+
 ## Documentation
 
 Documentation for options is automatically generated. To improve the quality of
@@ -254,19 +262,22 @@ syntax for formatting and links.
 For modules needing more general documentation, add a `description` to
 `modules/«module»/meta.nix`:
 
-You can build and view the documentation by running `nix run .#docs`, or
-`serve-docs` from within the dev shell.
-
-```markdown
-# Module Name
-
-Consider describing which applications are themed by this module (if it's not
-obvious from the module name), how the applications need to be installed for the
-module to work correctly, which theming items are supported (colors, fonts,
-wallpaper, ...), and any caveats the user should be aware of.
+```nix
+description = ''
+  Consider describing which applications are themed by this module (if it's not
+  obvious from the module name), how the applications need to be installed for
+  the module to work correctly, which theming items are supported (colors,
+  fonts, wallpaper, ...), and any caveats the user should be aware of.
+'';
 ```
 
 This will be inserted before the automatically generated list of options.
+
+You can build and view the documentation by running `nix run .#doc`, which will
+build the documentation, start a localhost web-server, and open it in your
+browser.
+
+See also: [Development environment → Documentation](./development_environment.md#documentation)
 
 ## Testbeds
 

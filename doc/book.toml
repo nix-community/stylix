@@ -3,6 +3,7 @@ title = "Stylix"
 language = "en"
 
 [preprocessor.alerts]
+renderers = ["html", "linkcheck"]
 
 [output.html]
 site-url = "/stylix/"
@@ -29,3 +30,11 @@ enable = true
 [output.html.redirect]
 "/options/hm.html" = "./platforms/home_manager.html"
 "/options/nixos.html" = "./platforms/nixos.html"
+"/options/modules/nixvim.html" = "./neovim.html"
+"/options/modules/nvf.html" = "./neovim.html"
+"/options/modules/vim.html" = "./neovim.html"
+
+[output.linkcheck]
+follow-web-links = false
+traverse-parent-directories = false
+warning-policy = "error"

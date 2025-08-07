@@ -66,7 +66,7 @@
             ]) { inherit old new; };
             names = builtins.mapAttrs (_: lib.showAttrPath) paths // {
               until = lib.pipe until [
-                builtins.toString
+                toString
                 (builtins.match "([[:digit:]]{2})([[:digit:]]{2})")
                 (lib.concatStringsSep ".")
               ];

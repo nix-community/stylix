@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 {
   options.stylix = {
     enable = lib.mkOption {
@@ -91,13 +90,13 @@
           };
         in
         self.mkEnableIf {
-          description = "Whether to enable theming for ${name}";
+          description = "Whether to enable theming for ${name}.";
           default = cfg.autoEnable && autoEnable;
           defaultText =
             if args ? autoEnableExpr then
-              lib.literalExpression "stylix.autoEnable && ${wrapExpr autoEnableExpr}"
+              lib.literalExpression "config.stylix.autoEnable && ${wrapExpr autoEnableExpr}"
             else if autoEnable then
-              lib.literalExpression "stylix.autoEnable"
+              lib.literalExpression "config.stylix.autoEnable"
             else
               false;
           inherit example;
@@ -109,8 +108,15 @@
           description = "Whether to set the wallpaper for ${humanName}.";
           default = config.stylix.image != null && autoEnable;
           defaultText =
-            if autoEnable then lib.literalExpression "stylix.image != null" else false;
-          example = config.stylix.image == null;
+            if autoEnable then
+              lib.literalExpression "config.stylix.image != null"
+            else
+              false;
+          example =
+            if autoEnable then
+              lib.literalExpression "config.stylix.image == null"
+            else
+              true;
         };
 
       mkEnableIf =

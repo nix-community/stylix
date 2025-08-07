@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.stylix.fonts;
 
@@ -25,7 +24,6 @@ let
         default = fontName;
       };
     };
-
 in
 {
   options.stylix.fonts = {
@@ -58,7 +56,12 @@ in
         mkFontSizeOption =
           { default, target }:
           lib.mkOption {
-            inherit default;
+            default = if builtins.isInt default then default else cfg.sizes.${default};
+            defaultText =
+              if builtins.isInt default then
+                default
+              else
+                lib.literalExpression "config.stylix.fonts.sizes.${default}";
 
             description = ''
               The font size used for ${target}.
@@ -94,12 +97,12 @@ in
 
         terminal = mkFontSizeOption {
           target = "terminals and text editors";
-          default = cfg.sizes.applications;
+          default = "applications";
         };
 
         popups = mkFontSizeOption {
           target = "notifications, popups, and other overlay elements of the desktop";
-          default = cfg.sizes.desktop;
+          default = "desktop";
         };
       };
 

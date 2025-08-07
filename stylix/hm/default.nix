@@ -3,18 +3,17 @@
   config,
   ...
 }:
-
 let
   autoload = import ../autoload.nix { inherit lib; } "hm";
 in
 {
   imports = [
     ./cursor.nix
-    ./icon.nix
+    ./icons.nix
     ./palette.nix
     ../cursor.nix
     ../fonts.nix
-    ../icon.nix
+    ../icons.nix
     ../opacity.nix
     ../palette.nix
     ../pixel.nix

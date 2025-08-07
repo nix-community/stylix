@@ -4,10 +4,8 @@
   pkgs,
   ...
 }:
-
 let
   cfg = config.stylix.cursor;
-
 in
 {
   config =

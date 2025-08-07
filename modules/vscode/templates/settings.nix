@@ -1,8 +1,4 @@
-{ config, ... }:
-
-with config.stylix.fonts;
-
-{
+fonts: with fonts; {
   "workbench.colorTheme" = "Stylix";
   "editor.fontFamily" = monospace.name;
   "editor.inlayHints.fontFamily" = monospace.name;

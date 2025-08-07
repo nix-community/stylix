@@ -1,30 +1,28 @@
-{
-  mkTarget,
-  lib,
-  config,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
   name = "bemenu";
   humanName = "bemenu";
 
-  extraOptions = {
-    fontSize = lib.mkOption {
-      description = ''
-        Font size used for bemenu.
-      '';
-      type = with lib.types; nullOr int;
-      default = config.stylix.fonts.sizes.popups;
-    }; # optional argument
+  extraOptions =
+    { fonts }:
+    {
+      fontSize = lib.mkOption {
+        description = ''
+          Font size used for bemenu.
+        '';
+        type = with lib.types; nullOr int;
+        default = fonts.sizes.popups;
+        defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups";
+      }; # optional argument
 
-    alternate = lib.mkOption {
-      description = ''
-        Whether to use alternating colours.
-      '';
-      type = lib.types.bool;
-      default = false;
+      alternate = lib.mkOption {
+        description = ''
+          Whether to use alternating colours.
+        '';
+        type = lib.types.bool;
+        default = false;
+      };
     };
-  };
 
   configElements = [
     (
@@ -33,7 +31,7 @@ mkTarget {
         programs.bemenu.settings = {
           # Font name
           fn = "${fonts.sansSerif.name} ${
-            lib.optionalString (cfg.fontSize != null) (builtins.toString cfg.fontSize)
+            lib.optionalString (cfg.fontSize != null) (toString cfg.fontSize)
           }";
         };
       }

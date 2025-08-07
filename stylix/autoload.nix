@@ -1,5 +1,4 @@
 { lib }:
-
 # string -> [ path ]
 # List include path for either nixos modules or hm modules
 platform:
@@ -42,7 +41,19 @@ builtins.concatLists (
         {
           key = file;
           _file = file;
-          imports = [ (module (args // extraArgs // { inherit mkTarget; })) ];
+          imports = [
+            (module (
+              args
+              // extraArgs
+              // {
+                inherit mkTarget;
+                config = lib.recursiveUpdate config {
+                  stylix = throw "stylix: unguarded `config.stylix` accessed while using mkTarget";
+                  lib.stylix.colors = throw "stylix: unguarded `config.lib.stylix.colors` accessed while using mkTarget";
+                };
+              }
+            ))
+          ];
         }
       else
         file

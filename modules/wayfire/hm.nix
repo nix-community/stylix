@@ -31,12 +31,15 @@ mkTarget {
         '';
       in
       {
-        wayland.windowManager.wayfire.wf-shell.settings = {
-          background.image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
+        wayland.windowManager.wayfire.settings = {
           cube = {
-            cubemap_image = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
-            skydome_texture = lib.mkIf cfg.useWallpaper (toString wayfireBackground);
+            cubemap_image = lib.mkIf cfg.useWallpaper wayfireBackground;
+            skydome_texture = lib.mkIf cfg.useWallpaper wayfireBackground;
           };
+        };
+
+        wayland.windowManager.wayfire.wf-shell.settings = {
+          background.image = lib.mkIf cfg.useWallpaper wayfireBackground;
           background.fill_mode =
             if imageScalingMode == "stretch" then
               "stretch"
@@ -44,14 +47,16 @@ mkTarget {
               "preserve_aspect"
             else
               "fill_and_crop";
-
         };
       }
     )
-    (lib.mkIf config.stylix.targets.nixos-icons.enable {
-      wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
-        "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
-    })
+    (
+      { targets }:
+      {
+        wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
+          lib.mkIf targets.nixos-icons.enable "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+      }
+    )
     (
       { colors }:
       let
