@@ -5,11 +5,10 @@
   ...
 }:
 {
-
   options.stylix.targets.rstudio = {
     enable = config.lib.stylix.mkEnableTarget "RStudio" true;
 
-    themeAutoset = lib.mkEnableOption "setting Stylix as the theme" // {
+    themeAutoset = lib.mkEnableOption "setting Stylix as the theme" {
       default = true;
       example = false;
     };
@@ -37,6 +36,26 @@
               else
                 "/* rs-theme-is-dark: FALSE */\n";
 
+            xtermColors = import xtermColors.nix;
+            xtermTags = builtins.concatStringsSep "\n" (
+              builtins.genList (
+                i:
+                let
+                  hexCode = builtins.elemAt xtermColors i;
+                  index = toString i;
+                in
+                ''
+                  .xtermColor${index} {
+                    color: ${hexCode} !important;
+                  }
+
+                  .xtermBgColor${index} {
+                    background-color: ${hexCode};
+                  }
+                ''
+              ) (builtins.length xtermColors)
+            );
+
             # Concatenates the headers required for rstudio and forms a valid mustache file
             mustache =
               ''
@@ -46,8 +65,8 @@
                 /* Theme Generator by Grady B  */
               ''
               + polarity
-              + builtins.readFile ./base.rstheme.mustache;
-
+              + builtins.readFile ./base.rstheme.mustache
+              + xtermTags;
           in
           {
             source = config.lib.stylix.colors {
@@ -70,7 +89,7 @@
               if [[ -f "$config" ]]; then
                 run ${lib.getExe pkgs.jq} \
                   --raw-output \
-                  '.editor_theme |= "${name}"' \
+                  '.editor_theme |="${name}"' \
                   "$config" |
                   ${lib.getExe' pkgs.moreutils "sponge"} "$config"
 
