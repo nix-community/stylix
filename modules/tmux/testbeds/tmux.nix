@@ -1,9 +1,10 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.tmux;
-    useTerminal = true;
+    terminal = true;
+    text = "tmux";
   };
+
   home-manager.sharedModules = lib.singleton {
     programs.tmux.enable = true;
   };

@@ -1,7 +1,7 @@
 {
   stylix.testbed.ui.command = {
+    terminal = true;
     text = "fish";
-    useTerminal = true;
   };
 
   programs.fish.enable = true;
