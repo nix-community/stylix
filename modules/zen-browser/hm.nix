@@ -56,15 +56,9 @@ mkTarget {
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               };
 
-              userChrome = colors {
-                template = ./userChrome.css.mustache;
-                extension = ".css";
-              };
+              userChrome = import ./userChrome.nix { inherit colors; };
 
-              userContent = colors {
-                template = ./userContent.css.mustache;
-                extension = ".css";
-              };
+              userContent = import ./userContent.nix { inherit colors; };
             });
           }
         )
