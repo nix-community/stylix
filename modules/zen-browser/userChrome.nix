@@ -1,8 +1,6 @@
 { colors }:
 with colors;
 ''
-  /* -- Beginning of Stylix -- */
-
   :root {
     --zen-colors-primary: #${base02-hex} !important;
     --zen-primary-color: #${base0D-hex} !important;
@@ -135,6 +133,4 @@ with colors;
   menupopup {
     color: #${base05-hex} !important;
   }
-
-  /* -- End of Stylix -- */
 ''
