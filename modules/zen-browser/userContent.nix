@@ -1,8 +1,6 @@
 { colors }:
 with colors;
 ''
-  /* -- Beginning of Stylix -- */
-
   /* Common variables affecting all pages */
   @-moz-document url-prefix("about:") {
     :root {
@@ -152,6 +150,4 @@ with colors;
       background-color: #${base02-hex} !important;
     }
   }
-
-  /* -- End of Stylix -- */
 ''
