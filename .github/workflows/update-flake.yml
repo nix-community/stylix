@@ -14,7 +14,7 @@ jobs:
       matrix:
         branch: [master, release-25.05]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ matrix.branch }}
 
