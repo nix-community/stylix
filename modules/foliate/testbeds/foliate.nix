@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.foliate;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "com.github.johnfactotum.Foliate";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "foliate";
 
   home-manager.sharedModules = lib.singleton {
-    programs.foliate = {
-      enable = true;
-      inherit package;
-    };
+    programs.foliate.enable = true;
   };
 }
