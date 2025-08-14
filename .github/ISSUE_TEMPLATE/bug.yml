@@ -5,33 +5,6 @@ name: Bug
 title: "<SCOPE>: <SUMMARY>"
 
 body:
-  - type: checkboxes
-
-    attributes:
-      label: I assert that this issue is relevant for Stylix
-
-      description: >-
-        If you need help or are unsure whether this is a Stylix bug, please
-        consider reading the
-        [documentation](https://nix-community.github.io/stylix) or asking
-        for help in a [GitHub
-        Discussion](https://github.com/nix-community/stylix/discussions) or the
-        [Stylix Matrix Room](https://matrix.to/#/#stylix:danth.me) before
-        opening an issue.
-
-      options:
-        - label: >-
-            I assert that this is a bug and not a user error or support
-            request.
-
-          required: true
-
-        - label: >-
-            I assert that this is not a duplicate of an [existing
-            issue](https://github.com/nix-community/stylix/issues?q=is%3Aissue).
-
-          required: true
-
   - type: textarea
 
     attributes:
@@ -101,6 +74,36 @@ body:
     validations:
       required: true
 
+  - type: checkboxes
+
+    attributes:
+      label: Submission Checklist
+
+      description: >-
+        If you need help or are unsure whether this is a Stylix bug, please
+        consider reading the
+        [documentation](https://nix-community.github.io/stylix) or asking
+        for help in a [GitHub
+        Discussion](https://github.com/nix-community/stylix/discussions) or the
+        [Stylix Matrix Room](https://matrix.to/#/#stylix:danth.me) before
+        opening an issue.
+
+      options:
+        - label: I assert that this issue is relevant to Stylix
+          required: true
+
+        - label: >-
+            I assert that this is not a duplicate of an [existing
+            issue](https://github.com/nix-community/stylix/issues?q=is%3Aissue)
+
+          required: true
+
+        - label: >-
+            I assert that this is a bug and not a user error or support
+            request
+
+          required: true
+
   - type: textarea
 
     attributes:
@@ -111,4 +114,4 @@ body:
         module lists its maintainers in the
         [documentation](https://nix-community.github.io/stylix).
 
-      placeholder: "@danth, @trueNAHO"
+      placeholder: "@awwpotato @danth @trueNAHO"

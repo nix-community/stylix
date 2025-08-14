@@ -5,18 +5,6 @@ name: New option
 title: "<SCOPE>: add <OPTION> option"
 
 body:
-  - type: checkboxes
-
-    attributes:
-      label: I assert that this feature request is relevant for Stylix
-
-      options:
-        - label: >-
-            I assert that this is not a duplicate of an [existing feature
-            request](https://github.com/nix-community/stylix/issues?q=is%3Aissue).
-
-          required: true
-
   - type: textarea
 
     attributes:
@@ -31,6 +19,21 @@ body:
     validations:
       required: true
 
+  - type: checkboxes
+
+    attributes:
+      label: Submission Checklist
+
+      options:
+        - label: I assert that this issue is relevant to Stylix
+          required: true
+
+        - label: >-
+            I assert that this is not a duplicate of an [existing
+            issue](https://github.com/nix-community/stylix/issues?q=is%3Aissue)
+
+          required: true
+
   - type: textarea
 
     attributes:
@@ -41,4 +44,4 @@ body:
         maintainers in the
         [documentation](https://nix-community.github.io/stylix).
 
-      placeholder: "@danth, @trueNAHO"
+      placeholder: "@awwpotato @danth @trueNAHO"
