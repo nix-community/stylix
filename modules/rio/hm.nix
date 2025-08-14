@@ -2,10 +2,7 @@
 # - https://raphamorim.io/rio/docs/config
 { mkTarget, ... }:
 mkTarget {
-  name = "rio";
-  humanName = "Rio";
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {
