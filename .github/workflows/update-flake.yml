@@ -14,10 +14,11 @@ jobs:
       matrix:
         branch: [master, release-25.05]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ matrix.branch }}
-      - uses: DeterminateSystems/nix-installer-action@v18
+
+      - uses: cachix/install-nix-action@v31
 
       - id: generate-token
         uses: actions/create-github-app-token@v2
@@ -59,6 +60,14 @@ jobs:
             --commit-lock-file \
             --flake ./flake/dev \
             --option commit-lock-file-summary "flake: update dev inputs"
+
+          # The nixpkgs maintainers may have changed, so keep all-maintainers
+          # in sync
+          nix run .#all-maintainers
+
+          git add generated/all-maintainers.nix
+          git commit --message "stylix: update all-maintainers list" ||
+            echo "generated/all-maintainers.nix has no changes"
 
       - name: create pull request
         env:

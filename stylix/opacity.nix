@@ -1,5 +1,4 @@
 { lib, ... }:
-
 {
   options.stylix.opacity = {
     desktop = lib.mkOption {

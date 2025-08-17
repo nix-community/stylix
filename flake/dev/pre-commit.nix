@@ -12,9 +12,21 @@
 
         settings.hooks = {
           # keep-sorted start block=yes
+          all-maintainers = {
+            enable = true;
+            entry = config.apps.all-maintainers.program;
+            files = "^(${
+              builtins.concatStringsSep "|" [
+                ''flake\.lock''
+                ''generated\/all-maintainers.nix''
+                ''modules\/.*\/meta\.nix''
+                ''stylix\/maintainers\.nix''
+              ]
+            })$";
+          };
           deadnix = {
             enable = true;
-            settings.noUnderscore = true;
+            settings.noLambdaPatternNames = true;
           };
           editorconfig-checker.enable = true;
           hlint.enable = true;

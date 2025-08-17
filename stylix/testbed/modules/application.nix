@@ -26,6 +26,13 @@ in
               used may change in the future.
             '';
           };
+          graphicalEnvironment = lib.mkOption {
+            type = lib.types.enum (
+              import ../available-graphical-environments.nix { inherit lib; }
+            );
+            default = "gnome";
+            description = "The graphical environment to use.";
+          };
           application = lib.mkOption {
             description = ''
               Options defining an application to be launched using its provided
@@ -77,6 +84,7 @@ in
             );
             default = null;
           };
+          sendNotifications = lib.mkEnableOption "sending notifications of each urgency with libnotify";
         };
       }
     );
@@ -84,18 +92,10 @@ in
   };
 
   config = lib.mkIf (config.stylix.testbed.ui != null) {
-    services = {
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
-
     services.displayManager.autoLogin = {
       enable = true;
       user = user.username;
     };
-
-    # Disable the GNOME tutorial which pops up on first login.
-    environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
     # for use when application is set
     environment.systemPackages =
@@ -109,6 +109,27 @@ in
               pkgs.writeShellScript "startup" config.stylix.testbed.ui.command.text
             );
             terminal = config.stylix.testbed.ui.command.useTerminal;
+          };
+        }
+      )
+      ++ lib.optional config.stylix.testbed.ui.sendNotifications (
+        pkgs.makeAutostartItem {
+          name = "stylix-notification-check";
+          package = pkgs.makeDesktopItem {
+            name = "stylix-notification-check";
+            desktopName = "stylix-notification-check";
+            terminal = false;
+            exec = pkgs.writeShellScript "stylix-send-notifications" (
+              lib.concatMapStringsSep " && "
+                (
+                  urgency: "${lib.getExe pkgs.libnotify} --urgency ${urgency} ${urgency} urgency"
+                )
+                [
+                  "low"
+                  "normal"
+                  "critical"
+                ]
+            );
           };
         }
       )

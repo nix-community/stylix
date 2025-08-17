@@ -55,7 +55,7 @@ mkTarget {
       }
     )
     (
-      { opacity, _colors }:
+      { opacity, colors }:
       {
         stylix.targets.waybar.background = "alpha(@base00, ${toString opacity.desktop})";
       }

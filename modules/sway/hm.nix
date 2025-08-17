@@ -87,7 +87,7 @@ in
       })
 
       {
-        lib.stylix.sway.bar = builtins.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.sway.exportedBarConfig;
+        lib.stylix.sway.bar = lib.warn "stylix: `config.lib.stylix.sway.bar` has been renamed to `config.stylix.targets.sway.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.sway.exportedBarConfig;
 
         stylix.targets.sway.exportedBarConfig = {
           inherit fonts;

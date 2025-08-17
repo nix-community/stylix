@@ -5,7 +5,6 @@
   pkgs,
   ...
 }:
-
 let
   copyModules =
     map
@@ -171,7 +170,6 @@ let
         }
         # keep-sorted end
       ];
-
 in
 {
   options.stylix.homeManagerIntegration = {
@@ -218,7 +216,7 @@ in
             [
               config.stylix.homeManagerIntegration.module
             ]
-            ++ (lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules);
+            ++ lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules;
         })
         (lib.mkIf config.home-manager.useGlobalPkgs {
           home-manager.sharedModules = lib.singleton {

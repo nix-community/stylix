@@ -1,5 +1,4 @@
 { pkgs, lib, ... }:
-
 let
   package = pkgs.vesktop;
 in

@@ -24,15 +24,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/nix-installer-action@v18
+      - uses: cachix/install-nix-action@v31
 
       - uses: cachix/cachix-action@v16
         with:
-          name: stylix
+          name: nix-community
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         continue-on-error: true
 

@@ -1,5 +1,4 @@
 { lib, ... }:
-
 let
   autoload = import ../autoload.nix { inherit lib; } "droid";
 in

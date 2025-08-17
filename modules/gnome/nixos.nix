@@ -4,7 +4,6 @@
   config,
   ...
 }:
-
 let
   theme = pkgs.callPackage ./theme.nix {
     inherit (config.lib.stylix) colors;

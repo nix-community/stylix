@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
-
 let
   package = pkgs.yazi;
 in
-
 {
   stylix.testbed.ui.application = {
     name = "yazi";

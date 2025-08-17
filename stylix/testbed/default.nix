@@ -3,28 +3,48 @@
   inputs,
   lib,
   modules ? import ./autoload.nix { inherit pkgs lib; },
+  testbedFieldSeparator ? ":",
 }:
-
 let
   makeTestbed =
     name: testbed:
     let
-
       system = lib.nixosSystem {
         inherit (pkgs) system;
 
-        modules = [
-          ./modules/common.nix
-          ./modules/enable.nix
-          ./modules/application.nix
-          inputs.self.nixosModules.stylix
-          inputs.home-manager.nixosModules.home-manager
-          testbed
+        modules =
+          [
+            (lib.modules.importApply ./modules/flake-parts.nix inputs)
+            ./modules/common.nix
+            ./modules/enable.nix
+            ./modules/application.nix
+            inputs.self.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+            testbed
+          ]
+          ++ map (name: import ./graphical-environments/${name}.nix) (
+            import ./available-graphical-environments.nix { inherit lib; }
+          )
+          ++
+            lib.mapAttrsToList
+              (
+                target:
+                lib.optionalAttrs (
+                  lib.hasPrefix "testbed${testbedFieldSeparator}${target}" name
+                )
+              )
+              {
+                inherit (inputs.nixvim.nixosModules) nixvim;
+                inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
-          # modules for external targets
-          inputs.nvf.nixosModules.default
-          inputs.nixvim.nixosModules.nixvim
-        ];
+                nvf = inputs.nvf.nixosModules.default;
+
+                zen-browser = {
+                  home-manager.sharedModules = [
+                    inputs.zen-browser.homeModules.default
+                  ];
+                };
+              };
       };
     in
     pkgs.writeShellApplication {

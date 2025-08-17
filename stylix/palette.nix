@@ -5,7 +5,6 @@
   options,
   ...
 }:
-
 let
   cfg = config.stylix;
   opts = options.stylix;
@@ -84,7 +83,7 @@ in
         default = pkgs.runCommand "palette.json" { } ''
           ${lib.getExe cfg.paletteGenerator} \
             "${cfg.polarity}" \
-            ${lib.escapeShellArg "${cfg.image}"} \
+            ${lib.escapeShellArg cfg.image} \
             "$out"
         '';
       };

@@ -43,7 +43,7 @@ folder, using any name which is not on the list above.
 
 Modules should be created using the `mkTarget` function whenever possible (see
 the [`/stylix/mk-target.nix`](
-https://github.com/danth/stylix/blob/-/stylix/mk-target.nix) in-source
+https://github.com/nix-community/stylix/blob/-/stylix/mk-target.nix) in-source
 documentation for more details):
 
 ```nix
@@ -62,7 +62,8 @@ mkTarget {
 
 > [!IMPORTANT]
 > The `mkTarget` argument is only available to modules imported by Stylix's
-> [autoload system](https://github.com/danth/stylix/blob/-/stylix/autoload.nix),
+> [autoload
+> system](https://github.com/nix-community/stylix/blob/-/stylix/autoload.nix),
 > e.g., `modules/«target»/«platform».nix` modules.
 >
 > I.e., it is not available to normal modules imported via the `imports` list.
@@ -244,6 +245,13 @@ number of maintainers:
 
 The main responsibility of module maintainers is to update and fix their
 modules.
+
+> [!NOTE]
+> If this is the first time you're adding yourself as a maintainer in Stylix,
+> the `/generated/all-maintainers.nix` file will need to be updated by running
+> `nix run .#all-maintainers`
+> ([pre-commit](./development_environment.md#pre-commit) will also automatically
+> regenerate it).
 
 ## Documentation
 
