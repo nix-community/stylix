@@ -15,6 +15,7 @@ in
     ../home-manager-integration.nix
     ../opacity.nix
     ../palette.nix
+    ../icons.nix
     ../pixel.nix
     ../target.nix
     ../release.nix
