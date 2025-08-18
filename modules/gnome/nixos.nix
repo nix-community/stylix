@@ -10,7 +10,7 @@ let
     inherit (config.stylix) inputs;
   };
   cursorCfg = config.stylix.cursor;
-  iconCfg = config.stylix.iconTheme;
+  iconCfg = config.stylix.icons;
   inherit (config.stylix) polarity;
 
 in
