@@ -78,5 +78,5 @@ jobs:
 
       - uses: AveryCameronUofR/add-reviewer-gh-action@1.0.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           reviewers: ${{ steps.get-reviewers.outputs.reviewers }}
