@@ -1,11 +1,8 @@
-{ pkgs, config, ... }:
-let
-  inherit (config.stylix.inputs) tinted-schemes;
-in
+{ pkgs, ... }:
 {
   stylix = {
     enable = true;
-    base16Scheme = "${tinted-schemes}/base16/catppuccin-macchiato.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     polarity = "dark";
     cursor = {
       name = "Vanilla-DMZ";
