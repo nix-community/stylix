@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = "${lib.getExe pkgs.vim} flake-parts/flake.nix";
-    useTerminal = true;
+    terminal = true;
+    text = "vim flake-parts/flake.nix";
   };
 
   home-manager.sharedModules = lib.singleton {
