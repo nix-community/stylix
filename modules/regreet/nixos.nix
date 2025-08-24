@@ -35,10 +35,10 @@ mkTarget {
       };
     }
     (
-      { polarity }:
+      { colorGeneration }:
       {
         programs.regreet.settings.GTK.application_prefer_dark_theme =
-          polarity == "dark";
+          colorGeneration.polarity == "dark";
       }
     )
     (

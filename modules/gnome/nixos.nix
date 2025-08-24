@@ -11,7 +11,7 @@ let
   };
   cursorCfg = config.stylix.cursor;
   iconCfg = config.stylix.icons;
-  inherit (config.stylix) polarity;
+  inherit (config.stylix.colorGeneration) polarity;
 
 in
 {
