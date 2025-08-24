@@ -74,11 +74,6 @@
       flake = false;
     };
 
-    tinted-schemes = {
-      url = "github:tinted-theming/schemes";
-      flake = false;
-    };
-
     tinted-tmux = {
       url = "github:tinted-theming/tinted-tmux";
       flake = false;

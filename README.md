@@ -40,7 +40,7 @@ philosophy.
 Try a live demo of this dark theme by running:
 
 ```console
-nix run github:nix-community/stylix#testbed:gnome:dark
+nix run github:nix-community/stylix#testbed:gnome:full-dark
 ```
 
 ### KDE Plasma 5

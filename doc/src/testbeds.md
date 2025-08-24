@@ -77,16 +77,16 @@ github:nix-community/stylix
     └───x86_64-linux
         ├───doc: package 'stylix-book'
         ├───palette-generator: package 'palette-generator'
-        ├───"testbed:gnome:cursorless": package 'testbed-gnome-cursorless'
-        ├───"testbed:gnome:dark": package 'testbed-gnome-dark'
-        ├───"testbed:gnome:imageless": package 'testbed-gnome-imageless'
-        ├───"testbed:gnome:light": package 'testbed-gnome-light'
-        ├───"testbed:gnome:schemeless": package 'testbed-gnome-schemeless'
-        ├───"testbed:kde:cursorless": package 'testbed-kde-cursorless'
-        ├───"testbed:kde:dark": package 'testbed-kde-dark'
-        ├───"testbed:kde:imageless": package 'testbed-kde-imageless'
-        ├───"testbed:kde:light": package 'testbed-kde-light'
-        └───"testbed:kde:schemeless": package 'testbed-kde-schemeless'
+        ├───"testbed:gnome:default": package 'testbed-gnome-default'
+        ├───"testbed:gnome:disabled": package 'testbed-gnome-disabled'
+        ├───"testbed:gnome:empty": package 'testbed-gnome-empty'
+        ├───"testbed:gnome:full-dark": package 'testbed-gnome-full-dark'
+        ├───"testbed:gnome:partial-light": package 'testbed-gnome-partial-light'
+        ├───"testbed:kde:default": package 'testbed-kde-default'
+        ├───"testbed:kde:disabled": package 'testbed-kde-disabled'
+        ├───"testbed:kde:empty": package 'testbed-kde-empty'
+        ├───"testbed:kde:full-dark": package 'testbed-kde-full-dark'
+        └───"testbed:kde:partial-light": package 'testbed-kde-partial-light'
 ```
 
 (This has been edited down to only the relevant parts.)

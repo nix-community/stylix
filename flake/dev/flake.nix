@@ -72,7 +72,6 @@
   #                 nur.follows = "";
   #                 tinted-foot.follows = "";
   #                 tinted-kitty.follows = "";
-  #                 tinted-schemes.follows = "";
   #                 tinted-tmux.follows = "";
   #                 tinted-zed.follows = "";
   #               };
