@@ -21,7 +21,7 @@ where
 
 | Element               | Description |
 |-----------------------|-------------|
-| `«SUBSYSTEM»`         | Area of patched files, optionally nested using `:` for general subsystems and `/` for paths.<br><br>For example, a patch to `/stylix/hm/` should be formatted as `stylix/hm` instead of `stylix: hm`, while `/stylix/*/palette.nix` should be formatted as `stylix: palette`.<br><br>Specific conventions include simplifying `modules/«MODULE»` to `«MODULE»`, mapping `/flake.{lock,nix}` and `/flake/` to `flake`, mapping `/.github/` to `ci`, and using `treewide` for changes that cannot be categorized under a more specific subsystem. |
+| `«SUBSYSTEM»`         | Area of patched files, optionally nested using `:` for general subsystems and `/` for paths.<br><br>For example, a patch to `/stylix/hm/` should be formatted as `stylix/hm` instead of `stylix: hm`, while `/stylix/*/palette.nix` should be formatted as `stylix: palette`.<br><br>Specific conventions include simplifying `/modules/«MODULE»` to `«MODULE»`, mapping `/flake.{lock,nix}` and `/flake/` to `flake`, mapping `/.github/` to `ci`, and using `treewide` for changes that cannot be categorized under a more specific subsystem. |
 | `«SUMMARY»`           | Concise, single-line explanation of up to 72 characters, written in the imperative mood, starting lowercase, and not ending with punctuation. |
 | `«BODY»`              | Detailed, self-contained explanation of the problem, its user impact, the technical solution, and any optimizations or trade-offs, focusing on one problem per patch. |
 | `«BREAKING_CHANGE»`   | Dedicated `BREAKING CHANGE: «BODY»` section for breaking changes. |
