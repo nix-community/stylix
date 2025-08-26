@@ -42,6 +42,9 @@ The following examples should demonstrate everything:
 - [`kde: replace systemd unit with AutostartScript for theme application`](
   https://github.com/nix-community/stylix/commit/e0a41d3a2562ce1b43cad8560333673d04b111b8)
 
+- [`stylix/droid: fix import droid modules`](
+  https://github.com/nix-community/stylix/commit/e01d56cf5c00449f4d0af4013512ed906ed7d3c9)
+
 - [`stylix: do not check lambda pattern names with deadnix`](
   https://github.com/nix-community/stylix/commit/4add678fe3978177744e8af3c72a6a8a1288227b)
 
