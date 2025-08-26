@@ -30,7 +30,7 @@ in
         if gnome.enable && !(plasma6.enable || lxqt.enable) then
           "gnome"
         else if plasma6.enable && !(gnome.enable || lxqt.enable) then
-          "kde6"
+          "kde"
         else if lxqt.enable && !(gnome.enable || plasma6.enable) then
           "lxqt"
         else
