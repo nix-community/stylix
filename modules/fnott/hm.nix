@@ -38,7 +38,7 @@ mkTarget {
               title-color = fg base05;
               summary-color = fg base05;
               body-color = fg base05;
-              progress-bar-color = fg base02;
+              progress-color = fg base02;
               background = bg base00;
             };
 
