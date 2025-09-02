@@ -4,8 +4,6 @@
 
 ---
 
-## Submission Checklist
-
 <!--
 Unless otherwise specified, the following checkboxes are not mandatory, but
 drastically accelerate the reviewing and merging process of this PR.
