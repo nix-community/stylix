@@ -70,6 +70,8 @@ mkTarget {
     (
       { inputs, colors }:
       let
+        extension = pkgs.gnomeExtensions.user-themes;
+
         activator = pkgs.writeShellApplication {
           name = "stylix-activate-gnome";
           text = ''
@@ -85,7 +87,7 @@ mkTarget {
             }
 
             if gnome_extensions="$(get_exe gnome-extensions)"; then
-              extension='user-theme@gnome-shell-extensions.gcampax.github.com'
+              extension=${lib.escapeShellArg extension.passthru.extensionUuid}
 
               case "$1" in
                 reload)
@@ -101,7 +103,7 @@ mkTarget {
         };
       in
       {
-        home.packages = [ pkgs.gnomeExtensions.user-themes ];
+        home.packages = [ extension ];
 
         dconf.settings = {
           "org/gnome/shell/extensions/user-theme".name = "Stylix";
