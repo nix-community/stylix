@@ -108,6 +108,7 @@
   #               inputs = {
   #                 nixpkgs.follows = "stylix/nixpkgs";
   #                 systems.follows = "stylix/systems";
+  #                 flake-compat.follows = "";
   #               };
   #             };
   #             # keep-sorted end
@@ -158,6 +159,7 @@
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
         systems.follows = "dev-systems";
+        flake-compat.follows = "";
       };
     };
 

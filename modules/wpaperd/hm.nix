@@ -26,7 +26,8 @@ mkTarget {
       {
         services.wpaperd.settings.any = {
           path = image;
-        } // modeAttrs;
+        }
+        // modeAttrs;
       }
     );
 }

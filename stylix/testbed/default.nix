@@ -12,39 +12,38 @@ let
       system = lib.nixosSystem {
         inherit (pkgs) system;
 
-        modules =
-          [
-            (lib.modules.importApply ./modules/flake-parts.nix inputs)
-            ./modules/common.nix
-            ./modules/enable.nix
-            ./modules/application.nix
-            inputs.self.nixosModules.stylix
-            inputs.home-manager.nixosModules.home-manager
-            testbed
-          ]
-          ++ map (name: import ./graphical-environments/${name}.nix) (
-            import ./available-graphical-environments.nix { inherit lib; }
-          )
-          ++
-            lib.mapAttrsToList
-              (
-                target:
-                lib.optionalAttrs (
-                  lib.hasPrefix "testbed${testbedFieldSeparator}${target}" name
-                )
+        modules = [
+          (lib.modules.importApply ./modules/flake-parts.nix inputs)
+          ./modules/common.nix
+          ./modules/enable.nix
+          ./modules/application.nix
+          inputs.self.nixosModules.stylix
+          inputs.home-manager.nixosModules.home-manager
+          testbed
+        ]
+        ++ map (name: import ./graphical-environments/${name}.nix) (
+          import ./available-graphical-environments.nix { inherit lib; }
+        )
+        ++
+          lib.mapAttrsToList
+            (
+              target:
+              lib.optionalAttrs (
+                lib.hasPrefix "testbed${testbedFieldSeparator}${target}" name
               )
-              {
-                inherit (inputs.nixvim.nixosModules) nixvim;
-                inherit (inputs.spicetify-nix.nixosModules) spicetify;
+            )
+            {
+              inherit (inputs.nixvim.nixosModules) nixvim;
+              inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
-                nvf = inputs.nvf.nixosModules.default;
+              nvf = inputs.nvf.nixosModules.default;
 
-                zen-browser = {
-                  home-manager.sharedModules = [
-                    inputs.zen-browser.homeModules.default
-                  ];
-                };
+              zen-browser = {
+                home-manager.sharedModules = [
+                  inputs.zen-browser.homeModules.default
+                ];
               };
+            };
       };
     in
     pkgs.writeShellApplication {

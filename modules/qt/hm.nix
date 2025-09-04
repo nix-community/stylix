@@ -83,21 +83,20 @@
 
       xdg.configFile =
         let
-          qtctConf =
-            ''
-              [Appearance]
-            ''
-            + lib.optionalString (config.qt.style ? name) ''
-              style=${config.qt.style.name}
-            ''
-            + lib.optionalString (icons != null) ''
-              icon_theme=${icons}
-            ''
-            + ''
-              [Fonts]
-              fixed="${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"
-              general="${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"
-            '';
+          qtctConf = ''
+            [Appearance]
+          ''
+          + lib.optionalString (config.qt.style ? name) ''
+            style=${config.qt.style.name}
+          ''
+          + lib.optionalString (icons != null) ''
+            icon_theme=${icons}
+          ''
+          + ''
+            [Fonts]
+            fixed="${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"
+            general="${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"
+          '';
 
         in
         lib.mkMerge [

@@ -49,7 +49,8 @@
             build-and-run-docs
             inputs'.home-manager.packages.default
             config.formatter
-          ] ++ config.pre-commit.settings.enabledPackages;
+          ]
+          ++ config.pre-commit.settings.enabledPackages;
 
           inputsFrom = [ config.treefmt.build.devShell ];
         };
