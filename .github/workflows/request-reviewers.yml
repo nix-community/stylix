@@ -39,6 +39,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MAX_REVIEWERS: 5
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           printf \
@@ -46,6 +47,7 @@ jobs:
             "$(
               gh pr diff --name-only "$PR_NUMBER" |
                 jq \
+                  --arg pr_author "$PR_AUTHOR" \
                   --argjson max_reviewers "$MAX_REVIEWERS" \
                   --raw-input \
                   --raw-output \
@@ -67,6 +69,7 @@ jobs:
                       )[]
                     ] |
                     unique |
+                    map(select(. != $pr_author)) |
                     if length <= $max_reviewers then
                       . | join(",")
                     else
