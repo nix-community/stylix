@@ -8,6 +8,7 @@ let
 in
 {
   imports = [
+    ../ansi.nix
     ./cursor.nix
     ./icons.nix
     ./palette.nix
