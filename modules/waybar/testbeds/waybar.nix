@@ -1,22 +1,25 @@
 { lib, ... }:
 {
   stylix.testbed.ui = {
-    graphicalEnvironment = "hyprland";
     command.text = "waybar";
+    graphicalEnvironment = "hyprland";
   };
 
   home-manager.sharedModules = lib.singleton {
     programs.waybar = {
       enable = true;
+
       settings = lib.singleton {
         modules-left = [
           "hyprland/workspaces"
           "hyprland/submap"
           "custom/media"
         ];
+
         modules-center = [
           "hyprland/window"
         ];
+
         modules-right = [
           "mpd"
           "idle_inhibitor"

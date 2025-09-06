@@ -1,23 +1,15 @@
-{ pkgs, lib, ... }:
-let
-  package = pkgs.halloy;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "org.squidowl.halloy";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "halloy";
 
   home-manager.sharedModules = lib.singleton {
     programs.halloy = {
       enable = true;
-      inherit package;
-      settings = {
-        servers.liberachat = {
-          nickname = "stylix-testbed";
-          server = "irc.libera.chat";
-          channels = [ "#halloy" ];
-        };
+
+      settings.servers.liberachat = {
+        channels = [ "#halloy" ];
+        nickname = "stylix-testbed";
+        server = "irc.libera.chat";
       };
     };
   };
