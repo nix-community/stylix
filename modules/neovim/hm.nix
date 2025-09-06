@@ -1,10 +1,10 @@
 { mkTarget, lib, ... }:
 {
-  imports = [
+  imports = map (module: lib.modules.importApply module mkTarget) [
     ./neovim.nix
-    (lib.modules.importApply ./neovide.nix mkTarget)
+    ./neovide.nix
     ./nixvim.nix
     ./nvf.nix
-    (lib.modules.importApply ./vim.nix mkTarget)
+    ./vim.nix
   ];
 }
