@@ -54,11 +54,6 @@
 
           inputsFrom = [ config.treefmt.build.devShell ];
         };
-
-        ghc = pkgs.mkShell {
-          inputsFrom = [ config.devShells.default ];
-          packages = [ pkgs.ghc ];
-        };
       };
     };
 }
