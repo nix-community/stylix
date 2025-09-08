@@ -1,4 +1,10 @@
-{ mkTarget }:
+{
+  mkTarget,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 mkTarget {
   name = "darwin";
@@ -6,7 +12,6 @@ mkTarget {
   extraOptions =
     {
       image,
-      pkgs,
     }:
     {
       home.activation = {
@@ -22,8 +27,6 @@ mkTarget {
     (
       {
         colors,
-        lib,
-        pkgs,
       }:
       let
         value = pkgs.runCommand "color" { } ''
