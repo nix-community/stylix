@@ -5,6 +5,11 @@
   nixosConfig ? null,
   ...
 }:
+let
+  iniFormat = pkgs.formats.ini {
+    listToValue = values: lib.concatStringsSep ", " values;
+  };
+in
 {
   options.stylix.targets.qt = {
     # TODO: Replace `nixosConfig != null` with
@@ -27,6 +32,14 @@
       '';
       type = lib.types.str;
       default = "qtct";
+    };
+
+    extraQtctConfig = lib.mkOption {
+      description = ''
+        Extra Qtct configuration
+      '';
+      inherit (iniFormat) type;
+      default = { };
     };
   };
 
@@ -83,21 +96,22 @@
 
       xdg.configFile =
         let
-          qtctConf = ''
-            [Appearance]
-          ''
-          + lib.optionalString (config.qt.style ? name) ''
-            style=${config.qt.style.name}
-          ''
-          + lib.optionalString (icons != null) ''
-            icon_theme=${icons}
-          ''
-          + ''
-            [Fonts]
-            fixed="${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"
-            general="${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"
-          '';
-
+          qtctConf =
+            lib.pipe
+              {
+                Appearance =
+                  (lib.optionalAttrs (config.qt.style ? name) { style = config.qt.style.name; })
+                  // (lib.optionalAttrs (icons != null) { icon_theme = icons; });
+                Fonts = {
+                  # qtct stores fonts settings quotted, because they are comma-separated
+                  fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
+                  general = ''"${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"'';
+                };
+              }
+              [
+                (default: lib.recursiveUpdate default config.stylix.target.qt.extraQtctConfig)
+                (iniFormat.generate "qtct-stylix-config")
+              ];
         in
         lib.mkMerge [
           (lib.mkIf (config.qt.style.name == "kvantum") {
@@ -112,8 +126,8 @@
           })
 
           (lib.mkIf (config.qt.platformTheme.name == "qtct") {
-            "qt5ct/qt5ct.conf".text = qtctConf;
-            "qt6ct/qt6ct.conf".text = qtctConf;
+            "qt5ct/qt5ct.conf".source = qtctConf;
+            "qt6ct/qt6ct.conf".source = qtctConf;
           })
         ];
     }
