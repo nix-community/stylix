@@ -5,9 +5,9 @@
   unzip,
 }:
 stdenv.mkDerivation {
-  name = "hln";
+  name = "desktoppr";
   version = "0.5-218";
-  pname = "hln";
+  pname = "desktoppr";
   src = fetchurl {
     url = "https://github.com/scriptingosx/desktoppr/releases/download/v0.5/desktoppr-0.5-218.zip";
     hash = "sha256-Oa9gAQjOaJHYyT5JBUiFCxL1sQP1dqlFBm+GdmLHNNM=";
