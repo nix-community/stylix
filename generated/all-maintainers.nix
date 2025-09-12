@@ -13,6 +13,13 @@
     githubId = 54070204;
     name = "0x5a4";
   };
+  Eveeifyeve = {
+    email = "eveeg1971@gmail.com";
+    github = "Eveeifyeve";
+    githubId = 88671402;
+    matrix = "@eveeifyeve:matrix.org";
+    name = "Eveeifyeve";
+  };
   Flameopathic = {
     email = "flameopathic@gmail.com";
     github = "Flameopathic";
