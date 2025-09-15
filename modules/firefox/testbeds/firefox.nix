@@ -1,21 +1,17 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.firefox;
-  profileName = "stylix";
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "firefox";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "firefox";
 
-  home-manager.sharedModules = lib.singleton {
-    programs.firefox = {
-      enable = true;
-      inherit package;
-      profiles.${profileName}.isDefault = true;
+  home-manager.sharedModules =
+    let
+      profileName = "stylix";
+    in
+    lib.singleton {
+      programs.firefox = {
+        enable = true;
+        profiles.${profileName}.isDefault = true;
+      };
+
+      stylix.targets.firefox.profileNames = [ profileName ];
     };
-
-    stylix.targets.firefox.profileNames = [ profileName ];
-  };
 }

@@ -1,20 +1,17 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.bashInteractive;
-    useTerminal = true;
+    terminal = true;
+    text = "bash";
   };
 
   home-manager.sharedModules = lib.singleton {
     programs = {
+      bash.enable = true;
+
       starship = {
         enable = true;
-        package = pkgs.starship;
         enableBashIntegration = true;
-      };
-      bash = {
-        enable = true;
-        package = pkgs.bashInteractive;
       };
     };
   };
