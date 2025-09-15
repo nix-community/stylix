@@ -1,89 +1,19 @@
+mkTarget:
 {
-  config,
   lib,
   options,
+  config,
   ...
 }:
-let
-  cfg = config.stylix.targets.nixvim;
-  # Maps `stylix.targets.plugin` values to the appropriate nixvim configuration
-  pluginConfigs = {
-    "base16-nvim" = {
-      inherit highlightOverride;
-
-      colorschemes.base16 = {
-        enable = true;
-
-        colorscheme = {
-          inherit (config.lib.stylix.colors.withHashtag)
-            base00
-            base01
-            base02
-            base03
-            base04
-            base05
-            base06
-            base07
-            base08
-            base09
-            base0A
-            base0B
-            base0C
-            base0D
-            base0E
-            base0F
-            ;
-        };
-      };
-    };
-    "mini.base16" = {
-      inherit highlightOverride;
-
-      plugins.mini = {
-        enable = true;
-
-        modules.base16.palette = {
-          inherit (config.lib.stylix.colors.withHashtag)
-            base00
-            base01
-            base02
-            base03
-            base04
-            base05
-            base06
-            base07
-            base08
-            base09
-            base0A
-            base0B
-            base0C
-            base0D
-            base0E
-            base0F
-            ;
-        };
-      };
-    };
-  };
-  # Transparent is used a few times below
-  transparent = {
-    bg = "none";
-    ctermbg = "none";
-  };
-  highlightOverride = {
-    Normal = lib.mkIf cfg.transparentBackground.main transparent;
-    NonText = lib.mkIf cfg.transparentBackground.main transparent;
-    SignColumn = lib.mkIf cfg.transparentBackground.signColumn transparent;
-    LineNr = lib.mkIf cfg.transparentBackground.numberLine transparent;
-    LineNrAbove = lib.mkIf cfg.transparentBackground.numberLine transparent;
-    LineNrBelow = lib.mkIf cfg.transparentBackground.numberLine transparent;
-  };
-in
-{
-  options.stylix.targets.nixvim = {
-    enable = config.lib.stylix.mkEnableTarget "nixvim" true;
+mkTarget {
+  name = "nixvim";
+  humanName = "NixVim";
+  extraOptions = {
     plugin = lib.mkOption {
-      type = lib.types.enum (builtins.attrNames pluginConfigs);
+      type = lib.types.enum [
+        "base16-nvim"
+        "mini.base16"
+      ];
       default = "mini.base16";
       description = "Plugin used for the colorscheme";
     };
@@ -92,7 +22,124 @@ in
       signColumn = lib.mkEnableOption "background transparency for the NeoVim sign column";
       numberLine = lib.mkEnableOption "background transparency for the NeoVim number/relativenumber column";
     };
+
+    exportedModule = lib.mkOption {
+      type = lib.types.attrs;
+      description = ''
+        Theming configuration which can be merged with your own. See
+        [Standalone Mode](#standalone-mode) documentation.
+      '';
+      default = { };
+    };
+    pluginConfigs = lib.mkOption {
+      type = lib.types.attrs;
+      default = {
+      };
+      internal = true;
+    };
   };
+
+  configElements = [
+    (
+      { colors }:
+      {
+        stylix.targets.nixvim.pluginConfigs = {
+          "base16-nvim".colorschemes.base16.colorscheme = {
+            inherit (colors.withHashtag)
+              base00
+              base01
+              base02
+              base03
+              base04
+              base05
+              base06
+              base07
+              base08
+              base09
+              base0A
+              base0B
+              base0C
+              base0D
+              base0E
+              base0F
+              ;
+          };
+          "mini.base16".plugins.mini.modules.base16.palette = {
+            inherit (colors.withHashtag)
+              base00
+              base01
+              base02
+              base03
+              base04
+              base05
+              base06
+              base07
+              base08
+              base09
+              base0A
+              base0B
+              base0C
+              base0D
+              base0E
+              base0F
+              ;
+          };
+        };
+      }
+    )
+    (
+      { fonts }:
+      {
+        stylix.targets.nixvim.exportedModule.config.opts.guifont =
+          "${fonts.monospace.name}:h${toString fonts.sizes.terminal}";
+      }
+    )
+    (
+      { opacity }:
+      {
+        stylix.targets.nixvim.exportedModule.imports = [
+          (lib.modules.importApply ./neovide-common.nix opacity)
+        ];
+      }
+    )
+    (
+      { cfg }:
+      {
+        stylix.targets.nixvim = {
+          pluginConfigs =
+            let
+              # Transparent is used a few times below
+              transparent = {
+                bg = "none";
+                ctermbg = "none";
+              };
+              highlightOverride = {
+                Normal = lib.mkIf cfg.transparentBackground.main transparent;
+                NonText = lib.mkIf cfg.transparentBackground.main transparent;
+                SignColumn = lib.mkIf cfg.transparentBackground.signColumn transparent;
+                LineNr = lib.mkIf cfg.transparentBackground.numberLine transparent;
+                LineNrAbove = lib.mkIf cfg.transparentBackground.numberLine transparent;
+                LineNrBelow = lib.mkIf cfg.transparentBackground.numberLine transparent;
+              };
+            in
+            {
+              "base16-nvim" = {
+                colorschemes.enable = true;
+                inherit highlightOverride;
+              };
+              "mini.base16" = {
+                plugins.mini.enable = true;
+                inherit highlightOverride;
+              };
+            };
+          exportedModule.config = cfg.pluginConfigs.${cfg.plugin};
+        };
+        programs = lib.optionalAttrs (
+          options.programs ? nixvim && cfg.exportedModule ? config
+        ) { nixvim = cfg.exportedModule.config; };
+      }
+    )
+  ];
 
   imports = [
     (lib.mkRenamedOptionModuleWith {
@@ -131,26 +178,11 @@ in
         "signColumn"
       ];
     })
-  ];
-
-  config = lib.mkMerge [
-    {
-      lib.stylix.nixvim.config = {
-        imports = [
-          (lib.modules.importApply ./neovide-common.nix config.stylix)
-        ];
-        config = lib.mkMerge [
-          pluginConfigs.${cfg.plugin}
-          {
-            opts.guifont = "${config.stylix.fonts.monospace.name}:h${toString config.stylix.fonts.sizes.terminal}";
-          }
-        ];
-      };
-    }
-    (lib.mkIf (config.stylix.enable && cfg.enable && options.programs ? nixvim) (
-      lib.optionalAttrs (options.programs ? nixvim) {
-        programs.nixvim = config.lib.stylix.nixvim.config;
+    (
+      { config, ... }:
+      {
+        lib.stylix.nixvim.config = builtins.warn "stylix: `config.lib.stylix.nixvim.config` has been renamed to `config.stylix.targets.nixvim.exportedModule`" config.stylix.targets.nixvim.exportedModule;
       }
-    ))
+    )
   ];
 }
