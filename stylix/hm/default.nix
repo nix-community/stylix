@@ -19,6 +19,7 @@ in
     ../palette.nix
     ../pixel.nix
     ../target.nix
+    ../theme.nix
     ../release.nix
     ../overlays.nix
     ../ordering.nix
