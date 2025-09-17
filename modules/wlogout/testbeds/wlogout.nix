@@ -6,8 +6,6 @@
   };
 
   home-manager.sharedModules = lib.singleton {
-    programs.wlogout = {
-      enable = true;
-    };
+    programs.wlogout.enable = true;
   };
 }

@@ -6,18 +6,18 @@
 }:
 let
   iconNames = [
+    "hibernate"
     "lock"
     "logout"
-    "suspend"
-    "hibernate"
-    "shutdown"
     "reboot"
+    "shutdown"
+    "suspend"
   ];
   mkIcons =
     color:
     pkgs.runCommand "stylix-wlogout-icons" { buildInputs = [ pkgs.imagemagick ]; }
       ''
-        ICONS=(${lib.concatStringsSep " " iconNames})
+        ICONS=(${lib.escapeShellArgs iconNames})
         mkdir -p $out
         for icon in "''${ICONS[@]}"; do
           sed ${pkgs.wlogout.src}/assets/$icon.svg \
@@ -59,7 +59,7 @@ mkTarget {
       iconColor = lib.mkOption {
         type = with lib.types; nullOr str;
         default = colors.withHashtag.base0E or null;
-        example = "#ff0000";
+        example = lib.literalExpression "colors.withHashtag.base0E";
         defaultText = lib.literalExpression "colors.withHashtag.base0E or null";
         description = "The color of the icons in the stylix.targets.wlogout.coloredIcons package";
       };
@@ -67,9 +67,9 @@ mkTarget {
         type = lib.types.package;
         readOnly = true;
         description =
-          "A package containing "
+          "A package containing the "
           + lib.concatStringsSep ", " (map (i: i + ".png") iconNames)
-          + " colored with stylix.targets.wlogout.iconColor";
+          + " icons colored with stylix.targets.wlogout.iconColor.";
       };
     };
 
