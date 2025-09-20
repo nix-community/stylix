@@ -33,10 +33,10 @@ mkTarget {
       }
     )
     (
-      { polarity, icons }:
+      { colorGeneration, icons }:
       {
         programs.fuzzel.settings.main."icon-theme" =
-          if (polarity == "dark") then icons.dark else icons.light;
+          if (colorGeneration.polarity == "dark") then icons.dark else icons.light;
       }
     )
   ];
