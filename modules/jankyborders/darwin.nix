@@ -4,11 +4,14 @@ mkTarget {
   humanName = "JankyBorders";
 
   configElements =
-    { colors }:
+    { colors, opacity }:
     {
-      services.jankyborders = {
-        active_color = config.lib.stylix.mkOpacityHexColor colors.base0D config.stylix.opacity.desktop;
-        inactive_color = config.lib.stylix.mkOpacityHexColor colors.base03 config.stylix.opacity.desktop;
+      services.jankyborders = let
+        mkOpacityHexColor =
+          lib.flip config.lib.stylix.mkOpacityHexColor opacity.desktop;
+      in {
+        active_color = mkOpacityHexColor colors.base0D;
+        inactive_color = mkOpacityHexColor colors.base03;
       };
     };
 }
