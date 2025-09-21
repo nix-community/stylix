@@ -33,8 +33,15 @@ let
               )
             )
             {
-              inherit (inputs.nixvim.nixosModules) nixvim;
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
+
+              nixvim-integrated = inputs.nixvim.nixosModules.nixvim;
+
+              nixvim-standalone.lib.stylix.testbed = {
+                inherit (inputs.nixvim.legacyPackages.${pkgs.stdenv.hostPlatform.system})
+                  makeNixvim
+                  ;
+              };
 
               nvf = inputs.nvf.nixosModules.default;
 
