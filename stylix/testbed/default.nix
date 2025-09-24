@@ -38,11 +38,9 @@ let
 
               nvf = inputs.nvf.nixosModules.default;
 
-              zen-browser = {
-                home-manager.sharedModules = [
-                  inputs.zen-browser.homeModules.default
-                ];
-              };
+              zen-browser.home-manager.sharedModules = [
+                inputs.zen-browser.homeModules.default
+              ];
             };
       };
     in
