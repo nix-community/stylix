@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.alacritty;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "Alacritty";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "alacritty";
 
   home-manager.sharedModules = lib.singleton {
-    programs.alacritty = {
-      enable = true;
-      inherit package;
-    };
+    programs.alacritty.enable = true;
   };
 }

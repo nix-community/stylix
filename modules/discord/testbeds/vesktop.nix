@@ -1,17 +1,8 @@
-{ pkgs, lib, ... }:
-let
-  package = pkgs.vesktop;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "vesktop";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "vesktop";
 
   home-manager.sharedModules = lib.singleton {
-    programs.vesktop = {
-      enable = true;
-      inherit package;
-    };
+    programs.vesktop.enable = true;
   };
 }
