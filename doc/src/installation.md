@@ -22,7 +22,7 @@ screens, and display managers.
       nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          stylix.nixosModules.stylix
+          stylix.nixosModules.default
           ./configuration.nix
         ];
       };
@@ -85,7 +85,7 @@ to NixOS via [Flakes][nix-flakes].
       darwinConfigurations."«hostname»" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          stylix.darwinModules.stylix
+          stylix.darwinModules.default
           ./configuration.nix
         ];
       };
@@ -129,7 +129,7 @@ similar fashion to NixOS via [Flakes][nix-flakes].
       nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
         pkgs = nixpkgs.legacyPackages."aarch64-linux";
         modules = [
-          stylix.nixOnDroidModules.stylix
+          stylix.nixOnDroidModules.default
           ./nix-on-droid.nix
         ];
       };
@@ -176,7 +176,7 @@ by someone else.
       homeConfigurations."«username»" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          stylix.homeModules.stylix
+          stylix.homeModules.default
           ./home.nix
         ];
       };
@@ -206,8 +206,8 @@ If you haven't enabled flakes yet or don't want to use this feature,
 `default.nix` re-exports all the flake outputs, without requiring flakes to be
 enabled. This means that once you have a copy of this repo, using either a local
 checkout, [niv](https://github.com/nmattia/niv), or any other method, you can
-import it to get the NixOS module as the `nixosModules.stylix` attribute and the
-Home Manager module as the `homeModules.stylix` attribute.
+import it to get the NixOS module as the `nixosModules.default` attribute and
+the Home Manager module as the `homeModules.default` attribute.
 
 ```nix
 { pkgs, ... }:
@@ -220,7 +220,7 @@ let
   };
 in
 {
-  imports = [ (import stylix).homeModules.stylix ];
+  imports = [ (import stylix).homeModules.default ];
 
   stylix = {
     enable = true;

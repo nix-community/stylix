@@ -74,13 +74,13 @@ let
     home_manager = {
       name = "Home Manager";
       configuration = evalDocs [
-        self.homeModules.stylix
+        self.homeModules.default
         ./hm_compat.nix
       ];
     };
     nixos = {
       name = "NixOS";
-      configuration = evalDocs self.nixosModules.stylix;
+      configuration = evalDocs self.nixosModules.default;
     };
   };
 
