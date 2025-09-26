@@ -42,7 +42,7 @@ with colors;
     background-color: #${base00-hex} !important;
   }
 
-  #urlbar-background {
+  .urlbar-background {
     background-color: #${base02-hex} !important;
   }
 
