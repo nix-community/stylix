@@ -125,7 +125,7 @@ mkTarget {
             in
             {
               "base16-nvim" = {
-                colorschemes.enable = true;
+                colorschemes.base16.enable = true;
                 inherit highlightOverride;
               };
               "mini.base16" = {
