@@ -4,6 +4,7 @@
 
 - [Installation](installation.md)
 - [Configuration](configuration.md)
+- [Theme Modality](theme-modality.md)
 - [Tips and tricks](tricks.md)
 
 # Contributing
