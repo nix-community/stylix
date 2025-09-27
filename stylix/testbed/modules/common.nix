@@ -3,7 +3,7 @@ let
   user = lib.importTOML ../user.toml;
 in
 {
-  users.users.${user.username} = builtins.removeAttrs user [ "username" ];
+  users.users.${user.username} = removeAttrs user [ "username" ];
 
   security.sudo.wheelNeedsPassword = false;
 
