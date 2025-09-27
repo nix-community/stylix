@@ -32,7 +32,7 @@ mkTarget {
       lib.mkIf
         (cfg.themeBody != (import ./common/theme-header.nix) || cfg.extraCss != "")
         (
-          lib.optionalAttrs (builtins.hasAttr "nixcord" options.programs) (
+          lib.optionalAttrs (options.programs ? nixcord) (
             lib.mkMerge [
               (lib.mkIf nixcord.discord.enable (
                 lib.mkMerge [
