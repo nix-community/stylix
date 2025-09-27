@@ -42,7 +42,7 @@ with colors;
     background-color: #${base00-hex} !important;
   }
 
-  #urlbar-background {
+  .urlbar-background {
     background-color: #${base02-hex} !important;
   }
 
@@ -53,6 +53,11 @@ with colors;
 
   .urlbarView-url {
     color: #${base0D-hex} !important;
+  }
+
+  #urlbar-input::selection {
+    background-color: #${base0D-hex} !important;
+    color: #000000 !important;
   }
 
   #zenEditBookmarkPanelFaviconContainer {
