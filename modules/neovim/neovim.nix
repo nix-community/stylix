@@ -28,7 +28,7 @@
         programs.neovim =
           let
             cfg = config.stylix.targets.neovim;
-            transparencyCfg = builtins.toString (
+            transparencyCfg = toString (
               lib.optional cfg.transparentBackground.main ''
                 vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
                 vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })

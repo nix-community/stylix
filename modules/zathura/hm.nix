@@ -15,7 +15,7 @@ mkTarget {
             ''rgb(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"})'';
           rgba =
             color: alpha:
-            ''rgba(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"}, ${builtins.toString alpha})'';
+            ''rgba(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"}, ${toString alpha})'';
         in
         {
           # Taken from here:

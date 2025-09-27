@@ -88,8 +88,8 @@
                     "${fonts.monospace.name}",
                     "${fonts.emoji.name}",
                 },
-                font_size = ${builtins.toString fonts.sizes.terminal},
-                window_background_opacity = ${builtins.toString config.stylix.opacity.terminal},
+                font_size = ${toString fonts.sizes.terminal},
+                window_background_opacity = ${toString config.stylix.opacity.terminal},
                 window_frame = {
                     active_titlebar_bg = "${base03}",
                     active_titlebar_fg = "${base05}",
@@ -134,7 +134,7 @@
                 },
                 command_palette_bg_color = "${base01}",
                 command_palette_fg_color = "${base05}",
-                command_palette_font_size = ${builtins.toString fonts.sizes.popups},
+                command_palette_font_size = ${toString fonts.sizes.popups},
             }
             for key, value in pairs(stylix_base_config) do
                 config[key] = value

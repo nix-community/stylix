@@ -29,7 +29,7 @@ builtins.concatLists (
             name: ''while evaluating the module argument `${name}' in "${toString file}":'';
           extraArgs = lib.pipe module [
             builtins.functionArgs
-            (lib.flip builtins.removeAttrs [ "mkTarget" ])
+            (lib.flip removeAttrs [ "mkTarget" ])
             (builtins.mapAttrs (
               name: _:
               builtins.addErrorContext (context name) (
