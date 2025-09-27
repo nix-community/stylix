@@ -8,29 +8,6 @@ mkTarget {
       { colors }:
       {
         programs.hyprpanel.settings.theme = with colors; {
-          osd = {
-            label = "#${base0E}";
-            icon = "#${base00}";
-            bar_overflow_color = "#${base08}";
-            bar_empty_color = "#${base02}";
-            bar_color = "#${base0E}";
-            icon_container = "#${base0E}";
-            bar_container = "#${base00}";
-          };
-
-          notification = {
-            close_button.label = "#${base00}";
-            close_button.background = "#${base0C}";
-            labelicon = "#${base0D}";
-            text = "#${base04}";
-            time = "#${base03}";
-            border = "#${base02}";
-            label = "#${base0D}";
-            actions.text = "#${base00}";
-            actions.background = "#${base0D}";
-            background = "#${base00}";
-          };
-
           bar = {
             menus = {
               menu = {
@@ -671,32 +648,30 @@ mkTarget {
                 occupied = "#${base08}";
               };
             };
+          };
 
-            programs.hyprpanel = {
-              notification = {
-                actions.background = "#${base0D}";
-                actions.text = "#${base01}";
-                background = "#${base01}";
-                border = "#${base01}";
-                close_button.background = "#${base0D}";
-                close_button.label = "#${base00}";
-                label = "#${base0D}";
-                labelicon = "#${base0D}";
-                text = "#${base06}";
-                time = "#${base04}";
-              };
+          notification = {
+            actions.background = "#${base0D}";
+            actions.text = "#${base01}";
+            background = "#${base01}";
+            border = "#${base01}";
+            close_button.background = "#${base0D}";
+            close_button.label = "#${base00}";
+            label = "#${base0D}";
+            labelicon = "#${base0D}";
+            text = "#${base06}";
+            time = "#${base04}";
+          };
 
-              osd = {
-                icon = "#${base00}";
-                icon_container = "#${base0D}";
-                label = "#${base0D}";
-                theme = {
-                  color = "#${base0D}";
-                  container = "#${base00}";
-                  empty_color = "#${base01}";
-                  overflow_color = "#${base08}";
-                };
-              };
+          osd = {
+            icon = "#${base00}";
+            icon_container = "#${base0D}";
+            label = "#${base0D}";
+            theme = {
+              color = "#${base0D}";
+              container = "#${base00}";
+              empty_color = "#${base01}";
+              overflow_color = "#${base08}";
             };
           };
         };
