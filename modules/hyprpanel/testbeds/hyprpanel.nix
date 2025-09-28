@@ -1,12 +1,16 @@
-{ lib, ... }:
 {
-  stylix.testbed.ui = {
-    graphicalEnvironment = "hyprland";
-  };
+  lib,
+  pkgs,
+  ...
+}:
+{
+  stylix.testbed.ui.graphicalEnvironment = "hyprland";
 
   home-manager.sharedModules = lib.singleton {
-    programs.hyprpanel = {
-      enable = true;
+    stylix.fonts.monospace = {
+      name = "CaskaydiaCove NF";
+      package = pkgs.nerd-fonts.caskaydia-cove;
     };
+    programs.hyprpanel.enable = true;
   };
 }

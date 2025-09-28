@@ -1,25 +1,16 @@
-{
-  mkTarget,
-  pkgs,
-  ...
-}:
+{ mkTarget, ... }:
 mkTarget {
   name = "hyprpanel";
   humanName = "HyprPanel";
 
   configElements = [
     (
-      { colors }:
+      { colors, fonts }:
       {
-        home.packages = with pkgs; [
-          nerd-fonts.caskaydia-cove
-        ];
-
         programs.hyprpanel.settings.theme = with colors.withHashtag; {
-
-          font = {
-            name = "CaskaydiaCove NF";
-            size = "16px";
+          fonts = {
+            inherit (fonts.monospace) name;
+            size = fonts.sizes.desktop;
           };
 
           bar = {
@@ -467,7 +458,6 @@ mkTarget {
             background = base00;
             border.color = base0D;
             buttons = {
-              style = "default";
               background = base00;
               borderColor = base0D;
               hover = base02;
