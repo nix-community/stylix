@@ -24,7 +24,7 @@ mkTarget {
           in
           mkLiteral "rgba ( ${r}, ${g}, ${b}, ${opacity'} % )";
         mkRgb = mkRgba "100";
-        rofiOpacity = builtins.toString (builtins.ceil (opacity.popups * 100));
+        rofiOpacity = toString (builtins.ceil (opacity.popups * 100));
       in
       {
         programs.rofi.theme = {

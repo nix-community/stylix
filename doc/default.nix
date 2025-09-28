@@ -314,7 +314,7 @@ let
     lib.pipe platforms.${platform}.configuration.options [
 
       # Drop options that come from the module system
-      (lib.flip builtins.removeAttrs [ "_module" ])
+      (lib.flip removeAttrs [ "_module" ])
 
       # Get a list of all options, flattening sub-options recursively.
       # This also normalises things like `defaultText` and `visible="shallow"`.

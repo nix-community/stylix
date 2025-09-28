@@ -31,7 +31,7 @@ mkTarget {
         programs.bemenu.settings = {
           # Font name
           fn = "${fonts.sansSerif.name} ${
-            lib.optionalString (cfg.fontSize != null) (builtins.toString cfg.fontSize)
+            lib.optionalString (cfg.fontSize != null) (toString cfg.fontSize)
           }";
         };
       }
