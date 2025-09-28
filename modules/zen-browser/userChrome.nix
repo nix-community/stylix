@@ -57,7 +57,7 @@ with colors;
 
   #urlbar-input::selection {
     background-color: #${base0D-hex} !important;
-    color: #000000 !important;
+    color: #${base00-hex} !important;
   }
 
   #zenEditBookmarkPanelFaviconContainer {
