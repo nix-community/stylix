@@ -1,7 +1,6 @@
 {
   mkTarget,
   lib,
-  config,
   ...
 }:
 mkTarget {

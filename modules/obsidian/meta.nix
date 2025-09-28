@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, ... }:
 {
   name = "Obsidian";
   homepage = "https://obsidian.md";
