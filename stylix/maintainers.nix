@@ -25,12 +25,6 @@
     github = "gideonwolfe";
     githubId = 32942052;
   };
-  khas-amir = {
-    email = "dlordproudd@gmail.com";
-    name = "Khasbolatov Amirkhan";
-    github = "khas-amir";
-    githubId = 11248328;
-  };
   lomenzel = {
     name = "Leonard-Orlando Menzel";
     email = "leonard.menzel@tutanota.com";
