@@ -42,6 +42,12 @@
       { fingerprint = "36BC 916D DD4E B1EE EE82  4BBF DC95 900F 6DA7 9992"; }
     ];
   };
+  michaelgoldenn = {
+    email = "Michael.Golden0278@gmail.com";
+    name = "Michael Golden";
+    github = "michaelgoldenn";
+    githubId = 95949544;
+  };
   osipog = {
     email = "osibluber@protonmail.com";
     name = "Osi Bluber";

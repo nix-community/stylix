@@ -6,40 +6,32 @@
 }:
 mkTarget {
   name = "obsidian";
+  humanName = "Obsidian";
 
-  extraOptions = {
-    vaultNames = lib.mkOption {
-      description = "The obsidian vault names to apply styling on.";
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-    };
+  extraOptions.vaultNames = lib.mkOption {
+    description = "The obsidian vault names to apply styling on.";
+    type = lib.types.listOf lib.types.str;
+    default = [ ];
   };
 
-  humanName = "Obsidian";
   configElements = [
-    (
-      { cfg }:
-      {
-        warnings =
-          lib.optional (config.programs.obsidian.enable && cfg.vaultNames == [ ])
-            ''stylix: obsidian: `config.stylix.targets.obsidian.vaultNames` is not set. Declare vault names with 'config.stylix.targets.obsidian.vaultnames = [ "<VAULT_NAME>" ];'.'';
-      }
-    )
     (
       { cfg, fonts }:
       {
-        programs.obsidian.defaultSettings.appearance = {
-          "interfaceFontFamily" = fonts.sansSerif.name;
-          "monospaceFontFamily" = fonts.monospace.name;
-          "baseFontSize" = fonts.sizes.applications;
-        };
-        programs.obsidian.vaults = lib.genAttrs cfg.vaultNames (_: {
-          settings.appearance = {
+        programs.obsidian = {
+          defaultSettings.appearance = {
             "interfaceFontFamily" = fonts.sansSerif.name;
             "monospaceFontFamily" = fonts.monospace.name;
             "baseFontSize" = fonts.sizes.applications;
           };
-        });
+          vaults = lib.genAttrs cfg.vaultNames (_: {
+            settings.appearance = {
+              "interfaceFontFamily" = fonts.sansSerif.name;
+              "monospaceFontFamily" = fonts.monospace.name;
+              "baseFontSize" = fonts.sizes.applications;
+            };
+          });
+        };
       }
     )
     (
