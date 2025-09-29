@@ -2,5 +2,8 @@
 {
   name = "Obsidian";
   homepage = "https://obsidian.md";
-  maintainers = [ lib.maintainers.michaelgoldenn ];
+  maintainers = with lib.maintainers; [
+    michaelgoldenn
+    TheColorman
+  ];
 }
