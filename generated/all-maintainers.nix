@@ -141,6 +141,12 @@
     ];
     name = "Mateus Auler";
   };
+  michaelgoldenn = {
+    email = "Michael.Golden0278@gmail.com";
+    github = "michaelgoldenn";
+    githubId = 95949544;
+    name = "Michael Golden";
+  };
   mightyiam = {
     email = "mightyiampresence@gmail.com";
     github = "mightyiam";

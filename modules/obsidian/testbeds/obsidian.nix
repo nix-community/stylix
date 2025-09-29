@@ -17,13 +17,12 @@ in
   home-manager.sharedModules = lib.singleton {
     programs.obsidian = {
       enable = true;
-      vaults = {
-        test = {
-          enable = true;
-          target = "obsidian-vault";
-        };
+      vaults.stylix = {
+        enable = true;
+        target = "stylix-vault";
       };
       inherit package;
     };
+    stylix.targets.obsidian.vaultNames = [ "stylix" ];
   };
 }
