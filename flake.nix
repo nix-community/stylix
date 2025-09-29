@@ -13,7 +13,16 @@
 
     # keep-sorted start block=yes newline_separated=yes
     base16-fish = {
-      url = "github:tomyun/base16-fish";
+      # Lock the base16-fish input to a custom patch [2] ("Make autosuggestion
+      # and comment base03"), since it is currently impossible to apply patches
+      # to flake inputs [1] ("Support flake references to patches").
+      #
+      # Once this single-patch approach no longer scales, the repository should
+      # be properly forked, if [2] has still not been merged.
+      #
+      # [1]: https://github.com/NixOS/nix/issues/3920
+      # [2]: https://github.com/tomyun/base16-fish/pull/12
+      url = "github:tomyun/base16-fish/23ae20a0093dca0d7b39d76ba2401af0ccf9c561";
       flake = false;
     };
 
