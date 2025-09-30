@@ -14,15 +14,16 @@ in
     inherit package;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.obsidian = {
-      enable = true;
-      vaults.stylix = {
+  home-manager.sharedModules =
+    let
+      vault = "stylix";
+    in
+    lib.singleton {
+      programs.obsidian = {
         enable = true;
-        target = "stylix-vault";
+        vaults.${vault}.enable = true;
+        inherit package;
       };
-      inherit package;
+      stylix.targets.obsidian.vaultNames = [ vault ];
     };
-    stylix.targets.obsidian.vaultNames = [ "stylix" ];
-  };
 }
