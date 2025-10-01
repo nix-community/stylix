@@ -61,7 +61,8 @@ mkTarget {
 
                   --color-accent: ${base0E};
                   --color-accent-1: ${base0E};
-              }'';
+              }
+            '';
           }
         ];
         programs.obsidian.vaults = lib.genAttrs cfg.vaultNames (_: {
@@ -86,7 +87,8 @@ mkTarget {
 
                     --color-accent: ${base0E};
                     --color-accent-1: ${base0E};
-                }'';
+                }
+              '';
             }
           ];
         });
