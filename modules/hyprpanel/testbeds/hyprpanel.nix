@@ -8,8 +8,8 @@
 
   home-manager.sharedModules = lib.singleton {
     stylix.fonts.monospace = {
-      name = "CaskaydiaCove NF";
-      package = pkgs.nerd-fonts.caskaydia-cove;
+      name = "FiraMono NF";
+      package = pkgs.nerd-fonts.fira-mono;
     };
     programs.hyprpanel.enable = true;
   };
