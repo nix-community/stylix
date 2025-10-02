@@ -27,7 +27,7 @@ jobs:
           - name: x86_64-linux
             runs-on: ubuntu-24.04
           - name: x86_64-darwin
-            runs-on: macos-15
+            runs-on: macos-15-intel
 
     steps:
       - uses: actions/checkout@v5
