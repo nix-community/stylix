@@ -5,10 +5,10 @@ mkTarget {
 
   configElements = [
     (
-      { polarity }:
+      { colorGeneration }:
       {
         programs.kubecolor.settings.preset =
-          if polarity == "either" then "" else polarity;
+          if colorGeneration.polarity == "either" then "" else colorGeneration.polarity;
       }
     )
     (

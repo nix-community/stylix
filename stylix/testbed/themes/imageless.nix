@@ -6,7 +6,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${tinted-schemes}/base16/catppuccin-macchiato.yaml";
-    polarity = "dark";
+    colorGeneration.polarity = "dark";
     cursor = {
       name = "Vanilla-DMZ";
       package = pkgs.vanilla-dmz;
