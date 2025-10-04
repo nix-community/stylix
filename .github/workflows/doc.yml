@@ -38,7 +38,7 @@ jobs:
 
       - run: nix build .#doc
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: result
 
