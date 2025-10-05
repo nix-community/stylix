@@ -13,7 +13,6 @@ mkTarget {
         };
       }
     )
-
     (
       { colors }:
       {
