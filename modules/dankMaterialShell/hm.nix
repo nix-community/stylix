@@ -51,10 +51,16 @@ mkTarget {
             info = base0C;
           };
         };
+
+        configDir = ".config/DankMaterialShell";
+        colorThemePath = "${configDir}/stylix-colors.json";
       in
       {
-        home.file.".config/DankMaterialShell/stylix-colors.json".text =
-          builtins.toJSON colorTheme;
+        home.file."${colorThemePath}".text = builtins.toJSON colorTheme;
+        home.file."${configDir}/settings.json".text = builtins.toJSON {
+          currentThemeName = "custom";
+          currentThemeFile = colorThemePath;
+        };
       }
     )
   ];
