@@ -31,7 +31,7 @@ mkTarget {
                 border-color = base03;
                 text-color = base05;
               };
-              "urgency=high" = {
+              "urgency=critical" = {
                 background-color = "${base00}${makoOpacity}";
                 border-color = base08;
                 text-color = base05;
