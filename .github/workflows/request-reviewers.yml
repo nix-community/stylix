@@ -10,7 +10,9 @@ on:
 jobs:
   request-reviewers:
     runs-on: ubuntu-24.04
-    if: vars.APP_ID
+    if: |
+      vars.APP_ID &&
+        !startsWith(github.event.pull_request.head.ref, 'backport-')
     steps:
       - uses: actions/checkout@v5
         with:
