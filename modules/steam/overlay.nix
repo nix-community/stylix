@@ -3,11 +3,7 @@
   overlay =
     _final: prev:
     lib.optionalAttrs
-      (
-        config.stylix.enable
-        && config.stylix.targets ? steam
-        && config.stylix.targets.steam.enable
-      )
+      (config.stylix.enable && config.stylix.targets.steam.enable or false)
       {
         adwsteamgtk = prev.adwsteamgtk.overrideAttrs (oldAttrs: {
           patches = (oldAttrs.patches or [ ]) ++ [
