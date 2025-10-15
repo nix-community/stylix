@@ -1,9 +1,17 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  stylix.testbed.ui.application = {
-    name = "steam";
-    inherit (config.programs.steam) package;
+  stylix.testbed = {
+    enable = pkgs.stdenv.hostPlatform == "x86_64-linux";
+    ui.application = {
+      name = "steam";
+      inherit (config.programs.steam) package;
+    };
   };
 
   programs.steam.enable = true;
