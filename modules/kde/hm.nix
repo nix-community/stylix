@@ -320,7 +320,7 @@ let
       mergeWithImage
         ''
           get_exe() {
-            for directory in /run/current-system/sw/bin /usr/bin /bin; do
+            for directory in /run/current-system/sw/bin /etc/profiles/per-user/$USER/bin /usr/bin /bin; do
               if [[ -f "$directory/$1" ]]; then
                 printf '%s\n' "$directory/$1"
                 return 0
