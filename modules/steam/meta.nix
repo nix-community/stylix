@@ -5,6 +5,8 @@
   maintainers = [ lib.maintainers.bricked ];
   description = ''
     > [!IMPORTANT]
-    > You need to run the AdwSteamGTK application to apply this theme.
+    >
+    > This target will have no effect unless the AdwSteamGTK application is run
+    > to apply this theme.
   '';
 }
