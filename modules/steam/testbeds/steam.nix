@@ -7,7 +7,7 @@
 
 {
   stylix.testbed = {
-    enable = pkgs.stdenv.hostPlatform == "x86_64-linux";
+    enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
     ui.application = {
       name = "steam";
       inherit (config.programs.steam) package;
