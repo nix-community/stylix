@@ -63,6 +63,12 @@
     githubId = 150545;
     name = "Igor Rzegocki";
   };
+  arunoruto = {
+    email = "mirza.arnaut45@gmail.com";
+    github = "arunoruto";
+    githubId = 21687187;
+    name = "Mirza Arnaut";
+  };
   awwpotato = {
     email = "awwpotato@voidq.com";
     github = "awwpotato";
