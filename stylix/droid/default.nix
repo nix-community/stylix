@@ -13,6 +13,7 @@ in
     ../palette.nix
     ../pixel.nix
     ../target.nix
+    ../theme.nix
     ../overlays.nix
     ../ordering.nix
   ]
