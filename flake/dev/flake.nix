@@ -130,6 +130,25 @@
     dev-systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        dgop.follows = "dgop";
+        dms-cli.follows = "dms-cli";
+      };
+    };
+
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
+    dms-cli = {
+      url = "github:AvengeMedia/danklinux";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     flake-compat.url = "github:edolstra/flake-compat";
 
     git-hooks = {
