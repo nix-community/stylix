@@ -9,9 +9,8 @@ mkTarget {
   name = "dankMaterialShell";
   humanName = "DankMaterialShell";
 
-  configElements = lib.optionals (options.programs ? dankMaterialShell) [
-    (
-      { colors }:
+  configElements = lib.optionals (options.programs ? dankMaterialShell) (
+    { colors }:
       let
         colorTheme = {
           dark = with colors.withHashtag; {
