@@ -111,6 +111,10 @@ mkTarget {
               tooltip {
                   border-color: @base0D;
               }
+
+              tooltip label {
+                  color: @base05;
+              }
             ''
             + (builtins.readFile ./base.css)
             + (

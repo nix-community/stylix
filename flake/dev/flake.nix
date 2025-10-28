@@ -23,7 +23,7 @@
   #             dev-systems.url = "github:nix-systems/default";
   #
   #             # keep-sorted start block=yes newline_separated=yes
-  #             flake-compat.url = "github:edolstra/flake-compat";
+  #             flake-compat.url = "github:NixOS/flake-compat";
   #
   #             git-hooks = {
   #               url = "github:cachix/git-hooks.nix";
@@ -79,7 +79,7 @@
   #             };
   #
   #             # keep-sorted start block=yes newline_separated=yes
-  #             flake-compat.url = "github:edolstra/flake-compat";
+  #             flake-compat.url = "github:NixOS/flake-compat";
   #
   #             git-hooks = {
   #               url = "github:cachix/git-hooks.nix";
@@ -149,7 +149,7 @@
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
-    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat.url = "github:NixOS/flake-compat";
 
     git-hooks = {
       url = "github:cachix/git-hooks.nix";

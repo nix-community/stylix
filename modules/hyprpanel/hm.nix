@@ -5,14 +5,18 @@ mkTarget {
 
   configElements = [
     (
-      { colors, fonts }:
+      { fonts }:
+      {
+        programs.hyprpanel.settings.theme.fonts = {
+          inherit (fonts.monospace) name;
+          size = fonts.sizes.desktop;
+        };
+      }
+    )
+    (
+      { colors }:
       {
         programs.hyprpanel.settings.theme = with colors.withHashtag; {
-          fonts = {
-            inherit (fonts.monospace) name;
-            size = fonts.sizes.desktop;
-          };
-
           bar = {
             menus = {
               menu = {
