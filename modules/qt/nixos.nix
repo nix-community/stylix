@@ -28,7 +28,11 @@ in
     lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) {
       stylix.targets.qt.platform =
         if gnome.enable && !(plasma6.enable || lxqt.enable) then
-          "gnome"
+          # Temporarily fall back to the qtct platform theme to avoid the broken
+          # gnome theme [1].
+          #
+          # [1]: https://github.com/nix-community/stylix/issues/1946
+          "qtct"
         else if plasma6.enable && !(gnome.enable || lxqt.enable) then
           "kde"
         else if lxqt.enable && !(gnome.enable || plasma6.enable) then
