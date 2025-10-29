@@ -1,7 +1,15 @@
-{ mkTarget, ... }:
+{ mkTarget, lib, ... }:
 mkTarget {
   name = "swaync";
   humanName = "SwayNC";
+
+  extraOptions = {
+    addCss = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "adds fully functional css (otherwise just adds colors and fonts)";
+    };
+  };
 
   configElements = [
     (
@@ -16,7 +24,7 @@ mkTarget {
       }
     )
     (
-      { colors }:
+      { colors, cfg }:
       {
         services.swaync.style =
           with colors.withHashtag;
@@ -31,7 +39,7 @@ mkTarget {
             @define-color base0C ${base0C}; @define-color base0D ${base0D};
             @define-color base0E ${base0E}; @define-color base0F ${base0F};
           ''
-          + (builtins.readFile ./base.css);
+          + lib.optionalString cfg.addCss (builtins.readFile ./base.css);
       }
     )
   ];
