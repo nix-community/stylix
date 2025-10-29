@@ -62,7 +62,6 @@ mkTarget {
     in
     {
       home.file.${stylixThemePath}.text = builtins.toJSON colorTheme;
-
       programs.dankMaterialShell.default.settings = {
         currentThemeName = "custom";
         customThemeFile = "${config.home.homeDirectory}/${stylixThemePath}";
