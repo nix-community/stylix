@@ -6,16 +6,16 @@ mkTarget {
   configElements =
     { colors }:
     {
-      boot.loader.limine = {
-        extraConfig = with colors; ''
-          term_palette: ${base05};${base08};${base0B};${base0A};${base0D};${base0E};${base0C};${base00}
-          term_palette_bright: ${base00};${base08};${base0B};${base0A};${base0D};${base0E};${base0C};${base05}
-          term_background: ${base00}
-          term_foreground: ${base05}
-          term_background_bright: ${base05}
-          term_foreground_bright: ${base0A}
-        '';
-        style.wallpapers = [ ];
+      boot.loader.limine.style = with colors; {
+        graphicalTerminal = {
+          palette = "${base05};${base08};${base0B};${base0A};${base0D};${base0E};${base0C};${base00}";
+          brightPalette = "${base00};${base08};${base0B};${base0A};${base0D};${base0E};${base0C};${base05}";
+          background = base00;
+          foreground = base05;
+          brightBackground = base05;
+          brightForeground = base0A;
+        };
+        wallpapers = [ ];
       };
     };
 }
