@@ -48,6 +48,10 @@ let
               zen-browser.home-manager.sharedModules = [
                 inputs.zen-browser.homeModules.default
               ];
+
+              dankMaterialShell.home-manager.sharedModules = [
+                inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+              ];
             };
       };
     in
