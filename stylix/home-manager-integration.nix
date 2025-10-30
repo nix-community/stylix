@@ -38,7 +38,7 @@ let
             "stylix"
             "cursor"
           ];
-          condition = _homeConfig: !pkgs.stdenv.hostPlatform.isDarwin;
+          condition = _: !pkgs.stdenv.hostPlatform.isDarwin;
         }
         {
           path = [
@@ -105,6 +105,13 @@ let
             "sizes"
             "terminal"
           ];
+        }
+        {
+          path = [
+            "stylix"
+            "icons"
+          ];
+          condition = _: !pkgs.stdenv.hostPlatform.isDarwin;
         }
         {
           path = [
