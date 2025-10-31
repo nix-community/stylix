@@ -39,5 +39,21 @@ mkTarget {
         ];
       }
     )
+    (
+      { imageScalingMode }:
+      {
+        # Stylix supports more scaling modes than limine supports.
+        boot.loader.limine.style.wallpaperStyle =
+          {
+            "stretch" = "stretched";
+            "fill" = "stretched";
+            "fit" = "stretched";
+            "center" = "centered";
+            "tile" = "tiled";
+            inherit null;
+          }
+          ."${imageScalingMode}";
+      }
+    )
   ];
 }
