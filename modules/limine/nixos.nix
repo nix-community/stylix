@@ -23,6 +23,7 @@ mkTarget {
             brightBackground = base05;
             brightForeground = base0A;
           };
+          backdrop = base00;
         };
       }
     )
