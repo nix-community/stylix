@@ -29,7 +29,6 @@ mkTarget {
     (
       { cfg, image }:
       {
-
         boot.loader.limine.style.wallpapers = lib.mkIf cfg.useWallpaper [
           image
         ];
@@ -48,7 +47,7 @@ mkTarget {
             "tile" = "tiled";
             inherit null;
           }
-          ."${imageScalingMode}";
+          .${imageScalingMode};
       }
     )
   ];
