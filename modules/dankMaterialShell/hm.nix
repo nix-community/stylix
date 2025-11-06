@@ -1,8 +1,8 @@
 {
   mkTarget,
-  config,
   lib,
   options,
+  pkgs,
   ...
 }:
 mkTarget {
@@ -57,14 +57,13 @@ mkTarget {
           info = base0C;
         };
       };
-
-      stylixThemePath = ".config/DankMaterialShell/stylix-colors.json";
     in
     {
-      home.file.${stylixThemePath}.text = builtins.toJSON colorTheme;
       programs.dankMaterialShell.default.settings = {
         currentThemeName = "custom";
-        customThemeFile = "${config.home.homeDirectory}/${stylixThemePath}";
+        customThemeFile = pkgs.writeText "dankMaterialShell-stylix-color-theme.json" (
+          builtins.toJSON colorTheme
+        );
       };
     }
   );
