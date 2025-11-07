@@ -10,7 +10,9 @@ builtins.mapAttrs
         inherit pkgs;
         lib = lib.extend (
           _: prev: {
-            maintainers = lib.attrsets.unionOfDisjoint prev.maintainers (import ./maintainers.nix);
+            maintainers = lib.attrsets.unionOfDisjoint prev.maintainers (
+              import ./maintainers.nix
+            );
           }
         );
       })
