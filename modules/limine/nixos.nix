@@ -5,7 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "Limine";
+  name = "limine";
   humanName = "Limine";
 
   extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
