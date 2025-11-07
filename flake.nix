@@ -33,7 +33,7 @@
 
     base16-vim = {
       # TODO: Unlock this input once [1] ("Seemingly bad parsing of whitespace
-      # in abbriviated lists (affecting stylix's handling of base16-vim)") is
+      # in abbreviated lists (affecting stylix's handling of base16-vim)") is
       # resolved, preventing us from fetching commit [2] ("fix(theme): Remove
       # illegal style attributes").
       #
