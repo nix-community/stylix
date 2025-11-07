@@ -18,6 +18,10 @@ mkTarget {
       {
         programs.hyprpanel.settings.theme = with colors.withHashtag; {
           bar = {
+            launcher = {
+              autoDetectIcon = true;
+            };
+
             menus = {
               menu = {
                 notifications = {
