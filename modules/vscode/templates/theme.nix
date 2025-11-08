@@ -778,7 +778,7 @@ colors: with colors.withHashtag; {
     "terminal.foreground" = base05;
     "terminal.hoverHighlightBackground" = null;
     "terminal.inactiveSelectionBackground" = null;
-    "terminal.initialHintForeground" = null;
+    "terminal.initialHintForeground" = base03;
     "terminal.selectionBackground" = null;
     "terminal.selectionForeground" = null;
     "terminal.tab.activeBorder" = null;
@@ -849,7 +849,7 @@ colors: with colors.withHashtag; {
     "tree.tableColumnsBorder" = null;
     "tree.tableOddRowsBackground" = null;
     "walkThrough.embeddedEditorBackground" = base00;
-    "walkthrough.stepTitle.foreground" = null;
+    "walkthrough.stepTitle.foreground" = base05;
     "welcomePage.background" = base00;
     "welcomePage.progress.background" = base03;
     "welcomePage.progress.foreground" = base0D;
