@@ -153,27 +153,26 @@
         "type": "github"
       }
     },
-    "nur": {
+    "nur-rycee": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1758998580,
-        "narHash": "sha256-VLx0z396gDCGSiowLMFz5XRO/XuNV+4EnDYjdJhHvUk=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "ba8d9c98f5f4630bcb0e815ab456afd90c930728",
-        "type": "github"
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1762604368,
+        "narHash": "sha256-A0K4FQCgkkzh3upMT8ej6dS54yKutizGoQH4D16utSM=",
+        "owner": "~rycee",
+        "repo": "nur-expressions",
+        "rev": "a319bf837526150bd432093791a8cbc57d05c81c",
+        "type": "sourcehut"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
+        "dir": "pkgs/firefox-addons",
+        "owner": "~rycee",
+        "repo": "nur-expressions",
+        "type": "sourcehut"
       }
     },
     "root": {
@@ -186,7 +185,7 @@
         "flake-parts": "flake-parts",
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
+        "nur-rycee": "nur-rycee",
         "systems": "systems",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",

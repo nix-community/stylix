@@ -58,12 +58,9 @@
       flake = false;
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
+    nur-rycee = {
+      url = "sourcehut:~rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     tinted-foot = {
