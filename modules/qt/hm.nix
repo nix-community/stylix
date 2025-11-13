@@ -94,7 +94,7 @@
         ++ (lib.optional (config.qt.style.name != recommendedStyle)
           "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
         )
-        ++ (lib.optional (config.stylix.targets.qt.platform == null && osConfig != null)
+        ++ (lib.optional (config.stylix.targets.qt.platform == null && nixosConfig != null)
           "stylix: qt: When using standalone home-manager, `config.stylix.targets.qt.platform` must be set."
         );
 
