@@ -12,7 +12,20 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
+  extraOptions = {
+    useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
+    extraCss = lib.mkOption {
+      description = ''
+        Extra code added to `programs.regreet.extraCss` option.
+      '';
+      type = lib.types.lines;
+      default = "";
+      example = ''
+        // Remove rounded corners
+        window.background { border-radius: 0; }
+      '';
+    };
+  };
 
   configElements = [
     {
@@ -34,6 +47,23 @@ mkTarget {
         name = "adw-gtk3";
       };
     }
+    (
+      { cfg, colors }:
+      let
+        baseCss = colors {
+          template = ./gtk.css.mustache;
+          extension = ".css";
+        };
+
+        finalCss = pkgs.runCommandLocal "gtk.css" { } ''
+          cat ${baseCss} >>$out
+          echo ${lib.escapeShellArg cfg.extraCss} >>$out
+        '';
+      in
+      {
+        programs.regreet.extraCss = finalCss.outPath;
+      }
+    )
     (
       { polarity }:
       {
@@ -76,6 +106,15 @@ mkTarget {
       {
         programs.regreet.cursorTheme = {
           inherit (cursor) name package;
+        };
+      }
+    )
+    (
+      { polarity, icons }:
+      {
+        programs.regreet.iconTheme = {
+          inherit (icons) package;
+          name = if (polarity == "dark") then icons.dark else icons.light;
         };
       }
     )
