@@ -1,8 +1,8 @@
-inputs:
 {
   lib,
   pkgs,
   config,
+  options,
   ...
 }:
 {
@@ -13,8 +13,15 @@ inputs:
     let
       file = import f;
       attrs =
-        if builtins.typeOf file == "lambda" then
-          file { inherit lib pkgs config; }
+        if builtins.isFunction file then
+          file {
+            inherit
+              lib
+              pkgs
+              config
+              options
+              ;
+          }
         else
           file;
     in
@@ -25,5 +32,5 @@ inputs:
         attrs.overlay
       ];
     }
-  ) (import ./autoload.nix { inherit lib inputs; } "overlay");
+  ) (import ./autoload.nix { inherit lib; } "overlay");
 }

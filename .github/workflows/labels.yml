@@ -9,7 +9,7 @@
 ---
 name: "Label PR"
 
-on:   # yamllint disable-line rule:truthy
+on:
   pull_request_target:
     types: [edited, opened, synchronize, reopened]
 
@@ -21,7 +21,9 @@ jobs:
   labels:
     name: label-pr
     runs-on: ubuntu-24.04
-    if: github.repository_owner == 'nix-community' && !contains(github.event.pull_request.title, '[skip treewide]')   # yamllint disable-line rule:line-length
+    if: >
+      vars.APP_ID &&
+      !contains(github.event.pull_request.title, '[skip treewide]')
     steps:
       - uses: actions/create-github-app-token@v2
         id: app-token
@@ -31,7 +33,7 @@ jobs:
           permission-contents: read
           permission-pull-requests: write
 
-      - uses: actions/labeler@v5.0.0
+      - uses: actions/labeler@v6.0.1
         with:
           repo-token: ${{ steps.app-token.outputs.token }}
           configuration-path: .github/labeler.yml

@@ -13,7 +13,16 @@
 
     # keep-sorted start block=yes newline_separated=yes
     base16-fish = {
-      url = "github:tomyun/base16-fish";
+      # Lock the base16-fish input to a custom patch [2] ("Make autosuggestion
+      # and comment base03"), since it is currently impossible to apply patches
+      # to flake inputs [1] ("Support flake references to patches").
+      #
+      # Once this single-patch approach no longer scales, the repository should
+      # be properly forked, if [2] has still not been merged.
+      #
+      # [1]: https://github.com/NixOS/nix/issues/3920
+      # [2]: https://github.com/tomyun/base16-fish/pull/12
+      url = "github:tomyun/base16-fish/23ae20a0093dca0d7b39d76ba2401af0ccf9c561";
       flake = false;
     };
 
@@ -41,28 +50,12 @@
       flake = false;
     };
 
-    flake-compat.url = "github:edolstra/flake-compat";
-
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     gnome-shell = {
       # TODO: Unlocking the input and pointing to official repository requires
       # updating the patch:
       # https://github.com/nix-community/stylix/pull/224#discussion_r1460339607.
-      url = "github:GNOME/gnome-shell/48.1";
+      url = "github:GNOME/gnome-shell/48.2";
       flake = false;
-    };
-
-    # The 'home-manager' input is used to generate the documentation.
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
@@ -86,14 +79,7 @@
     };
 
     tinted-kitty = {
-      # Lock the tinted-kitty input to prevent upstream breaking changes.
-      #
-      # Considering that Stylix eventually re-implements this input's
-      # functionality [1], it might be easiest to lock this input to avoid
-      # wasted maintenance effort.
-      #
-      # [1]: https://github.com/nix-community/stylix/issues/534
-      url = "github:tinted-theming/tinted-kitty/eb39e141db14baef052893285df9f266df041ff8";
+      url = "github:tinted-theming/tinted-kitty";
       flake = false;
     };
 

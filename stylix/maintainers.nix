@@ -25,6 +25,19 @@
     github = "gideonwolfe";
     githubId = 32942052;
   };
+  khas-amir = {
+    email = "dlordproudd@gmail.com";
+    name = "Amir";
+    github = "khas-amir";
+    githubId = 11248328;
+  };
+  lomenzel = {
+    name = "Leonard-Orlando Menzel";
+    email = "leonard.menzel@tutanota.com";
+    matrix = "@leonard:menzel.lol";
+    github = "lomenzel";
+    githubId = 79226837;
+  };
   make-42 = {
     email = "ontake@ontake.dev";
     name = "Louis Dalibard";
@@ -35,20 +48,17 @@
       { fingerprint = "36BC 916D DD4E B1EE EE82  4BBF DC95 900F 6DA7 9992"; }
     ];
   };
-  nukdokplex = {
-    email = "nukdokplex@nukdokplex.ru";
-    name = "Viktor Titov";
-    github = "nukdokplex";
-    githubId = 25458915;
-    keys = [
-      { fingerprint = "3C97 1C61 0E9E BE35 3259  C1D3 2CA7 0354 EA17 07B9"; }
-    ];
+  michaelgoldenn = {
+    email = "Michael.Golden0278@gmail.com";
+    name = "Michael Golden";
+    github = "michaelgoldenn";
+    githubId = 95949544;
   };
-  repparw = {
-    email = "ubritos@gmail.com";
-    name = "Ulises Britos";
-    github = "repparw";
-    githubId = 45952970;
+  osipog = {
+    email = "osibluber@protonmail.com";
+    name = "Osi Bluber";
+    github = "osipog";
+    githubId = 87434959;
   };
   skoove = {
     email = "zie@sturges.com.au";

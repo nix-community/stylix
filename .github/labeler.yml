@@ -2,53 +2,73 @@
 # This version uses `sync-labels: false`, meaning that a non-match will NOT
 # remove the label
 ---
-"backport release-24.11":
+# keep-sorted start newline_separated=yes
+"backport: release-25.05":
   - changed-files:
-      - any-glob-to-any-file:
-          - ".github/workflows/*"
+      - any-glob-to-any-file: ".github/workflows/*"
 
-dependencies:
+"topic: ci":
   - changed-files:
-      - any-glob-to-any-file: "flake.lock"
+      - any-glob-to-any-file: ".github/**"
 
-documentation:
-  - changed-files:
-      - any-glob-to-any-file:
-          - "docs/**"
-          - "README.md"
-
-nixos:
-  - changed-files:
-      - any-glob-to-any-file:
-          - "stylix/nixos/*"
-          - "modules/*/nixos.nix"
-
-home-manager:
-  - changed-files:
-      - any-glob-to-any-file:
-          - "stylix/hm/**"
-          - "modules/*/hm.nix"
-
-darwin:
+"topic: darwin":
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/darwin/**"
           - "modules/*/darwin.nix"
 
-droid:
+"topic: dependencies":
+  - changed-files:
+      - any-glob-to-any-file: "flake.lock"
+
+"topic: documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "doc/**"
+          - "README.md"
+
+"topic: droid":
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/droid/**"
           - "modules/*/droid.nix"
 
-overlay:
+"topic: flake":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "flake.lock"
+          - "flake.nix"
+          - "flake/**"
+
+"topic: home-manager":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "stylix/hm/**"
+          - "modules/*/hm.nix"
+
+"topic: modules":
+  - changed-files:
+      - any-glob-to-any-file: "modules/**"
+
+"topic: nixos":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "stylix/nixos/*"
+          - "modules/*/nixos.nix"
+
+"topic: overlay":
   - changed-files:
       - any-glob-to-any-file:
           - "stylix/overlays.nix"
           - "modules/*/overlay.nix"
 
-testbed:
+"topic: stylix":
+  - changed-files:
+      - any-glob-to-any-file: "stylix/**"
+
+"topic: testbed":
   - changed-files:
       - any-glob-to-any-file:
-          - "stylix/testbed.nix"
-          - "modules/testbed/**"
+          - "stylix/testbed/**"
+          - "modules/*/testbeds/**"
+# keep-sorted end

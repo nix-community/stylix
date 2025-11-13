@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 let
   mkFont =
     font:
@@ -24,7 +23,5 @@ let
   terminalFont = mkFont config.stylix.fonts.monospace;
 in
 {
-  imports = [ ../fonts.nix ];
-
   config.terminal.font = lib.mkIf config.stylix.enable terminalFont;
 }

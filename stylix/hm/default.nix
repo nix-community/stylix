@@ -1,33 +1,29 @@
-inputs:
 {
   lib,
   config,
   ...
 }:
-
-# Imported modules which define new options must use an absolute path based
-# on ${inputs.self}, otherwise those options will not appear in the generated
-# documentation.
-
 let
-  autoload = import ../autoload.nix { inherit lib inputs; } "hm";
+  autoload = import ../autoload.nix { inherit lib; } "hm";
 in
 {
   imports = [
-    "${inputs.self}/stylix/cursor.nix"
-    "${inputs.self}/stylix/fonts.nix"
-    "${inputs.self}/stylix/hm/cursor.nix"
-    "${inputs.self}/stylix/hm/fonts.nix"
-    "${inputs.self}/stylix/hm/icon.nix"
-    "${inputs.self}/stylix/hm/palette.nix"
-    "${inputs.self}/stylix/icon.nix"
-    "${inputs.self}/stylix/opacity.nix"
-    "${inputs.self}/stylix/palette.nix"
-    "${inputs.self}/stylix/pixel.nix"
-    "${inputs.self}/stylix/target.nix"
-    "${inputs.self}/stylix/release.nix"
-    (lib.modules.importApply "${inputs.self}/stylix/overlays.nix" inputs)
-  ] ++ autoload;
+    ./cursor.nix
+    ./icons.nix
+    ./palette.nix
+    ../colors.nix
+    ../cursor.nix
+    ../fonts.nix
+    ../icons.nix
+    ../opacity.nix
+    ../palette.nix
+    ../pixel.nix
+    ../target.nix
+    ../release.nix
+    ../overlays.nix
+    ../ordering.nix
+  ]
+  ++ autoload;
   config.warnings =
     lib.mkIf
       (

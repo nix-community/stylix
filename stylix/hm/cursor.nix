@@ -4,10 +4,8 @@
   pkgs,
   ...
 }:
-
 let
   cfg = config.stylix.cursor;
-
 in
 {
   config =
@@ -19,7 +17,8 @@ in
       )
       {
         home.pointerCursor = {
-          inherit (cfg) name package size;
+          inherit (cfg) name package;
+          size = builtins.floor (cfg.size + 0.5);
           x11.enable = true;
           gtk.enable = true;
         };

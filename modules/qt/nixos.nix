@@ -1,22 +1,14 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-
+{ lib, config, ... }:
 let
-
   recommendedStyle = {
     gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
     kde = "breeze";
     qtct = "kvantum";
   };
-
 in
 {
   options.stylix.targets.qt = {
-    enable = config.lib.stylix.mkEnableTarget "QT" pkgs.stdenv.hostPlatform.isLinux;
+    enable = config.lib.stylix.mkEnableTarget "QT" true;
     platform = lib.mkOption {
       description = ''
         Selects the platform theme to use for Qt applications.
@@ -30,18 +22,16 @@ in
 
   config =
     let
-      inherit (config.services.xserver.desktopManager) gnome plasma5 lxqt;
-      inherit (config.services.desktopManager) plasma6;
+      inherit (config.services.xserver.desktopManager) lxqt;
+      inherit (config.services.desktopManager) gnome plasma6;
     in
     lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) {
       stylix.targets.qt.platform =
-        if gnome.enable && !(plasma5.enable || plasma6.enable || lxqt.enable) then
+        if gnome.enable && !(plasma6.enable || lxqt.enable) then
           "gnome"
-        else if plasma5.enable && !(gnome.enable || plasma6.enable || lxqt.enable) then
+        else if plasma6.enable && !(gnome.enable || lxqt.enable) then
           "kde"
-        else if plasma6.enable && !(gnome.enable || plasma5.enable || lxqt.enable) then
-          "kde6"
-        else if lxqt.enable && !(gnome.enable || plasma5.enable || plasma6.enable) then
+        else if lxqt.enable && !(gnome.enable || plasma6.enable) then
           "lxqt"
         else if !plasma6.enable then
           "qtct"
