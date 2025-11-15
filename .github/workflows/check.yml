@@ -53,4 +53,4 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         continue-on-error: true
 
-      - run: nix develop --command stylix-check --no-nom
+      - run: nix flake check
