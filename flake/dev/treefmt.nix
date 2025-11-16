@@ -9,6 +9,7 @@
       # keep-sorted start block=yes newline_separated=no
       biome = {
         enable = true;
+        validate.enable = false;
         settings.formatter = {
           indentStyle = "space";
           indentWidth = 2;
