@@ -63,10 +63,10 @@ mkTarget {
       }
     )
     (
-      { polarity }:
+      { colorGeneration }:
       {
         programs.regreet.settings.GTK.application_prefer_dark_theme =
-          polarity == "dark";
+          colorGeneration.polarity == "dark";
       }
     )
     (
@@ -108,11 +108,11 @@ mkTarget {
       }
     )
     (
-      { polarity, icons }:
+      { colorGeneration, icons }:
       {
         programs.regreet.iconTheme = {
           inherit (icons) package;
-          name = if (polarity == "dark") then icons.dark else icons.light;
+          name = if (colorGeneration.polarity == "dark") then icons.dark else icons.light;
         };
       }
     )
