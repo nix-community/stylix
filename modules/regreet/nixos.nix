@@ -20,10 +20,7 @@ mkTarget {
       '';
       type = lib.types.lines;
       default = "";
-      example = ''
-        // Remove rounded corners
-        window.background { border-radius: 0; }
-      '';
+      example = "window.background { border-radius: 0; }";
     };
   };
 
