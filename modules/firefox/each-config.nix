@@ -43,6 +43,13 @@ mkTarget {
             "font.name.monospace.x-western" = fonts.monospace.name;
             "font.name.sans-serif.x-western" = fonts.sansSerif.name;
             "font.name.serif.x-western" = fonts.serif.name;
+
+            # Convert default font size of 16px to 13px for monospace as 16px
+            # and 13px are the default sizes for Firefox fonts. Defaults from
+            # https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use
+            "font.size.monospace.x-western" =
+              fonts.sizes.applications * 4.0 / 3.0 * 13.0 / 16.0;
+            "font.size.variable.x-western" = fonts.sizes.applications * 4.0 / 3.0;
           };
         });
       }
@@ -93,9 +100,7 @@ mkTarget {
           b = colors."${color}-rgb-b";
         };
         inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (inputs.nur.legacyPackages.${system}.repos.rycee)
-          firefox-addons
-          ;
+        inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
       in
       {
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (
