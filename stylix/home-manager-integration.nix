@@ -2,7 +2,6 @@
   lib,
   config,
   options,
-  pkgs,
   ...
 }:
 let
@@ -14,8 +13,10 @@ let
           condition ? lib.const true,
         }:
         { config, osConfig, ... }:
-        lib.mkIf (condition config) (
-          lib.setAttrByPath path (lib.mkDefault (lib.getAttrFromPath path osConfig))
+        lib.optionalAttrs (lib.hasAttrByPath path osConfig) (
+          lib.mkIf (condition config) (
+            lib.setAttrByPath path (lib.mkDefault (lib.getAttrFromPath path osConfig))
+          )
         )
       )
       [
@@ -38,7 +39,6 @@ let
             "stylix"
             "cursor"
           ];
-          condition = _homeConfig: !pkgs.stdenv.hostPlatform.isDarwin;
         }
         {
           path = [
@@ -111,7 +111,6 @@ let
             "stylix"
             "icons"
           ];
-          condition = _homeConfig: !pkgs.stdenv.hostPlatform.isDarwin;
         }
         {
           path = [
