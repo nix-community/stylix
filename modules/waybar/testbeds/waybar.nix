@@ -14,9 +14,7 @@
           "hyprland/submap"
           "custom/media"
         ];
-        modules-center = [
-          "hyprland/window"
-        ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "mpd"
           "idle_inhibitor"

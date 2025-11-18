@@ -29,12 +29,14 @@ in
         )
       )
       {
-        # As Stylix is controlling the wallpaper, there is no need for this
+        # If Stylix is controlling the wallpaper, there is no need for this
         # pack of default wallpapers to be installed.
         # If you want to use one, you can set stylix.image to something like
         # "${pkgs.gnome-backgrounds}/path/to/your/preferred/background"
         # which will then download the pack regardless of its exclusion below.
-        environment.gnome.excludePackages = [ pkgs.gnome-backgrounds ];
+        environment.gnome.excludePackages = lib.mkIf (config.stylix.image != null) [
+          pkgs.gnome-backgrounds
+        ];
 
         nixpkgs.overlays = [
           (_: super: {
@@ -46,9 +48,7 @@ in
                 cp ${theme}/share/gnome-shell/gnome-shell-theme.gresource \
                   $out/share/gnome-shell/gnome-shell-theme.gresource
               '';
-              patches = (oldAttrs.patches or [ ]) ++ [
-                ./shell_remove_dark_mode.patch
-              ];
+              patches = (oldAttrs.patches or [ ]) ++ [ ./shell_remove_dark_mode.patch ];
             });
           })
         ];
@@ -56,14 +56,9 @@ in
         # Cursor and icon settings are usually applied via Home Manager,
         # but the login screen uses a separate database.
         services.displayManager.environment.XDG_DATA_DIRS = lib.mkIf (iconCfg != null) (
-          (lib.makeSearchPath "share" [
-            iconCfg.package
-          ])
-          + ":"
+          (lib.makeSearchPath "share" [ iconCfg.package ]) + ":"
         );
-        environment.systemPackages = lib.mkIf (cursorCfg != null) [
-          cursorCfg.package
-        ];
+        environment.systemPackages = lib.mkIf (cursorCfg != null) [ cursorCfg.package ];
         programs.dconf.profiles.gdm.databases = lib.mkMerge [
           (lib.mkIf (cursorCfg != null) [
             {
@@ -80,12 +75,7 @@ in
               settings."org/gnome/desktop/interface" = {
                 icon-theme = builtins.head (
                   lib.filter (x: null != x) [
-                    (
-                      {
-                        inherit (iconCfg) dark light;
-                      }
-                      ."${polarity}" or null
-                    )
+                    ({ inherit (iconCfg) dark light; }."${polarity}" or null)
                     iconCfg.dark
                     iconCfg.light
                   ]

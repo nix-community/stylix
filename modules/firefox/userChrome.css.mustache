@@ -1,5 +1,3 @@
-@import "firefox-gnome-theme/userChrome.css";
-
 /* This is strongly inspired by ../gtk/gtk.mustache. */
 :root {
   /* Palette */
@@ -49,8 +47,21 @@
   --gnome-palette-dark-4: #{{base05-hex}};
   --gnome-palette-dark-5: #{{base05-hex}};
 
+
+  /* Accent */
+  --gnome-accent-bg: #{{base0D-hex}};
+  --gnome-accent: #{{base0D-hex}};
+  --gnome-accent-bg-hover: #{{base0D-hex}};
+  --gnome-accent-hover: #{{base0D-hex}};
+
   /* Colors */
-  --gnome-warning-bg: #{{base0E-hex}};
+  --gnome-destructive-bg: var(--gnome-palette-red-3);
+
+  --gnome-success-bg: var(--gnome-palette-green-5);
+  --gnome-warning-bg: var(--gnome-palette-yellow-3);
+  --gnome-error-bg: var(--gnome-palette-red-4);
+
+  --gnome-toolbar-star-button: var(--gnome-palette-yellow-1);
 
   /* Window */
   --gnome-window-background: #{{base00-hex}};
@@ -58,6 +69,9 @@
   --gnome-view-background: #{{base00-hex}};
   --gnome-sidebar-background: #{{base01-hex}};
   --gnome-secondary-sidebar-background: #{{base01-hex}};
+
+  /* UI Elements */
+  --gnome-entry-background: color-mix(in srgb, #{{base01-hex}} 40%, #{{base02-hex}} 100%);
 
   /* Card */
   --gnome-card-background: #{{base01-hex}};
@@ -71,13 +85,23 @@
   --gnome-headerbar-shade-color: rgba(0, 0, 0, 0.07);
 
   /* Toolbar */
+  --toolbox-textcolor: #{{base05-hex}} !important;
+  --toolbox-textcolor-inactive: #{{base05-hex}} !important;
+  --toolbar-color: #{{base05-hex}} !important;
   --gnome-toolbar-icon-fill: #{{base05-hex}};
 
   /* Tabs */
-  --gnome-tabbar-tab-hover-background: color-mix(in srgb, #{{base01-hex}}, #{{base02-hex}} 75%);
-  --gnome-tabbar-tab-active-background: #{{base02-hex}};
+  --gnome-tabbar-tab-hover-background: color-mix(in srgb, #{{base01-hex}} 50%, #{{base02-hex}} 52%);
+  --gnome-tabbar-tab-active-background: color-mix(in srgb, #{{base01-hex}} 40%, #{{base02-hex}} 100%);
   --gnome-tabbar-tab-active-background-contrast: #{{base02-hex}};
-  --gnome-tabbar-tab-active-hover-background: color-mix(in srgb, #{{base02-hex}}, #{{base03-hex}} 25%);
+  --gnome-tabbar-tab-active-hover-background: color-mix(in oklab, #{{base01-hex}} 5.8%, #{{base02-hex}} 100%);
+
+  --gnome-tabbar-identity-color-blue: var(--gnome-palette-blue-2);
+  --gnome-tabbar-identity-color-green: var(--gnome-palette-green-1);
+  --gnome-tabbar-identity-color-yellow: var(--gnome-palette-yellow-2);
+  --gnome-tabbar-identity-color-orange: var(--gnome-palette-orange-3);
+  --gnome-tabbar-identity-color-red: var(--gnome-palette-red-1);
+  --gnome-tabbar-identity-color-purple: var(--gnome-palette-purple-1);
 
   /* Private Tabs */
   --gnome-private-wordmark: #{{base04-hex}};
@@ -86,6 +110,7 @@
 
   &:-moz-window-inactive {
     --gnome-tabbar-tab-hover-background: var(--gnome-tabbar-tab-hover-background);
-    --gnome-tabbar-tab-active-background: var(--gnome-tabbar-tab-active-background);
+    --gnome-tabbar-tab-active-background: color-mix(in oklab, #{{base01-hex}} 50%, #{{base02-hex}} 77.5%);
+    --gnome-entry-background: color-mix(in oklab, #{{base01-hex}} 50%, #{{base02-hex}} 77.5%);
   }
 }

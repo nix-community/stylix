@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "i3";
-  humanName = "i3";
-
-  extraOptions.exportedBarConfig = lib.mkOption {
+  options.exportedBarConfig = lib.mkOption {
     type = lib.types.attrs;
     default = { };
     description = ''
@@ -29,7 +26,7 @@ mkTarget {
     }
   );
 
-  configElements = [
+  config = [
     (
       { fonts }:
       let
@@ -104,9 +101,7 @@ mkTarget {
               inherit border background;
               text = focused;
             };
-            inactiveWorkspace = {
-              inherit text border background;
-            };
+            inactiveWorkspace = { inherit text border background; };
             urgentWorkspace = {
               inherit text background;
               border = urgent;

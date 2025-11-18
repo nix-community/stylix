@@ -7,6 +7,8 @@ fonts: with fonts; {
   "debug.console.fontFamily" = monospace.name;
   "markdown.preview.fontFamily" = sansSerif.name;
   "chat.editor.fontFamily" = monospace.name;
+  "chat.fontFamily" = sansSerif.name;
+  "notebook.markup.fontFamily" = sansSerif.name;
 
   # 4/3 factor used for pt to px;
   "editor.fontSize" = sizes.terminal * 4.0 / 3.0;

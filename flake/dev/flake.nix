@@ -141,6 +141,7 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
+        gitignore.follows = "";
         nixpkgs.follows = "dev-nixpkgs";
       };
     };
@@ -159,12 +160,18 @@
       };
     };
 
+    noctalia-shell = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     nvf = {
       url = "github:NotAShelf/nvf";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
         systems.follows = "dev-systems";
         flake-compat.follows = "";
+        flake-parts.follows = "dev-flake-parts";
       };
     };
 
@@ -179,6 +186,14 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        systems.follows = "dev-systems";
+      };
     };
 
     zen-browser = {

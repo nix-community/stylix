@@ -7,14 +7,8 @@
 let
   cfg = config.stylix.targets.kde;
 
-  inherit (config.lib.stylix)
-    colors
-    mkEnableTarget
-    mkEnableWallpaper
-    ;
-  inherit (config.stylix)
-    image
-    ;
+  inherit (config.lib.stylix) colors mkEnableTarget mkEnableWallpaper;
+  inherit (config.stylix) image;
 
   mergeWithImage =
     default: withImage:
@@ -165,9 +159,7 @@ let
   Name = "Stylix";
 
   wallpaperMetadata = {
-    KPlugin = {
-      inherit Id Name;
-    };
+    KPlugin = { inherit Id Name; };
   };
 
   lookAndFeelMetadata = {
@@ -184,10 +176,11 @@ let
     mergeWithImage
       {
         kwinrc."org.kde.kdecoration2".library = cfg.decorations;
-        plasmarc.Theme.name = "default";
+        kwinrc."org.kde.kdecoration2".theme = cfg.decorationTheme;
+        plasmarc.Theme.name = cfg.applicationStyle;
 
         kdeglobals = {
-          KDE.widgetStyle = "Breeze";
+          KDE.widgetStyle = cfg.widgetStyle;
           General.ColorScheme = colorschemeSlug;
         };
       }
@@ -257,12 +250,10 @@ let
     # The gtkconfig module copies settings from KDE to the GTK configuration.
     # This blocks Home Manager activation because the same files are already
     # managed by Stylix.
-    Module-gtkconfig = makeImmutable {
-      autoload = false;
-    };
+    Module-gtkconfig = makeImmutable { autoload = false; };
   };
 
-  kdeglobals = {
+  kdeglobals = rec {
     KDE.LookAndFeelPackage = makeImmutable Id;
 
     General = with config.stylix.fonts; rec {
@@ -274,6 +265,8 @@ let
       toolBarFont = desktopFont;
       smallestReadableFont = desktopFont;
     };
+
+    WM.activeFont = General.desktopFont;
 
     UiSettings.ColorScheme = colorschemeSlug;
   };
@@ -362,6 +355,35 @@ in
         `org.kde.kdecoration2` section of `$HOME/.config/kwinrc` after
         imperatively applying the window decoration via the System Settings app.
       '';
+    };
+    decorationTheme = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = ''
+        The theme name for the window decoration.
+
+        You probably need to set this if you are targeting a custom theme (i.e.
+        installed manually or from the "Get New..." menu).
+
+        See the `theme` key in the `org.kde.kdecoration2` section of
+        `$HOME/.config/kwinrc` after imperatively applying the window decoration
+        via the System Settings app.
+      '';
+    };
+    widgetStyle = lib.mkOption {
+      type = lib.types.str;
+      default = "Breeze";
+      description = ''
+        The library for the widgets styles.
+
+        Widget styles other than default `Breeze` may not be compatible with
+        stylix.
+      '';
+    };
+    applicationStyle = lib.mkOption {
+      type = lib.types.str;
+      default = "default";
+      description = "The library for the application style.";
     };
   };
 

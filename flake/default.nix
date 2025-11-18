@@ -4,6 +4,8 @@
     inputs.flake-parts.flakeModules.partitions
     ./deprecation
     ./modules.nix
+    ./options/ci.nix
+    ./options/testbeds.nix
     ./packages.nix
     ./propagated-packages.nix
   ];
@@ -13,9 +15,7 @@
     extraInputsFlake = ./dev;
   };
 
-  partitionedAttrs = lib.genAttrs [
-    "checks"
-    "devShells"
-    "formatter"
-  ] (_: "dev");
+  partitionedAttrs = lib.genAttrs [ "checks" "ci" "devShells" "formatter" ] (
+    _: "dev"
+  );
 }

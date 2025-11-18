@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "console";
-  humanName = "the Nix-on-Droid console";
-
-  configElements =
+  config =
     { colors }:
     {
       terminal.colors = with colors.withHashtag; rec {

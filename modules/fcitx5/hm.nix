@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "fcitx5";
-  humanName = "fcitx5";
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {
@@ -34,9 +31,7 @@ mkTarget {
               template = ./panel.svg.mustache;
               extension = ".svg";
             };
-            theme = import ./template.nix {
-              colors = colors.withHashtag;
-            };
+            theme = import ./template.nix { colors = colors.withHashtag; };
           };
         };
       }

@@ -28,6 +28,28 @@
       type = lib.types.str;
       default = "qtct";
     };
+
+    standardDialogs = lib.mkOption {
+      description = ''
+        Selects the standard dialogs theme to be used by Qt.
+
+        Using `xdgdesktopportal` integrates with the native desktop portal.
+      '';
+
+      # The enum variants are derived from the qt6ct platform theme integration
+      # [1].
+      #
+      # [1]: https://www.opencode.net/trialuser/qt6ct/-/blob/00823e41aa60e8fe266d5aee328e82ad1ad94348/src/qt6ct/appearancepage.cpp#L83-L92
+      type = lib.types.enum [
+        "default"
+        "gtk2"
+        "gtk3"
+        "kde"
+        "xdgdesktopportal"
+      ];
+
+      default = "default";
+    };
   };
 
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
@@ -75,47 +97,38 @@
 
       home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;
 
-      qt = {
-        enable = true;
-        style.name = recommendedStyle;
-        platformTheme.name = config.stylix.targets.qt.platform;
-      };
-
-      xdg.configFile =
+      qt =
         let
-          qtctConf = ''
-            [Appearance]
-          ''
-          + lib.optionalString (config.qt.style ? name) ''
-            style=${config.qt.style.name}
-          ''
-          + lib.optionalString (icons != null) ''
-            icon_theme=${icons}
-          ''
-          + ''
-            [Fonts]
-            fixed="${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"
-            general="${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"
-          '';
+          qtctSettings = {
+            Appearance = {
+              custom_palette = true;
+              standard_dialogs = config.stylix.targets.qt.standardDialogs;
+              style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
+              icon_theme = lib.mkIf (icons != null) icons;
+            };
 
+            Fonts = {
+              fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
+              general = ''"${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"'';
+            };
+          };
         in
-        lib.mkMerge [
-          (lib.mkIf (config.qt.style.name == "kvantum") {
-            "Kvantum/kvantum.kvconfig".source =
-              (pkgs.formats.ini { }).generate "kvantum.kvconfig"
-                {
-                  General.theme = "Base16Kvantum";
-                };
+        {
+          enable = true;
+          style.name = recommendedStyle;
+          platformTheme.name = config.stylix.targets.qt.platform;
 
-            "Kvantum/Base16Kvantum".source =
-              "${kvantumPackage}/share/Kvantum/Base16Kvantum";
-          })
+          qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+          qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+        };
 
-          (lib.mkIf (config.qt.platformTheme.name == "qtct") {
-            "qt5ct/qt5ct.conf".text = qtctConf;
-            "qt6ct/qt6ct.conf".text = qtctConf;
-          })
-        ];
+      xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
+        "Kvantum/kvantum.kvconfig".source =
+          (pkgs.formats.ini { }).generate "kvantum.kvconfig"
+            { General.theme = "Base16Kvantum"; };
+        "Kvantum/Base16Kvantum".source =
+          "${kvantumPackage}/share/Kvantum/Base16Kvantum";
+      };
     }
   );
 }

@@ -10,6 +10,10 @@ concurrency:
   cancel-in-progress: true
   group: pages
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   docs:
     runs-on: ubuntu-24.04
@@ -24,7 +28,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -38,7 +42,7 @@ jobs:
 
       - run: nix build .#doc
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: result
 

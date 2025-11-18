@@ -1,7 +1,5 @@
 name: [
-  {
-    stylix.targets.${name}.themeBody = import ./theme-header.nix;
-  }
+  { stylix.targets.${name}.themeBody = import ./theme-header.nix; }
   (
     { fonts }:
     {

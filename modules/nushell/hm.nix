@@ -1,10 +1,7 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "nushell";
-  humanName = "Nushell";
-
   # Adapted from https://www.nushell.sh/book/coloring_and_theming.html#theming
-  configElements =
+  config =
     { colors }:
     {
       programs.nushell.extraConfig = with colors.withHashtag; ''

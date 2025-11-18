@@ -6,15 +6,22 @@
   ...
 }:
 mkTarget {
-  name = "regreet";
-  humanName = "ReGreet";
-
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
+  options = {
+    useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
+    extraCss = lib.mkOption {
+      description = ''
+        Extra code added to `programs.regreet.extraCss` option.
+      '';
+      type = lib.types.lines;
+      default = "";
+      example = "window.background { border-radius: 0; }";
+    };
+  };
 
-  configElements = [
+  config = [
     {
       warnings =
         let
@@ -34,6 +41,24 @@ mkTarget {
         name = "adw-gtk3";
       };
     }
+    (
+      { cfg, colors }:
+      let
+        baseCss = colors {
+          # This is strongly inspired by ../gtk/gtk.mustache.
+          template = ./gtk.css.mustache;
+          extension = ".css";
+        };
+
+        finalCss = pkgs.runCommandLocal "gtk.css" { } ''
+          cat ${baseCss} >>$out
+          echo ${lib.escapeShellArg cfg.extraCss} >>$out
+        '';
+      in
+      {
+        programs.regreet.extraCss = finalCss.outPath;
+      }
+    )
     (
       { polarity }:
       {
@@ -66,16 +91,21 @@ mkTarget {
     (
       { fonts }:
       {
-        programs.regreet.font = {
-          inherit (fonts.sansSerif) name package;
-        };
+        programs.regreet.font = { inherit (fonts.sansSerif) name package; };
       }
     )
     (
       { cursor }:
       {
-        programs.regreet.cursorTheme = {
-          inherit (cursor) name package;
+        programs.regreet.cursorTheme = { inherit (cursor) name package; };
+      }
+    )
+    (
+      { polarity, icons }:
+      {
+        programs.regreet.iconTheme = {
+          inherit (icons) package;
+          name = if (polarity == "dark") then icons.dark else icons.light;
         };
       }
     )

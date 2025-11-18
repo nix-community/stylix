@@ -1,9 +1,6 @@
-{ mkTarget, ... }:
+{ lib, mkTarget, ... }:
 mkTarget {
-  name = "foot";
-  humanName = "Foot";
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {
@@ -22,9 +19,11 @@ mkTarget {
     (
       { colors, inputs }:
       {
-        programs.foot.settings.main.include = toString (colors {
-          templateRepo = inputs.tinted-foot;
-        });
+        programs.foot.settings.main.include = lib.singleton (
+          toString (colors {
+            templateRepo = inputs.tinted-foot;
+          })
+        );
       }
     )
   ];

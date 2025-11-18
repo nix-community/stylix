@@ -1,13 +1,8 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "font-packages";
-  humanName = "Font packages";
-
-  configElements =
+  config =
     { fonts }:
     {
-      fonts = {
-        inherit (fonts) packages;
-      };
+      fonts = { inherit (fonts) packages; };
     };
 }

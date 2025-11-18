@@ -12,9 +12,9 @@
   ...
 }:
 mkTarget {
-  inherit name humanName;
+  inherit humanName name;
 
-  extraOptions = {
+  options = {
     profileNames = lib.mkOption {
       description = "The ${humanName} profile names to apply styling on.";
       type = lib.types.listOf lib.types.str;
@@ -26,7 +26,7 @@ mkTarget {
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
   };
 
-  configElements = [
+  config = [
     (
       { cfg }:
       {
@@ -43,10 +43,20 @@ mkTarget {
             "font.name.monospace.x-western" = fonts.monospace.name;
             "font.name.sans-serif.x-western" = fonts.sansSerif.name;
             "font.name.serif.x-western" = fonts.serif.name;
+
+            # 4/3 factor used for pt to px;
+            # adding 0.5 before flooring for rounding as Firefox requires an int
+            "font.size.monospace.x-western" = builtins.floor (
+              (fonts.sizes.terminal * 4.0 / 3.0) + 0.5
+            );
+            "font.size.variable.x-western" = builtins.floor (
+              (fonts.sizes.applications * 4.0 / 3.0) + 0.5
+            );
           };
         });
       }
     )
+    (import ./reader-mode.nix { inherit name lib; })
     (
       {
         cfg,
@@ -93,9 +103,7 @@ mkTarget {
           b = colors."${color}-rgb-b";
         };
         inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (inputs.nur.legacyPackages.${system}.repos.rycee)
-          firefox-addons
-          ;
+        inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
       in
       {
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (

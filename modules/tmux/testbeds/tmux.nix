@@ -4,7 +4,5 @@
     text = lib.getExe pkgs.tmux;
     useTerminal = true;
   };
-  home-manager.sharedModules = lib.singleton {
-    programs.tmux.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.tmux.enable = true; };
 }

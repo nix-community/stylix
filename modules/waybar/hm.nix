@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "waybar";
-  humanName = "Waybar";
-
-  extraOptions = {
+  options = {
     background = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       description = "Used to set bg even if `opacity` or `colors` is null";
@@ -43,7 +40,7 @@ mkTarget {
     };
   };
 
-  configElements = [
+  config = [
     (
       { cfg }:
       {
@@ -72,10 +69,7 @@ mkTarget {
       }
     )
     (
-      {
-        cfg,
-        colors,
-      }:
+      { cfg, colors }:
       let
         colorlessModules = place: ''
           .modules-${place} #workspaces button {
@@ -84,6 +78,12 @@ mkTarget {
           .modules-${place} #workspaces button.focused,
           .modules-${place} #workspaces button.active {
               border-bottom: 3px solid @base05;
+          }
+
+          .modules-${place} #workspaces button.urgent {
+              border-bottom: 3px solid @base08;
+              background-color: @base08;
+              color: @base00;
           }
         '';
       in

@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
-  autoload = import ../autoload.nix { inherit lib; } "droid";
+  autoload = import ../autoload.nix { inherit lib pkgs; } "droid";
 in
 {
   imports = [
@@ -19,7 +19,5 @@ in
   ++ autoload;
 
   # See https://github.com/nix-community/nix-on-droid/issues/436
-  options.lib = lib.mkOption {
-    type = with lib.types; attrsOf attrs;
-  };
+  options.lib = lib.mkOption { type = with lib.types; attrsOf attrs; };
 }

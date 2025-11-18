@@ -11,6 +11,10 @@ permissions:
   contents: read
   pull-requests: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   backport:
     runs-on: ubuntu-24.04
@@ -36,12 +40,12 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ steps.app-token.outputs.token }}
 
-      - uses: korthout/backport-action@v3.4.1
+      - uses: korthout/backport-action@v4.0.1
         id: backport
         with:
           github_token: ${{ steps.app-token.outputs.token }}

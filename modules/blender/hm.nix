@@ -1,19 +1,12 @@
-{
-  mkTarget,
-  lib,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
-  name = "blender";
-  humanName = "Blender";
-
-  extraOptions.themeBody = lib.mkOption {
+  options.themeBody = lib.mkOption {
     type = lib.types.lines;
     default = "";
     internal = true;
   };
 
-  configElements = [
+  config = [
     ./color-theme.nix
     ./font-theme.nix
     (

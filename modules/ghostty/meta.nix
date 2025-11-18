@@ -1,5 +1,6 @@
+{ lib, ... }:
 {
   name = "Ghostty";
   homepage = "https://ghostty.org";
-  maintainers = [ ];
+  maintainers = [ lib.maintainers.vidhanio ];
 }

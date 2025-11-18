@@ -3,7 +3,7 @@
   options.stylix = {
     release = lib.mkOption {
       description = "The version of NixOS that Stylix is built to support";
-      default = "25.11";
+      default = "26.05";
       internal = true;
       readOnly = true;
     };

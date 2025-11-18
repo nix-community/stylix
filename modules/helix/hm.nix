@@ -5,15 +5,12 @@
   ...
 }:
 mkTarget {
-  name = "helix";
-  humanName = "Helix";
-
-  extraOptions.transparent = lib.mkEnableOption "transparent theming" // {
+  options.transparent = lib.mkEnableOption "transparent theming" // {
     internal = true;
     default = false;
   };
 
-  configElements = [
+  config = [
     (
       { opacity }:
       {
@@ -32,9 +29,7 @@ mkTarget {
 
           themes.stylix =
             let
-              theme = colors {
-                templateRepo = inputs.base16-helix;
-              };
+              theme = colors { templateRepo = inputs.base16-helix; };
 
               # Removing the background exposes transparency from the terminal. The
               # background might be helpful if the terminal isn't themed, so we only

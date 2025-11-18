@@ -12,7 +12,7 @@ with colors;
     HighlightCandidateColor = base06;
     EnableBlur = false;
     FullWidthHighlight = true;
-    HighlightColor = base04;
+    HighlightColor = base02;
     HighlightBackgroundColor = base0E;
   };
   "InputPanel/BlurMargin" = {
@@ -83,16 +83,14 @@ with colors;
     Top = 6;
     Bottom = 7;
   };
-  "InputPanel/PrevPage" = {
-  };
+  "InputPanel/PrevPage" = { };
   "InputPanel/PrevPage/ClickMargin" = {
     Left = 5;
     Right = 5;
     Top = 4;
     Bottom = 4;
   };
-  "InputPanel/NextPage" = {
-  };
+  "InputPanel/NextPage" = { };
   "InputPanel/NextPage/ClickMargin" = {
     Left = 5;
     Right = 5;

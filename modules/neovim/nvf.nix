@@ -1,13 +1,10 @@
 mkTarget:
-{
-  lib,
-  options,
-  ...
-}:
+{ lib, options, ... }:
 mkTarget {
   name = "nvf";
   humanName = "nvf";
-  extraOptions = {
+
+  options = {
     plugin = lib.mkOption {
       type = lib.types.enum [
         "base16"
@@ -19,7 +16,7 @@ mkTarget {
     transparentBackground = lib.mkEnableOption "background transparency for the main Neovim window";
   };
 
-  configElements = lib.optionals (options.programs ? nvf) [
+  config = lib.optionals (options.programs ? nvf) [
     (
       { colors, cfg }:
       {
@@ -48,9 +45,7 @@ mkTarget {
                 ;
             };
           };
-          statusline = lib.mkIf (cfg.plugin == "base16") {
-            lualine.theme = "base16";
-          };
+          statusline = lib.mkIf (cfg.plugin == "base16") { lualine.theme = "base16"; };
         };
       }
     )

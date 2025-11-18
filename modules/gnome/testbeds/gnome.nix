@@ -1,3 +1,1 @@
-{
-  stylix.testbed.ui.graphicalEnvironment = "gnome";
-}
+{ stylix.testbed.ui.graphicalEnvironment = "gnome"; }

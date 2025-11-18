@@ -1,10 +1,11 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
 let
-  autoload = import ../autoload.nix { inherit lib; } "nixos";
+  autoload = import ../autoload.nix { inherit lib pkgs; } "nixos";
 in
 {
   imports = [

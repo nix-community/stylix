@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "zed";
-  humanName = "zed";
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {
@@ -22,9 +19,7 @@ mkTarget {
       {
         programs.zed-editor = {
           userSettings.theme = "Base16 ${colors.scheme-name}";
-          themes.stylix = colors {
-            templateRepo = inputs.tinted-zed;
-          };
+          themes.stylix = colors { templateRepo = inputs.tinted-zed; };
         };
       }
     )
