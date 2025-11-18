@@ -47,7 +47,7 @@ let
   };
 
   outlines = {
-    neutral = base04;
+    neutral = base03;
     focus = base0D;
   };
 
