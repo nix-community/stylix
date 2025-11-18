@@ -178,4 +178,10 @@
     githubId = 41439633;
     name = "Vidhan Bhatt";
   };
+  zmberber = {
+    email = "git@zmberber.com";
+    github = "zmberber";
+    githubId = 29400525;
+    name = "Zeremonienmeister Berber Aab";
+  };
 }

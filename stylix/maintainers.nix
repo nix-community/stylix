@@ -7,6 +7,12 @@
 # [1]: https://github.com/NixOS/nixpkgs/blob/1da63e6cc622a0cb6fd5b86d49923e4eb1e33b70/maintainers/maintainer-list.nix
 {
   # keep-sorted start case=no numeric=no block=yes
+  berber = {
+    email = "git@zmberber.com";
+    name = "Zeremonienmeister Berber Aab";
+    github = "zmberber";
+    githubId = 29400525;
+  };
   butzist = {
     email = "adam@szalkowski.de";
     name = "Adam M. Szalkowski";
