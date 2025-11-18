@@ -22,4 +22,11 @@ fonts: with fonts; {
     sizes.terminal * 4.0 / 3.0 * 9.0 / 14.0;
   "scm.inputFontSize" = sizes.terminal * 4.0 / 3.0 * 13.0 / 14.0;
   "screencastMode.fontSize" = sizes.terminal * 4.0 / 3.0 * 56.0 / 14.0;
+
+  # Ensure the Stylix theme delivers full semantic data.
+  "editor.semanticHighlighting.enabled" = true;
+  "editor.bracketPairColorization.enabled" = true;
+  "editor.guides.bracketPairs" = "active";
+  "editor.guides.bracketPairsHorizontal" = true;
+  "terminal.integrated.minimumContrastRatio" = 1;
 }
