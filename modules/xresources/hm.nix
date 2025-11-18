@@ -29,14 +29,20 @@ mkTarget {
           "*color5" = base0E;
           "*color6" = base0C;
           "*color7" = base05;
-          "*color8" = base03;
-          "*color9" = base09;
-          "*color10" = base01;
-          "*color11" = base02;
-          "*color12" = base04;
-          "*color13" = base06;
-          "*color14" = base0F;
+          "*color8" = base02;
+          "*color9" = base08;
+          "*color10" = base0B;
+          "*color11" = base0A;
+          "*color12" = base0D;
+          "*color13" = base0E;
+          "*color14" = base0C;
           "*color15" = base07;
+          "*color16" = base09;
+          "*color17" = base0F;
+          "*color18" = base01;
+          "*color19" = base02;
+          "*color20" = base04;
+          "*color21" = base06;
         };
       }
     )
