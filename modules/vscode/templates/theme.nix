@@ -164,7 +164,7 @@ let
     "button.background" = accent.primary;
     "button.foreground" = textColors.inverse;
     "button.hoverBackground" = withAlpha accent.primary "e6";
-    "button.border" = "transparent";
+    # "button.border" = "transparent"; FIX: invalid color format
     "button.secondaryBackground" = surfaces.raised;
     "button.secondaryForeground" = textColors.primary;
     "button.secondaryHoverBackground" = surfaces.selectionSoft;
@@ -248,8 +248,8 @@ let
     "editor.lineHighlightBackground" = lineHighlight;
     "editor.lineHighlightBorder" = subtleBorder;
     "editorWhitespace.foreground" = subtleBorder;
-    "editorIndentGuide.background" = subtleBorder;
-    "editorIndentGuide.activeBackground" = outlines.neutral;
+    "editorIndentGuide.background1" = subtleBorder;
+    "editorIndentGuide.activeBackground1" = outlines.neutral;
     "editorRuler.foreground" = subtleBorder;
     "editorCodeLens.foreground" = textColors.secondary;
     "editor.selectionForeground" = textColors.primary;
@@ -534,7 +534,7 @@ in
       ];
       settings = {
         foreground = base00;
-        background = base08;
+        # background = base08; Not currently supported
       };
     }
     {
