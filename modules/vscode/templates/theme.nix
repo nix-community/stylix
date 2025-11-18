@@ -104,7 +104,7 @@ let
 
   navigationColors = {
     "activityBar.background" = surfaces.raised;
-    "activityBar.border" = textColors.primary;
+    "activityBar.border" = outlines.neutral;
     "activityBar.foreground" = textColors.primary;
     "activityBar.inactiveForeground" = textColors.secondary;
     "activityBar.activeBorder" = outlines.focus;
@@ -112,7 +112,7 @@ let
     "activityBar.activeBackground" = surfaces.selectionSoft;
     "activityBar.activeFocusBorder" = outlines.focus;
     "activityBarBadge.background" = accent.primary;
-    "activityBarBadge.foreground" = textColors.inverse;
+    "activityBarBadge.foreground" = textColors.primary;
     "sideBar.background" = surfaces.raised;
     "sideBar.border" = outlines.neutral;
     "sideBar.foreground" = textColors.primary;
