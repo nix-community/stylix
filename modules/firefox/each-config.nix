@@ -44,12 +44,14 @@ mkTarget {
             "font.name.sans-serif.x-western" = fonts.sansSerif.name;
             "font.name.serif.x-western" = fonts.serif.name;
 
-            # Convert default font size of 16px to 13px for monospace as 16px
-            # and 13px are the default sizes for Firefox fonts. Defaults from
-            # https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use
-            "font.size.monospace.x-western" =
-              fonts.sizes.applications * 4.0 / 3.0 * 13.0 / 16.0;
-            "font.size.variable.x-western" = fonts.sizes.applications * 4.0 / 3.0;
+            # 4/3 factor used for pt to px;
+            # adding 0.5 before flooring for rounding as Firefox requires an int
+            "font.size.monospace.x-western" = builtins.floor (
+              (fonts.sizes.terminal * 4.0 / 3.0) + 0.5
+            );
+            "font.size.variable.x-western" = builtins.floor (
+              (fonts.sizes.applications * 4.0 / 3.0) + 0.5
+            );
           };
         });
       }
