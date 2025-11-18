@@ -38,13 +38,16 @@ let
     base = base00;
     raised = base00;
     overlay = base02;
-    selectionStrong = withAlpha base02 "cc";
-    selectionSoft = withAlpha base02 "80";
-    selectionFaint = withAlpha base02 "40";
+    selectionStrong =
+      if themeType == "dark" then withAlpha base02 "cc" else withAlpha base02 "80";
+
+    selectionSoft =
+      if themeType == "dark" then withAlpha base02 "66" else withAlpha base02 "40";
+    selectionFaint = withAlpha base02 "33";
   };
 
   outlines = {
-    neutral = base01;
+    neutral = base04;
     focus = base0D;
   };
 
@@ -155,13 +158,14 @@ let
   };
 
   buttonAndInputColors = {
+
     "button.background" = accent.primary;
     "button.foreground" = textColors.inverse;
     "button.hoverBackground" = withAlpha accent.primary "e6";
-    "button.border" = outlines.focus;
-    "button.secondaryBackground" = accent.secondary;
-    "button.secondaryForeground" = textColors.inverse;
-    "button.secondaryHoverBackground" = withAlpha accent.secondary "e6";
+    "button.border" = "transparent";
+    "button.secondaryBackground" = surfaces.raised;
+    "button.secondaryForeground" = textColors.primary;
+    "button.secondaryHoverBackground" = surfaces.selectionSoft;
     "checkbox.background" = surfaces.raised;
     "checkbox.border" = outlines.neutral;
     "checkbox.foreground" = textColors.primary;
@@ -175,8 +179,14 @@ let
     "inputOption.activeBorder" = outlines.focus;
     "inputOption.activeBackground" = surfaces.selectionSoft;
     "inputValidation.infoBorder" = accent.info;
+    "inputValidation.infoBackground" = withAlpha accent.info "26";
+    "inputValidation.infoForeground" = textColors.primary;
     "inputValidation.warningBorder" = accent.warn;
+    "inputValidation.warningBackground" = withAlpha accent.warn "26";
+    "inputValidation.warningForeground" = textColors.primary;
     "inputValidation.errorBorder" = accent.error;
+    "inputValidation.errorBackground" = withAlpha accent.error "26";
+    "inputValidation.errorForeground" = textColors.inverse;
   };
 
   listAndTreeColors = {
@@ -207,6 +217,9 @@ let
     "tab.inactiveForeground" = textColors.secondary;
     "tab.border" = outlines.neutral;
     "tab.hoverBackground" = surfaces.selectionSoft;
+    "tab.unfocusedHoverBackground" = surfaces.selectionSoft;
+    "tab.hoverBorder" = subtleBorder;
+    "tab.unfocusedHoverBorder" = subtleBorder;
     "tab.unfocusedActiveBorder" = subtleBorder;
     "tab.unfocusedInactiveForeground" = textColors.disabled;
     "tab.activeModifiedBorder" = accent.primary;
@@ -222,8 +235,8 @@ let
     "editor.selectionBackground" = surfaces.selectionStrong;
     "editor.selectionHighlightBackground" = surfaces.selectionSoft;
     "editor.inactiveSelectionBackground" = surfaces.selectionSoft;
-    "editor.wordHighlightBackground" = surfaces.selectionSoft;
-    "editor.wordHighlightStrongBackground" = surfaces.selectionStrong;
+    "editor.wordHighlightBackground" = withAlpha accent.primary "26";
+    "editor.wordHighlightStrongBackground" = withAlpha accent.primary "40";
     "editor.findMatchBackground" = withAlpha accent.warn "40";
     "editor.findMatchHighlightBackground" = withAlpha accent.warn "26";
     "editor.linkedEditingBackground" = withAlpha accent.primary "26";
@@ -364,6 +377,17 @@ let
     "terminal.ansiBrightCyan" = base0C;
     "terminal.ansiBrightWhite" = base07;
   };
+
+  scrollbarColors = {
+    "scrollbar.shadow" = shadow;
+    "scrollbarSlider.background" = withAlpha base04 "40";
+    "scrollbarSlider.hoverBackground" = withAlpha base04 "66";
+    "scrollbarSlider.activeBackground" = withAlpha base04 "80";
+  };
+
+  overviewRulerColors = {
+    "editorOverviewRuler.background" = withAlpha base01 "80";
+  };
 in
 {
   "$schema" = "vscode://schemas/color-theme";
@@ -384,6 +408,8 @@ in
     peekAndQuickInputColors
     badgeAndProgressColors
     terminalColors
+    scrollbarColors
+    overviewRulerColors
   ];
 
   tokenColors = [
@@ -403,10 +429,9 @@ in
       scope = [
         "variable"
         "variable.other"
-        "variable.parameter"
         "entity.name.variable"
       ];
-      settings.foreground = base08;
+      settings.foreground = base05;
     }
     {
       name = "Parameters";
@@ -415,7 +440,7 @@ in
         "meta.parameter"
       ];
       settings = {
-        foreground = base08;
+        foreground = base05;
         fontStyle = "italic";
       };
     }
