@@ -69,7 +69,7 @@ let
     deprecated = base0F;
   };
 
-  lineHighlight = withAlpha base01 "b3";
+  lineHighlight = withAlpha base01 "66";
   shadow = "#00000050";
   ghostText = withAlpha base05 "33";
   subtleBorder = withAlpha outlines.neutral "80";
@@ -109,6 +109,8 @@ let
     "activityBar.inactiveForeground" = textColors.secondary;
     "activityBar.activeBorder" = outlines.focus;
     "activityBar.dropBorder" = outlines.focus;
+    "activityBar.activeBackground" = surfaces.selectionSoft;
+    "activityBar.activeFocusBorder" = outlines.focus;
     "activityBarBadge.background" = accent.primary;
     "activityBarBadge.foreground" = textColors.inverse;
     "sideBar.background" = surfaces.raised;
@@ -117,6 +119,7 @@ let
     "sideBarTitle.foreground" = textColors.secondary;
     "sideBarSectionHeader.background" = surfaces.base;
     "sideBarSectionHeader.foreground" = textColors.primary;
+    "sideBar.dropBackground" = surfaces.selectionFaint;
     "panel.background" = surfaces.base;
     "panel.border" = outlines.neutral;
     "panelSectionHeader.background" = surfaces.raised;
@@ -139,7 +142,7 @@ let
     "statusBar.border" = outlines.neutral;
     "statusBar.debuggingBackground" = accent.primary;
     "statusBar.debuggingForeground" = textColors.inverse;
-    "statusBar.noFolderBackground" = surfaces.raised;
+    "statusBar.noFolderBackground" = surfaces.base;
     "statusBarItem.focusBorder" = outlines.focus;
     "statusBarItem.hoverBackground" = surfaces.selectionSoft;
     "statusBarItem.remoteBackground" = accent.secondary;
@@ -158,7 +161,6 @@ let
   };
 
   buttonAndInputColors = {
-
     "button.background" = accent.primary;
     "button.foreground" = textColors.inverse;
     "button.hoverBackground" = withAlpha accent.primary "e6";
@@ -166,6 +168,7 @@ let
     "button.secondaryBackground" = surfaces.raised;
     "button.secondaryForeground" = textColors.primary;
     "button.secondaryHoverBackground" = surfaces.selectionSoft;
+    "button.separator" = subtleBorder;
     "checkbox.background" = surfaces.raised;
     "checkbox.border" = outlines.neutral;
     "checkbox.foreground" = textColors.primary;
@@ -196,6 +199,7 @@ let
     "list.focusForeground" = textColors.primary;
     "list.hoverBackground" = surfaces.selectionSoft;
     "list.inactiveSelectionBackground" = surfaces.selectionSoft;
+    "list.inactiveSelectionForeground" = textColors.primary;
     "list.dropBackground" = surfaces.selectionFaint;
     "list.highlightForeground" = accent.primary;
     "list.errorForeground" = accent.error;
@@ -232,6 +236,7 @@ let
     "editorLineNumber.foreground" = textColors.disabled;
     "editorLineNumber.activeForeground" = textColors.primary;
     "editorCursor.foreground" = textColors.primary;
+    "editorCursor.background" = surfaces.base;
     "editor.selectionBackground" = surfaces.selectionStrong;
     "editor.selectionHighlightBackground" = surfaces.selectionSoft;
     "editor.inactiveSelectionBackground" = surfaces.selectionSoft;
@@ -247,7 +252,6 @@ let
     "editorIndentGuide.activeBackground" = outlines.neutral;
     "editorRuler.foreground" = subtleBorder;
     "editorCodeLens.foreground" = textColors.secondary;
-    "editorCursor.background" = surfaces.base;
     "editor.selectionForeground" = textColors.primary;
     "editor.rangeHighlightBackground" = surfaces.selectionFaint;
     "editor.hoverHighlightBackground" = surfaces.selectionFaint;
@@ -618,11 +622,11 @@ in
     "function" = base0D;
     "method" = base0D;
     "macro" = base0F;
-    "variable" = base08;
+    "variable" = base05;
     "variable.readonly" = base09;
     "variable.constant" = base09;
     "property" = base0C;
-    "parameter" = base08;
+    "parameter" = base05;
     "decorator" = {
       foreground = base0E;
       fontStyle = "italic";
