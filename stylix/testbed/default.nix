@@ -10,7 +10,7 @@ let
     name: testbed:
     let
       system = lib.nixosSystem {
-        inherit (pkgs) system;
+        inherit (pkgs.stdenv.hostPlatform) system;
 
         modules = [
           (lib.modules.importApply ./modules/flake-parts.nix inputs)

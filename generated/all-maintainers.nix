@@ -13,6 +13,13 @@
     githubId = 54070204;
     name = "0x5a4";
   };
+  "0xda157" = {
+    email = "da157@voidq.com";
+    github = "0xda157";
+    githubId = 153149335;
+    matrix = "@da157:catgirl.cloud";
+    name = "0xda157";
+  };
   Eveeifyeve = {
     email = "eveeg1971@gmail.com";
     github = "Eveeifyeve";
@@ -68,13 +75,6 @@
     github = "arunoruto";
     githubId = 21687187;
     name = "Mirza Arnaut";
-  };
-  awwpotato = {
-    email = "awwpotato@voidq.com";
-    github = "awwpotato";
-    githubId = 153149335;
-    matrix = "@awwpotato:envs.net";
-    name = "awwpotato";
   };
   brckd = {
     email = "hello@bricked.dev";

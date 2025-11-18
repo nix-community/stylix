@@ -246,8 +246,8 @@ number of maintainers:
   { lib, ... }:
   {
     maintainers = with lib.maintainers; [
-      awwpotato
       danth
+      da157
       naho
     ];
   }

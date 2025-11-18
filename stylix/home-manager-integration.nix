@@ -109,6 +109,13 @@ let
         {
           path = [
             "stylix"
+            "icons"
+          ];
+          condition = _homeConfig: !pkgs.stdenv.hostPlatform.isDarwin;
+        }
+        {
+          path = [
+            "stylix"
             "image"
           ];
         }

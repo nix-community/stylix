@@ -15,7 +15,9 @@ mkTarget {
             fonts.monospace.name
             fonts.emoji.name
           ];
-          font-size = fonts.sizes.terminal;
+
+          # 4/3 factor used for pt to px;
+          font-size = fonts.sizes.terminal * 4.0 / 3.0;
         };
       }
     )
