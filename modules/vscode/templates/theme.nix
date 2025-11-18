@@ -36,7 +36,7 @@ let
 
   surfaces = {
     base = base00;
-    raised = base01;
+    raised = base00;
     overlay = base02;
     selectionStrong = withAlpha base02 "cc";
     selectionSoft = withAlpha base02 "80";
