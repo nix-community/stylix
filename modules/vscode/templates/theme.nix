@@ -352,7 +352,7 @@ let
 
   badgeAndProgressColors = {
     "badge.background" = accent.primary;
-    "badge.foreground" = textColors.inverse;
+    "badge.foreground" = textColors.primary;
     "progressBar.background" = accent.primary;
     "editorLink.activeForeground" = accent.primary;
   };
