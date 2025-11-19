@@ -1,7 +1,7 @@
 # Documentation is available at:
 # - https://ghostty.org/docs/config/reference
 # - `man 5 ghostty`
-{ mkTarget, ... }:
+{ mkTarget, pkgs, ... }:
 mkTarget {
   name = "ghostty";
   humanName = "Ghostty";
@@ -15,7 +15,16 @@ mkTarget {
             fonts.monospace.name
             fonts.emoji.name
           ];
-          font-size = fonts.sizes.terminal;
+
+          # Ghostty font-size is specified in points (pt) on all platforms.
+          # Ghostty's default DPI is 96 on Linux and 72 on macOS.
+          # fonts.sizes.terminal is in pt size so no changes on Linux are needed,
+          # but to match visual size on macOS we scale it by 4/3 = 96/72.
+          font-size =
+            if pkgs.stdenv.hostPlatform.isDarwin then
+              fonts.sizes.terminal * 4.0 / 3.0
+            else
+              fonts.sizes.terminal;
         };
       }
     )
