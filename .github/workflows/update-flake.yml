@@ -14,12 +14,6 @@ jobs:
       matrix:
         branch: [master, release-25.05]
     steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: ${{ matrix.branch }}
-
-      - uses: cachix/install-nix-action@v31
-
       - id: generate-token
         uses: actions/create-github-app-token@v2
         with:
@@ -27,6 +21,13 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           permission-contents: write
           permission-pull-requests: write
+
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ matrix.branch }}
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - uses: cachix/install-nix-action@v31
 
       - id: user-info
         env:
