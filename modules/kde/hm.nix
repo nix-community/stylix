@@ -262,7 +262,7 @@ let
     };
   };
 
-  kdeglobals = {
+  kdeglobals = rec {
     KDE.LookAndFeelPackage = makeImmutable Id;
 
     General = with config.stylix.fonts; rec {
@@ -274,6 +274,8 @@ let
       toolBarFont = desktopFont;
       smallestReadableFont = desktopFont;
     };
+
+    WM.activeFont = General.desktopFont;
 
     UiSettings.ColorScheme = colorschemeSlug;
   };
