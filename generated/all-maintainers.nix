@@ -233,4 +233,10 @@
     ];
     name = "Noah Pierre Biewesch";
   };
+  zenko-kyubiko = {
+    email = "tristanleroy26@gmail.com";
+    github = "zenko-kyubiko";
+    githubId = 47412921;
+    name = "Tristan Leroy";
+  };
 }
