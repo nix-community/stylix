@@ -65,5 +65,11 @@
     github = "skoove";
     githubId = 53106860;
   };
+  vidhanio = {
+    email = "me@vidhan.io";
+    name = "Vidhan Bhatt";
+    github = "vidhanio";
+    githubId = 41439633;
+  };
   # keep-sorted end
 }
