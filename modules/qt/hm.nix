@@ -40,7 +40,6 @@
 
       recommendedStyles = {
         gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
-        #NOTE: setting a style for kde might not be desirable as user may want to change it via UI
         kde = "breeze";
         kde6 = "breeze";
         qtct = "kvantum";
