@@ -172,4 +172,10 @@
     ];
     name = "Noah Pierre Biewesch";
   };
+  vidhanio = {
+    email = "me@vidhan.io";
+    github = "vidhanio";
+    githubId = 41439633;
+    name = "Vidhan Bhatt";
+  };
 }
