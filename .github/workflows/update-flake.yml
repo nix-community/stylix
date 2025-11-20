@@ -78,10 +78,7 @@ jobs:
           title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}flake: update public and dev inputs"  # yamllint disable-line rule:line-length
         run: |
           git switch --create "$pr_branch"
-
-          git push origin "$pr_branch" \
-            --force \
-            --set-upstream
+          git push origin "$pr_branch" --force --set-upstream
 
           gh pr create \
             --base "$base_branch" \
