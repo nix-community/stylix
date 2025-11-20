@@ -74,6 +74,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           base_branch: ${{ matrix.branch }}
+          body: "This is an automated update triggered by the [workflow run #${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."  # yamllint disable-line rule:line-length
           pr_branch: update_flake_lock_action_${{ matrix.branch }}
           title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}flake: update public and dev inputs"  # yamllint disable-line rule:line-length
         run: |
@@ -82,6 +83,7 @@ jobs:
 
           gh pr create \
             --base "$base_branch" \
+            --body "$body" \
             --label "topic: dependencies" \
             --title "$title" ||
             echo "Failed to create PR"
