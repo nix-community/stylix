@@ -82,6 +82,6 @@ jobs:
 
           gh pr create \
             --base "$base_branch" \
-            --title "$title" \
-            --label "topic: dependencies" ||
+            --label "topic: dependencies" \
+            --title "$title" ||
             echo "Failed to create PR"
