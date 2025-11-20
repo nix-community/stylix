@@ -187,6 +187,12 @@
     ];
     name = "Viktor Titov";
   };
+  omega-800 = {
+    email = "gshevoroshkin@gmail.com";
+    github = "omega-800";
+    githubId = 50942480;
+    name = "Georgiy Shevoroshkin";
+  };
   osipog = {
     email = "osibluber@protonmail.com";
     github = "osipog";

@@ -53,6 +53,12 @@
     github = "michaelgoldenn";
     githubId = 95949544;
   };
+  omega-800 = {
+    email = "gshevoroshkin@gmail.com";
+    name = "Georgiy Shevoroshkin";
+    github = "omega-800";
+    githubId = 50942480;
+  };
   osipog = {
     email = "osibluber@protonmail.com";
     name = "Osi Bluber";
