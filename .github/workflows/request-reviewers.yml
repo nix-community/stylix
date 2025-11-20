@@ -7,6 +7,10 @@ on:
     paths:
       - 'modules/**'
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   request-reviewers:
     runs-on: ubuntu-24.04

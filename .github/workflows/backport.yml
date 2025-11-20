@@ -11,6 +11,10 @@ permissions:
   contents: read
   pull-requests: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   backport:
     runs-on: ubuntu-24.04
