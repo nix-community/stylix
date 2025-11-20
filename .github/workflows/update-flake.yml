@@ -22,7 +22,7 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
           token: ${{ steps.generate-token.outputs.token }}
