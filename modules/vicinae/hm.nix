@@ -8,7 +8,7 @@ mkTarget {
   name = "vicinae";
   humanName = "Vicinae";
 
-  configElements = lib.optionals (options.programs ? vicinae) [
+  configElements = lib.optionals (options.services ? vicinae) [
     (
       { colors, polarity }:
       {
