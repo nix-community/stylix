@@ -47,7 +47,7 @@ jobs:
       - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d  # yamllint disable-line rule:line-length
         if: runner.os == 'Linux'
         with:
-          hatchet-protocol: holster
+          hatchet-protocol: rampage
 
       - uses: cachix/install-nix-action@v31
 
