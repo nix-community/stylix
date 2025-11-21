@@ -25,8 +25,8 @@
         Defaults to the standard platform theme used in the configured DE in NixOS when
         `stylix.homeManagerIntegration.followSystem = true`.
       '';
-      type = lib.types.str;
-      default = "qtct";
+      type = with lib.types; nullOr str;
+      default = null;
     };
   };
 
@@ -41,6 +41,7 @@
       recommendedStyles = {
         gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
         kde = "breeze";
+        kde6 = "breeze";
         qtct = "kvantum";
       };
 
@@ -71,6 +72,9 @@
         )
         ++ (lib.optional (config.qt.style.name != recommendedStyle)
           "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
+        )
+        ++ (lib.optional (config.stylix.targets.qt.platform == null && nixosConfig != null)
+          "stylix: qt: When using standalone home-manager, `config.stylix.targets.qt.platform` must be set."
         );
 
       home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;

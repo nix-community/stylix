@@ -15,8 +15,8 @@ in
 
         Defaults to the standard platform used in the configured DE.
       '';
-      type = lib.types.str;
-      default = "qtct";
+      type = with lib.types; nullOr str;
+      default = null;
     };
   };
 
@@ -33,8 +33,10 @@ in
           "kde"
         else if lxqt.enable && !(gnome.enable || plasma6.enable) then
           "lxqt"
+        else if !plasma6.enable then
+          "qtct"
         else
-          "qtct";
+          null;
       qt = {
         enable = true;
         style = recommendedStyle."${config.qt.platformTheme}" or null;
