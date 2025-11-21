@@ -11,6 +11,7 @@
       name = "FiraMono NF";
       package = pkgs.nerd-fonts.fira-mono;
     };
+
     programs.hyprpanel.enable = true;
   };
 }

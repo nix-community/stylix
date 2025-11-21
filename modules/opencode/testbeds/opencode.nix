@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.opencode;
-    useTerminal = true;
+    terminal = true;
+    text = "opencode";
   };
 
   home-manager.sharedModules = lib.singleton {

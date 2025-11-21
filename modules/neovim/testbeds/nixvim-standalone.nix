@@ -1,8 +1,8 @@
 { config, lib, ... }:
 {
   stylix.testbed.ui.command = {
+    terminal = true;
     text = "nvim flake-parts/flake.nix";
-    useTerminal = true;
   };
 
   environment.systemPackages = lib.singleton (

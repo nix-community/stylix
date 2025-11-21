@@ -1,11 +1,9 @@
 { lib, pkgs, ... }:
 {
   stylix.testbed.ui.command = {
-    text = ''
-      ${lib.getExe' pkgs.alsa-utils "aplay"} /dev/urandom &
-      ${lib.getExe pkgs.cava}
-    '';
-    useTerminal = true;
+    packages = [ pkgs.alsa-utils ];
+    terminal = true;
+    text = "aplay /dev/urandom & cava";
   };
 
   home-manager.sharedModules = lib.singleton {
