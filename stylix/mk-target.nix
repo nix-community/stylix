@@ -217,7 +217,7 @@ let
         );
 
       # Call the configuration function with its required Stylix arguments.
-      mkConfig = fn: fn (getStylixAttrs fn);
+      callModule = fn: fn (getStylixAttrs fn);
 
       # Safeguard configuration functions when any of their arguments is
       # disabled.
@@ -232,13 +232,13 @@ let
               (builtins.all (attr: attr.enable or (attr != null)))
             ];
           in
-          lib.mkIf allAttrsEnabled (mkConfig c)
+          lib.mkIf allAttrsEnabled (callModule c)
         else
           c;
     in
     {
       imports = imports ++ [
-        { options.stylix.targets.${name} = mkConfig (lib.toFunction extraOptions); }
+        { options.stylix.targets.${name} = callModule (lib.toFunction extraOptions); }
       ];
 
       options.stylix.targets.${name}.enable =
@@ -258,7 +258,7 @@ let
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
           lib.optional (generalConfig != null) (
-            mkConfig (
+            callModule (
               if builtins.isPath generalConfig then import generalConfig else generalConfig
             )
           )
