@@ -2,7 +2,6 @@ mkTarget:
 {
   lib,
   options,
-  config,
   ...
 }:
 mkTarget {
