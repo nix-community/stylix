@@ -72,7 +72,7 @@ jobs:
 
           git add generated/all-maintainers.nix
           git commit --message "stylix: update all-maintainers list" ||
-            echo "generated/all-maintainers.nix has no changes"
+            echo "::debug::generated/all-maintainers.nix has no changes"
 
       - name: create pull request
         env:
