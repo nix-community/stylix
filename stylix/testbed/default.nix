@@ -33,6 +33,10 @@ let
               )
             )
             {
+              dankMaterialShell.home-manager.sharedModules = [
+                inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+              ];
+
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
               nixvim-integrated = inputs.nixvim.nixosModules.nixvim;
@@ -47,10 +51,6 @@ let
 
               zen-browser.home-manager.sharedModules = [
                 inputs.zen-browser.homeModules.default
-              ];
-
-              dankMaterialShell.home-manager.sharedModules = [
-                inputs.dankMaterialShell.homeModules.dankMaterialShell.default
               ];
             };
       };
