@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "chromium";
-  humanName = "Chromium, Google Chrome and Brave";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.chromium = {

@@ -10,7 +10,7 @@ mkTarget {
   name = "nixcord";
   humanName = "Nixcord";
 
-  extraOptions = {
+  options = {
     themeBody = lib.mkOption {
       type = lib.types.lines;
       default = "";
@@ -23,7 +23,7 @@ mkTarget {
     };
   };
 
-  configElements = (import ./common/theme-elements.nix "nixcord") ++ [
+  config = (import ./common/theme-elements.nix "nixcord") ++ [
     (
       { cfg }:
       let

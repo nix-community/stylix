@@ -19,15 +19,12 @@
   ```nix
   { mkTarget, lib... }:
   mkTarget {
-    name = "«name»";
-    humanName = "«human readable name»";
-
-    generalConfig =
+    unconditionalConfig =
       lib.mkIf complexCondition {
         home.packages = [ pkgs.hello ];
       };
 
-    configElements = [
+    config = [
       { programs.«name».theme.name = "stylix"; }
 
       (
@@ -51,15 +48,7 @@
 
   `config` (Attribute set)
 
-  : `name` (String)
-    : The target name used to generate options in the `stylix.targets.${name}`
-      namespace.
-
-    `humanName` (String)
-    : The descriptive target name passed to the lib.mkEnableOption function
-      when generating the `stylix.targets.${name}.enable` option.
-
-    `autoEnable` (Boolean)
+  : `autoEnable` (Boolean)
     : Whether the target should be automatically enabled by default according
       to the `stylix.autoEnable` option.
 
@@ -82,22 +71,7 @@
 
       The default (`true`) is inherited from `mkEnableTargetWith`.
 
-    `enableExample` (Boolean or literal expression)
-    : An example to include on the enable option. The default is calculated
-      automatically by `mkEnableTargetWith` and depends on `autoEnable` and
-      whether an `autoEnableExpr` is used.
-
-    `extraOptions` (Attribute set)
-    : Additional options to be added in the `stylix.targets.${name}` namespace
-      along the `stylix.targets.${name}.enable` option.
-
-      For example, an extension guard used in the configuration can be declared
-      as follows:
-      ```nix
-      { extension.enable = lib.mkEnableOption "the bloated dependency"; }
-      ```
-
-    `configElements` (List or attribute set or function or path)
+    `config` (List or attribute set or function or path)
     : Configuration functions that are automatically safeguarded when any of
       their arguments is disabled. The provided `cfg` argument conveniently
       aliases to `config.stylix.targets.${name}`.
@@ -125,10 +99,36 @@
       )
       ```
 
-    `generalConfig` (Attribute set or function or path)
-    : This argument mirrors the `configElements` argument but intentionally
-      lacks automatic safeguarding and should only be used for complex
-      configurations where `configElements` is unsuitable.
+    `enableExample` (Boolean or literal expression)
+    : An example to include on the enable option. The default is calculated
+      automatically by `mkEnableTargetWith` and depends on `autoEnable` and
+      whether an `autoEnableExpr` is used.
+
+    `humanName` (String)
+    : The descriptive target name passed to the lib.mkEnableOption function
+      when generating the `stylix.targets.${name}.enable` option.
+
+    `imports` (List)
+    : The `imports` option forwarded to the Nixpkgs module system.
+
+    `options` (List or attribute set or function or path)
+    : Additional options to be added in the `stylix.targets.${name}` namespace,
+      normalized identically to `config`.
+
+      For example, an extension guard used in the configuration can be declared
+      as follows:
+      ```nix
+      { extension.enable = lib.mkEnableOption "the bloated dependency"; }
+      ```
+
+    `name` (String)
+    : The target name used to generate options in the `stylix.targets.${name}`
+      namespace.
+
+    `unconditionalConfig` (Attribute set or function or path)
+    : This argument mirrors the `config` argument but intentionally lacks
+      automatic safeguarding and should only be used for complex configurations
+      where `config` is unsuitable.
 
   # Environment
 
@@ -143,16 +143,13 @@
 # of modules:
 #
 #     {
-#       name = "example";
-#       humanName = "Example Target";
-#
-#       generalConfig =
+#       unconditionalConfig =
 #         { lib, pkgs }:
 #         lib.mkIf complexCondition {
 #           home.packages = [ pkgs.hello ];
 #         };
 #
-#       configElements = [
+#       config = [
 #         { programs.example.theme.name = "stylix"; }
 #
 #         (
@@ -170,73 +167,164 @@
 #         )
 #       ];
 #     }
+{ humanName, name }:
+let
+  humanName' = humanName;
+  name' = name;
+in
 {
-  name,
-  humanName,
   autoEnable ? null,
   autoEnableExpr ? null,
   autoWrapEnableExpr ? null,
+  config ? [ ],
   enableExample ? null,
-  extraOptions ? { },
-  configElements ? [ ],
-  generalConfig ? null,
+  humanName ? humanName',
   imports ? [ ],
+  name ? name',
+  options ? [ ],
+  unconditionalConfig ? { },
 }@args:
 let
+  mkTargetConfig = config;
+
   module =
     { config, lib, ... }:
     let
+      callModule =
+        let
+          areArgumentsEnabled = lib.flip lib.pipe [
+            lib.attrsToList
+            (builtins.all (
+              { name, value }: value.enable or (value != null) && cfg.${name}.enable or true
+            ))
+          ];
+        in
+        safeguard: config':
+        let
+          arguments = getArguments config';
+        in
+        if builtins.isFunction config' then
+          if safeguard then
+            lib.mkIf (areArgumentsEnabled arguments) (config' arguments)
+          else
+            config' arguments
+
+        else if builtins.isAttrs config' then
+          config'
+
+        else if builtins.isPath config' then
+          throw "stylix: unexpected unresolved path: ${toString config'}"
+
+        else
+          throw "stylix: mkTarget expected a configuration to be a function, an attribute set, or a path, but got ${builtins.typeOf config'}: ${
+            lib.generators.toPretty { } config'
+          }";
+
       cfg = config.stylix.targets.${name};
 
-      # Get the list of function de-structured argument names.
-      functionArgNames =
-        fn:
-        lib.pipe fn [
-          lib.functionArgs
-          builtins.attrNames
-        ];
+      getArguments =
+        function:
+        lib.genAttrs
+          (lib.pipe function [
+            lib.functionArgs
+            builtins.attrNames
+          ])
+          (
+            argument:
+            if argument == "cfg" then
+              cfg
 
-      getStylixAttrs =
-        fn:
-        lib.genAttrs (functionArgNames fn) (
-          arg:
-          if arg == "cfg" then
-            cfg
-          else if arg == "colors" then
-            config.lib.stylix.colors
-          else
-            config.stylix.${arg}
-              or (throw "stylix: mkTarget expected one of `cfg`, `colors`, ${
-                lib.concatMapStringsSep ", " (name: "`${name}`") (
-                  builtins.attrNames config.stylix
+            else
+              (
+                config':
+                let
+                  inherit (cfg.${argument}) override;
+                in
+                if override == null then
+                  config'
+                else if builtins.typeOf override != builtins.typeOf config' then
+                  throw "stylix: expected `config.stylix.targets.${name}.${argument}.override` to be a ${builtins.typeOf config'}, but got: ${builtins.typeOf override}"
+                else if builtins.isAttrs override then
+                  lib.recursiveUpdate config' override
+                else
+                  override
+              )
+                (
+                  if argument == "colors" then
+                    config.lib.stylix.colors
+
+                  else
+                    config.stylix.${argument} or (throw "stylix: mkTarget expected one of ${
+                      lib.concatMapStringsSep ", " (expected: "`${expected}`") (
+                        lib.naturalSort (
+                          [
+                            "cfg"
+                            "colors"
+                          ]
+                          ++ builtins.attrNames config.stylix
+                        )
+                      )
+                    }, but got: ${argument}")
                 )
-              }, but got: ${arg}")
-        );
+          );
 
-      # Call the configuration function with its required Stylix arguments.
-      mkConfig = fn: fn (getStylixAttrs fn);
+      normalizeConfig =
+        config:
+        map (lib.fix (
+          self: config':
+          if builtins.isPath config' then self (import config') else config'
+        )) (lib.toList config);
 
-      # Safeguard configuration functions when any of their arguments is
-      # disabled.
-      mkConditionalConfig =
-        c:
-        if builtins.isFunction c then
-          let
-            allAttrsEnabled = lib.pipe c [
-              getStylixAttrs
-              builtins.attrValues
-              # If the attr has no enable option, it is instead disabled when null
-              (builtins.all (attr: attr.enable or (attr != null)))
-            ];
-          in
-          lib.mkIf allAttrsEnabled (mkConfig c)
-        else
-          c;
+      normalizedConfig = normalizeConfig mkTargetConfig;
+      normalizedOptions = normalizeConfig options;
     in
     {
-      imports = imports ++ [
-        { options.stylix.targets.${name} = mkConfig (lib.toFunction extraOptions); }
-      ];
+      imports =
+        lib.singleton {
+          options.stylix.targets.${name} =
+            lib.genAttrs
+              (lib.concatLists (
+                map (lib.flip lib.pipe [
+                  (
+                    config': lib.optionalAttrs (builtins.isFunction config') (getArguments config')
+                  )
+                  builtins.attrNames
+                  (lib.remove "cfg")
+                ]) (normalizedConfig ++ normalizedOptions)
+              ))
+              (
+                argument:
+                let
+                  config = "`${
+                    if argument == "colors" then
+                      "config.lib.stylix.colors"
+                    else
+                      "config.stylix.${argument}"
+                  }`";
+                in
+                {
+                  enable = lib.mkEnableOption "${config} for ${humanName}" // {
+                    default = true;
+                    example = false;
+                  };
+
+                  override = lib.mkOption {
+                    default = null;
+
+                    description = ''
+                      Attribute sets are recursively merged with ${config},
+                      while all other non-`null` types override ${config}.
+                    '';
+
+                    type = lib.types.anything;
+                  };
+                }
+              );
+        }
+        ++ imports
+        ++ map (option: {
+          options.stylix.targets.${name} = callModule false option;
+        }) normalizedOptions;
 
       options.stylix.targets.${name}.enable =
         let
@@ -254,14 +342,8 @@ let
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (
-          lib.optional (generalConfig != null) (
-            mkConfig (
-              if builtins.isPath generalConfig then import generalConfig else generalConfig
-            )
-          )
-          ++ map (c: mkConditionalConfig (if builtins.isPath c then import c else c)) (
-            lib.toList configElements
-          )
+          lib.singleton (callModule false unconditionalConfig)
+          ++ map (callModule true) normalizedConfig
         )
       );
     };

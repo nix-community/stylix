@@ -5,10 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "plymouth";
-  humanName = "the Plymouth boot screen";
-
-  extraOptions = {
+  options = {
     logo = lib.mkOption {
       description = "Logo to be used on the boot screen.";
       type = with lib.types; either path package;
@@ -35,7 +32,7 @@ mkTarget {
     )
   ];
 
-  configElements =
+  config =
     { cfg, colors }:
     let
       themeScript = import ./theme-script.nix { inherit lib cfg colors; };
