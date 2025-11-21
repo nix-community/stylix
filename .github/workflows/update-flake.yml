@@ -68,11 +68,18 @@ jobs:
 
           # The nixpkgs maintainers may have changed, so keep all-maintainers
           # in sync
-          nix run .#all-maintainers
+          if nix run .#all-maintainers; then
+            git add generated/all-maintainers.nix
 
-          git add generated/all-maintainers.nix
-          git commit --message "stylix: update all-maintainers list" ||
-            echo "generated/all-maintainers.nix has no changes"
+            if
+              ! git commit --message "stylix: update all-maintainers list"
+            then
+              echo "::debug::generated/all-maintainers.nix has no changes"
+            fi
+
+          else
+            echo "::error::failed to update generated/all-maintainers.nix"
+          fi
 
       - name: create pull request
         env:
