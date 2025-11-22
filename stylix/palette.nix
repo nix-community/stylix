@@ -49,8 +49,8 @@ in
 
       polarity = lib.mkOption {
         type = lib.types.enum [
-          "light"
           "dark"
+          "light"
         ];
         default = "dark";
         description = ''
