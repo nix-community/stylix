@@ -92,7 +92,9 @@ To set a wallpaper, provide a path or an arbitrary derivation:
 
 If `stylix.base16Scheme` is undeclared, Stylix generates a color scheme based on
 the wallpaper using [Matugen](https://github.com/InioX/matugen). Note that more
-colorful images tend to yield better results. Set the polarity with:
+colorful images tend to yield better results.
+
+Set the polarity with:
 
 - ```nix
   {
@@ -105,6 +107,32 @@ colorful images tend to yield better results. Set the polarity with:
     stylix.colorGeneration.polarity = "light";
   }
   ```
+
+
+Choose the scheme of Matugen-generated colors with:
+- ```nix
+  {
+    stylix.colorGeneration.scheme = "vibrant";
+  }
+  ```
+
+
+The available schemes are: `content`, `expressive`, `fidelity`, `fruit-salad`, `monochrome`, `neutral`, `rainbow`, `tonal-spot`, and `vibrant`.
+
+The default is `content`
+
+This option corresponds directly to Matugen’s schemes.
+
+
+Adjust the contrast of the generated color scheme with:
+- ```nix
+  {
+    stylix.colorGeneration.contrast = 0.35;
+  }
+  ```
+
+Valid values range from -1.0 to 1.0 (inclusive). Negative values produce a softer, lower-contrast palette. Positive values produce a stronger, higher-contrast palette. 0.0 (the default) leaves the contrast unmodified.
+
 
 The generated color scheme can be viewed at `/etc/stylix/palette.html` on NixOS,
 or at `~/.config/stylix/palette.html` on Home Manager.
