@@ -39,21 +39,19 @@
       '';
     in
     {
-      devShells = {
-        default = pkgs.mkShell {
-          # Install git-hooks when activating the shell
-          shellHook = config.pre-commit.installationScript;
+      devShells.default = pkgs.mkShell {
+        # Install git-hooks when activating the shell
+        shellHook = config.pre-commit.installationScript;
 
-          packages = [
-            stylix-check
-            build-and-run-docs
-            inputs'.home-manager.packages.default
-            config.formatter
-          ]
-          ++ config.pre-commit.settings.enabledPackages;
+        packages = [
+          stylix-check
+          build-and-run-docs
+          inputs'.home-manager.packages.default
+          config.formatter
+        ]
+        ++ config.pre-commit.settings.enabledPackages;
 
-          inputsFrom = [ config.treefmt.build.devShell ];
-        };
+        inputsFrom = [ config.treefmt.build.devShell ];
       };
     };
 }
