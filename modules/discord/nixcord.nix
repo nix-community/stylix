@@ -60,6 +60,32 @@ mkTarget {
                   })
                 ]
               ))
+              (lib.mkIf (nixcord.discord.equicord.enable && nixcord.discord.enable) (
+                lib.mkMerge [
+                  (lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin || config.xdg.enable) {
+                    xdg.configFile."Equicord/themes/stylix.theme.css".text =
+                      cfg.themeBody + cfg.extraCss;
+                  })
+
+                  (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin && !config.xdg.enable) {
+                    home.file."Library/Application Support/Equicord/themes/stylix.theme.css".text =
+                      cfg.themeBody + cfg.extraCss;
+                  })
+                ]
+              ))
+              (lib.mkIf nixcord.equibop.enable (
+                lib.mkMerge [
+                  (lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin || config.xdg.enable) {
+                    xdg.configFile."equibop/themes/stylix.theme.css".text =
+                      cfg.themeBody + cfg.extraCss;
+                  })
+
+                  (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin && !config.xdg.enable) {
+                    home.file."Library/Application Support/equibop/themes/stylix.theme.css".text =
+                      cfg.themeBody + cfg.extraCss;
+                  })
+                ]
+              ))
               {
                 programs.nixcord.config.enabledThemes = [ "stylix.theme.css" ];
               }
