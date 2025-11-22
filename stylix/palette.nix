@@ -35,6 +35,7 @@ in
         '';
         apply = value: "scheme-${value}";
       };
+
       contrast = lib.mkOption {
         type = lib.types.addCheck lib.types.float (x: x >= -1.0 && x <= 1.0);
         default = 0.0;
@@ -45,6 +46,7 @@ in
           design as spec'd), and `1` represents maximum contrast.
         '';
       };
+
       polarity = lib.mkOption {
         type = lib.types.enum [
           "light"
