@@ -146,6 +146,15 @@
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        flake-parts.follows = "dev-flake-parts";
+        flake-compat.follows = "";
+      };
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {

@@ -145,6 +145,30 @@
         "type": "github"
       }
     },
+    "nixcord": {
+      "inputs": {
+        "flake-compat": [],
+        "flake-parts": [
+          "dev-flake-parts"
+        ],
+        "nixpkgs": [
+          "dev-nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763819073,
+        "narHash": "sha256-oi+Nd8O+lWCj0Jh+8Px3UAo82HMTB2AaPiJsy5iUPt8=",
+        "owner": "kaylorben",
+        "repo": "nixcord",
+        "rev": "0bb86069c738dd300458ebdcd93b05cd3204a155",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kaylorben",
+        "repo": "nixcord",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": [
@@ -208,6 +232,7 @@
         "flake-compat": "flake-compat",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
+        "nixcord": "nixcord",
         "nixvim": "nixvim",
         "nvf": "nvf",
         "spicetify-nix": "spicetify-nix",

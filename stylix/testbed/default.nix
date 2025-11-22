@@ -35,6 +35,10 @@ let
             {
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
+              nixcord.home-manager.sharedModules = [
+                inputs.nixcord.homeModules.nixcord
+              ];
+
               nixvim-integrated = inputs.nixvim.nixosModules.nixvim;
 
               nixvim-standalone.lib.stylix.testbed = {
