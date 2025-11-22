@@ -7,8 +7,7 @@ mkTarget {
     (
       { colorGeneration }:
       {
-        programs.kubecolor.settings.preset =
-          if colorGeneration.polarity == "either" then "" else colorGeneration.polarity;
+        programs.kubecolor.settings.preset = colorGeneration.polarity;
       }
     )
     (
