@@ -84,8 +84,8 @@ To set a wallpaper, provide a path or an arbitrary derivation:
   { pkgs, ... }:
   {
     stylix.image = pkgs.fetchurl {
-      url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
-      hash = "sha256-enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+      url = "https://getwallpapers.com/wallpaper/full/1/4/3/523784.jpg";
+      hash = "sha256-S/6kgloXiIYI0NblT6YVXfqELApbdHGsuYe6S4JoQwQ=";
     };
   }
   ```
