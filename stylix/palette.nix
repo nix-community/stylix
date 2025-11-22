@@ -53,9 +53,7 @@ in
           "light"
         ];
         default = "dark";
-        description = ''
-          Use this option to choose between a light or dark theme.
-        '';
+        description = "Whether to apply the dark or light theme.";
       };
     };
 
