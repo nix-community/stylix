@@ -140,48 +140,53 @@ in
           readOnly = true;
           internal = true;
           default =
-            let
-              inherit (lib.importJSON cfg.generated.json) colors;
-              getColor = colorName: colors.${colorName}.${cfg.colorGeneration.polarity};
-            in
-            if cfg.colorGeneration.polarity == "dark" then
-              {
-                base00 = getColor "surface_container_lowest";
-                base01 = getColor "surface_container";
-                base02 = getColor "surface_container_highest";
-                base03 = getColor "outline";
-                base04 = getColor "on_surface_variant";
-                base05 = getColor "on_surface";
-                base06 = getColor "secondary_fixed";
-                base07 = getColor "primary";
-                base08 = getColor "error";
-                base09 = getColor "tertiary";
-                base0A = getColor "secondary";
-                base0B = getColor "primary";
-                base0C = getColor "primary_fixed";
-                base0D = getColor "surface_tint";
-                base0E = getColor "tertiary_fixed";
-                base0F = getColor "on_error_container";
-              }
-            else
-              {
-                base00 = getColor "surface";
-                base01 = getColor "surface_container";
-                base02 = getColor "surface_container_highest";
-                base03 = getColor "outline";
-                base04 = getColor "on_surface_variant";
-                base05 = getColor "on_surface";
-                base06 = getColor "tertiary_container";
-                base07 = getColor "on_primary_fixed_variant";
-                base08 = getColor "error";
-                base09 = getColor "tertiary";
-                base0A = getColor "secondary";
-                base0B = getColor "primary";
-                base0C = getColor "primary_container";
-                base0D = getColor "surface_tint";
-                base0E = getColor "secondary_fixed_dim";
-                base0F = getColor "inverse_surface";
-              };
+            builtins.mapAttrs
+              (
+                let
+                  inherit (lib.importJSON cfg.generated.json) colors;
+                in
+                _: color: colors.${color}.${cfg.colorGeneration.polarity}
+              )
+              (
+                if cfg.colorGeneration.polarity == "dark" then
+                  {
+                    base00 = "surface_container_lowest";
+                    base01 = "surface_container";
+                    base02 = "surface_container_highest";
+                    base03 = "outline";
+                    base04 = "on_surface_variant";
+                    base05 = "on_surface";
+                    base06 = "secondary_fixed";
+                    base07 = "primary";
+                    base08 = "error";
+                    base09 = "tertiary";
+                    base0A = "secondary";
+                    base0B = "primary";
+                    base0C = "primary_fixed";
+                    base0D = "surface_tint";
+                    base0E = "tertiary_fixed";
+                    base0F = "on_error_container";
+                  }
+                else
+                  {
+                    base00 = "surface";
+                    base01 = "surface_container";
+                    base02 = "surface_container_highest";
+                    base03 = "outline";
+                    base04 = "on_surface_variant";
+                    base05 = "on_surface";
+                    base06 = "tertiary_container";
+                    base07 = "on_primary_fixed_variant";
+                    base08 = "error";
+                    base09 = "tertiary";
+                    base0A = "secondary";
+                    base0B = "primary";
+                    base0C = "primary_container";
+                    base0D = "surface_tint";
+                    base0E = "secondary_fixed_dim";
+                    base0F = "inverse_surface";
+                  }
+              );
         }
         // {
           author = "Stylix";
