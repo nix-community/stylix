@@ -108,31 +108,7 @@ Set the polarity with:
   }
   ```
 
-
-Choose the scheme of Matugen-generated colors with:
-- ```nix
-  {
-    stylix.colorGeneration.scheme = "vibrant";
-  }
-  ```
-
-
-The available schemes are: `content`, `expressive`, `fidelity`, `fruit-salad`, `monochrome`, `neutral`, `rainbow`, `tonal-spot`, and `vibrant`.
-
-The default is `content`
-
-This option corresponds directly to Matugen’s schemes.
-
-
-Adjust the contrast of the generated color scheme with:
-- ```nix
-  {
-    stylix.colorGeneration.contrast = 0.35;
-  }
-  ```
-
-Valid values range from -1.0 to 1.0 (inclusive). Negative values produce a softer, lower-contrast palette. Positive values produce a stronger, higher-contrast palette. 0.0 (the default) leaves the contrast unmodified.
-
+Customize the generated color scheme with the `stylix.colorGeneration.scheme` and `stylix.colorGeneration.contrast` options.
 
 The generated color scheme can be viewed at `/etc/stylix/palette.html` on NixOS,
 or at `~/.config/stylix/palette.html` on Home Manager.

@@ -30,6 +30,7 @@ in
           "vibrant"
         ];
         default = "content";
+        example = "tonal-spot";
         description = ''
           [Matugen](https://github.com/InioX/matugen)'s color scheme type.
         '';
@@ -51,6 +52,7 @@ in
           "light"
         ];
         default = "dark";
+        example = "light";
         description = "Whether to apply the dark or light theme.";
       };
     };
@@ -125,8 +127,9 @@ in
                 --json strip \
                 --type "$SCHEME" \
                 image \
-                "$IMAGE" \
-                | sed -E 's/"image":[[:space:]]*"[^"]*",?//g' > $out'';
+                "$IMAGE" |
+                sed -E 's/"image":[[:space:]]*"[^"]*",?//g' \
+                >$out'';
       };
 
       palette =
@@ -163,6 +166,7 @@ in
                     base0E = "tertiary_fixed";
                     base0F = "on_error_container";
                   }
+
                 else
                   {
                     base00 = "surface";
