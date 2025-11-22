@@ -2,10 +2,10 @@
 {
   imports = [
     inputs.flake-parts.flakeModules.partitions
-    ./options/ci.nix
-    ./options/testbeds.nix
     ./deprecation
     ./modules.nix
+    ./options/ci.nix
+    ./options/testbeds.nix
     ./packages.nix
     ./propagated-packages.nix
   ];
