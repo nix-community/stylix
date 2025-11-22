@@ -92,7 +92,7 @@ To set a wallpaper, provide a path or an arbitrary derivation:
 
 If `stylix.base16Scheme` is undeclared, Stylix generates a color scheme based on
 the wallpaper using [Matugen](https://github.com/InioX/matugen). Note that more
-colorful images tend to yield better results. The polarity can be chosen with:
+colorful images tend to yield better results. Set the polarity with:
 
 - ```nix
   {
