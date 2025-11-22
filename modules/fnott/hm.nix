@@ -49,10 +49,10 @@ mkTarget {
       }
     )
     (
-      { polarity, icons }:
+      { colorGeneration, icons }:
       {
         services.fnott.settings.main."icon-theme" =
-          if (polarity == "dark") then icons.dark else icons.light;
+          if (colorGeneration.polarity == "dark") then icons.dark else icons.light;
       }
     )
   ];
