@@ -184,10 +184,10 @@ let
     mergeWithImage
       {
         kwinrc."org.kde.kdecoration2".library = cfg.decorations;
-        plasmarc.Theme.name = "default";
+        plasmarc.Theme.name = cfg.applicationStyle;
 
         kdeglobals = {
-          KDE.widgetStyle = "Breeze";
+          KDE.widgetStyle = cfg.widgetStyle;
           General.ColorScheme = colorschemeSlug;
         };
       }
@@ -363,6 +363,22 @@ in
         To list all available decorations, see the `library` key in the
         `org.kde.kdecoration2` section of `$HOME/.config/kwinrc` after
         imperatively applying the window decoration via the System Settings app.
+      '';
+    };
+    widgetStyle = lib.mkOption {
+      type = lib.types.str;
+      default = "Breeze";
+      description = ''
+        library for widgets styles.
+
+        Widget Styles other than default `Breeze` may not be compatible with stylix.
+      '';
+    };
+    applicationStyle = lib.mkOption {
+      type = lib.types.str;
+      default = "default";
+      description = ''
+        library for Application Styles.
       '';
     };
   };
