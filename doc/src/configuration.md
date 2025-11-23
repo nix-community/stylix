@@ -108,7 +108,8 @@ Set the polarity with:
   }
   ```
 
-Customize the generated color scheme with the `stylix.colorGeneration.scheme` and `stylix.colorGeneration.contrast` options.
+Customize the generated color scheme with the `stylix.colorGeneration.scheme`
+and `stylix.colorGeneration.contrast` options.
 
 The generated color scheme can be viewed at `/etc/stylix/palette.html` on NixOS,
 or at `~/.config/stylix/palette.html` on Home Manager.
