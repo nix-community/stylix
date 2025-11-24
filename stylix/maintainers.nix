@@ -7,6 +7,12 @@
 # [1]: https://github.com/NixOS/nixpkgs/blob/1da63e6cc622a0cb6fd5b86d49923e4eb1e33b70/maintainers/maintainer-list.nix
 {
   # keep-sorted start case=no numeric=no block=yes
+  berber = {
+    email = "git@zmberber.com";
+    name = "Zeremonienmeister Berber Aab";
+    github = "zmberber";
+    githubId = 29400525;
+  };
   butzist = {
     email = "adam@szalkowski.de";
     name = "Adam M. Szalkowski";
@@ -31,13 +37,6 @@
     github = "khas-amir";
     githubId = 11248328;
   };
-  lomenzel = {
-    name = "Leonard-Orlando Menzel";
-    email = "leonard.menzel@tutanota.com";
-    matrix = "@leonard:menzel.lol";
-    github = "lomenzel";
-    githubId = 79226837;
-  };
   make-42 = {
     email = "ontake@ontake.dev";
     name = "Louis Dalibard";
@@ -54,17 +53,35 @@
     github = "michaelgoldenn";
     githubId = 95949544;
   };
+  omega-800 = {
+    email = "gshevoroshkin@gmail.com";
+    name = "Georgiy Shevoroshkin";
+    github = "omega-800";
+    githubId = 50942480;
+  };
   osipog = {
     email = "osibluber@protonmail.com";
     name = "Osi Bluber";
     github = "osipog";
     githubId = 87434959;
   };
+  skiletro = {
+    email = "git@skilet.ro";
+    name = "jamie";
+    github = "skiletro";
+    githubId = 19377854;
+  };
   skoove = {
     email = "zie@sturges.com.au";
     name = "Zie Sturges";
     github = "skoove";
     githubId = 53106860;
+  };
+  vidhanio = {
+    email = "me@vidhan.io";
+    name = "Vidhan Bhatt";
+    github = "vidhanio";
+    githubId = 41439633;
   };
   # keep-sorted end
 }

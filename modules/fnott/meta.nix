@@ -3,7 +3,7 @@
   name = "Fnott";
   homepage = "https://codeberg.org/dnkl/fnott";
   maintainers = with lib.maintainers; [
-    awwpotato
+    da157
     MrSom3body
   ];
 }

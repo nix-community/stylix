@@ -25,7 +25,7 @@ mkTarget {
         in
         {
           mgr = rec {
-            # Reusing bat themes, since it's suggested in the stying guide
+            # Reusing bat themes, since it's suggested in the styling guide
             # https://yazi-rs.github.io/docs/configuration/theme#mgr
             syntect_theme = colors {
               template = ../bat/base16-stylix.tmTheme.mustache;

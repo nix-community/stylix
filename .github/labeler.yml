@@ -3,10 +3,6 @@
 # remove the label
 ---
 # keep-sorted start newline_separated=yes
-"backport: release-25.05":
-  - changed-files:
-      - any-glob-to-any-file: ".github/workflows/*"
-
 "topic: ci":
   - changed-files:
       - any-glob-to-any-file: ".github/**"

@@ -10,7 +10,7 @@ let
     name: testbed:
     let
       system = lib.nixosSystem {
-        inherit (pkgs) system;
+        inherit (pkgs.stdenv.hostPlatform) system;
 
         modules = [
           (lib.modules.importApply ./modules/flake-parts.nix inputs)
@@ -44,6 +44,10 @@ let
               };
 
               nvf = inputs.nvf.nixosModules.default;
+
+              vicinae.home-manager.sharedModules = [
+                inputs.vicinae.homeManagerModules.default
+              ];
 
               zen-browser.home-manager.sharedModules = [
                 inputs.zen-browser.homeModules.default
