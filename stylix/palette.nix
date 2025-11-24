@@ -124,6 +124,7 @@ in
               matugen \
                 --contrast "$CONTRAST" \
                 --dry-run \
+                --include-image-in-json false \
                 --json strip \
                 --type "$SCHEME" \
                 image \
