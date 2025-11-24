@@ -17,6 +17,25 @@ in
   );
   options.stylix = {
     colorGeneration = {
+      contrast = lib.mkOption {
+        type = lib.types.addCheck lib.types.float (x: x >= -1.0 && x <= 1.0);
+        default = 0.0;
+        description = ''
+          The contrast of the generated color scheme, ranging from `-1.0` to
+          `1.0` (inclusive).
+        '';
+      };
+
+      polarity = lib.mkOption {
+        type = lib.types.enum [
+          "dark"
+          "light"
+        ];
+        default = "dark";
+        example = "light";
+        description = "Whether to apply the dark or light theme.";
+      };
+
       scheme = lib.mkOption {
         type = lib.types.enum [
           "content"
@@ -35,25 +54,6 @@ in
           [Matugen](https://github.com/InioX/matugen)'s color scheme type.
         '';
         apply = value: "scheme-${value}";
-      };
-
-      contrast = lib.mkOption {
-        type = lib.types.addCheck lib.types.float (x: x >= -1.0 && x <= 1.0);
-        default = 0.0;
-        description = ''
-          The contrast of the generated color scheme, ranging from `-1.0` to
-          `1.0` (inclusive).
-        '';
-      };
-
-      polarity = lib.mkOption {
-        type = lib.types.enum [
-          "dark"
-          "light"
-        ];
-        default = "dark";
-        example = "light";
-        description = "Whether to apply the dark or light theme.";
       };
     };
 
