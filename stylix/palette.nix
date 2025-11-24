@@ -117,6 +117,7 @@ in
               env = {
                 CONTRAST = toString cfg.colorGeneration.contrast;
                 IMAGE = cfg.image;
+                POLARITY = cfg.colorGeneration.polarity;
                 SCHEME = cfg.colorGeneration.scheme;
               };
             }
@@ -126,6 +127,7 @@ in
                 --dry-run \
                 --include-image-in-json false \
                 --json strip \
+                --mode "$POLARITY" \
                 --type "$SCHEME" \
                 image \
                 "$IMAGE" |
