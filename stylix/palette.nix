@@ -26,6 +26,21 @@ in
         '';
       };
 
+      filter = lib.mkOption {
+        type = lib.types.enum [
+          "catmull-rom"
+          "gaussian"
+          "lanczos3"
+          "nearest"
+          "triangle"
+        ];
+        default = "lanczos3";
+        example = "nearest";
+        description = ''
+          [Matugen](https://github.com/InioX/matugen)'s resize filter.
+        '';
+      };
+
       polarity = lib.mkOption {
         type = lib.types.enum [
           "dark"
@@ -116,6 +131,7 @@ in
               nativeBuildInputs = [ pkgs.matugen ];
               env = {
                 CONTRAST = toString cfg.colorGeneration.contrast;
+                FILTER = cfg.colorGeneration.filter;
                 IMAGE = cfg.image;
                 POLARITY = cfg.colorGeneration.polarity;
                 SCHEME = cfg.colorGeneration.scheme;
@@ -128,6 +144,7 @@ in
                 --include-image-in-json false \
                 --json strip \
                 --mode "$POLARITY" \
+                --resize-filter "$FILTER" \
                 --type "$SCHEME" \
                 image \
                 "$IMAGE" |
