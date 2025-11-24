@@ -119,17 +119,39 @@ in
             name = "stylix-notification-check";
             desktopName = "stylix-notification-check";
             terminal = false;
-            exec = pkgs.writeShellScript "stylix-send-notifications" (
-              lib.concatMapStringsSep " && "
-                (
-                  urgency: "${lib.getExe pkgs.libnotify} --urgency ${urgency} ${urgency} urgency"
-                )
+            exec =
+              lib.pipe
+                {
+                  name = "stylix-send-notifications";
+                  runtimeInputs = [ pkgs.libnotify ];
+
+                  text = ''
+                    for percent in {0..100}; do
+                      ${lib.concatMapStrings
+                        (urgency: ''
+                          notify-send \
+                            --hint="int:value:$percent" \
+                            --hint=string:x-dunst-stack-tag:${urgency} \
+                            --urgency ${urgency} \
+                            ${urgency} \
+                            urgency \
+                            &
+                        '')
+                        [
+                          "low"
+                          "normal"
+                          "critical"
+                        ]
+                      }
+
+                      wait
+                    done
+                  '';
+                }
                 [
-                  "low"
-                  "normal"
-                  "critical"
-                ]
-            );
+                  pkgs.writeShellApplication
+                  lib.getExe
+                ];
           };
         }
       )
