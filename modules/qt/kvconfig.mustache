@@ -1,6 +1,7 @@
 [%General]
 author=Bluskript based on Catppuccin Frappe Mauve theme
 comment=base16-qt
+combo_focus_rect=true
 spread_menuitems=true
 left_tabs=true
 mirror_doc_tabs=true
@@ -81,6 +82,7 @@ dark.color=#{{base00-hex}}
 mid.color=#{{base00-hex}}
 highlight.color=#{{base03-hex}}
 inactive.highlight.color=#{{base03-hex}}
+tooltip.base.color=#{{base00-hex}}
 text.color=#{{base05-hex}}
 window.text.color=#{{base05-hex}}
 button.text.color=#{{base05-hex}}
@@ -98,6 +100,7 @@ interior.element=itemview
 frame=true
 interior=true
 text.iconspacing=3
+text.press.color=#{{base05-hex}}
 text.toggle.color=#{{base05-hex}}
 
 [RadioButton]
@@ -317,6 +320,10 @@ text.press.color=#{{base05-hex}}
 text.toggle.color=#{{base05-hex}}
 text.bold=false
 
+[ToolbarLineEdit]
+frame.element=lineedit
+interior.element=lineedit
+
 [Scrollbar]
 inherits=PanelButtonCommand
 indicator.size=0
@@ -382,6 +389,10 @@ frame.right=3
 inherits=PanelButtonCommand
 interior.element=menuitem
 indicator.size=8
+frame=true
+frame.element=menuitem
+frame.right=10
+frame.left=10
 text.focus.color=#{{base05-hex}}
 text.press.color=#{{base05-hex}}
 
@@ -423,6 +434,7 @@ text.margin.top=1
 text.margin.bottom=1
 text.margin.left=3
 text.margin.right=3
+text.press.color=#{{base05-hex}}
 text.toggle.color=#{{base05-hex}}
 
 [ToolboxTab]
@@ -452,7 +464,7 @@ blur_translucent=true
 centered_forms=false
 kinetic_scrolling=false
 middle_click_scroll=false
-no_selection_tint=false
+no_selection_tint=true
 noninteger_translucency=false
 style_vertical_toolbars=false
 blur_only_active_window=false
