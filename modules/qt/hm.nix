@@ -85,6 +85,7 @@
         let
           qtctConf = ''
             [Appearance]
+            custom_palette=true
           ''
           + lib.optionalString (config.qt.style ? name) ''
             style=${config.qt.style.name}
