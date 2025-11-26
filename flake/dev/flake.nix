@@ -120,7 +120,7 @@
   #
   #       [1]: https://github.com/NixOS/nix/blob/d4f67fd46dfe2bc950bdfa14273f87b8a4c32e47/doc/manual/source/release-notes/rl-2.26.md?plain=1#L3-L11
   inputs = {
-    dev-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    dev-nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     dev-flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -142,12 +142,12 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/nixos-25.11";
       inputs = {
         flake-parts.follows = "dev-flake-parts";
         nixpkgs.follows = "dev-nixpkgs";
