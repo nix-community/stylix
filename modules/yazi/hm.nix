@@ -4,14 +4,6 @@ mkTarget {
   name = "yazi";
   humanName = "Yazi";
 
-  extraOptions = {
-    boldDirectory = lib.mkOption {
-      description = "Whether to use bold font for directories.";
-      type = lib.types.bool;
-      default = true;
-    };
-  };
-
   configElements =
     { cfg, colors }:
     {
@@ -149,7 +141,7 @@ mkTarget {
               (mkRule "application/rtf" green)
               (mkRule "application/vnd.*" green)
 
-              ((mkRule "inode/directory" blue) // { bold = cfg.boldDirectory; })
+              ((mkRule "inode/directory" blue) // { bold = true; })
               (mkRule "*" base05)
             ];
         };
