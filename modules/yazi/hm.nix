@@ -121,28 +121,38 @@ mkTarget {
           filetype.rules =
             let
               mkRule = mime: fg: { inherit mime fg; };
+              mkIs = is: fg: {
+                name = "*";
+                inherit is fg;
+              };
             in
             [
-              (mkRule "image/*" cyan)
-              (mkRule "video/*" yellow)
-              (mkRule "audio/*" yellow)
+              ((mkRule "inode/directory" blue) // { bold = true; })
+              # ((mkIs "link" base05) // {bold = true;})
+              (mkIs "orphan" base08)
+              (mkIs "fifo" base0A)
+              ((mkIs "block" base0A) // { bold = true; })
+              ((mkIs "char" base0A) // { bold = true; })
+              (mkIs "sock" base0C)
+              (mkIs "exec" base0B)
+              (mkIs "dummy" base03)
 
-              (mkRule "application/zip" magenta)
-              (mkRule "application/gzip" magenta)
-              (mkRule "application/tar" magenta)
-              (mkRule "application/bzip" magenta)
-              (mkRule "application/bzip2" magenta)
-              (mkRule "application/7z-compressed" magenta)
-              (mkRule "application/rar" magenta)
-              (mkRule "application/xz" magenta)
-
-              (mkRule "application/doc" green)
-              (mkRule "application/pdf" green)
-              (mkRule "application/rtf" green)
-              (mkRule "application/vnd.*" green)
+              (mkRule "{image,audio,video}/*" base0E)
+              (
+                (mkRule "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}" base09)
+                // {
+                  bold = true;
+                }
+              )
+              (mkRule "application/{pdf,doc,rtf}" base09)
 
               ((mkRule "inode/directory" blue) // { bold = true; })
               (mkRule "*" base05)
+              {
+                name = "*";
+                is = "link";
+                italic = true;
+              }
             ];
         };
     };
