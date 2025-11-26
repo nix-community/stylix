@@ -7,6 +7,9 @@ updates:
     target-branch: "master"
     schedule:
       interval: daily
-    labels: ["topic: dependencies", "backport: release-25.05"]
+    labels:
+      - "topic: dependencies"
+      - "backport: release-25.05"
+      - "backport: release-25.11"
     commit-message:
       prefix: "ci"
