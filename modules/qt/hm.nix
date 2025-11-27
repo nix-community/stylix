@@ -27,6 +27,7 @@
       '';
       type = with lib.types; nullOr str;
       default = null;
+      example = "qtct";
     };
 
     standardDialogs = lib.mkOption {
@@ -94,8 +95,8 @@
         ++ (lib.optional (config.qt.style.name != recommendedStyle)
           "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
         )
-        ++ (lib.optional (config.stylix.targets.qt.platform == null && nixosConfig != null)
-          "stylix: qt: When using standalone home-manager, `config.stylix.targets.qt.platform` must be set."
+        ++ (lib.optional (nixosConfig != null && config.stylix.targets.qt.platform == null)
+          "stylix: qt: `config.stylix.targets.qt.platform` is disabled by default to prevent Plasma 6 incompatibilities. Non-KDE users can set it to 'qtct', while KDE users can disable this warning with `<TODO: Add option to disable warning.>`."
         );
 
       home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;

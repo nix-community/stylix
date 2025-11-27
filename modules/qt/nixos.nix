@@ -17,6 +17,7 @@ in
       '';
       type = with lib.types; nullOr str;
       default = null;
+      example = "qtct";
     };
   };
 
