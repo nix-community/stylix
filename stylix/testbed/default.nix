@@ -55,7 +55,7 @@ let
             };
       };
     in
-    pkgs.writeShellApplication {
+    lib.recursiveUpdate (pkgs.writeShellApplication {
       inherit name;
       text = ''
         cleanup() {
@@ -72,6 +72,6 @@ let
         NIX_DISK_IMAGE="$directory/nixos.qcow2" \
           ${lib.getExe system.config.system.build.vm}
       '';
-    };
+    }) { meta.maintainers = testbed.config.meta.maintainers; };
 in
 builtins.mapAttrs makeTestbed modules
