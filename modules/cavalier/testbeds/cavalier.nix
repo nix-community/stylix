@@ -1,17 +1,8 @@
 { lib, pkgs, ... }:
-let
-  package = pkgs.cavalier;
-in
 {
-  stylix.testbed.ui.application = {
-    name = "org.nickvision.cavalier";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = pkgs.cavalier.meta.mainProgram;
 
   home-manager.sharedModules = lib.singleton {
-    programs.cavalier = {
-      enable = true;
-      inherit package;
-    };
+    programs.cavalier.enable = true;
   };
 }

@@ -1,8 +1,8 @@
 { lib, ... }:
 {
   stylix.testbed.ui = {
-    graphicalEnvironment = "hyprland";
     command.text = "sleep 5 && vicinae open";
+    graphicalEnvironment = "hyprland";
   };
 
   home-manager.sharedModules = lib.singleton {
