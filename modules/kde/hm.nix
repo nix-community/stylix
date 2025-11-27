@@ -369,9 +369,10 @@ in
       type = lib.types.str;
       default = "Breeze";
       description = ''
-        library for widgets styles.
+        The library for the widgets styles.
 
-        Widget Styles other than default `Breeze` may not be compatible with stylix.
+        Widget styles other than default `Breeze` may not be compatible with
+        stylix.
       '';
     };
     applicationStyle = lib.mkOption {
