@@ -313,36 +313,50 @@ let
   # want to avoid installing these tools explicitly because that would pull
   # in large dependencies for people who aren't actually using KDE.
   # The workaround used is to assume a list of common paths where the tools
-  # might be installed, and look there. The ideal solution would require
-  # changes to KDE to make it possible to update the wallpaper through
-  # config files alone.
+  # might be installed, and look there. If people want to specify their
+  # plasma-workspace package rather than use the workaround, they can
+  # specify `plasmaWorkspacePackage` option explicitly.
+  #
+  # The ideal solution would require changes to KDE to make it possible to
+  # update the wallpaper through config files alone.
   activatorPackage = pkgs.writeShellApplication {
     name = "stylix-kde-apply-plasma-theme";
     text =
-      mergeWithImage
-        ''
-          get_exe() {
-            for directory in /run/current-system/sw/bin /usr/bin /bin; do
-              if [[ -f "$directory/$1" ]]; then
-                printf '%s\n' "$directory/$1"
-                return 0
-              fi
-            done
-            echo "Skipping '$1': command not found"
-            return 1
-          }
+      if cfg.plasmaWorkspacePackage == null then
+        mergeWithImage
+          ''
+            get_exe() {
+              for directory in /run/current-system/sw/bin /etc/profiles/per-user/$USER/bin /usr/bin /bin; do
+                if [[ -f "$directory/$1" ]]; then
+                  printf '%s\n' "$directory/$1"
+                  return 0
+                fi
+              done
+              echo "Skipping '$1': command not found"
+              return 1
+            }
 
-          if look_and_feel="$(get_exe plasma-apply-lookandfeel)"; then
-            "$look_and_feel" --apply "${Id}" ||
+            if look_and_feel="$(get_exe plasma-apply-lookandfeel)"; then
+              "$look_and_feel" --apply "${Id}" ||
+                echo "Failed plasma-apply-lookandfeel, ignoring error."
+            fi
+          ''
+          ''
+            if wallpaper_image="$(get_exe plasma-apply-wallpaperimage)"; then
+              "$wallpaper_image" "${themePackage}/share/wallpapers/${Id}" ||
+                echo "Failed plasma-apply-wallpaperimage, ignoring error."
+            fi
+          ''
+      else
+        mergeWithImage
+          ''
+            ${lib.getExe' cfg.plasmaWorkspacePackage "plasma-apply-lookandfeel"} --apply "${Id}" ||
               echo "Failed plasma-apply-lookandfeel, ignoring error."
-          fi
-        ''
-        ''
-          if wallpaper_image="$(get_exe plasma-apply-wallpaperimage)"; then
-            "$wallpaper_image" "${themePackage}/share/wallpapers/${Id}" ||
+          ''
+          ''
+            ${lib.getExe cfg.plasmaWorkspacePackage "plasma-apply-wallpaperimage"} "${themePackage}/share/wallpapers/${Id}" ||
               echo "Failed plasma-apply-wallpaperimage, ignoring error."
-          fi
-        '';
+          '';
     runtimeEnv.QT_QPA_PLATFORM = "minimal";
   };
   activator = lib.getExe activatorPackage;
@@ -363,6 +377,18 @@ in
         To list all available decorations, see the `library` key in the
         `org.kde.kdecoration2` section of `$HOME/.config/kwinrc` after
         imperatively applying the window decoration via the System Settings app.
+      '';
+    };
+    plasmaWorkspacePackage = lib.mkOption {
+      type = lib.types.nullOr lib.types.package;
+      default = null;
+      example = "pkgs.plasma-workspace";
+      description = ''
+        If set to null, stylix will assume a series of possible KDE
+        installation paths and search for the `plasma-apply-lookandfeel` and
+        `plasma-apply-wallpaperimage` executables within them. Otherwise, it
+        will directly use these two executables from the specified package.
+        Setting this variable may introduce a large closure.
       '';
     };
   };
