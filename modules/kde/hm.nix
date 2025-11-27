@@ -377,9 +377,7 @@ in
     applicationStyle = lib.mkOption {
       type = lib.types.str;
       default = "default";
-      description = ''
-        library for Application Styles.
-      '';
+      description = "The library for the application style.";
     };
   };
 
