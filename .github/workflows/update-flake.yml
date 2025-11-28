@@ -57,8 +57,10 @@ jobs:
 
       - name: update lock files
         run: |
-          nix flake update
-          nix flake update --flake ./flake/dev
+          nix flake update &
+          nix flake update --flake ./flake/dev &
+
+          wait
 
           git add {,flake/dev/}flake.lock
 
