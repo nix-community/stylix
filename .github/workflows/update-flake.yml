@@ -57,29 +57,22 @@ jobs:
 
       - name: update lock files
         run: |
-          nix flake update \
-            --commit-lock-file \
-            --option commit-lock-file-summary "flake: update public inputs"
+          nix flake update &
+          nix flake update --flake ./flake/dev &
 
-          nix flake update \
-            --commit-lock-file \
-            --flake ./flake/dev \
-            --option commit-lock-file-summary "flake: update dev inputs"
+          wait
+
+          git add {,flake/dev/}flake.lock
 
           # The nixpkgs maintainers may have changed, so keep all-maintainers
           # in sync
           if nix run .#all-maintainers; then
             git add generated/all-maintainers.nix
-
-            if
-              ! git commit --message "stylix: update all-maintainers list"
-            then
-              echo "::debug::generated/all-maintainers.nix has no changes"
-            fi
-
           else
             echo "::error::failed to update generated/all-maintainers.nix"
           fi
+
+          git commit --message "flake: update all inputs"
 
       - name: create pull request
         env:
