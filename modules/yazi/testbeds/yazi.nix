@@ -14,8 +14,6 @@ in
       inherit package;
     };
 
-    home.packages = [
-      pkgs.nerd-fonts.fira-mono
-    ];
+    home.packages = [ pkgs.nerd-fonts.fira-mono ];
   };
 }

@@ -94,17 +94,13 @@ mkTarget {
     (
       { fonts }:
       {
-        programs.regreet.font = {
-          inherit (fonts.sansSerif) name package;
-        };
+        programs.regreet.font = { inherit (fonts.sansSerif) name package; };
       }
     )
     (
       { cursor }:
       {
-        programs.regreet.cursorTheme = {
-          inherit (cursor) name package;
-        };
+        programs.regreet.cursorTheme = { inherit (cursor) name package; };
       }
     )
     (

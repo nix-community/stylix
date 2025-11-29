@@ -28,6 +28,7 @@
       nixfmt = {
         enable = true;
         width = 80;
+        strict = true;
       };
       ruff-format = {
         enable = true;

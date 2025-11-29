@@ -5,7 +5,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.nushell.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.nushell.enable = true; };
 }

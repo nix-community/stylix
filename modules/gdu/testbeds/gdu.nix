@@ -5,7 +5,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    home.packages = [ pkgs.gdu ];
-  };
+  home-manager.sharedModules = lib.singleton { home.packages = [ pkgs.gdu ]; };
 }

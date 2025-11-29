@@ -999,9 +999,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "Block Level Variables";
-      scope = [
-        "meta.block variable.other"
-      ];
+      scope = [ "meta.block variable.other" ];
       settings.foreground = base08;
     }
     {
@@ -1096,9 +1094,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "Language methods";
-      scope = [
-        "variable.language"
-      ];
+      scope = [ "variable.language" ];
       settings = {
         fontStyle = "italic";
         foreground = base08;
@@ -1106,9 +1102,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "entity.name.method.js";
-      scope = [
-        "entity.name.method.js"
-      ];
+      scope = [ "entity.name.method.js" ];
       settings = {
         fontStyle = "italic";
         foreground = base0D;
@@ -1195,9 +1189,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "ES7 Bind Operator";
-      scope = [
-        "source.js constant.other.object.key.js string.unquoted.label.js"
-      ];
+      scope = [ "source.js constant.other.object.key.js string.unquoted.label.js" ];
       settings = {
         fontStyle = "italic";
         foreground = base0E;
@@ -1302,9 +1294,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "Markup - Italic";
-      scope = [
-        "markup.italic"
-      ];
+      scope = [ "markup.italic" ];
       settings = {
         fontStyle = "italic";
         foreground = base08;
@@ -1381,9 +1371,7 @@ colors: with colors.withHashtag; {
     }
     {
       name = "Markdown - Fenced Bode Block";
-      scope = [
-        "punctuation.definition.fenced.markdown"
-      ];
+      scope = [ "punctuation.definition.fenced.markdown" ];
       settings.foreground = "#00000050";
     }
     {

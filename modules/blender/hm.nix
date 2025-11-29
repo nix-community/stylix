@@ -1,8 +1,4 @@
-{
-  mkTarget,
-  lib,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
   name = "blender";
   humanName = "Blender";
