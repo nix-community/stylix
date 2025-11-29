@@ -97,8 +97,8 @@ jobs:
 
           if ((pr_count)); then
             gh pr edit \
+              --add-label "$label" \
               --body "$body" \
-              --label "$label" \
               --title "$title"
 
           else
