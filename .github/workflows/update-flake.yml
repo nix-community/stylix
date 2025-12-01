@@ -81,7 +81,7 @@ jobs:
           body: "This is an automated update triggered by the [workflow run #${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."  # yamllint disable-line rule:line-length
           label: "topic: dependencies"
           pr_branch: update_flake_lock_action_${{ matrix.branch }}
-          title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}flake: update public and dev inputs"  # yamllint disable-line rule:line-length
+          title: "${{ startsWith(matrix.branch, 'release') && format('[{0}] ', matrix.branch) || '' }}flake: update all inputs"  # yamllint disable-line rule:line-length
         run: |
           git switch --create "$pr_branch"
           git push origin "$pr_branch" --force --set-upstream
