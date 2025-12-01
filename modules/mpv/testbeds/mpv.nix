@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.mpv;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "mpv";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "mpv";
 
   home-manager.sharedModules = lib.singleton {
-    programs.mpv = {
-      enable = true;
-      inherit package;
-    };
+    programs.mpv.enable = true;
   };
 }

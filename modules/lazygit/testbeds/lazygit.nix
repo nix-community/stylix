@@ -1,11 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = ''
-      ${lib.getExe pkgs.git} init
-      ${lib.getExe pkgs.lazygit}
-    '';
-    useTerminal = true;
+    terminal = true;
+    text = "git init && lazygit";
   };
 
   home-manager.sharedModules = lib.singleton {

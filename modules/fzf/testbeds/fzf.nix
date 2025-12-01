@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.fzf;
-    useTerminal = true;
+    terminal = true;
+    text = "fzf";
   };
 
   home-manager.sharedModules = lib.singleton {

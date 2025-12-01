@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.rio;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "rio";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "rio";
 
   home-manager.sharedModules = lib.singleton {
-    programs.rio = {
-      enable = true;
-      inherit package;
-    };
+    programs.rio.enable = true;
   };
 }

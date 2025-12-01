@@ -1,21 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.yazi;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "yazi";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "yazi";
 
   home-manager.sharedModules = lib.singleton {
-    programs.yazi = {
-      enable = true;
-      inherit package;
-    };
-
-    home.packages = [
-      pkgs.nerd-fonts.fira-mono
-    ];
+    programs.yazi.enable = true;
   };
 }

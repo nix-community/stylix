@@ -1,17 +1,17 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.nsxiv;
-in
+{ pkgs, ... }:
 {
-  stylix.testbed.ui.command.text = ''
-    # Xresources isn't loaded by default, so we force it
-    ${lib.getExe pkgs.xorg.xrdb} ~/.Xresources
+  stylix.testbed.ui.command = {
+    packages = with pkgs; [
+      nsxiv
+      xorg.xrdb
+    ];
 
-    ${lib.getExe package} \
-      "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-  '';
+    text = ''
+      # Xresources isn't loaded by default, so we force it
+      xrdb ~/.Xresources
 
-  home-manager.sharedModules = lib.singleton {
-    home.packages = [ package ];
+      nsxiv \
+        "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg"
+    '';
   };
 }

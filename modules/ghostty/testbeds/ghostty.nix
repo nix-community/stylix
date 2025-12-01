@@ -1,17 +1,8 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.ghostty;
-in
+{ lib, ... }:
 {
-  stylix.testbed.ui.application = {
-    name = "com.mitchellh.ghostty";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "ghostty";
 
   home-manager.sharedModules = lib.singleton {
-    programs.ghostty = {
-      enable = true;
-      inherit package;
-    };
+    programs.ghostty.enable = true;
   };
 }

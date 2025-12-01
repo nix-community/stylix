@@ -1,24 +1,17 @@
 { lib, pkgs, ... }:
 let
   host = "127.0.0.1";
-
-  package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-    extraPolicies.OverrideFirstRunPage = "http://${host}:${toString port}";
-  };
-
   port = 1234;
 in
 {
-  stylix.testbed.ui.application = {
-    name = "firefox";
-    inherit package;
-  };
+  stylix.testbed.ui.command.packages = lib.singleton (
+    pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      extraPolicies.OverrideFirstRunPage = "http://${host}:${toString port}";
+    }
+  );
 
   home-manager.sharedModules = lib.singleton {
-    programs.firefox = {
-      enable = true;
-      inherit package;
-    };
+    programs.firefox.enable = true;
 
     services.glance = {
       enable = true;

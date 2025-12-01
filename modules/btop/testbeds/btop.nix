@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   stylix.testbed.ui.command = {
-    text = lib.getExe pkgs.btop;
-    useTerminal = true;
+    terminal = true;
+    text = "btop";
   };
 
   home-manager.sharedModules = lib.singleton {

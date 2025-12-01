@@ -1,10 +1,11 @@
-{ lib, pkgs, ... }:
-let
-  package = pkgs.bat;
-in
+{ lib, ... }:
 {
-  environment = {
-    loginShellInit = "${lib.getExe package} flake-parts/flake.nix";
-    systemPackages = [ package ];
+  stylix.testbed.ui.command = {
+    terminal = true;
+    text = "bat flake-parts/flake.nix";
+  };
+
+  home-manager.sharedModules = lib.singleton {
+    programs.bat.enable = true;
   };
 }

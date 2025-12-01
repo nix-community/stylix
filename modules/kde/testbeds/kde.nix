@@ -1,10 +1,9 @@
+{ lib, pkgs, ... }:
 {
-  lib,
-  ...
-}:
-{
-  config = {
-    stylix.testbed.ui.graphicalEnvironment = "kde";
-    services.displayManager.autoLogin.enable = lib.mkForce false;
+  stylix.testbed.ui = {
+    command.packages = [ pkgs.kitty ];
+    graphicalEnvironment = "kde";
   };
+
+  services.displayManager.autoLogin.enable = lib.mkForce false;
 }

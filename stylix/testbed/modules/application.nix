@@ -15,15 +15,16 @@ in
           enable = lib.mkOption {
             type = lib.types.bool;
             default = false;
+            example = true;
             description = ''
               Whether to enable a standard configuration for testing graphical
               applications.
 
-              This will automatically log in as the `${user.username}` user and launch
-              an application or command.
+              This will automatically log in as the `${user.username}` user and
+              launch an application or command.
 
-              This is currently based on GNOME, but the specific desktop environment
-              used may change in the future.
+              This is currently based on GNOME, but the specific desktop
+              environment used may change in the future.
             '';
           };
           graphicalEnvironment = lib.mkOption {
@@ -33,51 +34,34 @@ in
             default = "gnome";
             description = "The graphical environment to use.";
           };
-          application = lib.mkOption {
-            description = ''
-              Options defining an application to be launched using its provided
-              `.desktop` entry.
-            '';
-            type = lib.types.nullOr (
-              lib.types.submodule {
-                options = {
-                  name = lib.mkOption {
-                    type = lib.types.str;
-                    description = ''
-                      The name of the desktop entry for the application, without the
-                      `.desktop` extension.
-                    '';
-                  };
-
-                  package = lib.mkOption {
-                    type = lib.types.package;
-                    description = ''
-                      The package providing the binary and desktop entry of the
-                      application being tested.
-                    '';
-                  };
-                };
-              }
-            );
-            default = null;
-          };
           command = lib.mkOption {
             type = lib.types.nullOr (
               lib.types.submodule {
                 options = {
+                  packages = lib.mkOption {
+                    type = lib.types.listOf lib.types.package;
+                    description = ''
+                      Packages forwarded to `environment.systemPackages`.
+                    '';
+                    default = [ ];
+                  };
+                  terminal = lib.mkOption {
+                    type = lib.types.bool;
+                    description = ''
+                      Whether to spawn a terminal when running the command.
+                    '';
+                    default = false;
+                    example = true;
+                  };
                   text = lib.mkOption {
                     type = lib.types.str;
                     description = ''
-                      The command which will be run once the graphical environment has
-                      loaded.
+                      The command which will be run once the graphical
+                      environment has loaded, which is deduced from
+                      `config.stylix.testbed.ui.command.packages` when it
+                      contains one package.
                     '';
-                  };
-                  useTerminal = lib.mkOption {
-                    type = lib.types.bool;
-                    description = ''
-                      Whether or not to spawn a terminal when running the command.
-                    '';
-                    default = false;
+                    default = "";
                   };
                 };
               }
@@ -97,46 +81,77 @@ in
       user = user.username;
     };
 
-    # for use when application is set
     environment.systemPackages =
-      lib.optional (config.stylix.testbed.ui.command != null) (
-        pkgs.makeAutostartItem {
-          name = "stylix-testbed";
-          package = pkgs.makeDesktopItem {
-            name = "stylix-testbed";
-            desktopName = "stylix-testbed";
-            exec = toString (
-              pkgs.writeShellScript "startup" config.stylix.testbed.ui.command.text
-            );
-            terminal = config.stylix.testbed.ui.command.useTerminal;
-          };
-        }
-      )
-      ++ lib.optional config.stylix.testbed.ui.sendNotifications (
-        pkgs.makeAutostartItem {
-          name = "stylix-notification-check";
-          package = pkgs.makeDesktopItem {
-            name = "stylix-notification-check";
-            desktopName = "stylix-notification-check";
-            terminal = false;
-            exec = pkgs.writeShellScript "stylix-send-notifications" (
+      builtins.concatMap
+        (
+          {
+            condition,
+            name,
+            text,
+            packages ? [ ],
+            terminal ? false,
+          }:
+          let
+            application = pkgs.writeShellApplication {
+              text =
+                if text != "" then
+                  text
+                else if builtins.length packages != 1 then
+                  throw "text cannot be deduced from packages: ${
+                    lib.generators.toPretty { } packages
+                  }"
+                else
+                  (builtins.head packages).meta.mainProgram;
+
+              name = name';
+              runtimeInputs = packages;
+            };
+
+            autostartItem = pkgs.makeAutostartItem {
+              name = name';
+              package = desktopItem;
+            };
+
+            desktopItem = pkgs.makeDesktopItem {
+              inherit terminal;
+
+              desktopName = name';
+              exec = lib.getExe application;
+              name = name';
+            };
+
+            name' = "stylix-testbed" + lib.optionalString (name != "") "-${name}";
+          in
+          lib.optionals condition (
+            [
+              application
+              autostartItem
+              desktopItem
+            ]
+            ++ packages
+          )
+        )
+        [
+          {
+            inherit (config.stylix.testbed.ui.command) packages terminal text;
+
+            condition = config.stylix.testbed.ui.command != null;
+            name = "";
+          }
+          {
+            condition = config.stylix.testbed.ui.sendNotifications;
+            name = "notification";
+            packages = [ pkgs.libnotify ];
+
+            text =
               lib.concatMapStringsSep " && "
-                (
-                  urgency: "${lib.getExe pkgs.libnotify} --urgency ${urgency} ${urgency} urgency"
-                )
+                (urgency: "notify-send --urgency ${urgency} ${urgency} urgency")
                 [
                   "low"
                   "normal"
                   "critical"
-                ]
-            );
-          };
-        }
-      )
-      ++ lib.optional (config.stylix.testbed.ui.application != null) (
-        pkgs.makeAutostartItem {
-          inherit (config.stylix.testbed.ui.application) name package;
-        }
-      );
+                ];
+          }
+        ];
   };
 }
