@@ -39,6 +39,8 @@
       '';
     in
     {
+      ci.buildbot = { inherit (config) devShells; };
+
       devShells = {
         default = pkgs.mkShell {
           # Install git-hooks when activating the shell

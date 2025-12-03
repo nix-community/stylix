@@ -5,6 +5,8 @@
   perSystem =
     { config, ... }:
     {
+      ci.buildbot = { inherit (config.checks) pre-commit; };
+
       pre-commit = {
         check.enable = true;
 
