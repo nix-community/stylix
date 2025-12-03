@@ -183,7 +183,7 @@
       url = "github:vicinaehq/vicinae";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
-        flake-utils.inputs.systems.follows = "dev-systems";
+        systems.follows = "dev-systems";
       };
     };
 
