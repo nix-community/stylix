@@ -12,7 +12,7 @@ with colors;
     HighlightCandidateColor = base06;
     EnableBlur = false;
     FullWidthHighlight = true;
-    HighlightColor = base04;
+    HighlightColor = base02;
     HighlightBackgroundColor = base0E;
   };
   "InputPanel/BlurMargin" = {
