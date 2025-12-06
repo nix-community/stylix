@@ -1,7 +1,7 @@
 {
+  mkTarget,
   lib,
   config,
-  mkTarget,
   ...
 }:
 mkTarget {
