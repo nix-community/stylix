@@ -151,3 +151,23 @@ Text editors are any application that can view or edit source code. Examples
 include vim, helix, and bat.
 
 For these please refer to the official [base16 style guide](https://github.com/chriskempson/base16/blob/main/styling.md).
+
+## File Management
+
+Terminal file managers, shells and other software that displays a filesystem
+with colors. If the target does not support specifying a color for one of the
+following, fall back to regular file.
+
+- Regular file: base05
+- Directory: base0D (bold)
+- Broken symlink, missing file: base08
+- FIFO: base0A
+- Block device, character device: base0A (bold)
+- Socket: base0C
+- Executable: base0B
+- Hidden, ignored: base03
+- Image, audio, video: base0E
+- Compressed: base09 (bold)
+- Document: base09
+
+Symlinks follow the same rules but should be italicized.
