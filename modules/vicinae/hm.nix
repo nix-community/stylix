@@ -10,16 +10,16 @@ mkTarget {
 
   configElements =
     let
-      eachSource =
-        f:
+      eachConfig =
+        config:
         lib.genAttrs [ "services" "programs" ] (
-          source: lib.optionalAttrs (options.${source} ? vicinae) { vicinae = f source; }
+          source: lib.optionalAttrs (options.${source} ? vicinae) { vicinae = config; }
         );
     in
     [
       (
         { colors, polarity }:
-        eachSource (_: {
+        eachConfig {
           settings.theme.name = "stylix";
           themes.stylix = {
             meta = {
@@ -55,13 +55,13 @@ mkTarget {
               };
             };
           };
-        })
+        }
       )
       (
         { opacity }:
-        eachSource (_: {
+        eachConfig {
           settings.window.opacity = opacity.popups;
-        })
+        }
       )
     ];
 }
