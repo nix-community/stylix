@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   stylix.testbed.ui.command.text = "fcitx5-config-qt";
   home-manager.sharedModules = lib.singleton {

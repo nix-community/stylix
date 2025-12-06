@@ -10,12 +10,7 @@ in
         inherit (cfg) package;
         name = builtins.head (
           lib.filter (x: null != x) [
-            (
-              {
-                inherit (cfg) dark light;
-              }
-              ."${polarity}" or null
-            )
+            ({ inherit (cfg) dark light; }."${polarity}" or null)
             cfg.dark
             cfg.light
           ]

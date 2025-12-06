@@ -6,8 +6,6 @@ mkTarget {
   configElements =
     { fonts }:
     {
-      fonts = {
-        inherit (fonts) packages;
-      };
+      fonts = { inherit (fonts) packages; };
     };
 }

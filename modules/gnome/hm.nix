@@ -114,9 +114,7 @@ mkTarget {
           dataFile."themes/Stylix/gnome-shell/gnome-shell.css" = {
             source =
               let
-                theme = pkgs.callPackage ./theme.nix {
-                  inherit inputs colors;
-                };
+                theme = pkgs.callPackage ./theme.nix { inherit inputs colors; };
               in
               "${theme}/share/gnome-shell/gnome-shell.css";
 

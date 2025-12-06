@@ -1,9 +1,5 @@
 mkTarget:
-{
-  lib,
-  options,
-  ...
-}:
+{ lib, options, ... }:
 mkTarget {
   name = "nixvim";
   humanName = "NixVim";

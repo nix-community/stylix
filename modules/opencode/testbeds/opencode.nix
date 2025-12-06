@@ -5,7 +5,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.opencode.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.opencode.enable = true; };
 }

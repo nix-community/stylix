@@ -85,9 +85,7 @@
           example ? if args ? autoEnableExpr then true else !autoEnable,
         }@args:
         let
-          wrapExpr = wrapExprWith {
-            inherit autoWrapExpr;
-          };
+          wrapExpr = wrapExprWith { inherit autoWrapExpr; };
         in
         self.mkEnableIf {
           description = "Whether to enable theming for ${name}.";
@@ -129,11 +127,7 @@
         lib.mkOption {
           type = lib.types.bool;
           defaultText = if args ? defaultText then defaultText else default;
-          inherit
-            default
-            description
-            example
-            ;
+          inherit default description example;
         };
     };
 }
