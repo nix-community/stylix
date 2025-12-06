@@ -21,17 +21,17 @@
     "base16-fish": {
       "flake": false,
       "locked": {
-        "lastModified": 1754405784,
-        "narHash": "sha256-l9xHIy+85FN+bEo6yquq2IjD1rSg9fjfjpyGP1W8YXo=",
-        "owner": "tomyun",
+        "lastModified": 1764981328,
+        "narHash": "sha256-XCUQLoLfBJ8saWms2HCIj4NEN+xNsWBlU1NrEPcQG4s=",
+        "owner": "RafaelMuijsert",
         "repo": "base16-fish",
-        "rev": "23ae20a0093dca0d7b39d76ba2401af0ccf9c561",
+        "rev": "4c3d87f5e5cffabe7ac1d1916f353c62c3e2f11b",
         "type": "github"
       },
       "original": {
-        "owner": "tomyun",
+        "owner": "RafaelMuijsert",
         "repo": "base16-fish",
-        "rev": "23ae20a0093dca0d7b39d76ba2401af0ccf9c561",
+        "rev": "4c3d87f5e5cffabe7ac1d1916f353c62c3e2f11b",
         "type": "github"
       }
     },
