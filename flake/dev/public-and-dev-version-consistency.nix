@@ -2,7 +2,7 @@
 {
   perSystem =
     { lib, pkgs, ... }:
-    {
+    let
       checks = lib.mkMerge (
         map
           (
@@ -37,5 +37,10 @@
             "systems"
           ]
       );
+    in
+    {
+      inherit checks;
+
+      ci.buildbot.public-and-dev-version-consistency = checks;
     };
 }
