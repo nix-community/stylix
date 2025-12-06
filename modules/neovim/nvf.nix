@@ -1,9 +1,5 @@
 mkTarget:
-{
-  lib,
-  options,
-  ...
-}:
+{ lib, options, ... }:
 mkTarget {
   name = "nvf";
   humanName = "nvf";
@@ -48,9 +44,7 @@ mkTarget {
                 ;
             };
           };
-          statusline = lib.mkIf (cfg.plugin == "base16") {
-            lualine.theme = "base16";
-          };
+          statusline = lib.mkIf (cfg.plugin == "base16") { lualine.theme = "base16"; };
         };
       }
     )

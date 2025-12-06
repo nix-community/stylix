@@ -72,10 +72,7 @@ mkTarget {
       }
     )
     (
-      {
-        cfg,
-        colors,
-      }:
+      { cfg, colors }:
       let
         colorlessModules = place: ''
           .modules-${place} #workspaces button {

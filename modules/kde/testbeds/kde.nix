@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}:
+{ lib, ... }:
 {
   config = {
     stylix.testbed.ui.graphicalEnvironment = "kde";

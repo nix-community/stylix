@@ -1,16 +1,10 @@
-{
-  lib,
-  mkTarget,
-  ...
-}:
+{ lib, mkTarget, ... }:
 {
   imports =
     lib.mapAttrsToList
       (
         name: humanName:
-        lib.modules.importApply ./each-config.nix {
-          inherit mkTarget name humanName;
-        }
+        lib.modules.importApply ./each-config.nix { inherit mkTarget name humanName; }
       )
       {
         "firefox" = "Firefox";

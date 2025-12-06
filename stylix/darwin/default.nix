@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   autoload = import ../autoload.nix { inherit lib; } "darwin";
 in

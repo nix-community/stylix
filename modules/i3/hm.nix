@@ -104,9 +104,7 @@ mkTarget {
               inherit border background;
               text = focused;
             };
-            inactiveWorkspace = {
-              inherit text border background;
-            };
+            inactiveWorkspace = { inherit text border background; };
             urgentWorkspace = {
               inherit text background;
               border = urgent;
