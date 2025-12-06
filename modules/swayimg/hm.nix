@@ -6,7 +6,7 @@
 }:
 mkTarget {
   name = "swayimg";
-  humanName = "swayimg";
+  humanName = "Swayimg";
 
   configElements =
     { colors, opacity }:
