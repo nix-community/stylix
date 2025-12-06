@@ -8,11 +8,18 @@ mkTarget {
   name = "vicinae";
   humanName = "Vicinae";
 
-  configElements = lib.optionals (options.services ? vicinae) [
-    (
-      { colors, polarity }:
-      {
-        services.vicinae = {
+  configElements =
+    let
+      eachConfig =
+        config:
+        lib.genAttrs [ "services" "programs" ] (
+          source: lib.optionalAttrs (options.${source} ? vicinae) { vicinae = config; }
+        );
+    in
+    [
+      (
+        { colors, polarity }:
+        eachConfig {
           settings.theme.name = "stylix";
           themes.stylix = {
             meta = {
@@ -48,14 +55,8 @@ mkTarget {
               };
             };
           };
-        };
-      }
-    )
-    (
-      { opacity }:
-      {
-        services.vicinae.settings.window.opacity = opacity.popups;
-      }
-    )
-  ];
+        }
+      )
+      ({ opacity }: eachConfig { settings.window.opacity = opacity.popups; })
+    ];
 }
