@@ -57,11 +57,6 @@ mkTarget {
           };
         }
       )
-      (
-        { opacity }:
-        eachConfig {
-          settings.window.opacity = opacity.popups;
-        }
-      )
+      ({ opacity }: eachConfig { settings.window.opacity = opacity.popups; })
     ];
 }
