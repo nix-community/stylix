@@ -10,7 +10,6 @@ mkTarget {
 
   configElements =
     { colors, opacity }:
-
     with colors.withHashtag;
     let
       swayimgOpacity = lib.toHexString (
