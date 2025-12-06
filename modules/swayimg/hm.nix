@@ -31,13 +31,16 @@ mkTarget {
           border = base0D;
           shadow = "#00000000";
         };
-        font = with config.stylix.fonts; {
-          name = monospace.name;
-          size = sizes.applications;
-          color = base05;
-          shadow = "#000000d0";
-          background = "#00000000";
-        };
+        font =
+          with config.stylix.fonts.monospace;
+          with config.stylix.fonts.sizes;
+          {
+            inherit name;
+            size = applications;
+            color = base05;
+            shadow = "#000000d0";
+            background = "#00000000";
+          };
       };
     };
 }
