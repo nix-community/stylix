@@ -5,5 +5,7 @@
     command.text = "noctalia-shell";
   };
 
-  home-manager.sharedModules = lib.singleton { programs.noctalia-shell.enable = true; };
+  home-manager.sharedModules = lib.singleton {
+    programs.noctalia-shell.enable = true;
+  };
 }
