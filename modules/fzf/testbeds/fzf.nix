@@ -5,7 +5,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.fzf.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.fzf.enable = true; };
 }

@@ -102,9 +102,7 @@ mkTarget {
           b = colors."${color}-rgb-b";
         };
         inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (inputs.nur.legacyPackages.${system}.repos.rycee)
-          firefox-addons
-          ;
+        inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
       in
       {
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (

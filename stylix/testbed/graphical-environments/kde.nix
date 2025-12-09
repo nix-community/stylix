@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   config =
     lib.mkIf (config.stylix.testbed.ui.graphicalEnvironment or null == "kde")

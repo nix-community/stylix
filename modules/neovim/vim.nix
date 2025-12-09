@@ -1,9 +1,5 @@
 mkTarget:
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 mkTarget {
   name = "vim";
   humanName = "Vim";

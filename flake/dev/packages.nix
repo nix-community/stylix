@@ -12,9 +12,7 @@
       # Testbeds are virtual machines based on NixOS, therefore they are
       # only available for Linux systems.
       testbeds = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
-        import ../../stylix/testbed {
-          inherit pkgs inputs lib;
-        }
+        import ../../stylix/testbed { inherit pkgs inputs lib; }
       );
 
       ci.buildbot = {

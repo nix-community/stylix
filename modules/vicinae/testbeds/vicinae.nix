@@ -5,7 +5,5 @@
     command.text = "sleep 5 && vicinae open";
   };
 
-  home-manager.sharedModules = lib.singleton {
-    services.vicinae.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { services.vicinae.enable = true; };
 }

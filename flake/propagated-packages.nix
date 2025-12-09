@@ -16,9 +16,7 @@
     { pkgs, system, ... }:
     lib.optionalAttrs (partitionStack == [ ]) {
       apps = {
-        inherit (config.partitions.dev.module.flake.apps.${system})
-          all-maintainers
-          ;
+        inherit (config.partitions.dev.module.flake.apps.${system}) all-maintainers;
       };
       packages = lib.mkMerge [
         {

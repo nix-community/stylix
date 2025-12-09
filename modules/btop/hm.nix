@@ -1,8 +1,4 @@
-{
-  mkTarget,
-  lib,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
   name = "btop";
   humanName = "btop";

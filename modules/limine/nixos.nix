@@ -30,9 +30,7 @@ mkTarget {
     (
       { cfg, image }:
       {
-        boot.loader.limine.style.wallpapers = lib.mkIf cfg.useWallpaper [
-          image
-        ];
+        boot.loader.limine.style.wallpapers = lib.mkIf cfg.useWallpaper [ image ];
       }
     )
     (

@@ -1,8 +1,6 @@
 { lib, pkgs, ... }:
 let
-  package = pkgs.discord.override {
-    withVencord = true;
-  };
+  package = pkgs.discord.override { withVencord = true; };
 in
 {
   stylix.testbed = {
@@ -17,8 +15,5 @@ in
 
   environment.systemPackages = [ package ];
   nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-    ];
+    pkg: builtins.elem (lib.getName pkg) [ "discord" ];
 }

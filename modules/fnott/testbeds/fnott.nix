@@ -5,7 +5,5 @@
     sendNotifications = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    services.fnott.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { services.fnott.enable = true; };
 }

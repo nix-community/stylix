@@ -5,7 +5,5 @@
     command.text = "ashell";
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.ashell.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.ashell.enable = true; };
 }

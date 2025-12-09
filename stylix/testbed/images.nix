@@ -1,7 +1,4 @@
-{
-  fetchurl,
-  runCommandLocal,
-}:
+{ fetchurl, runCommandLocal }:
 {
   dark = fetchurl {
     name = "mountains.jpg";

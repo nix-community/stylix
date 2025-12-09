@@ -4,10 +4,7 @@ let
 in
 {
   nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "obsidian"
-    ];
+    pkg: builtins.elem (lib.getName pkg) [ "obsidian" ];
 
   stylix.testbed.ui.application = {
     name = "obsidian";

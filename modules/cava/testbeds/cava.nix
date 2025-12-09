@@ -8,7 +8,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.cava.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.cava.enable = true; };
 }

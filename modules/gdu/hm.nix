@@ -1,9 +1,6 @@
-{
-  mkTarget,
-  ...
-}:
+{ mkTarget, ... }:
 mkTarget {
-  name = "go DiskUsage()";
+  name = "gdu";
   humanName = "go DiskUsage()";
 
   configElements =

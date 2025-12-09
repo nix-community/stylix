@@ -5,7 +5,5 @@
     useTerminal = true;
   };
 
-  home-manager.sharedModules = lib.singleton {
-    programs.zellij.enable = true;
-  };
+  home-manager.sharedModules = lib.singleton { programs.zellij.enable = true; };
 }

@@ -46,9 +46,7 @@ in
                 cp ${theme}/share/gnome-shell/gnome-shell-theme.gresource \
                   $out/share/gnome-shell/gnome-shell-theme.gresource
               '';
-              patches = (oldAttrs.patches or [ ]) ++ [
-                ./shell_remove_dark_mode.patch
-              ];
+              patches = (oldAttrs.patches or [ ]) ++ [ ./shell_remove_dark_mode.patch ];
             });
           })
         ];
@@ -56,14 +54,9 @@ in
         # Cursor and icon settings are usually applied via Home Manager,
         # but the login screen uses a separate database.
         services.displayManager.environment.XDG_DATA_DIRS = lib.mkIf (iconCfg != null) (
-          (lib.makeSearchPath "share" [
-            iconCfg.package
-          ])
-          + ":"
+          (lib.makeSearchPath "share" [ iconCfg.package ]) + ":"
         );
-        environment.systemPackages = lib.mkIf (cursorCfg != null) [
-          cursorCfg.package
-        ];
+        environment.systemPackages = lib.mkIf (cursorCfg != null) [ cursorCfg.package ];
         programs.dconf.profiles.gdm.databases = lib.mkMerge [
           (lib.mkIf (cursorCfg != null) [
             {
@@ -80,12 +73,7 @@ in
               settings."org/gnome/desktop/interface" = {
                 icon-theme = builtins.head (
                   lib.filter (x: null != x) [
-                    (
-                      {
-                        inherit (iconCfg) dark light;
-                      }
-                      ."${polarity}" or null
-                    )
+                    ({ inherit (iconCfg) dark light; }."${polarity}" or null)
                     iconCfg.dark
                     iconCfg.light
                   ]

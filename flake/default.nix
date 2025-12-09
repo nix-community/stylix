@@ -15,10 +15,7 @@
     extraInputsFlake = ./dev;
   };
 
-  partitionedAttrs = lib.genAttrs [
-    "checks"
-    "ci"
-    "devShells"
-    "formatter"
-  ] (_: "dev");
+  partitionedAttrs = lib.genAttrs [ "checks" "ci" "devShells" "formatter" ] (
+    _: "dev"
+  );
 }
