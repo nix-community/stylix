@@ -5,10 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "vicinae";
-  humanName = "Vicinae";
-
-  configElements = lib.optionals (options.services ? vicinae) [
+  config = lib.optionals (options.services ? vicinae) [
     (
       { colors, polarity }:
       {

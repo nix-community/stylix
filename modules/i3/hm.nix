@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "i3";
-  humanName = "i3";
-
-  extraOptions.exportedBarConfig = lib.mkOption {
+  options.exportedBarConfig = lib.mkOption {
     type = lib.types.attrs;
     default = { };
     description = ''
@@ -29,7 +26,7 @@ mkTarget {
     }
   );
 
-  configElements = [
+  config = [
     (
       { fonts }:
       let

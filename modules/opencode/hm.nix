@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "opencode";
-  humanName = "OpenCode";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.opencode =

@@ -1,10 +1,7 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "avizo";
-  humanName = "Avizo";
-
   # Referenced https://github.com/stacyharper/base16-mako
-  configElements =
+  config =
     { colors, opacity }:
     {
       services.avizo = {

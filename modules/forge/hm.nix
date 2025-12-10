@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "forge";
-  humanName = "Forge";
-
-  configElements =
+  config =
     { colors }:
     {
       xdg.configFile."forge/stylesheet/forge/stylesheet.css".source = colors {

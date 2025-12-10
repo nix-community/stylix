@@ -6,12 +6,9 @@
   ...
 }:
 mkTarget {
-  name = "wayfire";
-  humanName = "Wayfire";
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "wayfire" true;
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "wayfire" true;
-
-  configElements = [
+  config = [
     (
       { fonts }:
       {

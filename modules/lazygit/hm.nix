@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "lazygit";
-  humanName = "lazygit";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.lazygit.settings.gui.theme = with colors.withHashtag; {
