@@ -5,10 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "noctalia-shell";
-  humanName = "Noctalia shell";
-
-  configElements = lib.optionals (options.programs ? noctalia-shell) [
+  config = lib.optionals (options.programs ? noctalia-shell) [
     (
       { colors }:
       {
