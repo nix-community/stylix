@@ -6,7 +6,7 @@
   ...
 }:
 mkTarget {
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Noctalia shell" true;
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Noctalia shell" false;
   config = lib.optionals (options.programs ? noctalia-shell) [
     (
       { colors }:
