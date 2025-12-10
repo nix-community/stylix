@@ -268,15 +268,15 @@ let
                 )
           );
 
-      normalizeConfig =
+      normalize =
         config:
         map (lib.fix (
           self: config':
           if builtins.isPath config' then self (import config') else config'
         )) (lib.toList config);
 
-      normalizedConfig = normalizeConfig mkTargetConfig;
-      normalizedOptions = normalizeConfig options;
+      normalizedConfig = normalize mkTargetConfig;
+      normalizedOptions = normalize options;
     in
     {
       imports =
