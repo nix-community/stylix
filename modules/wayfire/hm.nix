@@ -1,12 +1,28 @@
 {
   mkTarget,
-  config,
   lib,
   pkgs,
   ...
 }:
 mkTarget {
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "wayfire" true;
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "wayfire"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "wayfire"
+        "image"
+        "enable"
+      ];
+    })
+  ];
 
   config = [
     (
@@ -17,11 +33,7 @@ mkTarget {
       }
     )
     (
-      {
-        cfg,
-        image,
-        imageScalingMode,
-      }:
+      { image, imageScalingMode }:
       let
         wayfireBackground = pkgs.runCommand "wayfire-background.png" { } ''
           ${lib.getExe' pkgs.imagemagick "convert"} ${image} $out
@@ -30,13 +42,13 @@ mkTarget {
       {
         wayland.windowManager.wayfire.settings = {
           cube = {
-            cubemap_image = lib.mkIf cfg.useWallpaper wayfireBackground;
-            skydome_texture = lib.mkIf cfg.useWallpaper wayfireBackground;
+            cubemap_image = wayfireBackground;
+            skydome_texture = wayfireBackground;
           };
         };
 
         wayland.windowManager.wayfire.wf-shell.settings = {
-          background.image = lib.mkIf cfg.useWallpaper wayfireBackground;
+          background.image = wayfireBackground;
           background.fill_mode =
             if imageScalingMode == "stretch" then
               "stretch"
