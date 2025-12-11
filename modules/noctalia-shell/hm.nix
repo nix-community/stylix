@@ -1,12 +1,10 @@
 {
   mkTarget,
   lib,
-  config,
   options,
   ...
 }:
 mkTarget {
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Noctalia shell" false;
   config = lib.optionals (options.programs ? noctalia-shell) [
     (
       { colors }:
@@ -60,9 +58,9 @@ mkTarget {
       }
     )
     (
-      { cfg, image }:
+      { image }:
       {
-        home.file.".cache/noctalia/wallpapers.json" = lib.mkIf cfg.useWallpaper {
+        home.file.".cache/noctalia/wallpapers.json" = {
           text = builtins.toJSON { defaultWallpaper = image; };
         };
       }
