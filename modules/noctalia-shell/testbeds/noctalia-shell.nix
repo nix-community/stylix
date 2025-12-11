@@ -2,7 +2,7 @@
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
-    command.text = "noctalia-shell";
+    command.text = "noctalia-shell --no-duplicate";
   };
 
   home-manager.sharedModules = lib.singleton {
