@@ -1,11 +1,11 @@
-{ mkTarget, ... }:
+{ lib, mkTarget, ... }:
 mkTarget {
   config =
     { image }:
     {
-      services.hyprpaper.settings = {
-        preload = [ "${image}" ];
-        wallpaper = [ ",${image}" ];
+      services.hyprpaper.settings.wallpaper = lib.singleton {
+        monitor = "";
+        path = toString image;
       };
     };
 }
