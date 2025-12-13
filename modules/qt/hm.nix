@@ -95,8 +95,8 @@
           style.name = recommendedStyle;
           platformTheme.name = config.stylix.targets.qt.platform;
 
-          qt5ctSettings = qtctSettings;
-          qt6ctSettings = qtctSettings;
+          qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+          qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
         };
 
       xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
