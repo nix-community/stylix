@@ -80,11 +80,9 @@
           qtctSettings = {
             Appearance = {
               custom_palette = true;
-            }
-            // (lib.optionalAttrs (config.qt.style ? name) {
-              style = config.qt.style.name;
-            })
-            // (lib.optionalAttrs (icons != null) { icon_theme = icons; });
+              style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
+              icon_theme = lib.mkIf (icons != null) icons;
+            };
 
             Fonts = {
               fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
