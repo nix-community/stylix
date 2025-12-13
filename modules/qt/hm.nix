@@ -75,46 +75,37 @@
 
       home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;
 
-      qt = {
-        enable = true;
-        style.name = recommendedStyle;
-        platformTheme.name = config.stylix.targets.qt.platform;
-      };
-
-      xdg.configFile =
+      qt =
         let
-          qtctConf = ''
-            [Appearance]
-            custom_palette=true
-          ''
-          + lib.optionalString (config.qt.style ? name) ''
-            style=${config.qt.style.name}
-          ''
-          + lib.optionalString (icons != null) ''
-            icon_theme=${icons}
-          ''
-          + ''
-            [Fonts]
-            fixed="${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"
-            general="${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"
-          '';
+          qtctSettings = {
+            Appearance = {
+              custom_palette = true;
+              style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
+              icon_theme = lib.mkIf (icons != null) icons;
+            };
 
+            Fonts = {
+              fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
+              general = ''"${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"'';
+            };
+          };
         in
-        lib.mkMerge [
-          (lib.mkIf (config.qt.style.name == "kvantum") {
-            "Kvantum/kvantum.kvconfig".source =
-              (pkgs.formats.ini { }).generate "kvantum.kvconfig"
-                { General.theme = "Base16Kvantum"; };
+        {
+          enable = true;
+          style.name = recommendedStyle;
+          platformTheme.name = config.stylix.targets.qt.platform;
 
-            "Kvantum/Base16Kvantum".source =
-              "${kvantumPackage}/share/Kvantum/Base16Kvantum";
-          })
+          qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+          qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+        };
 
-          (lib.mkIf (config.qt.platformTheme.name == "qtct") {
-            "qt5ct/qt5ct.conf".text = qtctConf;
-            "qt6ct/qt6ct.conf".text = qtctConf;
-          })
-        ];
+      xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
+        "Kvantum/kvantum.kvconfig".source =
+          (pkgs.formats.ini { }).generate "kvantum.kvconfig"
+            { General.theme = "Base16Kvantum"; };
+        "Kvantum/Base16Kvantum".source =
+          "${kvantumPackage}/share/Kvantum/Base16Kvantum";
+      };
     }
   );
 }
