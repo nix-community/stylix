@@ -214,21 +214,24 @@ in
     };
   };
 
-  config = lib.mkIf config.stylix.enable (
-    lib.optionalAttrs (options ? home-manager) (
-      lib.mkMerge [
-        (lib.mkIf config.stylix.homeManagerIntegration.autoImport {
-          home-manager.sharedModules = [
-            config.stylix.homeManagerIntegration.module
-          ]
-          ++ lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules;
-        })
-        (lib.mkIf config.home-manager.useGlobalPkgs {
-          home-manager.sharedModules = lib.singleton {
-            config.stylix.overlays.enable = false;
-          };
-        })
-      ]
-    )
+  # Always enable this, even when `!stylix.enable`: if the HM module isn't imported,
+  # it prevents users from settings any stylix related options in HM.
+  # That would go against the standard pattern for `.enable`: it should not affect what
+  # you're allowed to write in `config`, nor the config of the `!enabled` module.
+  config = lib.optionalAttrs (options ? home-manager) (
+    lib.mkMerge [
+      (lib.mkIf config.stylix.homeManagerIntegration.autoImport {
+        home-manager.sharedModules = [
+          config.stylix.homeManagerIntegration.module
+        ]
+        ++ lib.optionals config.stylix.homeManagerIntegration.followSystem copyModules;
+      })
+
+      (lib.mkIf config.home-manager.useGlobalPkgs {
+        home-manager.sharedModules = lib.singleton {
+          config.stylix.overlays.enable = false;
+        };
+      })
+    ]
   );
 }
