@@ -28,6 +28,28 @@
       type = lib.types.str;
       default = "qtct";
     };
+
+    standardDialogs = lib.mkOption {
+      description = ''
+        Selects the standard dialogs theme to be used by Qt.
+
+        Using `xdgdesktopportal` integrates with the native desktop portal.
+      '';
+
+      # The enum variants are derived from the qt6ct platform theme integration
+      # [1].
+      #
+      # [1]: https://www.opencode.net/trialuser/qt6ct/-/blob/00823e41aa60e8fe266d5aee328e82ad1ad94348/src/qt6ct/appearancepage.cpp#L83-L92
+      type = lib.types.enum [
+        "default"
+        "gtk2"
+        "gtk3"
+        "kde"
+        "xdgdesktopportal"
+      ];
+
+      default = "default";
+    };
   };
 
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
@@ -80,6 +102,7 @@
           qtctSettings = {
             Appearance = {
               custom_palette = true;
+              standard_dialogs = config.stylix.targets.qt.standardDialogs;
               style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
               icon_theme = lib.mkIf (icons != null) icons;
             };
