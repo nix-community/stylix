@@ -3,6 +3,7 @@ mkTarget:
 mkTarget {
   name = "nvf";
   humanName = "nvf";
+
   options = {
     plugin = lib.mkOption {
       type = lib.types.enum [
