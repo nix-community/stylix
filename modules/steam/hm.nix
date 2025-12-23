@@ -1,14 +1,10 @@
-{
-  pkgs,
-  mkTarget,
-  ...
-}:
+{ pkgs, mkTarget, ... }:
 
 mkTarget {
   name = "steam";
   humanName = "Steam";
 
-  configElements =
+  config =
     { colors }:
     {
       dconf.settings."io/github/Foldex/AdwSteamGtk".prefs-install-custom-css = true;
