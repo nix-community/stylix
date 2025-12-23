@@ -14,6 +14,11 @@
     };
   };
 
+  virtualisation.vmVariant.virtualisation = {
+    cores = lib.mkForce 8;
+    memorySize = 12 * 1024;
+  };
+
   programs.steam.enable = true;
 
   nixpkgs.config.allowUnfreePredicate =
