@@ -15,8 +15,9 @@
   };
 
   virtualisation.vmVariant.virtualisation = {
-    cores = lib.mkForce 8;
-    memorySize = 12 * 1024;
+    cores = 4;
+    memorySize = 2 * 1024;
+    diskSize = 3 * 1024;
   };
 
   programs.steam.enable = true;
