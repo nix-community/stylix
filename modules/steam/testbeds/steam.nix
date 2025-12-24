@@ -8,9 +8,13 @@
 {
   stylix.testbed = {
     enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
+    ui.command = {
+      text = "steam";
+      useTerminal = true;
+    };
     ui.application = {
-      name = "steam";
-      inherit (config.programs.steam) package;
+      name = "io.github.Foldex.AdwSteamGtk";
+      package = pkgs.adwsteamgtk;
     };
   };
 
