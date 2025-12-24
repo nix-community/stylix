@@ -6,19 +6,35 @@
   ...
 }:
 mkTarget {
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "regreet"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "regreet"
+        "image"
+        "enable"
+      ];
+    })
+  ];
+
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  options = {
-    useWallpaper = config.lib.stylix.mkEnableWallpaper "ReGreet" true;
-    extraCss = lib.mkOption {
-      description = ''
-        Extra code added to `programs.regreet.extraCss` option.
-      '';
-      type = lib.types.lines;
-      default = "";
-      example = "window.background { border-radius: 0; }";
-    };
+  options.extraCss = lib.mkOption {
+    description = ''
+      Extra code added to `programs.regreet.extraCss` option.
+    '';
+    type = lib.types.lines;
+    default = "";
+    example = "window.background { border-radius: 0; }";
   };
 
   config = [
@@ -67,15 +83,15 @@ mkTarget {
       }
     )
     (
-      { cfg, image }:
+      { image }:
       {
-        programs.regreet.settings.background.path = lib.mkIf cfg.useWallpaper image;
+        programs.regreet.settings.background.path = image;
       }
     )
     (
-      { cfg, imageScalingMode }:
+      { imageScalingMode }:
       {
-        programs.regreet.settings.background.fit = lib.mkIf cfg.useWallpaper (
+        programs.regreet.settings.background.fit =
           if imageScalingMode == "fill" then
             "Cover"
           else if imageScalingMode == "fit" then
@@ -84,8 +100,7 @@ mkTarget {
             "Fill"
           # No other available options
           else
-            null
-        );
+            null;
       }
     )
     (
