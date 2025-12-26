@@ -53,6 +53,11 @@
     github = "michaelgoldenn";
     githubId = 95949544;
   };
+  Noah765 = {
+    name = "Noah765";
+    github = "Noah765";
+    githubId = 99338019;
+  };
   omega-800 = {
     email = "gshevoroshkin@gmail.com";
     name = "Georgiy Shevoroshkin";
