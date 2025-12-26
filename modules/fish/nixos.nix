@@ -3,6 +3,8 @@ mkTarget {
   config =
     { colors, inputs }:
     {
-      programs.fish.promptInit = import ./prompt.nix { inherit colors inputs; };
+      programs.fish.interactiveShellInit = import ./prompt.nix {
+        inherit colors inputs;
+      };
     };
 }
