@@ -43,6 +43,11 @@
     matrix = "@mrsom3body:matrix.org";
     name = "Karun Sandhu";
   };
+  Noah765 = {
+    github = "Noah765";
+    githubId = 99338019;
+    name = "Noah765";
+  };
   Noodlez1232 = {
     email = "contact@nathanielbarragan.xyz";
     github = "Noodlez1232";
