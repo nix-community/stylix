@@ -10,7 +10,10 @@ mkTarget {
       { colors, polarity }:
       {
         services.vicinae = {
-          settings.theme.name = "stylix";
+          settings.theme = {
+            light.name = "stylix";
+            dark.name = "stylix";
+          };
           themes.stylix = {
             meta = {
               name = "stylix";
@@ -51,7 +54,7 @@ mkTarget {
     (
       { opacity }:
       {
-        services.vicinae.settings.window.opacity = opacity.popups;
+        services.vicinae.settings.launcher_window.opacity = opacity.popups;
       }
     )
   ];
