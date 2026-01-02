@@ -130,6 +130,14 @@
       automatic safeguarding and should only be used for complex configurations
       where `config` is unsuitable.
 
+    `submodule` (Boolean)
+    : When true options will be added at `options.stylix` instead of
+      `options.stylix.targets.<name>`. Useful when using stylix inside of a submodule.
+
+    `stylixLib` (Attrs of functions)
+    : Defaults to `config.lib.stylix`. Useful when `config.lib.stylix` doesn't
+      exist, for example inside a submodule.
+
   # Environment
 
   The function is provided alongside module arguments in any modules imported
@@ -183,6 +191,8 @@ in
   name ? name',
   options ? [ ],
   unconditionalConfig ? { },
+  submodule ? false,
+  stylixLib ? null,
 }@args:
 let
   mkTargetConfig = config;
@@ -190,6 +200,8 @@ let
   module =
     { config, lib, ... }:
     let
+      stylixLib' = if stylixLib != null then stylixLib else config.lib.stylix;
+
       callModule =
         let
           areArgumentsEnabled = lib.flip lib.pipe [
@@ -220,7 +232,7 @@ let
             lib.generators.toPretty { } config'
           }";
 
-      cfg = config.stylix.targets.${name};
+      cfg = if submodule then config.stylix else config.stylix.targets.${name};
 
       getArguments =
         function:
@@ -251,7 +263,7 @@ let
               )
                 (
                   if argument == "colors" then
-                    config.lib.stylix.colors
+                    stylixLib'.colors
 
                   else
                     config.stylix.${argument} or (throw "stylix: mkTarget expected one of ${
@@ -277,68 +289,76 @@ let
 
       normalizedConfig = normalize mkTargetConfig;
       normalizedOptions = normalize options;
+
+      options' = lib.foldl lib.attrsets.unionOfDisjoint { } (
+        (map (option: callModule false option) normalizedOptions)
+        ++ [
+          {
+            enable =
+              let
+                enableArgs = {
+                  name = humanName;
+                }
+                // lib.optionalAttrs (args ? autoEnable) { inherit autoEnable; }
+                // lib.optionalAttrs (args ? autoEnableExpr) { inherit autoEnableExpr; }
+                // lib.optionalAttrs (args ? autoWrapEnableExpr) {
+                  autoWrapExpr = autoWrapEnableExpr;
+                }
+                // lib.optionalAttrs (args ? enableExample) { example = enableExample; };
+              in
+              stylixLib'.mkEnableTargetWith enableArgs;
+          }
+          (lib.genAttrs
+            (lib.concatLists (
+              map (lib.flip lib.pipe [
+                (
+                  config': lib.optionalAttrs (builtins.isFunction config') (getArguments config')
+                )
+                builtins.attrNames
+                (lib.remove "cfg")
+              ]) (normalizedConfig ++ normalizedOptions)
+            ))
+            (
+              argument:
+              let
+                config = "`${
+                  if argument == "colors" then
+                    "config.lib.stylix.colors"
+                  else
+                    "config.stylix.${argument}"
+                }`";
+              in
+              {
+                enable = lib.mkEnableOption "${config} for ${humanName}" // {
+                  default = true;
+                  example = false;
+                };
+
+                override = lib.mkOption {
+                  default = null;
+
+                  description = ''
+                    Attribute sets are recursively merged with ${config},
+                    while all other non-`null` types override ${config}.
+                  '';
+
+                  type = lib.types.anything;
+                };
+              }
+            )
+          )
+        ]
+      );
     in
     {
       imports =
-        lib.singleton {
-          options.stylix.targets.${name} =
-            lib.genAttrs
-              (lib.concatLists (
-                map (lib.flip lib.pipe [
-                  (
-                    config': lib.optionalAttrs (builtins.isFunction config') (getArguments config')
-                  )
-                  builtins.attrNames
-                  (lib.remove "cfg")
-                ]) (normalizedConfig ++ normalizedOptions)
-              ))
-              (
-                argument:
-                let
-                  config = "`${
-                    if argument == "colors" then
-                      "config.lib.stylix.colors"
-                    else
-                      "config.stylix.${argument}"
-                  }`";
-                in
-                {
-                  enable = lib.mkEnableOption "${config} for ${humanName}" // {
-                    default = true;
-                    example = false;
-                  };
-
-                  override = lib.mkOption {
-                    default = null;
-
-                    description = ''
-                      Attribute sets are recursively merged with ${config},
-                      while all other non-`null` types override ${config}.
-                    '';
-
-                    type = lib.types.anything;
-                  };
-                }
-              );
-        }
-        ++ imports
-        ++ map (option: {
-          options.stylix.targets.${name} = callModule false option;
-        }) normalizedOptions;
-
-      options.stylix.targets.${name}.enable =
-        let
-          enableArgs = {
-            name = humanName;
-          }
-          // lib.optionalAttrs (args ? autoEnable) { inherit autoEnable; }
-          // lib.optionalAttrs (args ? autoEnableExpr) { inherit autoEnableExpr; }
-          // lib.optionalAttrs (args ? autoWrapEnableExpr) {
-            autoWrapExpr = autoWrapEnableExpr;
-          }
-          // lib.optionalAttrs (args ? enableExample) { example = enableExample; };
-        in
-        config.lib.stylix.mkEnableTargetWith enableArgs;
+        imports
+        ++ lib.singleton (
+          if submodule then
+            { options.stylix = options'; }
+          else
+            { options.stylix.targets.${name} = options'; }
+        );
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
         lib.mkMerge (

@@ -16,5 +16,7 @@ in
         };
       };
     };
+
+    stylix.targets.zen-browser.profileNames = [ profileName ];
   };
 }
