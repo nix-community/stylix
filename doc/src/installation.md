@@ -1,5 +1,10 @@
 # Installation
 
+> [!WARNING]
+> Stylix unstable is only supported on the most recent commit of Nixpkgs,
+> Home Manager, nix-darwin and Nix-on-Droid. You can ensure you are using the
+> latest commit while using flakes by running `nix flake update`.
+
 ## NixOS
 
 You can install Stylix into your NixOS configuration using [Flakes][nix-flakes].
