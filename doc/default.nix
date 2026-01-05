@@ -6,8 +6,6 @@
   writeText,
   stdenvNoCC,
   mdbook,
-  mdbook-alerts,
-  mdbook-linkcheck,
 }:
 let
   # Prefix to remove from option declaration file paths.
@@ -657,11 +655,7 @@ in
 stdenvNoCC.mkDerivation {
   name = "stylix-book";
   src = ./.;
-  buildInputs = [
-    mdbook
-    mdbook-alerts
-    mdbook-linkcheck
-  ];
+  buildInputs = [ mdbook ];
 
   inherit extraCSS renderedSummary;
   passAsFile = [
@@ -684,7 +678,7 @@ stdenvNoCC.mkDerivation {
   '';
 
   postBuild = ''
-    cp --recursive book/html $out
+    cp --recursive book $out
     cat $extraCSSPath >>$out/css/general.css
   '';
 }
