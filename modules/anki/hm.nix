@@ -5,10 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "anki";
-  humanName = "Anki";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.anki.addons = lib.singleton (

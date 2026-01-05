@@ -2,13 +2,10 @@
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
-    command.text = "sleep 5 && vicinae open";
+    command.text = "noctalia-shell --no-duplicate";
   };
 
   home-manager.sharedModules = lib.singleton {
-    services.vicinae = {
-      enable = true;
-      systemd.enable = true;
-    };
+    programs.noctalia-shell.enable = true;
   };
 }

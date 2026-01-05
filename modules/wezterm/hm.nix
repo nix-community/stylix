@@ -5,14 +5,12 @@
   ...
 }:
 mkTarget {
-  name = "wezterm";
-  humanName = "WezTerm";
-  extraOptions.luaBody = lib.mkOption {
+  options.luaBody = lib.mkOption {
     type = lib.types.lines;
     default = "";
     internal = true;
   };
-  configElements = [
+  config = [
     (
       { colors }:
       with colors;

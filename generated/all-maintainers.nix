@@ -203,6 +203,12 @@
     githubId = 45952970;
     name = "repparw";
   };
+  rwxae = {
+    email = "wardxela@gmail.com";
+    github = "rwxae";
+    githubId = 63157919;
+    name = "Alexander";
+  };
   skiletro = {
     email = "git@skilet.ro";
     github = "skiletro";

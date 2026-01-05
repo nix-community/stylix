@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "gedit";
-  humanName = "GEdit";
-
-  configElements =
+  config =
     { colors }:
     {
       xdg.dataFile = {

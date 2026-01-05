@@ -5,12 +5,9 @@
   ...
 }:
 mkTarget {
-  name = "limine";
-  humanName = "Limine";
+  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
 
-  extraOptions.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
-
-  configElements = [
+  config = [
     (
       { colors }:
       {

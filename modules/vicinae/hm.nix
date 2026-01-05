@@ -5,10 +5,7 @@
   ...
 }:
 mkTarget {
-  name = "vicinae";
-  humanName = "Vicinae";
-
-  configElements =
+  config =
     let
       eachConfig =
         config:
@@ -20,7 +17,10 @@ mkTarget {
       (
         { colors, polarity }:
         eachConfig {
-          settings.theme.name = "stylix";
+          settings.theme = {
+            light.name = "stylix";
+            dark.name = "stylix";
+          };
           themes.stylix = {
             meta = {
               name = "stylix";
@@ -57,6 +57,6 @@ mkTarget {
           };
         }
       )
-      ({ opacity }: eachConfig { settings.window.opacity = opacity.popups; })
+      ({ opacity }: eachConfig { settings.launcher_window.opacity = opacity.popups; })
     ];
 }

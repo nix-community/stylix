@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "waybar";
-  humanName = "Waybar";
-
-  extraOptions = {
+  options = {
     background = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       description = "Used to set bg even if `opacity` or `colors` is null";
@@ -43,7 +40,7 @@ mkTarget {
     };
   };
 
-  configElements = [
+  config = [
     (
       { cfg }:
       {

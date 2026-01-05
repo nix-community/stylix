@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "btop";
-  humanName = "btop";
-
-  configElements = [
+  config = [
     (
       { opacity }:
       {
