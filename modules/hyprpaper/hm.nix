@@ -4,7 +4,7 @@ mkTarget {
     { image }:
     {
       services.hyprpaper.settings = {
-        preload = [ "${image}" ];
+        preload = [ image ];
         wallpaper = [ ",${image}" ];
       };
     };
