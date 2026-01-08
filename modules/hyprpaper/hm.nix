@@ -5,7 +5,7 @@ mkTarget {
     {
       services.hyprpaper.settings.wallpaper = lib.singleton {
         monitor = "";
-        path = image;
+        path = toString image;
       };
     };
 }
