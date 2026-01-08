@@ -136,7 +136,7 @@ in
               then
                 ''
                   ${lib.getExe' pkgs.imagemagick "convert"} \
-                    ${lib.escapeShellArg config.stylix.image} \
+                    ${config.stylix.image} \
                     "png32:$out/background.png"
                 ''
               else
