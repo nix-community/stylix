@@ -28,10 +28,8 @@ in
     };
 
     image = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
       # Ensure the path is copied to the store
-      apply =
-        value: if value == null || lib.isDerivation value then value else "${value}";
+      type = with lib.types; nullOr (coercedTo path (src: "${src}") pathInStore);
       description = ''
         Wallpaper image.
 
