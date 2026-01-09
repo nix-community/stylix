@@ -80,12 +80,10 @@ in
         # and not anything indirect such as filling a template, otherwise
         # the output of the palette generator will not be protected from
         # garbage collection.
-        default = pkgs.runCommand "palette.json" { } ''
-          ${lib.getExe cfg.paletteGenerator} \
-            "${cfg.polarity}" \
-            ${lib.escapeShellArg cfg.image} \
-            "$out"
-        '';
+        default = pkgs.runCommand "palette.json" {
+          inherit (cfg) image polarity;
+          nativeBuildInputs = [ cfg.paletteGenerator ];
+        } ''palette-generator "$polarity" "$image" "$out"'';
       };
 
       palette = lib.mkOption {
