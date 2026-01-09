@@ -120,6 +120,12 @@
     githubId = 90054389;
     name = "Devin Droddy";
   };
+  kerfuzzle = {
+    email = "contact@kerfuzzle.dev";
+    github = "kerfuzzle";
+    githubId = 58907164;
+    name = "kerfuzzle";
+  };
   khas-amir = {
     email = "dlordproudd@gmail.com";
     github = "khas-amir";
