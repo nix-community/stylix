@@ -185,7 +185,10 @@
     };
 
     vicinae = {
-      url = "github:vicinaehq/vicinae";
+      # Lock the vicinae input to tag v0.16.4 [1] to prevent build failures.
+      #
+      # [1]: https://github.com/vicinaehq/vicinae/commit/04608039dda3da97ccb2e89f22f4943eb1df9a03
+      url = "github:vicinaehq/vicinae/04608039dda3da97ccb2e89f22f4943eb1df9a03";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
         systems.follows = "dev-systems";
