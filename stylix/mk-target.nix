@@ -19,11 +19,6 @@
   ```nix
   { mkTarget, lib, ... }:
   mkTarget {
-    unconditionalConfig =
-      lib.mkIf complexCondition {
-        home.packages = [ pkgs.hello ];
-      };
-
     config = [
       { programs.«name».theme.name = "stylix"; }
 
@@ -125,11 +120,6 @@
     : The target name used to generate options in the `stylix.targets.${name}`
       namespace.
 
-    `unconditionalConfig` (Attribute set or function or path)
-    : This argument mirrors the `config` argument but intentionally lacks
-      automatic safeguarding and should only be used for complex configurations
-      where `config` is unsuitable.
-
   # Environment
 
   The function is provided alongside module arguments in any modules imported
@@ -143,12 +133,6 @@
 # of modules:
 #
 #     {
-#       unconditionalConfig =
-#         { lib, pkgs }:
-#         lib.mkIf complexCondition {
-#           home.packages = [ pkgs.hello ];
-#         };
-#
 #       config = [
 #         { programs.example.theme.name = "stylix"; }
 #
@@ -182,7 +166,6 @@ in
   imports ? [ ],
   name ? name',
   options ? [ ],
-  unconditionalConfig ? { },
 }@args:
 let
   mkTargetConfig = config;
@@ -341,10 +324,7 @@ let
         config.lib.stylix.mkEnableTargetWith enableArgs;
 
       config = lib.mkIf (config.stylix.enable && cfg.enable) (
-        lib.mkMerge (
-          lib.singleton (callModule false unconditionalConfig)
-          ++ map (callModule true) normalizedConfig
-        )
+        lib.mkMerge (map (callModule true) normalizedConfig)
       );
     };
 in
