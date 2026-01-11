@@ -17,7 +17,7 @@
   follows:
 
   ```nix
-  { mkTarget, lib... }:
+  { mkTarget, lib, ... }:
   mkTarget {
     unconditionalConfig =
       lib.mkIf complexCondition {
