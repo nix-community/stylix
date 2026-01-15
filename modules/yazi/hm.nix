@@ -20,7 +20,6 @@ mkTarget {
       { cfg }:
       {
         programs.yazi.theme.indicator.padding = lib.mkIf (!cfg.roundedIndicator) {
-          # Characters from https://github.com/sxyazi/yazi/pull/3419#issue-3711132844
           open = "█";
           close = "█";
         };
