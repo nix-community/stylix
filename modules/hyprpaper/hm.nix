@@ -3,9 +3,12 @@ mkTarget {
   config =
     { image }:
     {
-      services.hyprpaper.settings.wallpaper = lib.singleton {
-        monitor = "";
-        path = image;
+      services.hyprpaper.settings = {
+        wallpaper = lib.singleton {
+          monitor = "";
+          path = image;
+        };
+        splash = false;
       };
     };
 }
