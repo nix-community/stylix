@@ -1,12 +1,10 @@
 # Based on the official catppuccin themes https://github.com/yazi-rs/themes
 { mkTarget, lib, ... }:
 mkTarget {
-  options = {
-    boldDirectory = lib.mkOption {
-      description = "Whether to use bold font for directories.";
-      type = lib.types.bool;
-      default = true;
-    };
+  options.boldDirectory = lib.mkOption {
+    description = "Whether to use bold font for directories.";
+    type = lib.types.bool;
+    default = true;
   };
 
   config =
