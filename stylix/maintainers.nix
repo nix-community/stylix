@@ -66,7 +66,6 @@
     githubId = 87434959;
   };
   sand4rt = {
-    email = "17591696+sand4rt@users.noreply.github.com";
     name = "Sander";
     github = "sand4rt";
     githubId = 17591696;
