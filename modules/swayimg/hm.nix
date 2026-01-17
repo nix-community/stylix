@@ -13,7 +13,7 @@ mkTarget {
             window = base00 + cfg.opacity;
           };
           slideshow = {
-            transparency = "#000000ff";
+            transparency = "#00000000";
           };
           gallery = {
             window = base00 + cfg.opacity;
@@ -24,7 +24,8 @@ mkTarget {
           };
           font = {
             color = base05;
-            shadow = "#000000d0";
+            border = base0D;
+            shadow = "#00000000";
             background = "#00000000";
           };
         };
