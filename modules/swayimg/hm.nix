@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "swayimg";
-  humanName = "Swayimg";
-
-  configElements = [
+  config = [
     (
       { cfg, colors }:
       with colors.withHashtag;
