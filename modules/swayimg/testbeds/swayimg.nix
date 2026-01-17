@@ -1,10 +1,23 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   package = pkgs.swayimg;
+  image =
+    (pkgs.callPackages ../../../stylix/testbed/images.nix { })
+    .${config.stylix.polarity};
 in
 {
+  stylix.targets.swayimg.enable = true;
+
   environment = {
-    loginShellInit = "${lib.getExe package} flake-parts/flake.nix";
     systemPackages = [ package ];
+
+    loginShellInit = ''
+      ${lib.getExe package} ${image}
+    '';
   };
 }
