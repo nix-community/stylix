@@ -6,10 +6,7 @@
   ...
 }:
 mkTarget {
-  name = "zen-browser";
-  humanName = "Zen Browser";
-
-  extraOptions = {
+  options = {
     profileNames = lib.mkOption {
       description = "The Zen Browser profile names to apply styling on.";
       type = lib.types.listOf lib.types.str;
@@ -25,7 +22,7 @@ mkTarget {
     };
   };
 
-  configElements = lib.optionals (options.programs ? zen-browser) [
+  config = lib.optionals (options.programs ? zen-browser) [
     (
       { cfg }:
       {

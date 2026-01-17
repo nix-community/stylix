@@ -43,6 +43,10 @@ let
                   ;
               };
 
+              noctalia-shell.home-manager.sharedModules = [
+                inputs.noctalia-shell.homeModules.default
+              ];
+
               nvf = inputs.nvf.nixosModules.default;
 
               vicinae.home-manager.sharedModules = [

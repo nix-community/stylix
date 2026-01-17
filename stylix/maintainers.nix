@@ -31,6 +31,12 @@
     github = "gideonwolfe";
     githubId = 32942052;
   };
+  kerfuzzle = {
+    email = "contact@kerfuzzle.dev";
+    name = "kerfuzzle";
+    github = "kerfuzzle";
+    githubId = 58907164;
+  };
   khas-amir = {
     email = "dlordproudd@gmail.com";
     name = "Amir";
@@ -69,6 +75,12 @@
     name = "Sander";
     github = "sand4rt";
     githubId = 17591696;
+  };
+  rwxae = {
+    email = "wardxela@gmail.com";
+    name = "Alexander";
+    github = "rwxae";
+    githubId = 63157919;
   };
   skiletro = {
     email = "git@skilet.ro";

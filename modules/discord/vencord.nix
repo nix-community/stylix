@@ -4,7 +4,7 @@ mkTarget {
   name = "vencord";
   humanName = "Vencord";
 
-  extraOptions = {
+  options = {
     themeBody = lib.mkOption {
       type = lib.types.lines;
       default = "";
@@ -17,7 +17,7 @@ mkTarget {
     };
   };
 
-  configElements = (import ./common/theme-elements.nix "vencord") ++ [
+  config = (import ./common/theme-elements.nix "vencord") ++ [
     (
       { cfg }:
       lib.mkIf

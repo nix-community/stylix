@@ -1,15 +1,12 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "obsidian";
-  humanName = "Obsidian";
-
-  extraOptions.vaultNames = lib.mkOption {
+  options.vaultNames = lib.mkOption {
     description = "The obsidian vault names to apply styling on.";
     type = lib.types.listOf lib.types.str;
     default = [ ];
   };
 
-  configElements = [
+  config = [
     (
       { cfg, fonts }:
       {

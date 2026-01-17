@@ -4,7 +4,7 @@ mkTarget {
   name = "vim";
   humanName = "Vim";
 
-  configElements = [
+  config = [
     (
       { fonts }:
       {

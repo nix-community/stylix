@@ -1,14 +1,14 @@
-{ mkTarget, ... }:
+{ lib, mkTarget, ... }:
 mkTarget {
-  name = "hyprpaper";
-  humanName = "Hyprpaper";
-
-  configElements =
+  config =
     { image }:
     {
       services.hyprpaper.settings = {
-        preload = [ "${image}" ];
-        wallpaper = [ ",${image}" ];
+        wallpaper = lib.singleton {
+          monitor = "";
+          path = image;
+        };
+        splash = false;
       };
     };
 }

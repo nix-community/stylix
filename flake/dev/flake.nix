@@ -156,6 +156,11 @@
       };
     };
 
+    noctalia-shell = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     nvf = {
       url = "github:NotAShelf/nvf";
       inputs = {
