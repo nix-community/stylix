@@ -6,12 +6,12 @@
     lib.optionalAttrs
       (
         config.stylix.enable
-        && config.stylix.targets ? gtk
-        && config.stylix.targets.gtk.enable
+        && config.stylix.targets ? libadwaita
+        && config.stylix.targets.libadwaita.enable
       )
       {
         libadwaita = prev.libadwaita.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [ ./libadwaita-load-custom-theme.patch ];
+          patches = (oldAttrs.patches or [ ]) ++ [ ./load-custom-theme.patch ];
         });
       };
 }
