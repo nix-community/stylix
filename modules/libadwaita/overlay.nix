@@ -4,11 +4,7 @@
   overlay =
     _final: prev:
     lib.optionalAttrs
-      (
-        config.stylix.enable
-        && config.stylix.targets ? libadwaita
-        && config.stylix.targets.libadwaita.enable
-      )
+      (config.stylix.enable && config.stylix.targets.libadwaita.enable or false)
       {
         libadwaita = prev.libadwaita.overrideAttrs (oldAttrs: {
           patches = (oldAttrs.patches or [ ]) ++ [ ./load-custom-theme.patch ];
