@@ -43,12 +43,10 @@ mkTarget {
 
     (
       { fonts }:
-      with fonts.monospace;
-      with fonts.sizes;
       {
         programs.swayimg.settings.font = {
-          inherit name;
-          size = applications;
+          inherit (fonts.monospace) name;
+          size = fonts.sizes.applications;
         };
       }
     )
