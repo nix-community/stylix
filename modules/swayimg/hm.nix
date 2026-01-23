@@ -30,13 +30,10 @@ mkTarget {
     )
     (
       { cfg, opacity }:
-      let
-        swayimgOpacity = lib.toHexString (
+      {
+        cfg.opacity = lib.toHexString (
           builtins.floor (opacity.applications * 100 + 0.5) * 255 / 100
         );
-      in
-      {
-        cfg.opacity = swayimgOpacity;
       }
     )
     (
