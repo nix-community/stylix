@@ -17,6 +17,9 @@
     email = "da157@voidq.com";
     github = "0xda157";
     githubId = 153149335;
+    keys = [
+      { fingerprint = "5A66 FF95 36DE B501 DDD2  1647 B7AC 1B10 365D 45FF"; }
+    ];
     matrix = "@da157:catgirl.cloud";
     name = "0xda157";
   };
@@ -39,6 +42,11 @@
     githubId = 129101708;
     matrix = "@mrsom3body:matrix.org";
     name = "Karun Sandhu";
+  };
+  Noah765 = {
+    github = "Noah765";
+    githubId = 99338019;
+    name = "Noah765";
   };
   Noodlez1232 = {
     email = "contact@nathanielbarragan.xyz";
@@ -116,6 +124,12 @@
     github = "justdeeevin";
     githubId = 90054389;
     name = "Devin Droddy";
+  };
+  kerfuzzle = {
+    email = "contact@kerfuzzle.dev";
+    github = "kerfuzzle";
+    githubId = 58907164;
+    name = "kerfuzzle";
   };
   khas-amir = {
     email = "dlordproudd@gmail.com";
@@ -203,8 +217,13 @@
     githubId = 45952970;
     name = "repparw";
   };
+  rwxae = {
+    email = "wardxela@gmail.com";
+    github = "rwxae";
+    githubId = 63157919;
+    name = "Alexander";
+  };
   sand4rt = {
-    email = "17591696+sand4rt@users.noreply.github.com";
     github = "sand4rt";
     githubId = 17591696;
     name = "Sander";
