@@ -13,11 +13,8 @@ in
 {
   stylix.targets.swayimg.enable = true;
 
-  environment = {
-    systemPackages = [ package ];
-
-    loginShellInit = ''
-      ${lib.getExe package} ${image}
-    '';
+  stylix.testbed.ui.command = {
+    text = "${lib.getExe package} ${image}";
+    inherit package;
   };
 }
