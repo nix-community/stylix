@@ -28,7 +28,6 @@ mkTarget {
         };
       }
     )
-
     (
       { cfg, opacity }:
       let
