@@ -71,16 +71,16 @@
     github = "osipog";
     githubId = 87434959;
   };
-  sand4rt = {
-    name = "Sander";
-    github = "sand4rt";
-    githubId = 17591696;
-  };
   rwxae = {
     email = "wardxela@gmail.com";
     name = "Alexander";
     github = "rwxae";
     githubId = 63157919;
+  };
+  sand4rt = {
+    name = "Sander";
+    github = "sand4rt";
+    githubId = 17591696;
   };
   skiletro = {
     email = "git@skilet.ro";
