@@ -40,7 +40,6 @@ mkTarget {
         cfg.opacity = swayimgOpacity;
       }
     )
-
     (
       { fonts }:
       {
