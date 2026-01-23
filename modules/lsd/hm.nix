@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "lsd";
-  humanName = "lsd";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.lsd.colors = with colors.withHashtag; {
