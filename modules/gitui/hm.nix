@@ -1,9 +1,6 @@
 { mkTarget, ... }:
 mkTarget {
-  name = "gitui";
-  humanName = "GitUI";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.gitui.theme = with colors.withHashtag; ''

@@ -1,9 +1,6 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "cavalier";
-  humanName = "Cavalier";
-
-  configElements =
+  config =
     { colors }:
     {
       programs.cavalier.settings.general = {

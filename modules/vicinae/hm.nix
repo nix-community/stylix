@@ -5,15 +5,22 @@
   ...
 }:
 mkTarget {
-  name = "vicinae";
-  humanName = "Vicinae";
-
-  configElements = lib.optionals (options.services ? vicinae) [
-    (
-      { colors, polarity }:
-      {
-        services.vicinae = {
-          settings.theme.name = "stylix";
+  config =
+    let
+      eachConfig =
+        config:
+        lib.genAttrs [ "services" "programs" ] (
+          source: lib.optionalAttrs (options.${source} ? vicinae) { vicinae = config; }
+        );
+    in
+    [
+      (
+        { colors, polarity }:
+        eachConfig {
+          settings.theme = {
+            light.name = "stylix";
+            dark.name = "stylix";
+          };
           themes.stylix = {
             meta = {
               name = "stylix";
@@ -48,14 +55,8 @@ mkTarget {
               };
             };
           };
-        };
-      }
-    )
-    (
-      { opacity }:
-      {
-        services.vicinae.settings.window.opacity = opacity.popups;
-      }
-    )
-  ];
+        }
+      )
+      ({ opacity }: eachConfig { settings.launcher_window.opacity = opacity.popups; })
+    ];
 }
