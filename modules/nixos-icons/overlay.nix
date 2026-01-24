@@ -6,7 +6,6 @@
 }:
 let
   inherit (builtins) stringLength substring;
-  inherit (config.lib.stylix) colors;
 
   inherit (lib)
     concatStrings
@@ -62,59 +61,104 @@ in
 {
   options.stylix.targets.nixos-icons = {
     enable = config.lib.stylix.mkEnableTarget "the NixOS logo" true;
+    hexColorAddRgb = mkOption {
+      readOnly = true;
+      default = hexColorAddRgb;
+      description = "Function that adds RGB values to a hex color. For example `hexColorAddRgb \"000000\" {r = 128; g = 128; b = 128;}` evaluates to `\"808080\"`";
+    };
     colors = {
       nix-snowflake-white.white = mkOption {
-        default = colors.base05;
+        default = config.lib.stylix.colors.base05;
         defaultText = "config.lib.stylix.colors.base05";
         description = "Replaces the white color in the 'nix-snowflake-white' icon.";
         type = strMatchingHexColor;
       };
       nix-snowflake = {
         light-blue-darker = mkOption {
-          default = hexColorAddRgb cfg.colors.nix-snowflake.light-blue {
-            r = -21;
-            g = -23;
-            b = -6;
-          };
+          default =
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.light-blue {
+              r = -21;
+              g = -23;
+              b = -6;
+            };
+          defaultText = ''
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.light-blue {
+              r = -21;
+              g = -23;
+              b = -6;
+            };
+          '';
           description = "Replaces the darker part of light blue color gradient (#699ad7) in the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
         light-blue = mkOption {
-          default = colors.base0C;
+          default = config.lib.stylix.colors.base0C;
           defaultText = "config.lib.stylix.colors.base0C";
           description = "Replaces the neutral part of light blue color gradient (#7eb1dd) in the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
         light-blue-lighter = mkOption {
-          default = hexColorAddRgb cfg.colors.nix-snowflake.light-blue {
-            r = 0;
-            g = 9;
-            b = 7;
-          };
+          default =
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.light-blue {
+              r = 0;
+              g = 9;
+              b = 7;
+            };
+          defaultText = ''
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.light-blue {
+              r = 0;
+              g = 9;
+              b = 7;
+            };
+          '';
           description = "Replaces the lighter part of light blue color gradient (#7ebae4) the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
         blue-darker = mkOption {
-          default = hexColorAddRgb cfg.colors.nix-snowflake.blue {
-            r = -9;
-            g = -13;
-            b = -21;
-          };
+          default =
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.blue {
+              r = -9;
+              g = -13;
+              b = -21;
+            };
+          defaultText = ''
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.blue {
+              r = -9;
+              g = -13;
+              b = -21;
+            };
+          '';
           description = "Replaces the darker part of blue color gradient (#415e9a) in the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
         blue = mkOption {
-          default = colors.base0D;
+          default = config.lib.stylix.colors.base0D;
           defaultText = "config.lib.stylix.colors.base0D";
           description = "Replaces the neutral part of blue color gradient (#4a6baf) in the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
         blue-lighter = mkOption {
-          default = hexColorAddRgb cfg.colors.nix-snowflake.blue {
-            r = 8;
-            g = 12;
-            b = 20;
-          };
+          default =
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.blue {
+              r = 8;
+              g = 12;
+              b = 20;
+            };
+          defaultText = ''
+            with config.stylix.targets.nixos-icons;
+            hexColorAddRgb colors.nix-snowflake.blue {
+              r = 8;
+              g = 12;
+              b = 20;
+            };
+          '';
           description = "Replaces the lighter part of blue color gradient (#5277c3) the 'nix-snowflake-colours' icon.";
           type = strMatchingHexColor;
         };
@@ -174,7 +218,7 @@ in
               '#${cfg.colors.nix-snowflake.blue-lighter}'
 
             # Insert attribution comment after the XML prolog
-            attribution='2i<!-- The original NixOS logo from ${oldAttrs.src.url} is licensed under https://creativecommons.org/licenses/by/4.0 and has been modified to match the ${colors.scheme} color scheme. -->'
+            attribution='2i<!-- The original NixOS logo from ${oldAttrs.src.url} is licensed under https://creativecommons.org/licenses/by/4.0 and has been modified to match the ${config.lib.stylix.colors.scheme} color scheme. -->'
             sed --in-place "$attribution" logo/nix-snowflake-colours.svg
             sed --in-place "$attribution" logo/nix-snowflake-white.svg
           '';
