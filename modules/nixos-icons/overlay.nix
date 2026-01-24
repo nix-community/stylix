@@ -36,9 +36,9 @@ let
               if elem == "r" then
                 substring 0 2 hexColor
               else if elem == "g" then
-                substring 2 4 hexColor
+                substring 2 2 hexColor
               else
-                substring 4 6 hexColor
+                substring 4 2 hexColor
             )
             + add.${elem}
           )
@@ -83,7 +83,7 @@ in
             type = strMatchingHexColor;
           };
           neutral = mkOption {
-            default = colors.baseOC;
+            default = colors.base0C;
             defaultText = "config.lib.stylix.colors.base0C";
             description = "Replaces the neutral part of light blue color gradient (#7eb1dd) in the 'nix-snowflake-colours' icon.";
             type = strMatchingHexColor;
@@ -113,7 +113,7 @@ in
             type = strMatchingHexColor;
           };
           neutral = mkOption {
-            default = colors.baseOD;
+            default = colors.base0D;
             defaultText = "config.lib.stylix.colors.base0D";
             description = "Replaces the neutral part of blue color gradient (#4a6baf) in the 'nix-snowflake-colours' icon.";
             type = strMatchingHexColor;
