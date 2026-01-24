@@ -4,130 +4,193 @@
   lib,
   ...
 }:
+let
+  inherit (builtins) stringLength substring;
+  inherit (config.lib.stylix) colors;
+
+  inherit (lib)
+    concatStrings
+    max
+    min
+    pipe
+    toHexString
+    fromHexString
+    mkOption
+    types
+    ;
+
+  cfg = config.stylix.targets.nixos-icons;
+
+  strMatchingHexColor = types.strMatching "^[a-zA-Z0-9]{6}$";
+
+  hexColorAddRgb =
+    hexColor: add:
+    pipe hexColor [
+      # convert to hex color to rgb attrset, and add specified value
+      (
+        _:
+        map
+          (
+            elem:
+            fromHexString (
+              if elem == "r" then
+                substring 0 2 hexColor
+              else if elem == "g" then
+                substring 2 4 hexColor
+              else
+                substring 4 6 hexColor
+            )
+            + add.${elem}
+          )
+          [
+            "r"
+            "g"
+            "b"
+          ]
+      )
+      # clamp between 0 and 255
+      (map (min 255))
+      (map (max 0))
+      # convert each to hex string
+      (map toHexString)
+      # add leading 0 if necessary
+      (map (hex: if (stringLength hex < 2) then "0" + hex else hex))
+      # to one string
+      concatStrings
+    ];
+in
 {
-  options.stylix.targets.nixos-icons.enable =
-    config.lib.stylix.mkEnableTarget "the NixOS logo" true;
+  options.stylix.targets.nixos-icons = {
+    enable = config.lib.stylix.mkEnableTarget "the NixOS logo" true;
+    colors = {
+      nix-snowflake-white.white = mkOption {
+        default = colors.base05;
+        defaultText = "config.lib.stylix.colors.base05";
+        description = "Replaces the white color in the 'nix-snowflake-white' icon.";
+        type = strMatchingHexColor;
+      };
+      nix-snowflake-colours = {
+        gradient-light-blue = {
+          dark = mkOption {
+            default =
+              hexColorAddRgb cfg.colors.nix-snowflake-colours.gradient-light-blue.neutral
+                {
+                  r = -21;
+                  g = -23;
+                  b = -6;
+                };
+            description = "Replaces the darker part of light blue color gradient (#699ad7) in the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+          neutral = mkOption {
+            default = colors.baseOC;
+            defaultText = "config.lib.stylix.colors.base0C";
+            description = "Replaces the neutral part of light blue color gradient (#7eb1dd) in the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+          light = mkOption {
+            default =
+              hexColorAddRgb cfg.colors.nix-snowflake-colours.gradient-light-blue.neutral
+                {
+                  r = 0;
+                  g = 9;
+                  b = 7;
+                };
+            description = "Replaces the lighter part of light blue color gradient (#7ebae4) the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+        };
+        gradient-blue = {
+          dark = mkOption {
+            default =
+              hexColorAddRgb cfg.colors.nix-snowflake-colours.gradient-blue.neutral
+                {
+                  r = -9;
+                  g = -13;
+                  b = -21;
+                };
+            description = "Replaces the darker part of blue color gradient (#415e9a) in the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+          neutral = mkOption {
+            default = colors.baseOD;
+            defaultText = "config.lib.stylix.colors.base0D";
+            description = "Replaces the neutral part of blue color gradient (#4a6baf) in the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+          light = mkOption {
+            default =
+              hexColorAddRgb cfg.colors.nix-snowflake-colours.gradient-blue.neutral
+                {
+                  r = 8;
+                  g = 12;
+                  b = 20;
+                };
+            description = "Replaces the lighter part of blue color gradient (#5277c3) the 'nix-snowflake-colours' icon.";
+            type = strMatchingHexColor;
+          };
+        };
+      };
+    };
+  };
 
   overlay =
     _: super:
-    lib.optionalAttrs
-      (config.stylix.enable && config.stylix.targets.nixos-icons.enable)
-      {
-        nixos-icons = super.nixos-icons.overrideAttrs (oldAttrs: {
-          src = pkgs.applyPatches {
-            inherit (oldAttrs) src;
-            prePatch =
-              let
-                inherit (builtins) stringLength;
-                inherit (config.lib.stylix) colors;
+    lib.optionalAttrs (config.stylix.enable && cfg.enable) {
+      nixos-icons = super.nixos-icons.overrideAttrs (oldAttrs: {
+        src = pkgs.applyPatches {
+          inherit (oldAttrs) src;
+          prePatch = ''
+            substituteInPlace \
+              logo/nix-snowflake-white.svg \
+              --replace-fail \
+              '#ffffff' \
+              '#${cfg.colors.nix-snowflake-white.white}'
 
-                inherit (lib)
-                  concatStrings
-                  max
-                  min
-                  pipe
-                  toHexString
-                  toInt
-                  ;
+            # The normal snowflake uses 2 gradients, replace each bluish
+            # color with blue and each light-blueish color with cyan
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#699ad7' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-light-blue.dark}'
 
-                baseColorAdd =
-                  colorName: add:
-                  pipe colorName [
-                    # convert to base color name to rgb attrset, and add specified value
-                    (
-                      colorName:
-                      map (elem: toInt colors."${colorName}-rgb-${elem}" + add.${elem}) [
-                        "r"
-                        "g"
-                        "b"
-                      ]
-                    )
-                    # clamp between 0 and 255
-                    (map (min 255))
-                    (map (max 0))
-                    # convert each to hex string
-                    (map toHexString)
-                    # add leading 0 if necessary
-                    (map (hex: if (stringLength hex < 2) then "0" + hex else hex))
-                    # to one string
-                    concatStrings
-                  ];
-              in
-              ''
-                substituteInPlace \
-                  logo/nix-snowflake-white.svg \
-                  --replace-fail \
-                  '#ffffff' \
-                  '#${colors.base05}'
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#7eb1dd' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-light-blue.neutral}'
 
-                # The normal snowflake uses 2 gradients, replace each bluish
-                # color with blue and each light-blueish color with cyan
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#699ad7' \
-                  '#${
-                    baseColorAdd "base0C" {
-                      r = -21;
-                      g = -23;
-                      b = -6;
-                    }
-                  }'
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#7ebae4' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-light-blue.light}'
 
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#7eb1dd' \
-                  '#${colors.base0C}'
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#415e9a' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-blue.dark}'
 
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#7ebae4' \
-                  '#${
-                    baseColorAdd "base0C" {
-                      r = 0;
-                      g = 9;
-                      b = 7;
-                    }
-                  }'
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#4a6baf' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-blue.neutral}'
 
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#415e9a' \
-                  '#${
-                    baseColorAdd "base0D" {
-                      r = -9;
-                      g = -13;
-                      b = -21;
-                    }
-                  }'
+            substituteInPlace \
+              logo/nix-snowflake-colours.svg \
+              --replace-fail \
+              '#5277c3' \
+              '#${cfg.colors.nix-snowflake-colours.gradient-blue.light}'
 
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#4a6baf' \
-                  '#${colors.base0D}'
-
-                substituteInPlace \
-                  logo/nix-snowflake-colours.svg \
-                  --replace-fail \
-                  '#5277c3' \
-                  '#${
-                    baseColorAdd "base0D" {
-                      r = 8;
-                      g = 12;
-                      b = 20;
-                    }
-                  }'
-
-                # Insert attribution comment after the XML prolog
-                attribution='2i<!-- The original NixOS logo from ${oldAttrs.src.url} is licensed under https://creativecommons.org/licenses/by/4.0 and has been modified to match the ${colors.scheme} color scheme. -->'
-                sed --in-place "$attribution" logo/nix-snowflake-colours.svg
-                sed --in-place "$attribution" logo/nix-snowflake-white.svg
-              '';
-          };
-        });
-      };
+            # Insert attribution comment after the XML prolog
+            attribution='2i<!-- The original NixOS logo from ${oldAttrs.src.url} is licensed under https://creativecommons.org/licenses/by/4.0 and has been modified to match the ${colors.scheme} color scheme. -->'
+            sed --in-place "$attribution" logo/nix-snowflake-colours.svg
+            sed --in-place "$attribution" logo/nix-snowflake-white.svg
+          '';
+        };
+      });
+    };
 }
