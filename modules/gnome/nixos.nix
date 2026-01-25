@@ -55,9 +55,9 @@ in
 
         # Cursor and icon settings are usually applied via Home Manager,
         # but the login screen uses a separate database.
-        services.displayManager.environment.XDG_DATA_DIRS = lib.mkIf (iconCfg != null) (
-          (lib.makeSearchPath "share" [ iconCfg.package ]) + ":"
-        );
+        services.displayManager.generic.environment.XDG_DATA_DIRS = lib.mkIf (
+          iconCfg != null
+        ) ((lib.makeSearchPath "share" [ iconCfg.package ]) + ":");
         environment.systemPackages = lib.mkIf (cursorCfg != null) [ cursorCfg.package ];
         programs.dconf.profiles.gdm.databases = lib.mkMerge [
           (lib.mkIf (cursorCfg != null) [
