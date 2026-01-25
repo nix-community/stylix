@@ -10,26 +10,104 @@ let
   opts = options.stylix;
 in
 {
+  imports = lib.singleton (
+    lib.mkRenamedOptionModule
+      [ "stylix" "polarity" ]
+      [ "stylix" "colorGeneration" "polarity" ]
+  );
   options.stylix = {
-    polarity = lib.mkOption {
-      type = lib.types.enum [
-        "either"
-        "light"
-        "dark"
-      ];
-      default = "either";
-      description = ''
-        Use this option to force a light or dark theme.
+    colorGeneration = {
+      contrast = lib.mkOption {
+        type = lib.types.addCheck lib.types.float (x: x >= -1.0 && x <= 1.0);
+        default = 0.0;
+        description = ''
+          The contrast of the generated color scheme, ranging from `-1.0` to
+          `1.0` (inclusive).
+        '';
+      };
 
-        By default we will select whichever is ranked better by the genetic
-        algorithm. This aims to get good contrast between the foreground and
-        background, as well as some variety in the highlight colours.
-      '';
+      lightness = {
+        dark = lib.mkOption {
+          type = lib.types.addCheck lib.types.float (x: x <= 1.0);
+          default = 0.0;
+          description = ''
+            Value from -∞ to 1. -∞ represents minimum lightness,
+            0 represents standard (i.e. the design as spec'd),
+            and 1 represents maximum lightness. For dark schemes,
+            if the considered lightnesses are between 0 and 1 then
+            this applies an affine transformation to the lightness
+            by keeping the value for 1 at 1 and setting the value
+            for 0 to the lightness argument and then clamping the
+            result.
+          '';
+        };
+        light = lib.mkOption {
+          type = lib.types.addCheck lib.types.float (x: x >= -1.0);
+          default = 0.0;
+          description = ''
+            Value from -1 to +∞. -1 represents minimum lightness,
+            0 represents standard (i.e. the design as spec'd),
+            and +∞ represents maximum lightness. For light schemes,
+            if the considered lightnesses are between 0 and 1 then
+            this applies an affine transformation to the lightness
+            by keeping the value for 0 at 0 and setting the value
+            for 1 to (1 + the lightness argument) and then clamping
+            the result.
+          '';
+        };
+      };
+
+      filter = lib.mkOption {
+        type = lib.types.enum [
+          "catmull-rom"
+          "gaussian"
+          "lanczos3"
+          "nearest"
+          "triangle"
+        ];
+        default = "lanczos3";
+        example = "nearest";
+        description = ''
+          [Matugen](https://github.com/InioX/matugen)'s resize filter.
+        '';
+      };
+
+      polarity = lib.mkOption {
+        type = lib.types.enum [
+          "dark"
+          "light"
+        ];
+        default = "dark";
+        example = "light";
+        description = "Whether to apply the dark or light theme.";
+      };
+
+      scheme = lib.mkOption {
+        type = lib.types.enum [
+          "content"
+          "expressive"
+          "fidelity"
+          "fruit-salad"
+          "monochrome"
+          "neutral"
+          "rainbow"
+          "tonal-spot"
+          "vibrant"
+        ];
+        default = "content";
+        example = "tonal-spot";
+        description = ''
+          [Matugen](https://github.com/InioX/matugen)'s color scheme type.
+        '';
+        apply = value: "scheme-${value}";
+      };
     };
 
     image = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
       # Ensure the path is copied to the store
-      type = with lib.types; nullOr (coercedTo path (src: "${src}") pathInStore);
+      apply =
+        value: if value == null || lib.isDerivation value then value else "${value}";
       description = ''
         Wallpaper image.
 
@@ -78,23 +156,100 @@ in
         # and not anything indirect such as filling a template, otherwise
         # the output of the palette generator will not be protected from
         # garbage collection.
-        default = pkgs.runCommand "palette.json" {
-          inherit (cfg) image polarity;
-          nativeBuildInputs = [ cfg.paletteGenerator ];
-        } ''palette-generator "$polarity" "$image" "$out"'';
+        default =
+          pkgs.runCommand "palette.json"
+            {
+              nativeBuildInputs = [
+                config.stylix.inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+              ];
+              env = {
+                CONTRAST = toString cfg.colorGeneration.contrast;
+                FILTER = cfg.colorGeneration.filter;
+                IMAGE = cfg.image;
+                POLARITY = cfg.colorGeneration.polarity;
+                LIGHTNESSDARK = toString cfg.colorGeneration.lightness.dark;
+                LIGHTNESSLIGHT = toString cfg.colorGeneration.lightness.light;
+                SCHEME = cfg.colorGeneration.scheme;
+              };
+            }
+            ''
+              matugen \
+                --contrast "$CONTRAST" \
+                --lightness-dark "$LIGHTNESSDARK" \
+                --lightness-light "$LIGHTNESSLIGHT" \
+                --dry-run \
+                --include-image-in-json false \
+                --json strip \
+                --mode "$POLARITY" \
+                --resize-filter "$FILTER" \
+                --type "$SCHEME" \
+                image \
+                "$IMAGE" |
+                sed -E 's/"image":[[:space:]]*"[^"]*",?//g' \
+                >$out'';
       };
 
-      palette = lib.mkOption {
-        type = lib.types.attrs;
-        description = "The palette generated by the palette generator.";
-        readOnly = true;
-        internal = true;
-        default = (lib.importJSON cfg.generated.json) // {
+      palette =
+        lib.mkOption {
+          type = lib.types.attrs;
+          description = "The palette generated by the palette generator.";
+          readOnly = true;
+          internal = true;
+          default =
+            builtins.mapAttrs
+              (
+                let
+                  inherit (lib.importJSON cfg.generated.json) colors;
+                in
+                _: color: colors.${color}.${cfg.colorGeneration.polarity}
+              )
+              (
+                if cfg.colorGeneration.polarity == "dark" then
+                  {
+                    base00 = "surface_container_lowest";
+                    base01 = "surface_container";
+                    base02 = "surface_container_highest";
+                    base03 = "outline";
+                    base04 = "on_surface_variant";
+                    base05 = "on_surface";
+                    base06 = "secondary_fixed";
+                    base07 = "primary";
+                    base08 = "error";
+                    base09 = "tertiary";
+                    base0A = "secondary";
+                    base0B = "primary";
+                    base0C = "primary_fixed";
+                    base0D = "surface_tint";
+                    base0E = "tertiary_fixed";
+                    base0F = "on_error_container";
+                  }
+
+                else
+                  {
+                    base00 = "surface";
+                    base01 = "surface_container";
+                    base02 = "surface_container_highest";
+                    base03 = "outline";
+                    base04 = "on_surface_variant";
+                    base05 = "on_surface";
+                    base06 = "tertiary_container";
+                    base07 = "on_primary_fixed_variant";
+                    base08 = "error";
+                    base09 = "tertiary";
+                    base0A = "secondary";
+                    base0B = "primary";
+                    base0C = "primary_container";
+                    base0D = "surface_tint";
+                    base0E = "secondary_fixed_dim";
+                    base0F = "inverse_surface";
+                  }
+              );
+        }
+        // {
           author = "Stylix";
           scheme = "Stylix";
           slug = "stylix";
         };
-      };
 
       fileTree = lib.mkOption {
         type = lib.types.raw;
