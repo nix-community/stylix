@@ -43,6 +43,10 @@ mkTarget {
         });
       }
     )
+    (import ../firefox/reader-mode.nix {
+      inherit lib;
+      name = "zen-browser";
+    })
     (
       { cfg, colors }:
       {
