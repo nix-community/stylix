@@ -79,6 +79,12 @@ mkTarget {
           .modules-${place} #workspaces button.active {
               border-bottom: 3px solid @base05;
           }
+
+          .modules-${place} #workspaces button.urgent {
+              border-bottom: 3px solid @base08;
+              background-color: @base08;
+              color: @base00;
+          }
         '';
       in
       {
