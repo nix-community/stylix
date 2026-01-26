@@ -29,7 +29,14 @@ in
 
     image = lib.mkOption {
       # Ensure the path is copied to the store
-      type = with lib.types; nullOr (coercedTo path (src: "${src}") pathInStore);
+      type =
+        with lib.types;
+        nullOr (
+          coercedTo path (src: "${src}") path
+          // {
+            inherit (path) description descriptionClass;
+          }
+        );
       description = ''
         Wallpaper image.
 
