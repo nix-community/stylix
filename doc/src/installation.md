@@ -1,5 +1,15 @@
 # Installation
 
+> [!IMPORTANT]
+> The master (unstable) branch of Stylix follows a rolling-release model. To
+> ensure version compatibility, all inputs must be kept in sync.
+>
+> Avoid partial updates and always update inputs together with:
+>
+> ```console
+> nix flake update
+> ```
+
 ## NixOS
 
 You can install Stylix into your NixOS configuration using [Flakes][nix-flakes].
