@@ -18,7 +18,7 @@ mkTarget {
       {
         warnings =
           lib.optional (config.programs.vscode.enable && cfg.profileNames == [ ])
-            ''stylix: vscode: `config.stylix.targets.vscode.profileNames` is empty. No theming will be applied. Add a profile or disable this warning by setting `stylix.targets.vscode.enable = false`.'';
+            "stylix: vscode: `config.stylix.targets.vscode.profileNames` is empty. No theming will be applied. Add a profile or disable this warning by setting `stylix.targets.vscode.enable = false`.";
       }
     )
     (

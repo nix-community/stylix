@@ -9,10 +9,10 @@ mkTarget {
           getColorCh = colorName: channel: colors."${colorName}-rgb-${channel}";
           rgb =
             color:
-            ''rgb(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"})'';
+            "rgb(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"})";
           rgba =
             color: alpha:
-            ''rgba(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"}, ${toString alpha})'';
+            "rgba(${getColorCh color "r"}, ${getColorCh color "g"}, ${getColorCh color "b"}, ${toString alpha})";
         in
         {
           # Taken from here:
