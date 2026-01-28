@@ -21,6 +21,11 @@ mkTarget {
           {
             global = {
               separator_color = base02;
+              icon_theme =
+                if config.stylix.polarity == "dark" then
+                  config.stylix.icons.dark
+                else
+                  config.stylix.icons.light;
             };
 
             urgency_low = {
