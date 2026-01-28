@@ -8,18 +8,25 @@ let
     extension = ".xml";
   };
 
-  attrsOverride = version: oldAttrs: {
-    postFixup = ''
-      ${oldAttrs.postFixup or ""}
-      styles_dir="$out/share/gtksourceview-${version}/styles"
-      mkdir --parents "$styles_dir"
-      cp ${style} "$styles_dir/stylix.xml"
-    '';
-  };
+  joinOverride =
+    final: oldPkg: version:
+    final.symlinkJoin {
+      pname = oldPkg.pname + "-stylix";
+      paths = [ oldPkg ];
+      inherit (oldPkg)
+        version
+        meta
+        passthru
+        propagatedBuildInputs
+        ;
+      postBuild = ''
+        cp ${style} $out/share/gtksourceview-${version}/styles/stylix.xml
+      '';
+    };
 in
 {
   overlay =
-    _final: prev:
+    final: prev:
     optionalAttrs
       (
         config.stylix.enable
@@ -28,10 +35,10 @@ in
       )
       {
         gnome2 = prev.gnome2 // {
-          gtksourceview = prev.gnome2.gtksourceview.overrideAttrs (attrsOverride "2.0");
+          gtksourceview = joinOverride final prev.gnome2.gtksourceview "2.0";
         };
-        gtksourceview = prev.gtksourceview.overrideAttrs (attrsOverride "3.0");
-        gtksourceview4 = prev.gtksourceview4.overrideAttrs (attrsOverride "4");
-        gtksourceview5 = prev.gtksourceview5.overrideAttrs (attrsOverride "5");
+        gtksourceview = joinOverride final prev.gtksourceview "3.0";
+        gtksourceview4 = joinOverride final prev.gtksourceview4 "4";
+        gtksourceview5 = joinOverride final prev.gtksourceview5 "5";
       };
 }
