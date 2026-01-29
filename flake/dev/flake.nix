@@ -151,7 +151,6 @@
       inputs = {
         flake-parts.follows = "dev-flake-parts";
         nixpkgs.follows = "dev-nixpkgs";
-        nuschtosSearch.follows = "";
         systems.follows = "dev-systems";
       };
     };
