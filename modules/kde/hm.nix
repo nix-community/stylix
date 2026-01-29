@@ -176,6 +176,7 @@ let
     mergeWithImage
       {
         kwinrc."org.kde.kdecoration2".library = cfg.decorations;
+        kwinrc."org.kde.kdecoration2".theme = cfg.decorationTheme;
         plasmarc.Theme.name = cfg.applicationStyle;
 
         kdeglobals = {
@@ -353,6 +354,20 @@ in
         To list all available decorations, see the `library` key in the
         `org.kde.kdecoration2` section of `$HOME/.config/kwinrc` after
         imperatively applying the window decoration via the System Settings app.
+      '';
+    };
+    decorationTheme = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = ''
+        The theme name for the window decoration.
+
+        You probably need to set this if you are targeting a custom theme (i.e.
+        installed manually or from the "Get New..." menu).
+
+        See the `theme` key in the `org.kde.kdecoration2` section of
+        `$HOME/.config/kwinrc` after imperatively applying the window decoration
+        via the System Settings app.
       '';
     };
     widgetStyle = lib.mkOption {
