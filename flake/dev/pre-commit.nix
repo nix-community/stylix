@@ -3,7 +3,7 @@
   imports = [ inputs.git-hooks.flakeModule ];
 
   perSystem =
-    { config, ... }:
+    { config, lib, ... }:
     {
       ci.buildbot = { inherit (config.checks) pre-commit; };
 
@@ -37,7 +37,9 @@
           };
           typos = {
             enable = true;
-            settings.config.default.extend-identifiers.MrSom3body = "MrSom3body";
+            settings.config.default.extend-identifiers = lib.genAttrs [
+              "MrSom3body"
+            ] lib.id;
           };
           yamllint.enable = true;
           # keep-sorted end
