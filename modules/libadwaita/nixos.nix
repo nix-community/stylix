@@ -1,0 +1,3 @@
+{ mkTarget, ... }:
+
+mkTarget { autoEnable = false; }
