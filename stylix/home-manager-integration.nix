@@ -37,6 +37,43 @@ let
         {
           path = [
             "stylix"
+            "colorGeneration"
+            "contrast"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "lightness"
+            "dark"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "lightness"
+            "light"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "polarity"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "colorGeneration"
+            "scheme"
+          ];
+        }
+        {
+          path = [
+            "stylix"
             "cursor"
           ];
         }
@@ -159,12 +196,6 @@ let
           ];
           condition =
             homeConfig: config.stylix.base16Scheme == homeConfig.stylix.base16Scheme;
-        }
-        {
-          path = [
-            "stylix"
-            "polarity"
-          ];
         }
         {
           path = [

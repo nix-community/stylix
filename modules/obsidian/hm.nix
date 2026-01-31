@@ -31,13 +31,14 @@ mkTarget {
         cfg,
         colors,
         polarity,
+        colorGeneration,
       }:
       {
         programs.obsidian.defaultSettings.cssSnippets = with colors.withHashtag; [
           {
             name = "Stylix Config";
             text = ''
-              .theme-${polarity} {
+              .theme-${colorGeneration.polarity} {
                   /* Base Colors */
                   --color-base-00: ${base00};
                   --color-base-05: ${base00};
@@ -63,7 +64,7 @@ mkTarget {
             {
               name = "Stylix Config";
               text = ''
-                .theme-${polarity} {
+                .theme-${colorGeneration.polarity} {
                     /* Base Colors */
                     --color-base-00: ${base00};
                     --color-base-05: ${base00};

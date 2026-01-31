@@ -91,22 +91,27 @@ To set a wallpaper, provide a path or an arbitrary derivation:
   ```
 
 If `stylix.base16Scheme` is undeclared, Stylix generates a color scheme based on
-the wallpaper using a [genetic
-algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm). Note that more
-colorful images tend to yield better results. The algorithm's polarity can be
-schewed towards a dark or light theme with:
+the wallpaper using [Matugen](https://github.com/InioX/matugen). Note that more
+colorful images tend to yield better results.
+
+Set the polarity with:
 
 - ```nix
   {
     stylix.polarity = "dark";
+    stylix.colorGeneration.polarity = "dark";
   }
   ```
 
 - ```nix
   {
     stylix.polarity = "light";
+    stylix.colorGeneration.polarity = "light";
   }
   ```
+
+Customize the generated color scheme with the `stylix.colorGeneration.scheme`
+and `stylix.colorGeneration.contrast` options.
 
 The generated color scheme can be viewed at `/etc/stylix/palette.html` on NixOS,
 or at `~/.config/stylix/palette.html` on Home Manager.
