@@ -39,17 +39,27 @@ in
         ];
 
         nixpkgs.overlays = [
-          (_: super: {
-            gnome-shell = super.gnome-shell.overrideAttrs (oldAttrs: {
+          (final: super: {
+            gnome-shell =
               # Themes are usually applied via an extension, but extensions are
               # not available on the login screen. The only way to change the
               # theme there is by replacing the default.
-              postFixup = (oldAttrs.postFixup or "") + ''
-                cp ${theme}/share/gnome-shell/gnome-shell-theme.gresource \
-                  $out/share/gnome-shell/gnome-shell-theme.gresource
-              '';
-              patches = (oldAttrs.patches or [ ]) ++ [ ./shell_remove_dark_mode.patch ];
-            });
+              let
+                # We can build the shell once and reuse it with any theme.
+                gnome-shell-patched = super.gnome-shell.overrideAttrs (oldAttrs: {
+                  patches = (oldAttrs.patches or [ ]) ++ [ ./shell_remove_dark_mode.patch ];
+                });
+              in
+              final.symlinkJoin {
+                pname = "gnome-shell-stylix";
+                paths = [ gnome-shell-patched ];
+                inherit (gnome-shell-patched) version meta passthru;
+                postBuild = ''
+                  rm $out/share/gnome-shell/gnome-shell-theme.gresource
+                  ln -s ${theme}/share/gnome-shell/gnome-shell-theme.gresource \
+                    $out/share/gnome-shell/gnome-shell-theme.gresource
+                '';
+              };
           })
         ];
 
