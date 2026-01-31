@@ -33,7 +33,7 @@ let
               )
             )
             {
-              dankMaterialShell.home-manager.sharedModules = [
+              dank-material-shell.home-manager.sharedModules = [
                 inputs.dankMaterialShell.homeModules.dank-material-shell
               ];
 
