@@ -1,23 +1,39 @@
 {
   mkTarget,
   pkgs,
-  config,
   lib,
   ...
 }:
 mkTarget {
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "gnome"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "gnome"
+        "image"
+        "enable"
+      ];
+    })
+  ];
+
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "GNOME" true;
-
   config = [
     (
-      { cfg, image }:
+      { image }:
       {
         dconf.settings."org/gnome/desktop/background" = {
-          picture-uri = lib.mkIf cfg.useWallpaper "file://${image}";
-          picture-uri-dark = lib.mkIf cfg.useWallpaper "file://${image}";
+          picture-uri = "file://${image}";
+          picture-uri-dark = "file://${image}";
         };
       }
     )
