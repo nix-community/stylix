@@ -34,7 +34,7 @@ let
             )
             {
               dankMaterialShell.home-manager.sharedModules = [
-                inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+                inputs.dankMaterialShell.homeModules.dank-material-shell
               ];
 
               inherit (inputs.spicetify-nix.nixosModules) spicetify;

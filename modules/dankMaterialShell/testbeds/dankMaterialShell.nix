@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
@@ -6,6 +6,9 @@
   };
 
   home-manager.sharedModules = lib.singleton {
-    programs.dankMaterialShell.enable = true;
+    programs.dank-material-shell = {
+      enable = true;
+      dgop.package = pkgs.dgop;
+    };
   };
 }
