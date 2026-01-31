@@ -111,34 +111,6 @@ enabling it unconditionally would cause problems.
 > Using a dynamic value requires you to document the dynamic expression using
 > `mkEnableTargetWith`'s `autoEnableExpr` argument.
 
-### Overlays
-
-If your module is provided as an overlay it uses a special format, where config
-is transparently passed to the platform (e.g. nixos) and overlay is a function
-taking two arguments and returning an attrset:
-
-```nix
-{
-  lib,
-  config,
-  ...
-}:
-{
-  options.stylix.targets.«name».enable =
-    config.lib.stylix.mkEnableTarget "«human readable name»" true;
-
-  overlay =
-    final: prev:
-    lib.optionalAttrs
-      (config.stylix.enable && config.stylix.targets.«name».enable)
-      {
-        «name» = prev.«name».overrideAttrs (oldAttrs: {
-
-        });
-      };
-}
-```
-
 ## How to apply colors
 
 Refer to the [style guide](./styling.md) to see how colors are named, and where
