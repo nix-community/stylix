@@ -33,11 +33,11 @@ let
               )
             )
             {
+              inherit (inputs.spicetify-nix.nixosModules) spicetify;
+
               dank-material-shell.home-manager.sharedModules = [
                 inputs.dankMaterialShell.homeModules.dank-material-shell
               ];
-
-              inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
               nixvim-integrated = inputs.nixvim.nixosModules.nixvim;
 
