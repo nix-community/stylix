@@ -38,7 +38,7 @@ in
           pkgs.gnome-backgrounds
         ];
 
-        nixpkgs.overlays = [
+        nixpkgs.overlays = lib.mkIf config.stylix.overlays.enable [
           (_: super: {
             gnome-shell = super.gnome-shell.overrideAttrs (oldAttrs: {
               # Themes are usually applied via an extension, but extensions are

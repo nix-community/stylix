@@ -23,8 +23,6 @@ mkTarget {
     lib.versionAtLeast config.home.stateVersion "23.05" && pkgs.stdenv.hostPlatform.isLinux
   '';
 
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Swaylock" true;
-
   config = [
     (
       { colors }:
@@ -66,9 +64,9 @@ mkTarget {
       }
     )
     (
-      { cfg, image }:
+      { image }:
       {
-        programs.swaylock.settings.image = lib.mkIf cfg.useWallpaper image;
+        programs.swaylock.settings.image = image;
       }
     )
     (
@@ -92,6 +90,22 @@ mkTarget {
         "targets"
         "swaylock"
         "useWallpaper"
+      ];
+    })
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "swaylock"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "swaylock"
+        "image"
+        "enable"
       ];
     })
   ];
