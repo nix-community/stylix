@@ -1,11 +1,23 @@
-{
-  mkTarget,
-  config,
-  lib,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Limine" true;
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "limine"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "limine"
+        "image"
+        "enable"
+      ];
+    })
+  ];
 
   config = [
     (
@@ -25,9 +37,9 @@ mkTarget {
       }
     )
     (
-      { cfg, image }:
+      { image }:
       {
-        boot.loader.limine.style.wallpapers = lib.mkIf cfg.useWallpaper [ image ];
+        boot.loader.limine.style.wallpapers = [ image ];
       }
     )
     (
