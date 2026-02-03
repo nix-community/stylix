@@ -16,6 +16,9 @@ mkTarget {
       lib.mkIf
         (cfg.themeBody != (import ./common/theme-header.nix))
         {
+          programs.vesktop.vencord = {
+            settings.enabledThemes = [ "stylix.css" ];
+          };
           xdg.configFile."vesktop/themes/stylix.theme.css".text =
             cfg.themeBody;
         }
