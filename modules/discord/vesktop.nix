@@ -13,12 +13,12 @@ mkTarget {
   config = (import ./common/theme-elements.nix "vesktop") ++ [
     (
       { cfg }:
-      lib.mkIf (cfg.themeBody != (import ./common/theme-header.nix)) {
-        programs.vesktop.vencord = {
-          themes.stylix = cfg.themeBody;
-          settings.enabledThemes = [ "stylix.css" ];
-        };
-      }
+      lib.mkIf
+        (cfg.themeBody != (import ./common/theme-header.nix))
+        {
+          xdg.configFile."vesktop/themes/stylix.theme.css".text =
+            cfg.themeBody;
+        }
     )
   ];
 
