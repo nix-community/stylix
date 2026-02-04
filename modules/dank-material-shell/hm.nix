@@ -6,7 +6,7 @@
   ...
 }:
 mkTarget {
-  config = lib.optionals (options.programs ? dankMaterialShell) (
+  config = lib.optionals (options.programs ? dank-material-shell) (
     { colors }:
     {
       programs.dank-material-shell.settings = {

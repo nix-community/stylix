@@ -6,9 +6,6 @@
   };
 
   home-manager.sharedModules = lib.singleton {
-    programs.dank-material-shell = {
-      enable = true;
-      dgop.package = pkgs.dgop;
-    };
+    programs.dank-material-shell.enable = true;
   };
 }
