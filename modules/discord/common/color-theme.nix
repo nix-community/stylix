@@ -431,6 +431,9 @@ colors: ''
       .chatContent_f75fb0 {
           background-color: var(--base01) !important;
       }
+      .chatGradient__36d07 {
+          background: linear-gradient(to bottom, transparent, var(--base01)) !important;
+      }
       .members_c8ffbb,
       .member_c8ffbb {
           background: var(--base00) !important;
