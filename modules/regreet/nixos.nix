@@ -73,6 +73,9 @@ mkTarget {
       in
       {
         programs.regreet.extraCss = finalCss.outPath;
+        # outPath is a string, so nixpkgs' lib.isPath check fails and writes
+        # the store path as literal CSS text. Override the etc file directly.
+        environment.etc."greetd/regreet.css".source = lib.mkForce finalCss;
       }
     )
     (
