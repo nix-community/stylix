@@ -11,21 +11,21 @@ mkTarget {
       {
         programs.noctalia-shell = {
           colors = with colors.withHashtag; {
-            mPrimary = base05;
+            mPrimary = base0D;
             mOnPrimary = base00;
-            mSecondary = base05;
+            mSecondary = base0E;
             mOnSecondary = base00;
-            mTertiary = base04;
+            mTertiary = base0C;
             mOnTertiary = base00;
             mError = base08;
             mOnError = base00;
             mSurface = base00;
             mOnSurface = base05;
-            mHover = base04;
+            mHover = base0C;
             mOnHover = base00;
             mSurfaceVariant = base01;
             mOnSurfaceVariant = base04;
-            mOutline = base02;
+            mOutline = base03;
             mShadow = base00;
           };
         };
