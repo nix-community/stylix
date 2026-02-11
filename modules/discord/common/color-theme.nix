@@ -352,6 +352,12 @@ colors: ''
       background: var(--base00) !important;
   }
 
+  /*--- Text Selection Highlight Recolor ---*/
+  ::selection {
+    background-color: var(--base02);
+    color: var(--base05);
+  }
+
   /*--- Increase Text Legibility ---*/
   * {
       text-rendering: optimizeLegibility !important;
