@@ -2,9 +2,9 @@
 mkTarget {
   config =
     { colors, fonts }:
-    # let
-    #   font = "${fonts.monospace.name} monospace";
-    # in
+    let
+      font = "${fonts.monospace.name} monospace";
+    in
     {
       programs.sherlock.style = with colors.withHashtag; ''
         :root {
@@ -62,7 +62,7 @@ mkTarget {
 
         row:selected .tile .tag,
         .tag {
-            font-size: 11px;
+            font-size: ${toString fonts.sizes.popups}px;
             border-radius: 3px;
             padding: 2px 8px;
             color: hsl(from var(--tag-color) h s l / 100%);
@@ -86,7 +86,7 @@ mkTarget {
         }
 
         #launcher-type {
-            font-size: 10px;
+            font-size: ${toString fonts.sizes.popups}px;
             color: hsl(from var(--text) h s l / 40%);
             margin-left: 0px;
         }
@@ -112,7 +112,7 @@ mkTarget {
         }
 
         #shortcut-modkey {
-            font-size: 13px;
+            font-size: ${toString fonts.sizes.popups}px;
         }
 
         #shortcut-holder {
@@ -132,12 +132,12 @@ mkTarget {
         #bulk-text-title {
             margin-left: 10px;
             padding: 10px 0px;
-            font-size: 10px;
+            font-size: ${toString fonts.sizes.popups}px;
             color: hsl(from var(--text) h s l / 50%);
         }
 
         #bulk-text-content-title {
-            font-size: 17px;
+            font-size: ${toString fonts.sizes.popups}px;
             font-weight: bold;
             color: hsl(from var(--text-active) h s l / 70%);
             min-height: 20px;
@@ -170,7 +170,7 @@ mkTarget {
 
         .raw_text,
         .next_tile #content-body {
-            font-family: "Fira Code", monospace;
+            font-family: ${font};
             font-feature-settings: "kern" off;
             font-kerning: None;
         }
