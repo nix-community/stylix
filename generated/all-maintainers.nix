@@ -113,6 +113,11 @@
     matrix = "@danth:danth.me";
     name = "Daniel Thwaites";
   };
+  dastarruer = {
+    github = "dastarruer";
+    githubId = 173855353;
+    name = "dastarruer";
+  };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
     github = "gideonwolfe";
