@@ -128,15 +128,28 @@ in
                   text = ''
                     for percent in {0..100}; do
                       ${lib.concatMapStrings
-                        (urgency: ''
-                          notify-send \
-                            --hint="int:value:$percent" \
-                            --hint=string:x-dunst-stack-tag:${urgency} \
-                            --urgency ${urgency} \
-                            ${urgency} \
-                            urgency \
-                            &
-                        '')
+                        (
+                          urgency:
+                          let
+                            icon =
+                              {
+                                low = "dialog-information.svg";
+                                normal = "dialog-warning.svg";
+                                critical = "dialog-error.svg";
+                              }
+                              .${urgency};
+                          in
+                          ''
+                            notify-send \
+                              --hint="int:value:$percent" \
+                              --hint=string:x-dunst-stack-tag:${urgency} \
+                              --icon ${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/${icon} \
+                              --urgency ${urgency} \
+                              ${urgency} \
+                              urgency \
+                              &
+                          ''
+                        )
                         [
                           "low"
                           "normal"
