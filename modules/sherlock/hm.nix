@@ -171,8 +171,6 @@ mkTarget {
         .raw_text,
         .next_tile #content-body {
             font-family: ${font};
-            font-feature-settings: "kern" off;
-            font-kerning: None;
         }
 
         /* CONTEXT MENU */
