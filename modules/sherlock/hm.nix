@@ -18,16 +18,13 @@ mkTarget {
               --success: ${base0B};
           }
 
-          /* Will make icons inside active tile black else white */
           #search-icon-holder image,
           image.reactive {
-              -gtk-icon-filter: brightness(10) saturate(100%) contrast(100%);
-              /* white */
+              -gtk-icon-filter: brightness(1) opacity(0.8);
           }
 
           row:selected .tile image.reactive {
-              -gtk-icon-filter: brightness(0.1) saturate(100%) contrast(100%);
-              /* black */
+              -gtk-icon-filter: saturate(1.2) opacity(1.0) brightness(1.1);
           }
 
           /* Custom search icon animation */
