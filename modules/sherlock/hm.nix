@@ -6,13 +6,11 @@ mkTarget {
       {
         programs.sherlock.style = with colors.withHashtag; ''
           :root {
-              /* backgrounds */
               --background: ${base00};
+              --background-alt: ${base05};
+
               --text: ${base05};
               --text-active: ${base00};
-
-              /* foreground */
-              --foreground: ${base05};
 
               /* accent colors */
               --success: ${base0B};
@@ -92,7 +90,7 @@ mkTarget {
           #shortcut-holder {
               margin-right: 25px;
               padding: 5px 10px;
-              background: hsl(from var(--foreground) h s l / 50%);
+              background: hsl(from var(--background-alt) h s l / 50%);
               border-radius: 5px;
               border: 1px solid hsl(from var(--text) h s l / 10%);
               box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
@@ -168,7 +166,7 @@ mkTarget {
 
           /* EMOJIES */
           .emoji-item {
-              background: hsl(from var(--foreground) h s l / 20%);
+              background: hsl(from var(--background-alt) h s l / 20%);
           }
         '';
       }
