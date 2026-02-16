@@ -83,22 +83,29 @@ mkTarget {
           }
 
           row:selected .tile #launcher-type {
+              background: var(--background-alt);
               color: hsl(from var(--text-active) h s l / 40%);
+          }
+
+          row:selected .tile {
+              background: var(--background-alt);
           }
 
           /*SHORTCUT*/
           #shortcut-holder {
               margin-right: 25px;
               padding: 5px 10px;
-              background: hsl(from var(--background-alt) h s l / 50%);
+              background: var(--background-alt);
               border-radius: 5px;
               border: 1px solid hsl(from var(--text) h s l / 10%);
               box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
           }
 
           row:selected .tile #shortcut-holder {
-              background: hsl(from var(--background) h s l / 50%);
-              background-color: hsl(from var(--background) h s l / 50%);
+              background: var(--background);
+          }
+
+          row:selected .tile #shortcut-holder label {
               color: hsl(from var(--text) h s l / 50%);
           }
 
