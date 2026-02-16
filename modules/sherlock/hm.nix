@@ -175,9 +175,6 @@ mkTarget {
     )
     (
       { fonts }:
-      let
-        font = "${fonts.monospace.name} monospace";
-      in
       {
         programs.sherlock.style = ''
           row:selected .tile .tag,
@@ -203,7 +200,7 @@ mkTarget {
 
           .raw_text,
           .next_tile #content-body {
-              font-family: ${font};
+              font-family: "${fonts.monospace.name}", monospace;
           }
         '';
       }
