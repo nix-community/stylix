@@ -9,7 +9,7 @@ mkTarget {
               /* backgrounds */
               --background: ${base00};
               --text: ${base05};
-              --text-active: ${base04};
+              --text-active: ${base00};
 
               /* foreground */
               --foreground: ${base05};
