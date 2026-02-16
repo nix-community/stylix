@@ -178,6 +178,22 @@ Or even choose monospace for everything:
 }
 ```
 
+## Icons
+
+To set an icon theme, declare:
+
+```nix
+{ config, ... }:
+{
+  stylix.iconTheme = {
+    enable = true;
+    package = pkgs.papirus-icon-theme;
+    dark = "Papirus-Dark";
+    light = "Papirus-Light";
+  };
+}
+```
+
 ## Home Manager inheritance
 
 By default, if Home Manager is used as part of NixOS, then Stylix will be
