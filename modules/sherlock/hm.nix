@@ -18,162 +18,162 @@ mkTarget {
 
           #search-icon-holder image,
           image.reactive {
-              -gtk-icon-filter: brightness(1) opacity(0.8);
+            -gtk-icon-filter: brightness(1) opacity(0.8);
           }
 
           row:selected .tile image.reactive {
-              -gtk-icon-filter: saturate(1.2) opacity(1.0) brightness(1.1);
+            -gtk-icon-filter: saturate(1.2) opacity(1) brightness(1.1);
           }
 
           /* Custom search icon animation */
           #search-icon-holder image {
-              transition: 0.1s ease;
+            transition: 0.1s ease;
           }
 
           #search-icon-holder.search image:nth-child(1) {
-              transition-delay: 0.05s;
-              opacity: 1;
+            transition-delay: 0.05s;
+            opacity: 1;
           }
 
           #search-icon-holder.search image:nth-child(2) {
-              transform: rotate(-180deg);
-              opacity: 0;
+            transform: rotate(-180deg);
+            opacity: 0;
           }
 
           #search-icon-holder.back image:nth-child(1) {
-              opacity: 0;
+            opacity: 0;
           }
 
           #search-icon-holder.back image:nth-child(2) {
-              transition-delay: 0.05s;
-              opacity: 1;
+            transition-delay: 0.05s;
+            opacity: 1;
           }
 
           row:selected .tile #title {
-              color: hsl(from var(--text-active) h s l / 70%);
+            color: var(--text-active);
           }
 
           row:selected .tile .tag,
           .tag {
-              border-radius: 3px;
-              padding: 2px 8px;
-              color: hsl(from var(--tag-color) h s l / 100%);
-              box-shadow: 0px 0px 10px 0px hsl(from var(--background) h s l / 20%);
-              border: 1px solid hsl(from var(--text-active) h s l / 20%);
-              margin-left: 7px;
+            border-radius: 3px;
+            padding: 2px 8px;
+            color: var(--tag-color);
+            box-shadow: 0px 0px 10px 0px var(--background);
+            border: 1px solid var(--text-active);
+            margin-left: 7px;
           }
 
           row:selected .tile .tag-start,
           row:selected .tile .tag-start {
-              background: hsl(from var(--tag-background) h s l / 70%);
+            background: var(--tag-background);
           }
 
           row:selected .tile .tag-end,
           row:selected .tile .tag-end {
-              background: hsl(from var(--success) h s l / 100%);
+            background: var(--success);
           }
 
           .tile:focus {
-              outline: none;
+            outline: none;
           }
 
           #launcher-type {
-              color: hsl(from var(--text) h s l / 40%);
-              margin-left: 0px;
+            color: var(--text);
+            margin-left: 0px;
           }
 
           row:selected .tile #launcher-type {
-              background: var(--background-alt);
-              color: hsl(from var(--text-active) h s l / 40%);
+            background: var(--background-alt);
+            color: var(--text-active);
           }
 
           row:selected .tile {
-              background: var(--background-alt);
+            background: var(--background-alt);
           }
 
           /*SHORTCUT*/
           #shortcut-holder {
-              margin-right: 25px;
-              padding: 5px 10px;
-              background: var(--background-alt);
-              border-radius: 5px;
-              border: 1px solid hsl(from var(--text) h s l / 10%);
-              box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
+            margin-right: 25px;
+            padding: 5px 10px;
+            background: var(--background-alt);
+            border-radius: 5px;
+            border: 1px solid hsl(from var(--text) h s l / 10%);
+            box-shadow: 0px 0px 6px 0px rgba(15, 15, 15, 1);
           }
 
           row:selected .tile #shortcut-holder {
-              background: var(--background);
+            background: var(--background);
           }
 
           row:selected .tile #shortcut-holder label {
-              color: hsl(from var(--text) h s l / 50%);
+            color: var(--text);
           }
 
           #shortcut-holder {
-              box-shadow: unset;
+            box-shadow: unset;
           }
 
           #shortcut-holder label {
-              color: hsl(from var(--text-active) h s l / 50%);
+            color: var(--text-active);
           }
 
           /* BULK TEXT TILE */
           .bulk-text {
-              padding-bottom: 10px;
-              min-height: 50px;
+            padding-bottom: 10px;
+            min-height: 50px;
           }
 
           #bulk-text-title {
-              margin-left: 10px;
-              padding: 10px 0px;
-              color: hsl(from var(--text) h s l / 50%);
+            margin-left: 10px;
+            padding: 10px 0px;
+            color: var(--text);
           }
 
           #bulk-text-content-title {
-              font-weight: bold;
-              color: hsl(from var(--text-active) h s l / 70%);
-              min-height: 20px;
+            font-weight: bold;
+            color: var(--text-active);
+            min-height: 20px;
           }
 
           #bulk-text-content-body {
-              font-size: 14px;
-              color: hsl(from var(--text-active) h s l / 70%);
-              line-height: 1.4;
-              min-height: 20px;
+            font-size: 14px;
+            color: var(--text-active);
+            line-height: 1.4;
+            min-height: 20px;
           }
 
           /*EVENT TILE*/
           .tile.event-tile:selected #time-label,
           .tile.event-tile:selected #title-label {
-              color: hsl(from var(--text-active) h s l / 60%);
+            color: var(--text-active);
           }
 
           /* NEXT PAGE */
           .next_tile {
-              color: hsl(from var(--text-active) h s l / 100%);
-              background: hsl(from var(--background) h s l / 100%);
+            color: var(--text-active);
+            background: var(--background);
           }
 
           .next_tile #content-body {
-              background: hsl(from var(--background) h s l / 100%);
-              padding: 10px;
-              color: hsl(from var(--text) h s l / 100%);
+            background: var(--background);
+            padding: 10px;
+            color: var(--text);
           }
 
           /* CONTEXT MENU */
           #context-menu row:selected label {
-              color: hsl(from var(--text-active) h s l / 80%);
+            color: var(--text-active);
           }
 
           /* STATUS BAR */
           .status-bar #shortcut-key,
           .status-bar #shortcut-modifier {
-              color: hsl(from var(--text-active) h s l / 50%);
+            color: var(--text-active);
           }
 
           /* EMOJIES */
           .emoji-item {
-              background: hsl(from var(--background-alt) h s l / 20%);
+            background: var(--background-alt);
           }
         '';
       }
