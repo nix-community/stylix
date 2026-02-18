@@ -102,7 +102,7 @@ mkTarget {
           }
 
           row:selected .tile #shortcut-holder {
-            background: var(--background);
+            background: hsl(from var(--background) h s l / 90%);
           }
 
           row:selected .tile #shortcut-holder label {
