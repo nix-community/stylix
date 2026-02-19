@@ -4,7 +4,7 @@ mkTarget {
     { colors }:
     {
       programs.sioyek.config = with colors.withHashtag; {
-        startup_commands = "toggle_custom_color";
+        startup_commands = [ "toggle_custom_color" ];
         background_color = base00;
         text_highlight_color = base0A;
         visual_mark_color = base02;
