@@ -7,12 +7,6 @@
 #
 #       nix run .#all-maintainers
 {
-  "0x5a4" = {
-    email = "bej86nug@hhu.de";
-    github = "0x5a4";
-    githubId = 54070204;
-    name = "0x5a4";
-  };
   "0xda157" = {
     email = "da157@voidq.com";
     github = "0xda157";
@@ -112,6 +106,12 @@
     ];
     matrix = "@danth:danth.me";
     name = "Daniel Thwaites";
+  };
+  einetuer = {
+    email = "bej86nug@hhu.de";
+    github = "einetuer";
+    githubId = 54070204;
+    name = "0x5a4";
   };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";

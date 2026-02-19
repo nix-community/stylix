@@ -16,7 +16,7 @@ mkTarget {
     (
       { opacity }:
       {
-        programs.neovim.extraLuaConfig = lib.mkIf config.programs.neovide.enable ''
+        programs.neovim.initLua = lib.mkIf config.programs.neovide.enable ''
           if vim.g.neovide then
             vim.g.neovide_normal_opacity = ${toString opacity.terminal}
           end
