@@ -1,7 +1,7 @@
 { mkTarget, lib, ... }:
 mkTarget {
   config =
-    { colors, polarity }:
+    { colors, colorGeneration }:
     {
       programs.jjui.settings.ui.colors = with colors.withHashtag; {
         # Original template author: Victor Borja <vborja@apache.org> (https://github.com/vic)
@@ -42,7 +42,7 @@ mkTarget {
 
         "revset title" = {
           fg = base0D;
-          bg = lib.mkIf (polarity != "dark") base01;
+          bg = lib.mkIf (colorGeneration.polarity != "dark") base01;
           bold = true;
         };
         "revset text".fg = base05;
@@ -51,19 +51,23 @@ mkTarget {
         "revset completion matched".fg = base0A;
         "revset completion matched".bold = true;
         "revset completion dimmed".fg = base03;
-        "revset completion selected".bg = if polarity == "dark" then base02 else base06;
-        "revset completion selected".fg = if polarity == "dark" then base05 else base02;
+        "revset completion selected".bg =
+          if colorGeneration.polarity == "dark" then base02 else base06;
+        "revset completion selected".fg =
+          if colorGeneration.polarity == "dark" then base05 else base02;
 
         revisions.fg = base05;
-        "revisions selected".bg = if polarity == "dark" then base01 else base02;
+        "revisions selected".bg =
+          if colorGeneration.polarity == "dark" then base01 else base02;
         "revisions dimmed".fg = base03;
-        "revisions details selected".bg = if polarity == "dark" then base02 else base04;
+        "revisions details selected".bg =
+          if colorGeneration.polarity == "dark" then base02 else base04;
         "oplog selected".bold = true;
 
         evolog.fg = base05;
         "evolog selected" = {
-          fg = if polarity == "dark" then base05 else base01;
-          bg = if polarity == "dark" then base02 else base06;
+          fg = if colorGeneration.polarity == "dark" then base05 else base01;
+          bg = if colorGeneration.polarity == "dark" then base02 else base06;
           bold = true;
         };
 
@@ -78,8 +82,10 @@ mkTarget {
         "menu matched".bold = true;
         "menu dimmed".fg = base03;
         "menu border".fg = base01;
-        "menu selected".fg = if polarity == "dark" then base05 else base01;
-        "menu selected".bg = if polarity == "dark" then base02 else base06;
+        "menu selected".fg =
+          if colorGeneration.polarity == "dark" then base05 else base01;
+        "menu selected".bg =
+          if colorGeneration.polarity == "dark" then base02 else base06;
 
         help.bg = base00;
         "help title" = {
@@ -98,13 +104,17 @@ mkTarget {
         "confirmation dimmed".fg = base03;
         "confirmation border".fg = base08;
         "confirmation border".bold = true;
-        "confirmation selected".fg = if polarity == "dark" then base05 else base01;
-        "confirmation selected".bg = if polarity == "dark" then base02 else base06;
+        "confirmation selected".fg =
+          if colorGeneration.polarity == "dark" then base05 else base01;
+        "confirmation selected".bg =
+          if colorGeneration.polarity == "dark" then base02 else base06;
 
         undo.bg = base00;
         "undo confirmation dimmed".fg = base03;
-        "undo confirmation selected".fg = if polarity == "dark" then base05 else base01;
-        "undo confirmation selected".bg = if polarity == "dark" then base02 else base06;
+        "undo confirmation selected".fg =
+          if colorGeneration.polarity == "dark" then base05 else base01;
+        "undo confirmation selected".bg =
+          if colorGeneration.polarity == "dark" then base02 else base06;
 
         success.fg = base0B;
         success.bold = true;

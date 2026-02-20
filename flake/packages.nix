@@ -11,7 +11,6 @@
         serve-docs = pkgs.callPackage ../doc/server.nix {
           inherit (config.packages) doc;
         };
-        palette-generator = pkgs.callPackage ../palette-generator { };
       };
     };
 }

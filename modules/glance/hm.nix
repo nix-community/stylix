@@ -2,9 +2,9 @@
 mkTarget {
   config = [
     (
-      { polarity }:
+      { colorGeneration }:
       {
-        services.glance.settings.theme.light = polarity == "light";
+        services.glance.settings.theme.light = colorGeneration.polarity == "light";
       }
     )
     (
