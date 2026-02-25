@@ -8,7 +8,7 @@
   config =
     lib.mkIf (config.stylix.testbed.ui.graphicalEnvironment or null == "hyprland")
       {
-        environment.loginShellInit = lib.getExe pkgs.hyprland;
+        environment.loginShellInit = lib.getExe' pkgs.hyprland "start-hyprland";
         programs.hyprland.enable = true;
         environment.systemPackages = [
           # dex looks for `x-terminal-emulator` when running a terminal program
