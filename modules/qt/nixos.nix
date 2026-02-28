@@ -1,7 +1,11 @@
 { lib, config, ... }:
 let
   recommendedStyle = {
-    gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
+    gnome =
+      if config.stylix.colorGeneration.polarity == "dark" then
+        "adwaita-dark"
+      else
+        "adwaita";
     kde = "breeze";
     qtct = "kvantum";
   };
