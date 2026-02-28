@@ -228,6 +228,11 @@
     githubId = 63157919;
     name = "Alexander";
   };
+  sand4rt = {
+    github = "sand4rt";
+    githubId = 17591696;
+    name = "Sander";
+  };
   skiletro = {
     email = "git@skilet.ro";
     github = "skiletro";
