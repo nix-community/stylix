@@ -1,6 +1,20 @@
-{ mkTarget, ... }:
+{ lib, mkTarget, ... }:
 mkTarget {
+  options = {
+    verticalCandidateList = lib.mkEnableOption "Vertical Candidate List on Fcitx5's popups";
+  };
+
   config = [
+    (
+      { cfg }:
+      let
+        boolString = if cfg.verticalCandidateList then "True" else "False";
+      in
+      {
+        i18n.inputMethod.fcitx5.settings.addons.classicui.globalSection."Vertical Candidate List" =
+          boolString;
+      }
+    )
     (
       { fonts }:
       {
