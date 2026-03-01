@@ -48,9 +48,10 @@
     };
 
     gnome-shell = {
-      # TODO: Unlocking the input requires updating the patch:
+      # TODO: Unlocking the input and pointing to official repository requires
+      # updating the patch:
       # https://github.com/nix-community/stylix/pull/224#discussion_r1460339607.
-      url = "gitlab:GNOME/gnome-shell/gnome-49?host=gitlab.gnome.org";
+      url = "github:GNOME/gnome-shell/ef02db02bf0ff342734d525b5767814770d85b49";
       flake = false;
     };
 
