@@ -26,6 +26,16 @@ mkTarget {
       }
     )
     (
+      { image }:
+      {
+        programs.dank-material-shell.session = {
+          wallpaperPath = image;
+          wallpaperPathLight = image;
+          wallpaperPathDark = image;
+        };
+      }
+    )
+    (
       { colors }:
       {
         programs.dank-material-shell.settings = {
