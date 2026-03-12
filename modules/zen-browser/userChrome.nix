@@ -31,6 +31,11 @@ with colors;
     color: #${base05-hex} !important;
   }
 
+  #historySwipeAnimationPreviousArrow,#historySwipeAnimationNextArrow {
+    --swipe-nav-icon-primary-color: #${base0D-hex} !important;
+    --swipe-nav-icon-accent-color: #${base00-hex} !important;
+  }
+
   .sidebar-placesTree {
     background-color: #${base00-hex} !important;
   }
