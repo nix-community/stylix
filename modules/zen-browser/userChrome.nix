@@ -24,6 +24,7 @@ with colors;
     --zen-themed-toolbar-bg: #${base00-hex} !important;
     --zen-main-browser-background: #${base00-hex} !important;
     --toolbox-bgcolor-inactive: #${base01-hex} !important;
+    --zen-themed-toolbar-bg-transparent: #${base01-hex} !important;
   }
 
   #permissions-granted-icon {
@@ -125,12 +126,20 @@ with colors;
     --identity-icon-color: #${base0F-hex} !important;
   }
 
-  #navigator-toolbox {
+  #zen-toolbar-background {
     --zen-main-browser-background-toolbar: #${base00-hex} !important;
   }
 
   #zen-appcontent-navbar-container {
     background-color: #${base00-hex} !important;
+  }
+
+  #commonDialog {
+    background-color: #${base00-hex} !important;
+  }
+
+  #zen-browser-background {
+    --zen-main-browser-background: #${base00-hex} !important;
   }
 
   #contentAreaContextMenu menu,
