@@ -5,15 +5,17 @@
     Firefox = "http://www.mozilla.com/en-US/firefox";
     Floorp = "https://floorp.app";
     LibreWolf = "https://librewolf.net";
+    Glide = "https://glide-browser.app";
   };
   maintainers = with lib.maintainers; [
     Flameopathic
     danth
     naho
+    zzzealed
   ];
   description = ''
     This module supports [Firefox](https://www.mozilla.org/firefox), in addition
-    to [Floorp](https://floorp.app) and [LibreWolf](https://librewolf.net),
+    to [Floorp](https://floorp.app), [LibreWolf](https://librewolf.net) and [Glide](https://glide-browser.app),
     which are Firefox derivatives.
 
     The same implementation is shared between all of these browsers, but they don't
