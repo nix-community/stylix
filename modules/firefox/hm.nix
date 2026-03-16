@@ -10,5 +10,6 @@
         "firefox" = "Firefox";
         "librewolf" = "LibreWolf";
         "floorp" = "Floorp";
+        "glide-browser" = "Glide";
       };
 }
