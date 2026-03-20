@@ -11,7 +11,6 @@
     Flameopathic
     danth
     naho
-    zzzealed
   ];
   description = ''
     This module supports [Firefox](https://www.mozilla.org/firefox), in addition
