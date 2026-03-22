@@ -1,3 +1,6 @@
+// Portions based on https://github.com/catppuccin/obs
+// Original work licensed under MIT
+
 @OBSThemeMeta {
     name: 'Stylix';
     id: 'com.obsproject.Stylix';
