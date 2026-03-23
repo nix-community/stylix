@@ -13,7 +13,7 @@ mkTarget {
     (
       { opacity }:
       {
-        programs.foot.settings.colors.alpha = opacity.terminal;
+        programs.foot.settings.colors-dark.alpha = opacity.terminal;
       }
     )
     (
