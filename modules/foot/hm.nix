@@ -17,11 +17,12 @@ mkTarget {
       }
     )
     (
-      { colors, inputs }:
+      { colors }:
       {
         programs.foot.settings.main.include = lib.singleton (
           toString (colors {
-            templateRepo = inputs.tinted-foot;
+            template = ./foot.ini.mustache;
+            extension = ".ini";
           })
         );
       }
