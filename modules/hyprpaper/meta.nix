@@ -1,4 +1,4 @@
-{lib, ...}:
+{ lib, ... }:
 {
   name = "hyprpaper";
   homepage = "https://github.com/hyprwm/hyprpaper";
