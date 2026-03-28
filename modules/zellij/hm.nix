@@ -31,8 +31,8 @@ mkTarget {
               emphasis_3 = base0D;
             };
             ribbon_unselected = {
-              base = base01;
-              background = base05;
+              base = base05;
+              background = base02;
               emphasis_0 = base08;
               emphasis_1 = base05;
               emphasis_2 = base0D;
