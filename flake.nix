@@ -54,6 +54,8 @@
       flake = false;
     };
 
+    matugen.url = "github:/InioX/Matugen";
+
     nur = {
       url = "github:nix-community/NUR";
       inputs = {

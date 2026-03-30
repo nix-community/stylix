@@ -41,25 +41,18 @@
     {
       ci.buildbot = { inherit (config) devShells; };
 
-      devShells = {
-        default = pkgs.mkShell {
-          inherit (config.pre-commit) shellHook;
+      devShells.default = pkgs.mkShell {
+        inherit (config.pre-commit) shellHook;
 
-          packages = [
-            stylix-check
-            build-and-run-docs
-            inputs'.home-manager.packages.default
-            config.formatter
-          ]
-          ++ config.pre-commit.settings.enabledPackages;
+        packages = [
+          stylix-check
+          build-and-run-docs
+          inputs'.home-manager.packages.default
+          config.formatter
+        ]
+        ++ config.pre-commit.settings.enabledPackages;
 
-          inputsFrom = [ config.treefmt.build.devShell ];
-        };
-
-        ghc = pkgs.mkShell {
-          inputsFrom = [ config.devShells.default ];
-          packages = [ pkgs.ghc ];
-        };
+        inputsFrom = [ config.treefmt.build.devShell ];
       };
     };
 }
