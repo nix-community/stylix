@@ -29,7 +29,7 @@ jobs:
       vars.APP_ID &&
       !contains(github.event.pull_request.title, '[skip treewide]')
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ vars.APP_ID }}
