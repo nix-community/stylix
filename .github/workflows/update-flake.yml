@@ -19,7 +19,7 @@ jobs:
         branch: [master, release-25.11]
     steps:
       - id: generate-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
