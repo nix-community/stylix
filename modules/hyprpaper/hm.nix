@@ -5,7 +5,8 @@ mkTarget {
     monitor = lib.mkOption {
       type = lib.types.str;
       default = "";
-      description = "Monitor to apply the wallpaper to (\"\" matches all monitors). Example: \"DP-1\"";
+      example = "DP-1";
+      description = ''Monitor(s) to apply the wallpaper to (`""` matches all monitors)'';
     };
   };
 
