@@ -48,9 +48,10 @@
     };
 
     gnome-shell = {
-      # TODO: Unlocking the input requires updating the patch:
+      # TODO: Unlocking the input and pointing to official repository requires
+      # updating the patch:
       # https://github.com/nix-community/stylix/pull/224#discussion_r1460339607.
-      url = "gitlab:GNOME/gnome-shell/gnome-49?host=gitlab.gnome.org";
+      url = "github:GNOME/gnome-shell/ef02db02bf0ff342734d525b5767814770d85b49";
       flake = false;
     };
 
@@ -60,18 +61,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
-    };
-
-    tinted-foot = {
-      # Lock the tinted-foot input to prevent upstream breaking changes.
-      #
-      # Considering that Stylix eventually re-implements this input's
-      # functionality [1], it might be easiest to lock this input to avoid
-      # wasted maintenance effort.
-      #
-      # [1]: https://github.com/nix-community/stylix/issues/571
-      url = "github:tinted-theming/tinted-foot/fd1b924b6c45c3e4465e8a849e67ea82933fcbe4";
-      flake = false;
     };
 
     tinted-kitty = {

@@ -162,7 +162,13 @@
 
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "dev-nixpkgs";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        noctalia-qs.inputs = {
+          systems.follows = "dev-systems";
+          treefmt-nix.follows = "treefmt-nix";
+        };
+      };
     };
 
     nvf = {
