@@ -1,5 +1,4 @@
 { lib, mkTarget, ... }:
-
 mkTarget {
   options = {
     monitor = lib.mkOption {
