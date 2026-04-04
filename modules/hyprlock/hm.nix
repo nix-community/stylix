@@ -1,17 +1,29 @@
-{
-  mkTarget,
-  config,
-  lib,
-  ...
-}:
+{ mkTarget, lib, ... }:
 mkTarget {
-  options.useWallpaper = config.lib.stylix.mkEnableWallpaper "Hyprlock" true;
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "hyprlock"
+        "useWallpaper"
+      ];
+      sinceRelease = 2605;
+      to = [
+        "stylix"
+        "targets"
+        "hyprlock"
+        "image"
+        "enable"
+      ];
+    })
+  ];
 
   config = [
     (
-      { cfg, image }:
+      { image }:
       {
-        programs.hyprlock.settings.background.path = lib.mkIf cfg.useWallpaper image;
+        programs.hyprlock.settings.background.path = image;
       }
     )
     (

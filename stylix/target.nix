@@ -45,7 +45,7 @@
         expr:
         let
           trimmed = if trimExpr then lib.trim expr else expr;
-          isWrapped = builtins.match ''[(].*[)]'' trimmed != null;
+          isWrapped = builtins.match "[(].*[)]" trimmed != null;
           hasNewlines = lib.hasInfix "\n" trimmed;
           needsWrapping = builtins.any (op: lib.hasInfix op trimmed) [
             # These operators have lower precedence than `&&`

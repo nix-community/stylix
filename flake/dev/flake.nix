@@ -130,6 +130,11 @@
     dev-systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     flake-compat.url = "github:NixOS/flake-compat";
 
     git-hooks = {
@@ -157,7 +162,13 @@
 
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "dev-nixpkgs";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        noctalia-qs.inputs = {
+          systems.follows = "dev-systems";
+          treefmt-nix.follows = "treefmt-nix";
+        };
+      };
     };
 
     nvf = {
