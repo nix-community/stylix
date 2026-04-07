@@ -1,7 +1,5 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  name = "wob";
-
   options._opacity = lib.mkOption {
     type = lib.types.str;
     internal = true;
