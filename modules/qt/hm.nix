@@ -1,23 +1,27 @@
 {
+  mkTarget,
   pkgs,
   config,
   lib,
   nixosConfig ? null,
   ...
 }:
-{
-  options.stylix.targets.qt = {
-    # TODO: Replace `nixosConfig != null` with
-    # `pkgs.stdenv.hostPlatform.isLinux` once [1] ("bug: setting qt.style.name
-    # = kvantum makes host systemd unusable") is resolved.
-    #
-    # [1]: https://github.com/nix-community/home-manager/issues/6565
-    enable = config.lib.stylix.mkEnableTargetWith {
-      name = "QT";
-      autoEnable = nixosConfig != null;
-      autoEnableExpr = "nixosConfig != null";
-    };
+let
+  qtctSettings = attrs: {
+    qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") attrs;
+    qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") attrs;
+  };
+in
+mkTarget {
+  # TODO: Replace `nixosConfig != null` with
+  # `pkgs.stdenv.hostPlatform.isLinux` once [1] ("bug: setting qt.style.name
+  # = kvantum makes host systemd unusable") is resolved.
+  #
+  # [1]: https://github.com/nix-community/home-manager/issues/6565
+  autoEnable = nixosConfig != null;
+  autoEnableExpr = "nixosConfig != null";
 
+  options = {
     platform = lib.mkOption {
       description = ''
         Selects the platform theme to use for Qt applications.
@@ -28,7 +32,6 @@
       type = lib.types.str;
       default = "qtct";
     };
-
     standardDialogs = lib.mkOption {
       description = ''
         Selects the standard dialogs theme to be used by Qt.
@@ -50,85 +53,111 @@
 
       default = "default";
     };
+
+    _recommendedGnome = lib.mkOption {
+      internal = true;
+      type = lib.types.singleLineStr;
+      default = "adwaita";
+    };
   };
 
-  config = lib.mkIf (config.stylix.enable && config.stylix.targets.qt.enable) (
-    let
-      icons =
-        if (config.stylix.polarity == "dark") then
-          config.stylix.icons.dark
-        else
-          config.stylix.icons.light;
-
-      recommendedStyles = {
-        gnome = if config.stylix.polarity == "dark" then "adwaita-dark" else "adwaita";
-        kde = "breeze";
-        qtct = "kvantum";
-      };
-
-      recommendedStyle = recommendedStyles."${config.qt.platformTheme.name}" or null;
-
-      kvantumPackage =
-        let
-          kvconfig = config.lib.stylix.colors {
-            template = ./kvconfig.mustache;
-            extension = ".kvconfig";
-          };
-          svg = config.lib.stylix.colors {
-            template = ./kvantum.svg.mustache;
-            extension = ".svg";
-          };
-        in
-        pkgs.runCommandLocal "base16-kvantum" { } ''
-          directory="$out/share/Kvantum/Base16Kvantum"
-          mkdir --parents "$directory"
-          cp ${kvconfig} "$directory/Base16Kvantum.kvconfig"
-          cp ${svg} "$directory/Base16Kvantum.svg"
-        '';
-    in
-    {
-      warnings =
-        (lib.optional (config.stylix.targets.qt.platform != "qtct")
-          "stylix: qt: `config.stylix.targets.qt.platform` other than 'qtct' are currently unsupported: ${config.stylix.targets.qt.platform}. Support may be added in the future."
-        )
-        ++ (lib.optional (config.qt.style.name != recommendedStyle)
-          "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
-        );
-
-      home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;
-
-      qt =
-        let
-          qtctSettings = {
-            Appearance = {
-              custom_palette = true;
-              standard_dialogs = config.stylix.targets.qt.standardDialogs;
-              style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
-              icon_theme = lib.mkIf (icons != null) icons;
-            };
-
-            Fonts = {
-              fixed = ''"${config.stylix.fonts.monospace.name},${toString config.stylix.fonts.sizes.applications}"'';
-              general = ''"${config.stylix.fonts.sansSerif.name},${toString config.stylix.fonts.sizes.applications}"'';
-            };
-          };
-        in
-        {
-          enable = true;
-          style.name = recommendedStyle;
-          platformTheme.name = config.stylix.targets.qt.platform;
-
-          qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
-          qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
+  config = [
+    (
+      { cfg }:
+      let
+        recommendedStyles = {
+          gnome = cfg._recommendedGnome;
+          kde = "breeze";
+          qtct = "kvantum";
         };
 
-      xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
-        "Kvantum/kvantum.kvconfig".source =
-          (pkgs.formats.ini { }).generate "kvantum.kvconfig"
-            { General.theme = "Base16Kvantum"; };
-        "Kvantum/Base16Kvantum".source =
-          "${kvantumPackage}/share/Kvantum/Base16Kvantum";
-      };
-    }
-  );
+        recommendedStyle = recommendedStyles."${config.qt.platformTheme.name}" or null;
+      in
+      {
+        warnings =
+          (lib.optional (cfg.platform != "qtct")
+            "stylix: qt: `config.stylix.targets.qt.platform` other than 'qtct' are currently unsupported: ${cfg.platform}. Support may be added in the future."
+          )
+          ++ (lib.optional (config.qt.style.name != recommendedStyle)
+            "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
+          );
+
+        qt = lib.mkMerge [
+          {
+            enable = true;
+            style.name = recommendedStyle;
+            platformTheme.name = cfg.platform;
+          }
+          (qtctSettings {
+            Appearance = {
+              custom_palette = true;
+              standard_dialogs = cfg.standardDialogs;
+              style = lib.mkIf (config.qt.style ? name) config.qt.style.name;
+            };
+          })
+        ];
+      }
+    )
+    (
+      { polarity }:
+      {
+        stylix.targets.qt._recommendedGnome =
+          if polarity == "dark" then "adwaita-dark" else "adwaita";
+      }
+    )
+    (
+      { colors }:
+      let
+        kvantumPackage =
+          let
+            kvconfig = colors {
+              template = ./kvconfig.mustache;
+              extension = ".kvconfig";
+            };
+            svg = colors {
+              template = ./kvantum.svg.mustache;
+              extension = ".svg";
+            };
+          in
+          pkgs.runCommandLocal "base16-kvantum" { } ''
+            directory="$out/share/Kvantum/Base16Kvantum"
+            mkdir --parents "$directory"
+            cp ${kvconfig} "$directory/Base16Kvantum.kvconfig"
+            cp ${svg} "$directory/Base16Kvantum.svg"
+          '';
+      in
+      {
+        home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;
+
+        xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
+          "Kvantum/kvantum.kvconfig".source =
+            (pkgs.formats.ini { }).generate "kvantum.kvconfig"
+              { General.theme = "Base16Kvantum"; };
+          "Kvantum/Base16Kvantum".source =
+            "${kvantumPackage}/share/Kvantum/Base16Kvantum";
+        };
+      }
+    )
+    (
+      { icons, polarity }:
+      {
+        qt = qtctSettings {
+          Appearance = {
+            icon_theme = if (polarity == "dark") then icons.dark else icons.light;
+          };
+        };
+      }
+    )
+    (
+      { fonts }:
+      {
+        qt = qtctSettings {
+          Fonts = {
+            fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
+            general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
+          };
+        };
+      }
+    )
+  ];
 }
