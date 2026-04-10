@@ -8,7 +8,7 @@ mkTarget {
           theme = "stylix";
         in
         {
-          settings = { inherit theme; };
+          tui = { inherit theme; };
           themes.${theme} = {
             theme = {
               accent = {
