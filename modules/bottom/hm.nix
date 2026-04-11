@@ -46,6 +46,7 @@ mkTarget {
         graphs.graph_color = base05;
         legend_text.color = base05;
         widgets = {
+          bg_color = base00;
           border_color = base03;
           selected_border_color = base0D;
           widget_title.color = base05;
