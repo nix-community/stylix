@@ -64,7 +64,7 @@ mkTarget {
       {
         programs.halloy.settings.font = {
           family = fonts.monospace.name;
-          size = fonts.sizes.desktop;
+          size = fonts.sizes.applications;
         };
       }
     )
