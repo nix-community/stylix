@@ -50,7 +50,7 @@
     github = "make-42";
     githubId = 17462236;
     keys = [
-      { fingerprint = "36BC 916D DD4E B1EE EE82  4BBF DC95 900F 6DA7 9992"; }
+      {fingerprint = "36BC 916D DD4E B1EE EE82  4BBF DC95 900F 6DA7 9992";}
     ];
   };
   michaelgoldenn = {
@@ -94,6 +94,12 @@
     name = "Vidhan Bhatt";
     github = "vidhanio";
     githubId = 41439633;
+  };
+  sadiesilverhand = {
+    email = "sadiesilverhand@proton.me";
+    name = "Sadie Price";
+    github = "sadiesilverhand";
+    githubId = 186372906;
   };
   # keep-sorted end
 }
