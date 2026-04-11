@@ -1,5 +1,7 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  autoEnable = false;
+
   config =
     { colors, ... }:
     {
