@@ -137,12 +137,17 @@ mkTarget {
           };
 
           # Enable the extension after logging in.
-          configFile."autostart/stylix-activate-gnome.desktop".text = ''
-            [Desktop Entry]
-            Type=Application
-            Exec=${lib.getExe activator} enable
-            Name=Stylix: enable User Themes extension for GNOME Shell
-          '';
+          autostart = {
+            enable = true;
+            entries = lib.singleton (
+              pkgs.makeDesktopItem {
+                name = "stylix-activate-gnome";
+                desktopName = "Stylix: enable User Themes extension for GNOME Shell";
+                exec = "${lib.getExe activator} enable";
+              }
+              + /share/applications/stylix-activate-gnome.desktop
+            );
+          };
         };
       }
     )
