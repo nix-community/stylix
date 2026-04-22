@@ -2,7 +2,7 @@
   description = "Theming framework for NixOS, Home Manager, nix-darwin, and Nix-on-Droid";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:imnotpoz/nixpkgs/blender-aarch64-linux";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
