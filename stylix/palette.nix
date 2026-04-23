@@ -13,17 +13,12 @@ in
   options.stylix = {
     polarity = lib.mkOption {
       type = lib.types.enum [
-        "either"
         "light"
         "dark"
       ];
-      default = "either";
+      default = "dark";
       description = ''
-        Use this option to force a light or dark theme.
-
-        By default we will select whichever is ranked better by the genetic
-        algorithm. This aims to get good contrast between the foreground and
-        background, as well as some variety in the highlight colours.
+        Whether to apply the dark or light theme.
       '';
     };
 
@@ -78,10 +73,24 @@ in
         # and not anything indirect such as filling a template, otherwise
         # the output of the palette generator will not be protected from
         # garbage collection.
-        default = pkgs.runCommand "palette.json" {
-          inherit (cfg) image polarity;
-          nativeBuildInputs = [ cfg.paletteGenerator ];
-        } ''palette-generator "$polarity" "$image" "$out"'';
+        default =
+          pkgs.runCommand "palette.json"
+            {
+              nativeBuildInputs = [
+                pkgs.tinty
+                pkgs.yq-go
+              ];
+              env = {
+                IMAGE = cfg.image;
+                POLARITY = cfg.polarity;
+                HOME = "/build"; # prevent tinty from trying to write to XDG_HOME/tinted-theming/tinty/config.toml where it doesn't have perms
+              };
+            }
+            ''
+              tinty generate-scheme --system base16 --variant "$POLARITY" "$IMAGE" \
+                | yq -o=json \
+                > $out
+            '';
       };
 
       palette = lib.mkOption {
@@ -142,13 +151,6 @@ in
       '';
       type = lib.types.attrs;
       default = { };
-    };
-
-    paletteGenerator = lib.mkOption {
-      description = "The palette generator executable.";
-      type = lib.types.package;
-      internal = true;
-      readOnly = true;
     };
 
     base16 = lib.mkOption {
