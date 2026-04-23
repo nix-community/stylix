@@ -7,6 +7,12 @@ mkTarget {
       example = "DP-1";
       description = ''Monitor(s) to apply the wallpaper to (`""` matches all monitors)'';
     };
+
+    splash = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to enable the Hyprpaper splash screen text.";
+    };
   };
 
   config =
@@ -17,7 +23,7 @@ mkTarget {
           inherit (cfg) monitor;
           path = image;
         };
-        splash = false;
+        inherit (cfg) splash;
       };
     };
 }
