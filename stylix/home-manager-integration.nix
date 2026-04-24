@@ -30,13 +30,6 @@ let
         {
           path = [
             "stylix"
-            "base16Scheme"
-          ];
-          condition = homeConfig: config.stylix.image == homeConfig.stylix.image;
-        }
-        {
-          path = [
-            "stylix"
             "cursor"
           ];
         }
@@ -157,8 +150,64 @@ let
             "stylix"
             "override"
           ];
-          condition =
-            homeConfig: config.stylix.base16Scheme == homeConfig.stylix.base16Scheme;
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "generators"
+            "base16"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "generators"
+            "base24"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "generators"
+            "semantic"
+          ];
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "manual"
+            "base16"
+          ];
+          condition = homeConfig: config.stylix.image == homeConfig.stylix.image;
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "manual"
+            "base24"
+          ];
+          condition = homeConfig: config.stylix.image == homeConfig.stylix.image;
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "manual"
+            "semantic"
+          ];
+          condition = homeConfig: config.stylix.image == homeConfig.stylix.image;
+        }
+        {
+          path = [
+            "stylix"
+            "palette"
+            "mappingFunction"
+          ];
         }
         {
           path = [
