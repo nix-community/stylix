@@ -5,7 +5,11 @@
 }:
 let
   mkMatugen =
-    { name, jqSelector }:
+    {
+      name,
+      jqSelector,
+      keyCase,
+    }:
     {
       contrast ? 0.0,
       filter ? "lanczos3",
@@ -98,7 +102,7 @@ let
         }
         ''
           jq --arg polarity "$POLARITY" \
-            '${jqSelector} | map_values(.[$polarity].color)' \
+            '${jqSelector} | with_entries(.key |= (${keyCase} | sub("^BASE"; "base"))) | map_values(.[$polarity].color)' \
             "$RAW" > $out
         ''
     );
@@ -127,6 +131,7 @@ in
     matugen = mkMatugen {
       name = "base16";
       jqSelector = ".base16";
+      keyCase = "ascii_upcase";
     };
   };
 
@@ -155,5 +160,6 @@ in
   semantic.matugen = mkMatugen {
     name = "semantic";
     jqSelector = ".colors";
+    keyCase = "ascii_downcase";
   };
 }
