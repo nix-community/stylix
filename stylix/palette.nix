@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  options,
   ...
 }:
 let
@@ -73,18 +72,37 @@ in
         - base16 ->→ config.lib.stylix.colors
         - templates (JSON / HTML)
   */
-  config.lib.stylix = {
-    mappings = import ./mappings.nix { };
-    generators = import ./generators.nix { inherit pkgs lib config; };
-  };
+  imports = lib.singleton (
+    lib.mkRenamedOptionModule
+      [ "stylix" "base16Scheme" ]
+      [ "stylix" "palette" "manual" "base16" ]
+  );
 
   options.stylix = {
+    lib = {
+      mappings = lib.mkOption {
+        type = lib.types.attrs;
+        readOnly = true;
+        internal = true;
+        description = "Stylix-provided palette mapping functions.";
+        default = import ./mappings.nix { };
+      };
+
+      generators = lib.mkOption {
+        type = lib.types.attrs;
+        readOnly = true;
+        internal = true;
+        description = "Stylix-provided palette generator functions.";
+        default = import ./generators.nix { inherit pkgs lib config; };
+      };
+    };
+
     polarity = lib.mkOption {
       type = lib.types.enum [
         "light"
         "dark"
       ];
-      default = "dark";
+      default = "light";
       description = ''
         Whether to apply the dark or light theme.
       '';
@@ -277,7 +295,15 @@ in
         };
         semantic = lib.mkOption {
           description = ''
-            A scheme following the semantic standard.
+            A scheme following the Material You semantic color standard, using
+            role-based color names (e.g. `primary`, `surface`, `on_surface`)
+            as produced natively by matugen.
+
+            This preserves more semantic information than a base16 conversion,
+            allowing themes to use purpose-specific colors rather than abstract
+            base slots.
+
+            See https://m3.material.io/styles/color/roles for the full role reference
 
             This can be a path to a file, a string of YAML, or an attribute set.
 

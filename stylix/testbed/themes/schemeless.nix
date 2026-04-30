@@ -13,8 +13,8 @@ in
       size = 32;
     };
     palette = {
-      generators.semantic = config.lib.stylix.generators.semantic.matugen { };
-      mappingFunction = config.lib.stylix.mappings.semantic2base16;
+      generators.semantic = config.stylix.lib.generators.semantic.matugen { };
+      mappingFunction = config.stylix.lib.mappings.semantic2base16;
     };
   };
 }

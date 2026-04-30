@@ -14,22 +14,85 @@ Stylix must be enabled before it will apply any changes to your system:
 
 ### Handmade schemes
 
-To set a [Tinted Theming](https://github.com/tinted-theming/schemes) color
+To set a [Tinted Theming](https://github.com/tinted-theming/schemes) base16 color
 scheme, declare:
 
 ```nix
 { pkgs, ... }:
 {
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.palette.manual.base16 = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 }
 ```
 
 This option also accepts other files and formats supported by
 [`mkSchemeAttrs`](https://github.com/SenchoPens/base16.nix/blob/main/DOCUMENTATION.md#mkschemeattrs).
 
+### Generated schemes
+
+If no manual scheme is set, Stylix can generate one from your wallpaper using a generator.
+Stylix provides built-in generators for base16, base24, and semantic (Material You) palettes.
+
+To generate a base16 palette using [Tinty](https://github.com/tinted-theming/tinty):
+
+```nix
+{ config, ... }:
+{
+  stylix.palette.generators.base16 = config.stylix.lib.generators.base16.tinty;
+}
+```
+
+To generate a semantic (Material You) palette using [matugen](https://github.com/InioX/matugen)
+and map it to base16:
+
+```nix
+{ config, ... }:
+{
+  stylix.palette.generators.semantic = config.stylix.lib.generators.semantic.matugen { };
+  stylix.palette.mappingFunction = config.stylix.lib.mappings.semantic2base16;
+}
+```
+
+The matugen generator accepts optional arguments to customize the output:
+
+```nix
+config.stylix.lib.generators.semantic.matugen {
+  contrast = 0.0;
+  lightnessDark = -0.02;
+  lightnessLight = 0.0;
+  scheme = "fruit-salad";
+  filter = "lanczos3";
+}
+```
+
+### Mapping
+
+The `mappingFunction` transforms the resolved palette before it is consumed.
+It receives and returns an attribute set of the form:
+
+```nix
+{
+  polarity = "dark"; # or "light"
+  palette = {
+    base16 = { base00 = "..."; ... }; # or null
+    base24 = { ... };                 # or null
+    semantic = { ... };               # or null
+  };
+}
+```
+
+It defaults to the identity function. Stylix provides mapping helpers such as `semantic2base16` which you can chain and use with:
+```nix
+{ config, lib, ... }:
+{
+  stylix.palette.mappingFunction = config.stylix.lib.mappings.semantic2base16;
+}
+```
+
+Currently, only the final base16 palette is consumed by Stylix themes. Support for themes to declare which schemes they support, and for users to set a priority order, is planned for a future release.
+
 ### Overriding
 
-For convenience, it is possible to override parts of `stylix.base16Scheme` using
+For convenience, it is possible to override parts of the palette after generation and mapping using
 `stylix.override`. Anything that
 [base16.nix](https://github.com/SenchoPens/base16.nix) accepts as override is
 valid.
@@ -89,10 +152,6 @@ To set a wallpaper, provide a path or an arbitrary derivation:
     };
   }
   ```
-
-If `stylix.base16Scheme` is undeclared, Stylix generates a color scheme based on
-the wallpaper using [Tinty](https://github.com/tinted-theming/tinty). Note that more
-colorful images tend to yield better results.
 
 Set the polarity with:
 
@@ -199,7 +258,7 @@ to customize this.
 > [!NOTE]
 >
 > There is a special case involving the
-> [`stylix.base16Scheme`](options/platforms/home_manager.md#stylixbase16scheme)
+> [`stylix.palette.manual.base16`](options/platforms/home_manager.md#stylixpalettemanualbase16)
 > option:
 >
 > If the wallpaper in a Home Manager configuration is changed, then Home Manager
