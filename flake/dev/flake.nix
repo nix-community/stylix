@@ -120,7 +120,7 @@
   #
   #       [1]: https://github.com/NixOS/nix/blob/d4f67fd46dfe2bc950bdfa14273f87b8a4c32e47/doc/manual/source/release-notes/rl-2.26.md?plain=1#L3-L11
   inputs = {
-    dev-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    dev-nixpkgs.url = "github:imnotpoz/nixpkgs/blender-aarch64-linux";
 
     dev-flake-parts = {
       url = "github:hercules-ci/flake-parts";
