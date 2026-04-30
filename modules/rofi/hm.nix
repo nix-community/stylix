@@ -1,5 +1,17 @@
-{ mkTarget, config, ... }:
+{
+  mkTarget,
+  lib,
+  config,
+  ...
+}:
 mkTarget {
+  options.alternatePattern =
+    lib.mkEnableOption "alternating item background pattern"
+    // {
+      default = true;
+      example = false;
+    };
+
   config = [
     (
       { fonts }:
@@ -8,7 +20,11 @@ mkTarget {
       }
     )
     (
-      { colors, opacity }:
+      {
+        colors,
+        opacity,
+        cfg,
+      }:
       let
         inherit (config.lib.formats.rasi) mkLiteral;
         mkRgba =
@@ -22,10 +38,11 @@ mkTarget {
           mkLiteral "rgba ( ${r}, ${g}, ${b}, ${opacity'} % )";
         mkRgb = mkRgba "100";
         rofiOpacity = toString (builtins.ceil (opacity.popups * 100));
+        mkAlternate = base: alternate: if cfg.alternatePattern then alternate else base;
       in
       {
         programs.rofi.theme = {
-          "*" = {
+          "*" = rec {
             background = mkRgba rofiOpacity "base00";
             lightbg = mkRgba rofiOpacity "base01";
             red = mkRgba rofiOpacity "base08";
@@ -48,12 +65,20 @@ mkTarget {
             active-background = mkLiteral "@background";
             urgent-foreground = mkLiteral "@red";
             urgent-background = mkLiteral "@background";
-            alternate-normal-foreground = mkLiteral "@foreground";
-            alternate-normal-background = mkLiteral "@lightbg";
-            alternate-active-foreground = mkLiteral "@blue";
-            alternate-active-background = mkLiteral "@lightbg";
-            alternate-urgent-foreground = mkLiteral "@red";
-            alternate-urgent-background = mkLiteral "@lightbg";
+            alternate-normal-foreground = mkAlternate normal-foreground (
+              mkLiteral "@foreground"
+            );
+            alternate-normal-background = mkAlternate normal-background (
+              mkLiteral "@lightbg"
+            );
+            alternate-active-foreground = mkAlternate active-foreground (mkLiteral "@blue");
+            alternate-active-background = mkAlternate active-background (
+              mkLiteral "@lightbg"
+            );
+            alternate-urgent-foreground = mkAlternate urgent-foreground (mkLiteral "@red");
+            alternate-urgent-background = mkAlternate urgent-background (
+              mkLiteral "@lightbg"
+            );
 
             # Text Colors
             base-text = mkRgb "base05";
@@ -63,9 +88,9 @@ mkTarget {
             normal-text = mkRgb "base05";
             active-text = mkRgb "base0D";
             urgent-text = mkRgb "base08";
-            alternate-normal-text = mkRgb "base05";
-            alternate-active-text = mkRgb "base0D";
-            alternate-urgent-text = mkRgb "base08";
+            alternate-normal-text = mkAlternate normal-text (mkRgb "base05");
+            alternate-active-text = mkAlternate active-text (mkRgb "base0D");
+            alternate-urgent-text = mkAlternate urgent-text (mkRgb "base08");
           };
 
           window.background-color = mkLiteral "@background";
