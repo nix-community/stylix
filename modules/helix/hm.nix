@@ -29,7 +29,10 @@ mkTarget {
 
           themes.stylix =
             let
-              theme = colors { templateRepo = inputs.base16-helix; };
+              theme = colors {
+                templateRepo = inputs.base16-helix;
+                target = "base16";
+              };
 
               # Removing the background exposes transparency from the terminal. The
               # background might be helpful if the terminal isn't themed, so we only

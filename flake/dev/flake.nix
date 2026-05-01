@@ -132,7 +132,10 @@
     # keep-sorted start block=yes newline_separated=yes
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "dev-nixpkgs";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
 
     flake-compat.url = "github:NixOS/flake-compat";
