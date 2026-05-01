@@ -42,13 +42,13 @@ To generate a base16 palette using [Tinty](https://github.com/tinted-theming/tin
 ```
 
 To generate a semantic (Material You) palette using [matugen](https://github.com/InioX/matugen)
-and map it to base16:
+and map it to base16 and then base24:
 
 ```nix
 { config, ... }:
 {
   stylix.palette.generators.semantic = config.stylix.lib.generators.semantic.matugen { };
-  stylix.palette.mappingFunction = config.stylix.lib.mappings.semantic2base16;
+  stylix.palette.mappingFunction =  config.stylix.lib.mappings.base162base24 config.stylix.lib.mappings.semantic2base16;
 }
 ```
 
@@ -80,11 +80,14 @@ It receives and returns an attribute set of the form:
 }
 ```
 
-It defaults to the identity function. Stylix provides mapping helpers such as `semantic2base16` which you can chain and use with:
+It defaults to the identity function. Stylix provides mapping helpers such as `semantic2base16`, `base162base24` and `base242base16` which you can chain and use with:
 ```nix
 { config, lib, ... }:
 {
-  stylix.palette.mappingFunction = config.stylix.lib.mappings.semantic2base16;
+  stylix.palette.mappingFunction = lib.flip lib.pipe [
+    config.stylix.lib.mappings.semantic2base16
+    config.stylix.lib.mappings.base162base24
+  ];
 }
 ```
 
