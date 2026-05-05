@@ -129,7 +129,7 @@
         palette.base0E # 15 LinkVisited     (kvconfig: link.visited.color)
         palette.base01 # 16 AlternateBase   (kvconfig: alt.base.color)
         palette.base00 # 17 NoRole
-        palette.base01 # 18 ToolTipBase
+        palette.base00 # 18 ToolTipBase    (kvconfig: tooltip.base.color)
         palette.base05 # 19 ToolTipText     (kvconfig: tooltip.text.color)
         palette.base04 # 20 PlaceholderText
       ];
@@ -164,7 +164,7 @@
         palette.base04 # 15 LinkVisited
         palette.base01 # 16 AlternateBase
         palette.base00 # 17 NoRole
-        palette.base01 # 18 ToolTipBase
+        palette.base00 # 18 ToolTipBase
         palette.base04 # 19 ToolTipText
         palette.base03 # 20 PlaceholderText
       ];
