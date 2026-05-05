@@ -27,6 +27,10 @@ with colors;
     --zen-themed-toolbar-bg-transparent: #${base01-hex} !important;
   }
 
+  zen-workspace {
+    --toolbox-textcolor: #${base05-hex} !important;
+  }
+
   #permissions-granted-icon {
     color: #${base05-hex} !important;
   }
@@ -36,15 +40,15 @@ with colors;
     --swipe-nav-icon-accent-color: #${base00-hex} !important;
   }
 
+  #sidebar-box {
+    background-color: #${base00-hex} !important;
+  }
+
   .sidebar-placesTree {
     background-color: #${base00-hex} !important;
   }
 
   #zen-workspaces-button {
-    background-color: #${base00-hex} !important;
-  }
-
-  #TabsToolbar {
     background-color: #${base00-hex} !important;
   }
 
@@ -135,10 +139,6 @@ with colors;
     --zen-main-browser-background-toolbar: #${base00-hex} !important;
   }
 
-  #zen-appcontent-navbar-container {
-    background-color: #${base00-hex} !important;
-  }
-
   #commonDialog {
     background-color: #${base00-hex} !important;
   }
@@ -147,7 +147,7 @@ with colors;
     --zen-main-browser-background: #${base00-hex} !important;
   }
 
-  #contentAreaContextMenu menu,
+  menu,
   menuitem,
   menupopup {
     color: #${base05-hex} !important;

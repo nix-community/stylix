@@ -95,8 +95,6 @@
           "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
         );
 
-      home.packages = lib.optional (config.qt.style.name == "kvantum") kvantumPackage;
-
       qt =
         let
           qtctSettings = {
@@ -120,15 +118,13 @@
 
           qt5ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
           qt6ctSettings = lib.mkIf (config.qt.platformTheme.name == "qtct") qtctSettings;
-        };
 
-      xdg.configFile = lib.mkIf (config.qt.style.name == "kvantum") {
-        "Kvantum/kvantum.kvconfig".source =
-          (pkgs.formats.ini { }).generate "kvantum.kvconfig"
-            { General.theme = "Base16Kvantum"; };
-        "Kvantum/Base16Kvantum".source =
-          "${kvantumPackage}/share/Kvantum/Base16Kvantum";
-      };
+          kvantum = lib.mkIf (config.qt.style.name == "kvantum") {
+            enable = true;
+            settings.General.theme = "Base16Kvantum";
+            themes = [ kvantumPackage ];
+          };
+        };
     }
   );
 }
