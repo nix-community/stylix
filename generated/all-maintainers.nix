@@ -30,6 +30,12 @@
     githubId = 64027365;
     name = "Erin Pletches";
   };
+  Lyndeno = {
+    email = "lsanche@lyndeno.ca";
+    github = "Lyndeno";
+    githubId = 13490857;
+    name = "Lyndon Sanche";
+  };
   MrSom3body = {
     email = "nix@sndh.dev";
     github = "MrSom3body";
