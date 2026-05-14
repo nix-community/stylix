@@ -1,5 +1,6 @@
+{ lib, ... }:
 {
   name = "wob";
   homepage = "https://github.com/francma/wob";
-  maintainers = [ ];
+  maintainers = [ lib.maintainers.lyndeno ];
 }
