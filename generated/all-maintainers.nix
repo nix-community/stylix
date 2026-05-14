@@ -124,6 +124,11 @@
     githubId = 32942052;
     name = "Gideon Wolfe";
   };
+  glyxambi = {
+    github = "glyxambi";
+    githubId = 213202364;
+    name = "glyxambi";
+  };
   justdeeevin = {
     email = "devin.droddy@gmail.com";
     github = "justdeeevin";
