@@ -1,3 +1,3 @@
 { mkTarget, ... }:
 # Used to enable overlay.
-mkTarget { }
+mkTarget { autoEnable = false; }

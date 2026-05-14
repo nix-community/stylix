@@ -21,11 +21,7 @@ in
   overlay =
     _final: prev:
     optionalAttrs
-      (
-        config.stylix.enable
-        && config.stylix.targets ? gtksourceview
-        && config.stylix.targets.gtksourceview.enable
-      )
+      (config.stylix.enable && config.stylix.targets.gtksourceview.enable or false)
       {
         gnome2 = prev.gnome2 // {
           gtksourceview = prev.gnome2.gtksourceview.overrideAttrs (attrsOverride "2.0");
