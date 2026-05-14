@@ -1,3 +1,2 @@
-{ mkTarget, ... }:
-# Used to enable overlay.
-mkTarget { }
+{ lib, mkTarget, ... }:
+mkTarget { config = import ./common.nix { inherit lib; }; }
