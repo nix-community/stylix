@@ -5,25 +5,22 @@
   ...
 }:
 mkTarget {
-  options =
-    { image }:
-    {
-      hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
-        name = "Hyprpaper";
-        autoEnable = image != null;
-        autoEnableExpr = "config.stylix.image != null";
-      };
+  options = {image}: {
+    hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
+      name = "Hyprpaper";
+      autoEnable = image != null;
+      autoEnableExpr = "config.stylix.image != null";
     };
+  };
 
   config = [
     (
-      { colors }:
-      {
+      {colors}: let
+        rgb = color: "rgb(${color})";
+        rgba = color: alpha: "rgba(${color}${alpha})";
+      in {
         wayland.windowManager.hyprland.settings =
-          let
-            rgb = color: "rgb(${color})";
-            rgba = color: alpha: "rgba(${color}${alpha})";
-          in
+          lib.mkIf (config.wayland.windowManager.hyprland.configType == "hyprlang")
           {
             decoration.shadow.color = rgba colors.base00 "99";
             general = {
@@ -42,12 +39,43 @@ mkTarget {
               };
             };
             misc.background_color = rgb colors.base00;
+          }
+          lib.mkIf (config.wayland.windowManager.hyprland.configType == "lua")
+          {
+            decoration = {
+              shadow = {
+                color = "rgba(${colors.base00}99)";
+              };
+            };
+            general = {
+              col = {
+                active_border = "rgb(${colors.base0D})";
+                inactive_border = "rgb(${colors.base03})";
+              };
+            };
+            group = {
+              col = {
+                border_inactive = "rgb(${colors.base03})";
+                border_active = "rgb(${colors.base0D})";
+                border_locked_active = "rgb(${colors.base0C})";
+              };
+              groupbar = {
+                text_color = "rgb(${colors.base05})";
+                col = {
+                  active = "rgb(${colors.base0D})";
+                  inactive = "rgb(${colors.base03})";
+                };
+              };
+            };
+            misc = {
+              background_color = "rgb(${colors.base00})";
+            };
           };
       }
     )
     (
-      { cfg }:
-      lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.hyprpaper.enable)
+      {cfg}:
+        lib.mkIf (config.wayland.windowManager.hyprland.enable && cfg.hyprpaper.enable)
         {
           services.hyprpaper.enable = true;
           stylix.targets.hyprpaper.enable = true;
