@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   stylix.testbed.ui = {
-    graphicalEnvironment = "hyprland";
+    graphicalEnvironment = "hyprland-lua";
 
     # We need something to open a window so that we can check the window borders
     application = {
