@@ -82,7 +82,11 @@ mkTarget {
         {
           services.hyprpaper.enable = true;
           stylix.targets.hyprpaper.enable = true;
-          wayland.windowManager.hyprland.settings.misc.disable_hyprland_logo = true;
+          wayland.windowManager.hyprland.settings =
+            if config.wayland.windowManager.hyprland.configType == "hyprlang" then
+              { misc.disable_hyprland_logo = true; }
+            else
+              { config.misc.disable_hyprland_logo = true; };
         }
     )
   ];
