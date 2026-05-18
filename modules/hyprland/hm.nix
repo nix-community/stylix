@@ -69,8 +69,8 @@ mkTarget {
                       "col.active" = rgb colors.base0D;
                       "col.inactive" = rgb colors.base03;
                     };
+                    misc.background_color = rgb colors.base00;
                   };
-                  misc.background_color = rgb colors.base00;
                 };
               }
             );
