@@ -59,6 +59,7 @@ mkTarget {
                     "col.active_border" = rgb colors.base0D;
                     "col.inactive_border" = rgb colors.base03;
                   };
+                  misc.background_color = rgb colors.base00;
                   group = {
                     "col.border_inactive" = rgb colors.base03;
                     "col.border_active" = rgb colors.base0D;
@@ -69,7 +70,6 @@ mkTarget {
                       "col.active" = rgb colors.base0D;
                       "col.inactive" = rgb colors.base03;
                     };
-                    misc.background_color = rgb colors.base00;
                   };
                 };
               }
