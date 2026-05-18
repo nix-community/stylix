@@ -20,7 +20,7 @@ mkTarget {
       { colors }:
       {
         wayland.windowManager.hyprland.settings =
-          if config.windowManager.hyprland.configType == "hyprlang" then
+          if config.wayland.windowManager.hyprland.configType == "hyprlang" then
             (
               let
                 rgb = color: "rgb(${color})";
