@@ -10,6 +10,7 @@
       package = pkgs.kitty;
     };
   };
+
   home-manager.sharedModules = lib.singleton {
     wayland.windowManager.hyprland = {
       configType = "hyprlang";
