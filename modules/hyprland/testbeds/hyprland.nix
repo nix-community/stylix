@@ -2,7 +2,6 @@
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
-    hyprland.configType = "hyprlang";
 
     # We need something to open a window so that we can check the window borders
     application = {

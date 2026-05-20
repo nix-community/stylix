@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  cfg = config.stylix.testbed.ui.hyprland;
-in
 {
   config =
     lib.mkIf (config.stylix.testbed.ui.graphicalEnvironment or null == "hyprland")
@@ -18,39 +15,42 @@ in
           (pkgs.writeShellScriptBin "x-terminal-emulator" ''exec ${lib.getExe pkgs.kitty} "$@"'')
         ];
 
-        home-manager.sharedModules = lib.singleton {
-          programs.kitty.enable = true;
-          wayland.windowManager.hyprland = {
-            enable = true;
-            settings =
-              if cfg.configType == "lua" then
-                {
-                  on = {
-                    _args = [
-                      "hyprland.start"
-                      (lib.generators.mkLuaInline ''
-                        function()
-                          hl.exec_cmd("find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}")
-                        end
-                      '')
-                    ];
-                  };
-                  config = {
+        home-manager.sharedModules = lib.singleton (
+          { config, ... }:
+          {
+            programs.kitty.enable = true;
+            wayland.windowManager.hyprland = {
+              enable = true;
+              settings =
+                if config.wayland.windowManager.hyprland.configType == "lua" then
+                  {
+                    on = {
+                      _args = [
+                        "hyprland.start"
+                        (lib.generators.mkLuaInline ''
+                          function()
+                            hl.exec_cmd("find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}")
+                          end
+                        '')
+                      ];
+                    };
+                    config = {
+                      ecosystem = {
+                        no_update_news = true;
+                        no_donation_nag = true;
+                      };
+                    };
+                  }
+                else
+                  {
+                    exec-once = "find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}";
                     ecosystem = {
                       no_update_news = true;
                       no_donation_nag = true;
                     };
                   };
-                }
-              else
-                {
-                  exec-once = "find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}";
-                  ecosystem = {
-                    no_update_news = true;
-                    no_donation_nag = true;
-                  };
-                };
-          };
-        };
+            };
+          }
+        );
       };
 }

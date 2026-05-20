@@ -84,19 +84,6 @@ in
             );
             default = null;
           };
-          hyprland = lib.mkOption {
-            type = lib.types.submodule {
-              options.configType = lib.mkOption {
-                type = lib.types.enum [
-                  "hyprlang"
-                  "lua"
-                ];
-                default = "lua";
-                description = "The Hyprland config type to use for testing.";
-              };
-            };
-            default = { };
-          };
           sendNotifications = lib.mkEnableOption "sending notifications of each urgency with libnotify";
         };
       }
