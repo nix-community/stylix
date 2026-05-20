@@ -22,7 +22,15 @@
             wayland.windowManager.hyprland = {
               enable = true;
               settings =
-                if config.wayland.windowManager.hyprland.configType == "lua" then
+                if config.wayland.windowManager.hyprland.configType == "hyprlang" then
+                  {
+                    exec-once = "find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}";
+                    ecosystem = {
+                      no_update_news = true;
+                      no_donation_nag = true;
+                    };
+                  }
+                else
                   {
                     on = {
                       _args = [
@@ -39,14 +47,6 @@
                         no_update_news = true;
                         no_donation_nag = true;
                       };
-                    };
-                  }
-                else
-                  {
-                    exec-once = "find /run/current-system/sw/etc/xdg/autostart/ -type f -or -type l | xargs -P0 -L1 ${lib.getExe pkgs.dex}";
-                    ecosystem = {
-                      no_update_news = true;
-                      no_donation_nag = true;
                     };
                   };
             };
