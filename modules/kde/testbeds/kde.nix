@@ -13,7 +13,6 @@
       };
       home.packages = with pkgs; [
         darkly
-        darkly-qt5
         utterly-round-plasma-style
       ];
     };
