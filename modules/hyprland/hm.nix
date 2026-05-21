@@ -45,10 +45,10 @@ mkTarget {
               misc.background_color = rgb colors.base00;
             };
           in
-          if config.wayland.windowManager.hyprland.configType == "lua" then
-            { config = colorSettings; }
+          if config.wayland.windowManager.hyprland.configType == "hyprlang" then
+            colorSettings
           else
-            colorSettings;
+            { config = colorSettings; };
       }
     )
     (
@@ -58,10 +58,10 @@ mkTarget {
           services.hyprpaper.enable = true;
           stylix.targets.hyprpaper.enable = true;
           wayland.windowManager.hyprland.settings =
-            if config.wayland.windowManager.hyprland.configType == "lua" then
-              { config.misc.disable_hyprland_logo = true; }
+            if config.wayland.windowManager.hyprland.configType == "hyprlang" then
+              { misc.disable_hyprland_logo = true; }
             else
-              { misc.disable_hyprland_logo = true; };
+              { config.misc.disable_hyprland_logo = true; };
         }
     )
   ];
