@@ -9,7 +9,7 @@
   maintainers = with lib.maintainers; [
     Flameopathic
     danth
-    naho
+    noahbiewesch
   ];
   description = ''
     This module supports [Firefox](https://www.mozilla.org/firefox), in addition

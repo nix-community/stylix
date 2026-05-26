@@ -2,5 +2,5 @@
 {
   name = "qutebrowser";
   homepage = "https://github.com/qutebrowser/qutebrowser";
-  maintainers = [ lib.maintainers.naho ];
+  maintainers = [ lib.maintainers.noahbiewesch ];
 }

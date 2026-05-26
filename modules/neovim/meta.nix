@@ -11,7 +11,7 @@
   maintainers = with lib.maintainers; [
     butzist
     mightyiam
-    naho
+    noahbiewesch
   ];
   description = ''
     ### Neovim
