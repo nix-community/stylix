@@ -245,7 +245,7 @@ number of maintainers:
     maintainers = with lib.maintainers; [
       danth
       da157
-      naho
+      noahbiewesch
     ];
   }
   ```

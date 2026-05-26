@@ -2,5 +2,5 @@
 {
   name = "fish";
   homepage = "https://fishshell.com";
-  maintainers = [ lib.maintainers.naho ];
+  maintainers = [ lib.maintainers.noahbiewesch ];
 }
