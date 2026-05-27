@@ -60,6 +60,7 @@ mkTarget {
             package = pkgs.adw-gtk3;
             name = "adw-gtk3";
           };
+          gtk.gtk4.theme = config.gtk.theme;
 
           xdg.configFile = {
             "gtk-3.0/gtk.css".source = finalCss;
