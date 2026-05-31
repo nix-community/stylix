@@ -20,7 +20,6 @@ mkTarget {
       default = true;
       description = "enables userChrome and userContent css styles for the browser";
     };
-
   };
 
   config = lib.optionals (options.programs ? zen-browser) [
@@ -58,27 +57,18 @@ mkTarget {
         opacityHex = lib.toHexString (
           ((builtins.ceil (opacity.applications * 100)) * 255) / 100
         );
-        appendOpacity =
-          opacity: colors: builtins.mapAttrs (_: value: "${value}${opacity}") colors;
-        colorsOpacity = appendOpacity "${opacityHex}" colors;
       in
       {
         programs.zen-browser.profiles = lib.mkIf cfg.enableCss (
-          lib.genAttrs cfg.profileNames (
-            _:
-            let
-              colors = colorsOpacity;
-            in
-            {
-              settings = {
-                "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-              };
+          lib.genAttrs cfg.profileNames (_: {
+            settings = {
+              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            };
 
-              userChrome = import ./userChrome.nix { inherit colors; };
+            userChrome = import ./userChrome.nix { inherit colors opacityHex; };
 
-              userContent = import ./userContent.nix { inherit colors; };
-            }
-          )
+            userContent = import ./userContent.nix { inherit colors opacityHex; };
+          })
         );
       }
     )

@@ -1,4 +1,4 @@
-{ colors }:
+{ colors, opacityHex }:
 with colors;
 ''
   :root {
@@ -18,13 +18,13 @@ with colors;
     --arrowpanel-background: #${base00-hex} !important;
     --sidebar-text-color: #${base05-hex} !important;
     --lwt-sidebar-text-color: #${base05-hex} !important;
-    --lwt-sidebar-background-color: #${base00-hex} !important;
-    --toolbar-bgcolor: #${base02-hex} !important;
-    --newtab-background-color: #${base00-hex} !important;
-    --zen-themed-toolbar-bg: #${base00-hex} !important;
-    --zen-main-browser-background: #${base00-hex} !important;
-    --toolbox-bgcolor-inactive: #${base01-hex} !important;
-    --zen-themed-toolbar-bg-transparent: #${base01-hex} !important;
+    --lwt-sidebar-background-color: #${base00-hex}${opacityHex} !important;
+    --toolbar-bgcolor: #${base02-hex}${opacityHex} !important;
+    --newtab-background-color: #${base00-hex}${opacityHex} !important;
+    --zen-themed-toolbar-bg: #${base00-hex}${opacityHex} !important;
+    --zen-main-browser-background: #${base00-hex}${opacityHex} !important;
+    --toolbox-bgcolor-inactive: #${base01-hex}${opacityHex} !important;
+    --zen-themed-toolbar-bg-transparent: #${base01-hex}${opacityHex} !important;
   }
 
   zen-workspace {
@@ -41,15 +41,15 @@ with colors;
   }
 
   #sidebar-box {
-    background-color: #${base00-hex} !important;
+    background-color: #${base00-hex}${opacityHex} !important;
   }
 
   .sidebar-placesTree {
-    background-color: #${base00-hex} !important;
+    background-color: #${base00-hex}${opacityHex} !important;
   }
 
   #zen-workspaces-button {
-    background-color: #${base00-hex} !important;
+    background-color: #${base00-hex}${opacityHex} !important;
   }
 
   .urlbar-background {
@@ -57,7 +57,7 @@ with colors;
   }
 
   .content-shortcuts {
-    background-color: #${base00-hex} !important;
+    background-color: #${base00-hex}${opacityHex} !important;
     border-color: #${base0D-hex} !important;
   }
 
@@ -77,7 +77,7 @@ with colors;
   #zen-media-controls-toolbar {
     & #zen-media-progress-bar {
       &::-moz-range-track {
-        background: #${base02-hex} !important;
+        background: #${base02-hex}${opacityHex} !important;
       }
     }
   }
@@ -140,11 +140,11 @@ with colors;
   }
 
   #commonDialog {
-    background-color: #${base00-hex} !important;
+    background-color: #${base00-hex}${opacityHex} !important;
   }
 
   #zen-browser-background {
-    --zen-main-browser-background: #${base00-hex} !important;
+    --zen-main-browser-background: #${base00-hex}${opacityHex} !important;
   }
 
   menu,
