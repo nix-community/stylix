@@ -10,5 +10,5 @@
     color:
     pkgs.runCommand "${color}-pixel.png" {
       color = config.lib.stylix.colors.withHashtag.${color};
-    } "${lib.getExe' pkgs.imagemagick "convert"} xc:$color png32:$out";
+    } "${lib.getExe' pkgs.imagemagick "magick"} xc:$color png32:$out";
 }
