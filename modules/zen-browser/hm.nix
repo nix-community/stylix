@@ -54,9 +54,11 @@ mkTarget {
         opacity,
       }:
       let
-        opacityHex = lib.toHexString (
-          ((builtins.ceil (opacity.applications * 100)) * 255) / 100
-        );
+        opacityHex =
+          if opacity.applications != 1.0 then
+            lib.toHexString (((builtins.ceil (opacity.applications * 100)) * 255) / 100)
+          else
+            "";
       in
       {
         programs.zen-browser.profiles = lib.mkIf cfg.enableCss (
