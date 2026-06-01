@@ -104,6 +104,27 @@ body:
 
           required: true
 
+  - type: dropdown
+
+    attributes:
+      label: LLM-involvement Category
+
+      description: >-
+        Disclose the most most severe LLM-involvement category that applies to
+        this issue.
+
+      options:
+        - >-
+          `llm: 0`: Manual: The absence of LLMs would result in equal results
+          and quality
+
+        - "`llm: 1`: Syntactic: Includes non-negligible LLM content"
+        - "`llm: 2`: Semantic: LLM involved in design decisions or core logic"
+        - "`llm: 3`: Unaudited: LLM output with little to no human verification"
+
+    validations:
+      required: true
+
   - type: textarea
 
     attributes:
