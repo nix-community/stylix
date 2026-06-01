@@ -41,7 +41,7 @@ mkTarget {
         themeDir="$out/share/plymouth/themes/stylix"
         mkdir -p $themeDir
 
-        ${lib.getExe' pkgs.imagemagick "convert"} \
+        ${lib.getExe' pkgs.imagemagick "magick"} \
           -background transparent \
           -bordercolor transparent \
           ${
