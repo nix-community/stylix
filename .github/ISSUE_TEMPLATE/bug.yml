@@ -8,11 +8,12 @@ body:
   - type: textarea
 
     attributes:
+      label: Description
+
       description: >-
         Describe the issue in detail. Consider including a minimal reproducible
         example, logs, or screenshots.
 
-      label: Description
       placeholder: Type your description here…
 
     validations:
@@ -21,11 +22,11 @@ body:
   - type: textarea
 
     attributes:
+      label: flake.lock
+
       description: >-
         Copy-paste the `flake.lock` file. If flakes are not used, remove the
         prefilled content and provide the locked input versions.
-
-      label: flake.lock
 
       value: |-
         <details>
@@ -43,8 +44,8 @@ body:
   - type: dropdown
 
     attributes:
-      description: How is Stylix installed?
       label: Installation Method
+      description: How is Stylix installed?
 
       options:
         - NixOS
@@ -59,8 +60,8 @@ body:
   - type: textarea
 
     attributes:
-      description: "`nix-info --markdown` output."
       label: System Information
+      description: "`nix-info --markdown` output."
 
       placeholder: |-
         - system:
