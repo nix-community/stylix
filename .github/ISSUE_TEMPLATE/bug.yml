@@ -13,7 +13,6 @@ body:
         example, logs, or screenshots.
 
       label: Description
-
       placeholder: Type your description here…
 
     validations:
