@@ -13,4 +13,4 @@ drastically accelerate the reviewing and merging process of this PR.
 - [ ] Theming changes adhere to the [Stylix style guide](https://nix-community.github.io/stylix/styling.html)
 - [ ] Changes have been [tested locally](https://nix-community.github.io/stylix/modules.html#development-setup)
 - [ ] Changes have been [tested in testbeds](https://nix-community.github.io/stylix/testbeds.html)
-- [ ] Each commit in this PR is suitable for backport to the current stable branch
+- [ ] Each commit in this PR is [suitable for backport](https://nix-community.github.io/stylix/backport_policy.html)
