@@ -63,12 +63,12 @@ body:
       label: System Information
 
       placeholder: |-
-         - system:
-         - host os:
-         - multi-user?:
-         - sandbox:
-         - version:
-         - nixpkgs:
+        - system:
+        - host os:
+        - multi-user?:
+        - sandbox:
+        - version:
+        - nixpkgs:
 
     validations:
       required: true
