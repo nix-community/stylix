@@ -231,12 +231,6 @@
     githubId = 19377854;
     name = "jamie";
   };
-  skoove = {
-    email = "zie@sturges.com.au";
-    github = "skoove";
-    githubId = 53106860;
-    name = "Zie Sturges";
-  };
   trueNAHO = {
     email = "nix@noahbiewesch.com";
     github = "trueNAHO";
