@@ -10,8 +10,8 @@ mkTarget {
     (
       { opacity }:
       {
-        stylix.targets.wob._opacity = lib.toHexString (
-          builtins.floor (opacity.popups * 255 + 0.5)
+        stylix.targets.wob._opacity = lib.fixedWidthString 2 "0" (
+          lib.toHexString (builtins.floor (opacity.popups * 255 + 0.5))
         );
       }
     )
