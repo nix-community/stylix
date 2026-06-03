@@ -17,7 +17,7 @@ mkTarget {
         colors,
       }:
       let
-        colorTheme = if polarity == "either" then "light" else polarity;
+        colorTheme = if polarity == "dark" then polarity else "light";
       in
       {
         programs.foot.settings = {
