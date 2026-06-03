@@ -76,6 +76,13 @@
     githubId = 21687187;
     name = "Mirza Arnaut";
   };
+  auscyber = {
+    email = "ivyp@outlook.com.au";
+    github = "auscyber";
+    githubId = 12080502;
+    matrix = "@ivy:fargone.sh";
+    name = "Ivy Pierlot";
+  };
   brckd = {
     email = "hello@bricked.dev";
     github = "brckd";
@@ -212,6 +219,12 @@
     ];
     matrix = "@panchoh:matrix.org";
     name = "pancho horrillo";
+  };
+  philocalyst = {
+    email = "milestheperson@posteo.net";
+    github = "philocalyst";
+    githubId = 114884788;
+    name = "Myles Wirth";
   };
   repparw = {
     email = "ubritos@gmail.com";

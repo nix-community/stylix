@@ -15,13 +15,16 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isDarwin;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isDarwin";
 
-  configElements =
+  config =
     { image, imageScalingMode }:
     {
-      home.activation.stylixBackground = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        run ${lib.getExe pkgs.desktoppr} ${lib.escapeShellArg image}
-        sleep 1
-        run ${lib.getExe pkgs.desktoppr} scale ${mkScalingMode imageScalingMode}
-      '';
+      programs.desktoppr = {
+        enable = pkgs.stdenv.hostPlatform.isDarwin;
+        settings = {
+          scale = mkScalingMode imageScalingMode;
+          picture = image;
+        };
+      };
+
     };
 }
