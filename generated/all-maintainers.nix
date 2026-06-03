@@ -231,6 +231,7 @@
     githubId = 19377854;
     name = "jamie";
   };
+<<<<<<< HEAD
   skoove = {
     email = "zie@sturges.com.au";
     github = "skoove";
@@ -244,6 +245,8 @@
     matrix = "@riza:chaos.jetzt";
     name = "Thomas Bemme";
   };
+=======
+>>>>>>> 879889a (hyprland: remove skoove from maintainers (#2345))
   trueNAHO = {
     email = "nix@noahbiewesch.com";
     github = "trueNAHO";
