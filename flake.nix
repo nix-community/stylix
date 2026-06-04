@@ -50,7 +50,7 @@
     gnome-shell = {
       # Lock the gnome-shell input to minimize breaking changes and
       # patching.
-      url = "github:GNOME/gnome-shell/50.1";
+      url = "gitlab:GNOME/gnome-shell/50.1?host=gitlab.gnome.org";
       flake = false;
     };
 
