@@ -6,7 +6,7 @@ applied to the current stable (`release-*.*`) branch.
 To reduce maintenance efforts and improve stability on stable branches, security
 fixes, bug fixes, and CI changes are backported, while new features, modules,
 and theme improvements are not backported. Upstream changes causing theming
-issues are considered a bug.
+issues are considered a bug and maintainer changes are considered as CI changes.
 
 New modules and theme improvements may be backported when explicitly requested
 and backporting is trivial.
