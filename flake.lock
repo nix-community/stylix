@@ -123,18 +123,20 @@
     "gnome-shell": {
       "flake": false,
       "locked": {
+        "host": "gitlab.gnome.org",
         "lastModified": 1776175984,
         "narHash": "sha256-RJFlFW8GiMei6oqUGrMkGEvVqOH8U7Q8abc1yK4VKD8=",
         "owner": "GNOME",
         "repo": "gnome-shell",
         "rev": "e0fdc4c13250e9a9b8ea9594c83925274f4a5dca",
-        "type": "github"
+        "type": "gitlab"
       },
       "original": {
+        "host": "gitlab.gnome.org",
         "owner": "GNOME",
         "ref": "50.1",
         "repo": "gnome-shell",
-        "type": "github"
+        "type": "gitlab"
       }
     },
     "nixpkgs": {
