@@ -10,6 +10,7 @@
     Flameopathic
     danth
     noahbiewesch
+    zeal
   ];
   description = ''
     This module supports [Firefox](https://www.mozilla.org/firefox), in addition
