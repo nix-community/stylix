@@ -41,7 +41,7 @@ mkTarget {
       { opacity }:
       {
         stylix.targets.zen-browser.opacityHex = lib.toHexString (
-          ((builtins.ceil (opacity.applications * 100)) * 255) / 100
+          builtins.ceil (opacity.applications * 255)
         );
       }
     )
