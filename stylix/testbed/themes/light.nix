@@ -7,7 +7,7 @@ in
   stylix = {
     enable = true;
     image = images.light;
-    base16Scheme = "${tinted-schemes}/base16/catppuccin-latte.yaml";
+    palette.manual.base16 = "${tinted-schemes}/base16/catppuccin-latte.yaml";
     polarity = "light";
     cursor = {
       name = "Vanilla-DMZ";
