@@ -47,5 +47,8 @@
     > This is necessary due to a limitation of the module system: we can either
     > detect the list of profiles, or change their configuration, but we can't do
     > both without infinite recursion.
+    >
+    > Afterwards set toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config
+    > for the theming to be applied. (This enables the userChrome.css file in your profile)
   '';
 }
