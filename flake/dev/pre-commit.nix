@@ -40,6 +40,7 @@
             settings.config.default.extend-identifiers = lib.genAttrs [
               "MrSom3body"
               "substituters"
+              "Wirth"
             ] lib.id;
           };
           yamllint.enable = true;
