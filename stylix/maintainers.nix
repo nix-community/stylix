@@ -89,5 +89,11 @@
     github = "vidhanio";
     githubId = 41439633;
   };
+  zenko = {
+    email = "tristanleroy26@gmail.com";
+    name = "Tristan Leroy";
+    github = "zenko-kyubiko";
+    githubId = 47412921;
+  };
   # keep-sorted end
 }

@@ -258,4 +258,10 @@
     githubId = 29400525;
     name = "Zeremonienmeister Berber Aab";
   };
+  zenko-kyubiko = {
+    email = "tristanleroy26@gmail.com";
+    github = "zenko-kyubiko";
+    githubId = 47412921;
+    name = "Tristan Leroy";
+  };
 }
