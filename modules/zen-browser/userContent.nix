@@ -1,4 +1,4 @@
-{ colors }:
+{ colors, opacityHex }:
 with colors;
 ''
   /* Common variables affecting all pages */
@@ -8,8 +8,8 @@ with colors;
       --color-accent-primary: #${base0D-hex} !important;
       --color-accent-primary-hover: #${base0D-hex} !important;
       --color-accent-primary-active: #${base0D-hex} !important;
-      background-color: #${base00-hex} !important;
-      --in-content-page-background: #${base00-hex} !important;
+      background-color: #${base00-hex}${opacityHex} !important;
+      --in-content-page-background: #${base00-hex}${opacityHex} !important;
     }
   }
 
@@ -17,12 +17,12 @@ with colors;
   @-moz-document url("about:newtab"), url("about:home") {
 
     :root {
-      --newtab-background-color: #${base00-hex} !important;
-      --newtab-background-color-secondary: #${base02-hex} !important;
+      --newtab-background-color: #${base00-hex}${opacityHex} !important;
+      --newtab-background-color-secondary: #${base02-hex}${opacityHex} !important;
       --newtab-element-hover-color: #${base02-hex} !important;
       --newtab-text-primary-color: #${base05-hex} !important;
       --newtab-wordmark-color: #${base05-hex} !important;
-      --newtab-primary-action-background: #${base0D-hex} !important;
+      --newtab-primary-action-background: #${base0D-hex}${opacityHex} !important;
     }
 
     .icon {
@@ -49,7 +49,7 @@ with colors;
     }
 
     .top-site-outer .search-topsite {
-      background-color: #${base0D-hex} !important;
+      background-color: #${base0D-hex}${opacityHex} !important;
     }
 
     .compact-cards .card-outer .card-context .card-context-icon.icon-download {
@@ -60,17 +60,17 @@ with colors;
   /* Variables and styles specific to about:preferences */
   @-moz-document url-prefix("about:preferences") {
     :root {
-      --zen-colors-tertiary: #${base01-hex} !important;
+      --zen-colors-tertiary: #${base01-hex}${opacityHex} !important;
       --in-content-text-color: #${base05-hex} !important;
       --link-color: #${base0D-hex} !important;
       --link-color-hover: #${base0D-hex} !important;
-      --zen-colors-primary: #${base02-hex} !important;
-      --in-content-box-background: #${base02-hex} !important;
-      --zen-primary-color: #${base0D-hex} !important;
+      --zen-colors-primary: #${base02-hex}${opacityHex} !important;
+      --in-content-box-background: #${base02-hex}${opacityHex} !important;
+      --zen-primary-color: #${base0D-hex}${opacityHex} !important;
     }
 
     groupbox , moz-card{
-      background: #${base00-hex} !important;
+      background: #${base00-hex}${opacityHex} !important;
     }
 
     button,
@@ -80,7 +80,7 @@ with colors;
     }
 
     .main-content {
-      background-color: #${base00-hex} !important;
+      background-color: #${base00-hex}${opacityHex} !important;
     }
 
     .identity-color-blue {
@@ -127,28 +127,28 @@ with colors;
   /* Variables and styles specific to about:addons */
   @-moz-document url-prefix("about:addons") {
     :root {
-      --zen-dark-color-mix-base: #${base01-hex} !important;
-      --background-color-box: #${base00-hex} !important;
+      --zen-dark-color-mix-base: #${base01-hex}${opacityHex} !important;
+      --background-color-box: #${base00-hex}${opacityHex} !important;
     }
   }
 
   /* Variables and styles specific to about:protections */
   @-moz-document url-prefix("about:protections") {
     :root {
-      --zen-primary-color: #${base00-hex} !important;
+      --zen-primary-color: #${base00-hex}${opacityHex} !important;
       --social-color: #${base0E-hex} !important;
       --coockie-color: #${base0D-hex} !important;
       --fingerprinter-color: #${base0A-hex} !important;
       --cryptominer-color: #${base0F-hex} !important;
       --tracker-color: #${base0B-hex} !important;
-      --in-content-primary-button-background-hover: #${base03-hex} !important;
+      --in-content-primary-button-background-hover: #${base03-hex}${opacityHex} !important;
       --in-content-primary-button-text-color-hover: #${base05-hex} !important;
-      --in-content-primary-button-background: #${base03-hex} !important;
+      --in-content-primary-button-background: #${base03-hex}${opacityHex} !important;
       --in-content-primary-button-text-color: #${base05-hex} !important;
     }
 
     .card {
-      background-color: #${base02-hex} !important;
+      background-color: #${base02-hex}${opacityHex} !important;
     }
   }
 
