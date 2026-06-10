@@ -47,6 +47,8 @@ let
                   ;
               };
 
+              noctalia.home-manager.sharedModules = [ inputs.noctalia.homeModules.default ];
+
               noctalia-shell.home-manager.sharedModules = [
                 inputs.noctalia-shell.homeModules.default
               ];
