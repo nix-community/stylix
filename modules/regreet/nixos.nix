@@ -28,13 +28,24 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  options.extraCss = lib.mkOption {
-    description = ''
-      Extra code added to `programs.regreet.extraCss` option.
-    '';
-    type = lib.types.lines;
-    default = "";
-    example = "window.background { border-radius: 0; }";
+  options = {
+    extraCss = lib.mkOption {
+      description = ''
+        Extra code added to `programs.regreet.extraCss` option.
+      '';
+      type = lib.types.lines;
+      default = "";
+      example = "window.background { border-radius: 0; }";
+    };
+
+    disableCustomGreetdWarning = lib.mkOption {
+      description = ''
+        Disable warning produced by this module when using custom `services.greetd.settings.default_session.command`.
+      '';
+      type = lib.types.bool;
+      default = false;
+      example = "true";
+    };
   };
 
   config = [
@@ -46,12 +57,15 @@ mkTarget {
         lib.optional
           (
             cfg.enable
+            && (!cfg.disableCustomGreetdWarning)
             &&
               # defined in https://github.com/NixOS/nixpkgs/blob/8f3e1f807051e32d8c95cd12b9b421623850a34d/nixos/modules/programs/regreet.nix#L153
-              config.services.greetd.settings.default_session.command
-              != "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.cage} ${lib.escapeShellArgs cfg.cageArgs} -- ${lib.getExe cfg.package}"
+              (
+                config.services.greetd.settings.default_session.command
+                != "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.cage} ${lib.escapeShellArgs cfg.cageArgs} -- ${lib.getExe cfg.package}"
+              )
           )
-          "stylix: regreet: custom services.greetd.settings.default_session.command value may not work: ${config.services.greetd.settings.default_session.command}";
+          "stylix: regreet: custom `services.greetd.settings.default_session.command` value may not work: ${config.services.greetd.settings.default_session.command}";
       programs.regreet.theme = {
         package = pkgs.adw-gtk3;
         name = "adw-gtk3";
