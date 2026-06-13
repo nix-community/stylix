@@ -1,18 +1,13 @@
-{ lib, pkgs, inputs, ... }:
+{ lib, ... }:
 let
-  package = inputs.glide.packages.${pkgs.stdenv.hostPlatform.system}.default;
   profileName = "stylix";
 in
 {
-  stylix.testbed.ui.application = {
-    name = "glide";
-    inherit package;
-  };
+  stylix.testbed.ui.command.text = "glide";
 
   home-manager.sharedModules = lib.singleton {
     programs.glide-browser = {
       enable = true;
-      inherit package;
       profiles.${profileName}.isDefault = true;
     };
 
