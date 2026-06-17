@@ -36,6 +36,12 @@
     githubId = 64027365;
     name = "Erin Pletches";
   };
+  Lyndeno = {
+    email = "lsanche@lyndeno.ca";
+    github = "Lyndeno";
+    githubId = 13490857;
+    name = "Lyndon Sanche";
+  };
   MrSom3body = {
     email = "nix@sndh.dev";
     github = "MrSom3body";
@@ -236,12 +242,6 @@
     github = "skiletro";
     githubId = 19377854;
     name = "jamie";
-  };
-  skoove = {
-    email = "zie@sturges.com.au";
-    github = "skoove";
-    githubId = 53106860;
-    name = "Zie Sturges";
   };
   trueNAHO = {
     email = "nix@noahbiewesch.com";

@@ -20,6 +20,12 @@ mkTarget {
       default = true;
       description = "enables userChrome and userContent css styles for the browser";
     };
+
+    opacityHex = lib.mkOption {
+      internal = true;
+      type = lib.types.singleLineStr;
+      default = "";
+    };
   };
 
   config = lib.optionals (options.programs ? zen-browser) [
@@ -29,6 +35,14 @@ mkTarget {
         warnings =
           lib.optional (config.programs.zen-browser.enable && cfg.profileNames == [ ])
             ''stylix: zen-browser: `config.stylix.targets.zen-browser.profileNames` is not set. Declare profile names with 'config.stylix.targets.zen-browser.profileNames = [ "<PROFILE_NAME>" ];'.'';
+      }
+    )
+    (
+      { opacity }:
+      {
+        stylix.targets.zen-browser.opacityHex = lib.toHexString (
+          builtins.ceil (opacity.applications * 255)
+        );
       }
     )
     (
@@ -56,9 +70,15 @@ mkTarget {
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             };
 
-            userChrome = import ./userChrome.nix { inherit colors; };
+            userChrome = import ./userChrome.nix {
+              inherit colors;
+              inherit (cfg) opacityHex;
+            };
 
-            userContent = import ./userContent.nix { inherit colors; };
+            userContent = import ./userContent.nix {
+              inherit colors;
+              inherit (cfg) opacityHex;
+            };
           })
         );
       }
