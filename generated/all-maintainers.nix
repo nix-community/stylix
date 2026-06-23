@@ -103,6 +103,12 @@
     githubId = 86579;
     name = "Chet Luther";
   };
+  cswimr = {
+    email = "cswimr@csw.im";
+    github = "cswimr";
+    githubId = 102361830;
+    name = "cswimr";
+  };
   danth = {
     email = "danth@danth.me";
     github = "danth";
