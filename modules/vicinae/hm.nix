@@ -8,6 +8,15 @@ mkTarget {
       }
     )
     (
+      { fonts }:
+      {
+        programs.vicinae.settings.font.normal = {
+          family = fonts.sansSerif.name;
+          size = fonts.sizes.applications;
+        };
+      }
+    )
+    (
       { colors, polarity }:
       {
         programs.vicinae = {
