@@ -25,6 +25,12 @@
     github = "cluther";
     githubId = 86579;
   };
+  cswimr = {
+    name = "cswimr";
+    email = "cswimr@csw.im";
+    github = "cswimr";
+    githubId = 102361830;
+  };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
     name = "Gideon Wolfe";
