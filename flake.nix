@@ -12,17 +12,6 @@
     systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
-    base16-fish = {
-      # Lock the base16-fish input to a custom patchset that cherry-picks
-      # pending patches [2], since it is currently impossible to apply patches
-      # to flake inputs [1] ("Support flake references to patches").
-      #
-      # [1]: https://github.com/NixOS/nix/issues/3920
-      # [2]: https://github.com/tomyun/base16-fish/pull/16
-      url = "github:tomyun/base16-fish/86cbea4dca62e08fb7fd83a70e96472f92574782";
-      flake = false;
-    };
-
     base16-helix = {
       url = "github:tinted-theming/base16-helix";
       flake = false;

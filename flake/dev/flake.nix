@@ -63,7 +63,6 @@
   #             stylix = {
   #               url = "path:../..";
   #               inputs = {
-  #                 base16-fish.follows = "";
   #                 base16-helix.follows = "";
   #                 base16-vim.follows = "";
   #                 base16.follows = "";
