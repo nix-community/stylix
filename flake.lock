@@ -136,29 +136,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780281641,
-        "narHash": "sha256-M/+hUKoKbHXpV0xGVfELbN1Ds1aoe3pL5p5/t46YhVo=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "30f9ae2f04174de63ba8bcf3580ca90843b28a01",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "base16": "base16",
@@ -168,7 +145,6 @@
         "flake-parts": "flake-parts",
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
         "systems": "systems",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",

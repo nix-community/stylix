@@ -91,25 +91,26 @@ mkTarget {
       }
     )
     (
-      {
-        cfg,
-        colors,
-        inputs,
-      }:
+      { cfg, colors }:
       let
         mkColor = color: {
           r = colors."${color}-rgb-r";
           g = colors."${color}-rgb-g";
           b = colors."${color}-rgb-b";
         };
-        inherit (pkgs.stdenv.hostPlatform) system;
-        inherit (inputs.nur.legacyPackages.${system}.repos.rycee) firefox-addons;
       in
       {
+        # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265 (installing addons)
+        programs.${name}.policies.ExtensionSettings = lib.mkIf cfg.colorTheme.enable {
+          "FirefoxColor@mozilla.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/file/3643624/firefox_color-2.1.7.xpi";
+            installation_mode = "force_installed";
+          };
+        };
+
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (
           lib.genAttrs cfg.profileNames (_: {
             extensions = {
-              packages = [ firefox-addons.firefox-color ];
               settings."FirefoxColor@mozilla.com".settings = {
                 firstRunDone = true;
                 theme = {

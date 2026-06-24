@@ -68,7 +68,6 @@
   #                 base16.follows = "";
   #                 firefox-gnome-theme.follows = "";
   #                 gnome-shell.follows = "";
-  #                 nur.follows = "";
   #                 tinted-foot.follows = "";
   #                 tinted-kitty.follows = "";
   #                 tinted-schemes.follows = "";

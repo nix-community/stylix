@@ -44,14 +44,6 @@
       flake = false;
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     tinted-kitty = {
       url = "github:tinted-theming/tinted-kitty";
       flake = false;
