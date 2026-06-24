@@ -100,14 +100,6 @@ mkTarget {
         };
       in
       {
-        # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265 (installing addons)
-        programs.${name}.policies.ExtensionSettings = lib.mkIf cfg.colorTheme.enable {
-          "FirefoxColor@mozilla.com" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/file/3643624/firefox_color-2.1.7.xpi";
-            installation_mode = "force_installed";
-          };
-        };
-
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (
           lib.genAttrs cfg.profileNames (_: {
             extensions = {
@@ -158,6 +150,18 @@ mkTarget {
             };
           })
         );
+      }
+    )
+    (
+      { cfg }:
+      {
+        # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265 (installing addons)
+        programs.${name}.policies.ExtensionSettings = lib.mkIf cfg.colorTheme.enable {
+          "FirefoxColor@mozilla.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/file/3643624/firefox_color-2.1.7.xpi";
+            installation_mode = "force_installed";
+          };
+        };
       }
     )
   ];
