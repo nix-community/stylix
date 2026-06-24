@@ -64,7 +64,6 @@
   #               url = "path:../..";
   #               inputs = {
   #                 base16-helix.follows = "";
-  #                 base16-vim.follows = "";
   #                 base16.follows = "";
   #                 firefox-gnome-theme.follows = "";
   #                 gnome-shell.follows = "";

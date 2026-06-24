@@ -16,7 +16,7 @@ mkTarget {
       }
     )
     (
-      { colors, inputs }:
+      { colors }:
       {
         programs.vim = {
           plugins = [
@@ -25,8 +25,8 @@ mkTarget {
               pname = "stylix";
 
               src = colors {
-                templateRepo = inputs.base16-vim;
-                target = "base16";
+                template = ./base16.mustache;
+                extension = ".vim";
               };
               dontUnpack = true;
 
