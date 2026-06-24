@@ -46,8 +46,12 @@ mkTarget {
 
             # 4/3 factor used for pt to px;
             # adding 0.5 before flooring for rounding as Firefox requires an int
-            "font.size.monospace.x-western" = builtins.floor ((fonts.sizes.terminal * 4.0 / 3.0) + 0.5);
-            "font.size.variable.x-western" = builtins.floor ((fonts.sizes.applications * 4.0 / 3.0) + 0.5);
+            "font.size.monospace.x-western" = builtins.floor (
+              (fonts.sizes.terminal * 4.0 / 3.0) + 0.5
+            );
+            "font.size.variable.x-western" = builtins.floor (
+              (fonts.sizes.applications * 4.0 / 3.0) + 0.5
+            );
           };
         });
       }
