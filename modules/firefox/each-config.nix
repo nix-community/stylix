@@ -155,7 +155,7 @@ mkTarget {
         programs.${name}.policies.ExtensionSettings = lib.mkIf cfg.colorTheme.enable {
           "FirefoxColor@mozilla.com" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/3643624/firefox_color-2.1.7.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
           };
         };
       }
