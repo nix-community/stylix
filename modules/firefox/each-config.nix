@@ -99,7 +99,7 @@ mkTarget {
         programs.${name}.profiles = lib.mkIf cfg.colorTheme.enable (
           lib.genAttrs cfg.profileNames (_: {
             extensions = {
-              settings."FirefoxColor@mozilla.com".force = {
+              settings."FirefoxColor@mozilla.com".settings = {
                 firstRunDone = true;
                 theme = {
                   title = "Stylix ${colors.description}";
