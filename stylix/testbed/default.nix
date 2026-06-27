@@ -35,6 +35,10 @@ let
             {
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
+              dank-calendar.home-manager.sharedModules = [
+                inputs.dank-calendar.homeModules.default
+              ];
+
               dank-material-shell.home-manager.sharedModules = [
                 inputs.dankMaterialShell.homeModules.dank-material-shell
               ];

@@ -89,6 +89,13 @@
     github = "skoove";
     githubId = 53106860;
   };
+  thbemme = {
+    email = "thomas.bemme@googlemail.com";
+    name = "Thomas Bemme";
+    matrix = "@riza:chaos.jetzt";
+    github = "thbemme";
+    githubId = 14074615;
+  };
   vidhanio = {
     email = "me@vidhan.io";
     name = "Vidhan Bhatt";
