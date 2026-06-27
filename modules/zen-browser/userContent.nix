@@ -10,6 +10,11 @@ with colors;
       --color-accent-primary-active: #${base0D-hex} !important;
       background-color: #${base00-hex}${opacityHex} !important;
       --in-content-page-background: #${base00-hex}${opacityHex} !important;
+      --background-color-canvas: #${base00-hex}${opacityHex} !important;
+    }
+
+    input {
+      background-color: #${base02-hex}${opacityHex} !important;
     }
   }
 
