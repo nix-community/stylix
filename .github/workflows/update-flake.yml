@@ -13,7 +13,7 @@ defaults:
 jobs:
   flake-update:
     runs-on: ubuntu-24.04
-    if: vars.APP_ID
+    if: vars.APP_CLIENT_ID
     strategy:
       matrix:
         branch: [master, release-26.05]
@@ -21,7 +21,7 @@ jobs:
       - id: generate-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ vars.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           permission-contents: write
           permission-pull-requests: write
