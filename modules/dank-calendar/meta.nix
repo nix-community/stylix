@@ -2,5 +2,5 @@
 {
   name = "DankCalendar";
   homepage = "https://github.com/AvengeMedia/dankcalendar";
-  maintainers = with lib.maintainers; [ thbemme ];
+  maintainers = [ lib.maintainers.thbemme ];
 }
