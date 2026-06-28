@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "dank-calendar": {
+      "inputs": {
+        "nixpkgs": [
+          "dev-nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782499261,
+        "narHash": "sha256-W+tmdccdHqFL1v9WUmSIx12aXdzGsQDgtvvY7FLPhoE=",
+        "owner": "AvengeMedia",
+        "repo": "dankcalendar",
+        "rev": "9596d9645002dcc6403bf2226445af2309edc6f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dankcalendar",
+        "type": "github"
+      }
+    },
     "dankMaterialShell": {
       "inputs": {
         "flake-compat": [
@@ -275,6 +295,7 @@
     },
     "root": {
       "inputs": {
+        "dank-calendar": "dank-calendar",
         "dankMaterialShell": "dankMaterialShell",
         "dev-flake-parts": "dev-flake-parts",
         "dev-nixpkgs": "dev-nixpkgs",
