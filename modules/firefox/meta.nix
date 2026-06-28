@@ -4,8 +4,8 @@
   homepage = {
     Firefox = "http://www.mozilla.com/en-US/firefox";
     Floorp = "https://floorp.app";
-    LibreWolf = "https://librewolf.net";
     Glide = "https://glide-browser.app";
+    LibreWolf = "https://librewolf.net";
   };
   maintainers = with lib.maintainers; [
     Flameopathic
