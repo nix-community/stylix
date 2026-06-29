@@ -237,6 +237,12 @@
     githubId = 63157919;
     name = "Alexander";
   };
+  saadndm = {
+    email = "saad29nadeem@gmail.com";
+    github = "saadndm";
+    githubId = 88615188;
+    name = "Saad Nadeem";
+  };
   skiletro = {
     email = "git@skilet.ro";
     github = "skiletro";
