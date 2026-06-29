@@ -103,6 +103,12 @@
     githubId = 86579;
     name = "Chet Luther";
   };
+  csanthiago = {
+    email = "git@csanthiago.dev";
+    github = "csanthiago";
+    githubId = 8346803;
+    name = "Cirios Santhiago";
+  };
   danth = {
     email = "danth@danth.me";
     github = "danth";
