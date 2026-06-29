@@ -130,6 +130,11 @@
     dev-systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
+    dank-calendar = {
+      url = "github:AvengeMedia/dankcalendar";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs = {
