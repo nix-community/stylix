@@ -243,6 +243,13 @@
     githubId = 19377854;
     name = "jamie";
   };
+  thbemme = {
+    email = "thomas.bemme@googlemail.com";
+    github = "thbemme";
+    githubId = 14074615;
+    matrix = "@riza:chaos.jetzt";
+    name = "Thomas Bemme";
+  };
   trueNAHO = {
     email = "nix@noahbiewesch.com";
     github = "trueNAHO";
