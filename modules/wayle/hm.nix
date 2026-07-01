@@ -27,5 +27,13 @@ mkTarget {
         };
       }
     )
+    (
+      { opacity }:
+      {
+        services.wayle.settings.bar.background-opacity = builtins.floor (
+          opacity.desktop * 100
+        );
+      }
+    )
   ];
 }
