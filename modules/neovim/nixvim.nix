@@ -38,104 +38,92 @@ mkTarget {
   };
 
   config = [
-    (
-      { colors }:
-      {
-        stylix.targets.nixvim.pluginConfigs = {
-          "base16-nvim".colorschemes.base16.colorscheme = {
-            inherit (colors.withHashtag)
-              base00
-              base01
-              base02
-              base03
-              base04
-              base05
-              base06
-              base07
-              base08
-              base09
-              base0A
-              base0B
-              base0C
-              base0D
-              base0E
-              base0F
-              ;
-          };
-          "mini.base16".plugins.mini.modules.base16.palette = {
-            inherit (colors.withHashtag)
-              base00
-              base01
-              base02
-              base03
-              base04
-              base05
-              base06
-              base07
-              base08
-              base09
-              base0A
-              base0B
-              base0C
-              base0D
-              base0E
-              base0F
-              ;
-          };
+    ({ colors }: {
+      stylix.targets.nixvim.pluginConfigs = {
+        "base16-nvim".colorschemes.base16.colorscheme = {
+          inherit (colors.withHashtag)
+            base00
+            base01
+            base02
+            base03
+            base04
+            base05
+            base06
+            base07
+            base08
+            base09
+            base0A
+            base0B
+            base0C
+            base0D
+            base0E
+            base0F
+            ;
         };
-      }
-    )
-    (
-      { fonts }:
-      {
-        stylix.targets.nixvim.module.opts.guifont =
-          "${fonts.monospace.name}:h${toString fonts.sizes.terminal}";
-      }
-    )
-    (
-      { opacity }:
-      {
-        stylix.targets.nixvim.module = lib.modules.importApply ./neovide-common.nix opacity;
-      }
-    )
-    (
-      { cfg }:
-      {
-        stylix.targets.nixvim = {
-          pluginConfigs =
-            let
-              # Transparent is used a few times below
-              transparent = {
-                bg = "none";
-                ctermbg = "none";
-              };
-              highlightOverride = {
-                Normal = lib.mkIf cfg.transparentBackground.main transparent;
-                NonText = lib.mkIf cfg.transparentBackground.main transparent;
-                SignColumn = lib.mkIf cfg.transparentBackground.signColumn transparent;
-                LineNr = lib.mkIf cfg.transparentBackground.numberLine transparent;
-                LineNrAbove = lib.mkIf cfg.transparentBackground.numberLine transparent;
-                LineNrBelow = lib.mkIf cfg.transparentBackground.numberLine transparent;
-              };
-            in
-            {
-              "base16-nvim" = {
-                colorschemes.base16.enable = true;
-                inherit highlightOverride;
-              };
-              "mini.base16" = {
-                plugins.mini.enable = true;
-                inherit highlightOverride;
-              };
+        "mini.base16".plugins.mini.modules.base16.palette = {
+          inherit (colors.withHashtag)
+            base00
+            base01
+            base02
+            base03
+            base04
+            base05
+            base06
+            base07
+            base08
+            base09
+            base0A
+            base0B
+            base0C
+            base0D
+            base0E
+            base0F
+            ;
+        };
+      };
+    })
+    ({ fonts }: {
+      stylix.targets.nixvim.module.opts.guifont =
+        "${fonts.monospace.name}:h${toString fonts.sizes.terminal}";
+    })
+    ({ opacity }: {
+      stylix.targets.nixvim.module = lib.modules.importApply ./neovide-common.nix opacity;
+    })
+    ({ cfg }: {
+      stylix.targets.nixvim = {
+        pluginConfigs =
+          let
+            # Transparent is used a few times below
+            transparent = {
+              bg = "none";
+              ctermbg = "none";
             };
-          module = cfg.pluginConfigs.${cfg.plugin};
-          exportedModule = cfg.module;
-        };
-        programs = lib.optionalAttrs (options.programs ? nixvim) {
-          nixvim = cfg.module;
-        };
-      }
-    )
+            highlightOverride = {
+              Normal = lib.mkIf cfg.transparentBackground.main transparent;
+              NonText = lib.mkIf cfg.transparentBackground.main transparent;
+              SignColumn = lib.mkIf cfg.transparentBackground.signColumn transparent;
+              LineNr = lib.mkIf cfg.transparentBackground.numberLine transparent;
+              LineNrAbove = lib.mkIf cfg.transparentBackground.numberLine transparent;
+              LineNrBelow = lib.mkIf cfg.transparentBackground.numberLine transparent;
+            };
+          in
+          {
+            "base16-nvim" = {
+              colorschemes.base16.enable = true;
+              inherit highlightOverride;
+            };
+            "mini.base16" = {
+              plugins.mini.enable = true;
+              inherit highlightOverride;
+            };
+          };
+        module = cfg.pluginConfigs.${cfg.plugin};
+        exportedModule = cfg.module;
+      };
+      programs = lib.optionalAttrs (options.programs ? nixvim) {
+        nixvim = cfg.module;
+      };
+    })
   ];
 
   imports = [
@@ -176,11 +164,8 @@ mkTarget {
       ];
     })
 
-    (
-      { config, ... }:
-      {
-        lib.stylix.nixvim.config = lib.warn "stylix: `config.lib.stylix.nixvim.config` has been renamed to `config.stylix.targets.nixvim.exportedModule` and will be removed after 26.11" config.stylix.targets.nixvim.exportedModule;
-      }
-    )
+    ({ config, ... }: {
+      lib.stylix.nixvim.config = lib.warn "stylix: `config.lib.stylix.nixvim.config` has been renamed to `config.stylix.targets.nixvim.exportedModule` and will be removed after 26.11" config.stylix.targets.nixvim.exportedModule;
+    })
   ];
 }

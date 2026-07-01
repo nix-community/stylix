@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   stylix.testbed.ui.command.text = "code flake-parts/flake.nix";
 
   nixpkgs.config.allowUnfreePredicate =

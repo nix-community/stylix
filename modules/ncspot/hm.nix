@@ -17,17 +17,12 @@ mkTarget {
         };
       }
     )
-    (
-      { opacity }:
-      {
-        stylix.targets.ncspot.background = lib.mkIf (
-          opacity.terminal != 1.0
-        ) "#00000000";
-      }
-    )
-    (
-      { colors }:
-      with colors.withHashtag;
+    ({ opacity }: {
+      stylix.targets.ncspot.background = lib.mkIf (
+        opacity.terminal != 1.0
+      ) "#00000000";
+    })
+    ({ colors }: with colors.withHashtag;
       {
         stylix.targets.ncspot.background = lib.mkDefault base00;
         programs.ncspot.settings.theme = {
@@ -47,7 +42,6 @@ mkTarget {
           cmdline_bg = base05;
           search_match = base05;
         };
-      }
-    )
+      })
   ];
 }

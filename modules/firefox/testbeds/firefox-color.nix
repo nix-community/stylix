@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   imports = [ ./firefox.nix ];
 
   home-manager.sharedModules = lib.singleton {

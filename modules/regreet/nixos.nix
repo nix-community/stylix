@@ -75,54 +75,34 @@ mkTarget {
         programs.regreet.extraCss = finalCss.outPath;
       }
     )
-    (
-      { polarity }:
-      {
-        programs.regreet.settings.GTK.application_prefer_dark_theme =
-          polarity == "dark";
-      }
-    )
-    (
-      { image }:
-      {
-        programs.regreet.settings.background.path = image;
-      }
-    )
-    (
-      { imageScalingMode }:
-      {
-        programs.regreet.settings.background.fit =
-          if imageScalingMode == "fill" then
-            "Cover"
-          else if imageScalingMode == "fit" then
-            "Contain"
-          else if imageScalingMode == "stretch" then
-            "Fill"
-          # No other available options
-          else
-            null;
-      }
-    )
-    (
-      { fonts }:
-      {
-        programs.regreet.font = { inherit (fonts.sansSerif) name package; };
-      }
-    )
-    (
-      { cursor }:
-      {
-        programs.regreet.cursorTheme = { inherit (cursor) name package; };
-      }
-    )
-    (
-      { polarity, icons }:
-      {
-        programs.regreet.iconTheme = {
-          inherit (icons) package;
-          name = if (polarity == "dark") then icons.dark else icons.light;
-        };
-      }
-    )
+    ({ polarity }: {
+      programs.regreet.settings.GTK.application_prefer_dark_theme =
+        polarity == "dark";
+    })
+    ({ image }: { programs.regreet.settings.background.path = image; })
+    ({ imageScalingMode }: {
+      programs.regreet.settings.background.fit =
+        if imageScalingMode == "fill" then
+          "Cover"
+        else if imageScalingMode == "fit" then
+          "Contain"
+        else if imageScalingMode == "stretch" then
+          "Fill"
+        # No other available options
+        else
+          null;
+    })
+    ({ fonts }: {
+      programs.regreet.font = { inherit (fonts.sansSerif) name package; };
+    })
+    ({ cursor }: {
+      programs.regreet.cursorTheme = { inherit (cursor) name package; };
+    })
+    ({ polarity, icons }: {
+      programs.regreet.iconTheme = {
+        inherit (icons) package;
+        name = if (polarity == "dark") then icons.dark else icons.light;
+      };
+    })
   ];
 }

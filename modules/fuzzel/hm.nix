@@ -1,13 +1,10 @@
 { mkTarget, lib, ... }:
 mkTarget {
   config = [
-    (
-      { fonts }:
-      {
-        programs.fuzzel.settings.main.font =
-          "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups}";
-      }
-    )
+    ({ fonts }: {
+      programs.fuzzel.settings.main.font =
+        "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups}";
+    })
     (
       { colors, opacity }:
       let
@@ -29,12 +26,9 @@ mkTarget {
         };
       }
     )
-    (
-      { polarity, icons }:
-      {
-        programs.fuzzel.settings.main."icon-theme" =
-          if (polarity == "dark") then icons.dark else icons.light;
-      }
-    )
+    ({ polarity, icons }: {
+      programs.fuzzel.settings.main."icon-theme" =
+        if (polarity == "dark") then icons.dark else icons.light;
+    })
   ];
 }

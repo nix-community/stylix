@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

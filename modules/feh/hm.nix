@@ -22,24 +22,22 @@ mkTarget {
     || xmonad.enable
   '';
 
-  config =
-    { imageScalingMode, image }:
-    {
-      xsession.initExtra =
-        let
-          bg-arg =
-            if imageScalingMode == "fill" then
-              "--bg-fill"
-            else if imageScalingMode == "center" then
-              "--bg-center"
-            else if imageScalingMode == "tile" then
-              "--bg-tile"
-            else if imageScalingMode == "stretch" then
-              "--bg-scale"
-            # Fit
-            else
-              "--bg-max";
-        in
-        "${lib.getExe pkgs.feh} --no-fehbg ${bg-arg} ${image}";
-    };
+  config = { imageScalingMode, image }: {
+    xsession.initExtra =
+      let
+        bg-arg =
+          if imageScalingMode == "fill" then
+            "--bg-fill"
+          else if imageScalingMode == "center" then
+            "--bg-center"
+          else if imageScalingMode == "tile" then
+            "--bg-tile"
+          else if imageScalingMode == "stretch" then
+            "--bg-scale"
+          # Fit
+          else
+            "--bg-max";
+      in
+      "${lib.getExe pkgs.feh} --no-fehbg ${bg-arg} ${image}";
+  };
 }
