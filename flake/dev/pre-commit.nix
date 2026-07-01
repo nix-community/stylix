@@ -41,6 +41,7 @@
               "MrSom3body"
               "Relm4"
               "substituters"
+              "Wirth"
             ] lib.id;
           };
           yamllint.enable = true;
