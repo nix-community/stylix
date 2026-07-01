@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "dank-calendar": {
+      "inputs": {
+        "nixpkgs": [
+          "dev-nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782499261,
+        "narHash": "sha256-W+tmdccdHqFL1v9WUmSIx12aXdzGsQDgtvvY7FLPhoE=",
+        "owner": "AvengeMedia",
+        "repo": "dankcalendar",
+        "rev": "9596d9645002dcc6403bf2226445af2309edc6f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dankcalendar",
+        "type": "github"
+      }
+    },
     "dankMaterialShell": {
       "inputs": {
         "flake-compat": [
@@ -275,6 +295,7 @@
     },
     "root": {
       "inputs": {
+        "dank-calendar": "dank-calendar",
         "dankMaterialShell": "dankMaterialShell",
         "dev-flake-parts": "dev-flake-parts",
         "dev-nixpkgs": "dev-nixpkgs",
@@ -287,7 +308,6 @@
         "nvf": "nvf",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix",
-        "vicinae": "vicinae",
         "zen-browser": "zen-browser"
       }
     },
@@ -331,29 +351,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "vicinae": {
-      "inputs": {
-        "nixpkgs": [
-          "dev-nixpkgs"
-        ],
-        "systems": [
-          "dev-systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780277152,
-        "narHash": "sha256-P3YrDLnggsMsSoiX/ox3CS6GkZtY37XQVon/QR6Agw8=",
-        "owner": "vicinaehq",
-        "repo": "vicinae",
-        "rev": "67290dff5b2191a6cb6dd78b31d623eeef3acdec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vicinaehq",
-        "repo": "vicinae",
         "type": "github"
       }
     },

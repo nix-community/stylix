@@ -25,6 +25,18 @@
     github = "cluther";
     githubId = 86579;
   };
+  csanthiago = {
+    name = "Cirios Santhiago";
+    email = "git@csanthiago.dev";
+    github = "csanthiago";
+    githubId = 8346803;
+  };
+  cswimr = {
+    name = "cswimr";
+    email = "cswimr@csw.im";
+    github = "cswimr";
+    githubId = 102361830;
+  };
   erina = {
     email = "erinayip@outlook.com";
     name = "erina";
@@ -88,6 +100,13 @@
     name = "jamie";
     github = "skiletro";
     githubId = 19377854;
+  };
+  thbemme = {
+    email = "thomas.bemme@googlemail.com";
+    github = "thbemme";
+    githubId = 14074615;
+    matrix = "@riza:chaos.jetzt";
+    name = "Thomas Bemme";
   };
   vidhanio = {
     email = "me@vidhan.io";
