@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   stylix.testbed.ui.command = {
     text = "hx flake-parts/flake.nix";
     useTerminal = true;

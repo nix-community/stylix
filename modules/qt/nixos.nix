@@ -52,12 +52,9 @@ mkTarget {
         };
       }
     )
-    (
-      { polarity }:
-      {
-        stylix.targets.qt._recommendedGnome =
-          if polarity == "dark" then "adwaita-dark" else "adwaita";
-      }
-    )
+    ({ polarity }: {
+      stylix.targets.qt._recommendedGnome =
+        if polarity == "dark" then "adwaita-dark" else "adwaita";
+    })
   ];
 }

@@ -19,9 +19,7 @@ mkTarget {
     })
   ];
 
-  config =
-    { image }:
-    {
-      services.xserver.displayManager.lightdm.background = image;
-    };
+  config = { image }: {
+    services.xserver.displayManager.lightdm.background = image;
+  };
 }

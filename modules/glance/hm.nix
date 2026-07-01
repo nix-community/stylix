@@ -1,12 +1,7 @@
 { mkTarget, lib, ... }:
 mkTarget {
   config = [
-    (
-      { polarity }:
-      {
-        services.glance.settings.theme.light = polarity == "light";
-      }
-    )
+    ({ polarity }: { services.glance.settings.theme.light = polarity == "light"; })
     (
       { colors }:
       let

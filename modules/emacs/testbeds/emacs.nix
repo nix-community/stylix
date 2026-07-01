@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   stylix.testbed.ui.command.text = "emacs flake-parts/flake.nix";
 
   home-manager.sharedModules = lib.singleton {

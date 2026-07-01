@@ -149,7 +149,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
-        gitignore.follows = "";
         nixpkgs.follows = "dev-nixpkgs";
       };
     };
@@ -170,13 +169,7 @@
 
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs = {
-        nixpkgs.follows = "dev-nixpkgs";
-        noctalia-qs.inputs = {
-          systems.follows = "dev-systems";
-          treefmt-nix.follows = "treefmt-nix";
-        };
-      };
+      inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
     nvf = {

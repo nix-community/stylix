@@ -1,8 +1,2 @@
 { mkTarget, ... }:
-mkTarget {
-  config =
-    { fonts }:
-    {
-      home = { inherit (fonts) packages; };
-    };
-}
+mkTarget { config = { fonts }: { home = { inherit (fonts) packages; }; }; }

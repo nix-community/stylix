@@ -7,29 +7,23 @@ mkTarget {
   };
 
   config = [
-    (
-      { opacity }:
-      {
-        stylix.targets.wob._opacity = lib.fixedWidthString 2 "0" (
-          lib.toHexString (builtins.floor (opacity.popups * 255 + 0.5))
-        );
-      }
-    )
+    ({ opacity }: {
+      stylix.targets.wob._opacity = lib.fixedWidthString 2 "0" (
+        lib.toHexString (builtins.floor (opacity.popups * 255 + 0.5))
+      );
+    })
 
-    (
-      { cfg, colors }:
-      {
-        services.wob.settings = {
-          "" = with colors; rec {
-            border_color = base05 + cfg._opacity;
-            background_color = base00 + cfg._opacity;
-            bar_color = base0A;
-            overflow_bar_color = base08;
-            overflow_background_color = background_color;
-            overflow_border_color = border_color;
-          };
+    ({ cfg, colors }: {
+      services.wob.settings = {
+        "" = with colors; rec {
+          border_color = base05 + cfg._opacity;
+          background_color = base00 + cfg._opacity;
+          bar_color = base0A;
+          overflow_bar_color = base08;
+          overflow_background_color = background_color;
+          overflow_border_color = border_color;
         };
-      }
-    )
+      };
+    })
   ];
 }
