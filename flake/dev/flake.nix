@@ -202,14 +202,6 @@
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs = {
-        nixpkgs.follows = "dev-nixpkgs";
-        systems.follows = "dev-systems";
-      };
-    };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {

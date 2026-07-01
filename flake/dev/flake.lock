@@ -308,7 +308,6 @@
         "nvf": "nvf",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix",
-        "vicinae": "vicinae",
         "zen-browser": "zen-browser"
       }
     },
@@ -352,29 +351,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "vicinae": {
-      "inputs": {
-        "nixpkgs": [
-          "dev-nixpkgs"
-        ],
-        "systems": [
-          "dev-systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780277152,
-        "narHash": "sha256-P3YrDLnggsMsSoiX/ox3CS6GkZtY37XQVon/QR6Agw8=",
-        "owner": "vicinaehq",
-        "repo": "vicinae",
-        "rev": "67290dff5b2191a6cb6dd78b31d623eeef3acdec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vicinaehq",
-        "repo": "vicinae",
         "type": "github"
       }
     },
