@@ -154,6 +154,14 @@
       };
     };
 
+    glide = {
+      url = "github:glide-browser/glide.nix";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "dev-nixpkgs";

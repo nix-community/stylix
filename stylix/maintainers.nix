@@ -108,5 +108,11 @@
     github = "vidhanio";
     githubId = 41439633;
   };
+  zeal = {
+    email = "zzzealed@proton.me";
+    name = "Mads Jensen";
+    github = "zzzealed";
+    githubId = 108904280;
+  };
   # keep-sorted end
 }
