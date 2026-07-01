@@ -12,31 +12,8 @@
     systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
-    base16-fish = {
-      # Lock the base16-fish input to a custom patchset that cherry-picks
-      # pending patches [2], since it is currently impossible to apply patches
-      # to flake inputs [1] ("Support flake references to patches").
-      #
-      # [1]: https://github.com/NixOS/nix/issues/3920
-      # [2]: https://github.com/tomyun/base16-fish/pull/16
-      url = "github:tomyun/base16-fish/86cbea4dca62e08fb7fd83a70e96472f92574782";
-      flake = false;
-    };
-
     base16-helix = {
       url = "github:tinted-theming/base16-helix";
-      flake = false;
-    };
-
-    base16-vim = {
-      # TODO: Unlock this input once [1] ("Seemingly bad parsing of whitespace
-      # in abbreviated lists (affecting stylix's handling of base16-vim)") is
-      # resolved, preventing us from fetching commit [2] ("fix(theme): Remove
-      # illegal style attributes").
-      #
-      # [1]: https://github.com/SenchoPens/fromYaml/issues/1
-      # [2]: https://github.com/tinted-theming/tinted-vim/commit/0508601eff146db2537eff23e93dd0c543914896
-      url = "github:tinted-theming/base16-vim/577fe8125d74ff456cf942c733a85d769afe58b7";
       flake = false;
     };
 
@@ -53,14 +30,6 @@
       # https://github.com/nix-community/stylix/pull/224#discussion_r1460339607.
       url = "github:GNOME/gnome-shell/ef02db02bf0ff342734d525b5767814770d85b49";
       flake = false;
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
     };
 
     tinted-kitty = {
