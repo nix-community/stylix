@@ -75,6 +75,8 @@ $active_fg_color: #{{base05-hex}};
 
 $accent_borders_color: transparentize(#{{base0D-hex}}, 0.5);
 
+$card_insensitive_fg_color: if($variant =='light', darken($insensitive_fg_color, 5%), lighten($insensitive_fg_color, 9%));
+
 // Other required variables
 
 $_base_color_light: #{{base00-hex}}; // Foreground color of screen sharing/recording indicator
