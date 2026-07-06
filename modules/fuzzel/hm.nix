@@ -25,7 +25,7 @@ mkTarget {
           selection-text = "${base05-hex}ff";
           selection-match = "${base0A-hex}ff";
           counter = "${base06-hex}ff";
-          border = "${base0D-hex}ff";
+          border = "${accent-hex}ff";
         };
       }
     )
