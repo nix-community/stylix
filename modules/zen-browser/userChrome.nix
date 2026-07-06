@@ -3,11 +3,11 @@ with colors;
 ''
   :root {
     --zen-colors-primary: #${base02-hex} !important;
-    --zen-primary-color: #${base0D-hex} !important;
+    --zen-primary-color: #${accent-hex} !important;
     --zen-colors-secondary: #${base02-hex} !important;
     --zen-colors-tertiary: #${base01-hex} !important;
-    --zen-colors-border: #${base0D-hex} !important;
-    --toolbarbutton-icon-fill: #${base0D-hex} !important;
+    --zen-colors-border: #${accent-hex} !important;
+    --toolbarbutton-icon-fill: #${accent-hex} !important;
     --lwt-text-color: #${base05-hex} !important;
     --toolbar-field-color: #${base05-hex} !important;
     --tab-selected-textcolor: #${base05-hex} !important;
@@ -36,7 +36,7 @@ with colors;
   }
 
   #historySwipeAnimationPreviousArrow,#historySwipeAnimationNextArrow {
-    --swipe-nav-icon-primary-color: #${base0D-hex} !important;
+    --swipe-nav-icon-primary-color: #${accent-hex} !important;
     --swipe-nav-icon-accent-color: #${base00-hex} !important;
   }
 
@@ -58,15 +58,15 @@ with colors;
 
   .content-shortcuts {
     background-color: #${base00-hex}${opacityHex} !important;
-    border-color: #${base0D-hex} !important;
+    border-color: #${accent-hex} !important;
   }
 
   .urlbarView-url {
-    color: #${base0D-hex} !important;
+    color: #${accent-hex} !important;
   }
 
   #urlbar-input::selection {
-    background-color: #${base0D-hex} !important;
+    background-color: #${accent-hex} !important;
     color: #${base00-hex} !important;
   }
 
@@ -96,8 +96,8 @@ with colors;
   }
 
   .identity-color-blue {
-    --identity-tab-color: #${base0D-hex} !important;
-    --identity-icon-color: #${base0D-hex} !important;
+    --identity-tab-color: #${accent-hex} !important;
+    --identity-icon-color: #${accent-hex} !important;
   }
 
   .identity-color-turquoise {

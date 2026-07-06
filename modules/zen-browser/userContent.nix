@@ -5,9 +5,9 @@ with colors;
   @-moz-document url-prefix("about:") {
     :root {
       --in-content-page-color: #${base05-hex} !important;
-      --color-accent-primary: #${base0D-hex} !important;
-      --color-accent-primary-hover: #${base0D-hex} !important;
-      --color-accent-primary-active: #${base0D-hex} !important;
+      --color-accent-primary: #${accent-hex} !important;
+      --color-accent-primary-hover: #${accent-hex} !important;
+      --color-accent-primary-active: #${accent-hex} !important;
       background-color: #${base00-hex}${opacityHex} !important;
       --in-content-page-background: #${base00-hex}${opacityHex} !important;
       --background-color-canvas: #${base00-hex}${opacityHex} !important;
@@ -27,11 +27,11 @@ with colors;
       --newtab-element-hover-color: #${base02-hex} !important;
       --newtab-text-primary-color: #${base05-hex} !important;
       --newtab-wordmark-color: #${base05-hex} !important;
-      --newtab-primary-action-background: #${base0D-hex}${opacityHex} !important;
+      --newtab-primary-action-background: #${accent-hex}${opacityHex} !important;
     }
 
     .icon {
-      color: #${base0D-hex} !important;
+      color: #${accent-hex} !important;
     }
 
     .search-wrapper .logo-and-wordmark .logo {
@@ -50,11 +50,11 @@ with colors;
     }
 
     .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-      color: #${base0D-hex} !important;
+      color: #${accent-hex} !important;
     }
 
     .top-site-outer .search-topsite {
-      background-color: #${base0D-hex}${opacityHex} !important;
+      background-color: #${accent-hex}${opacityHex} !important;
     }
 
     .compact-cards .card-outer .card-context .card-context-icon.icon-download {
@@ -71,7 +71,7 @@ with colors;
       --link-color-hover: #${base0D-hex} !important;
       --zen-colors-primary: #${base02-hex}${opacityHex} !important;
       --in-content-box-background: #${base02-hex}${opacityHex} !important;
-      --zen-primary-color: #${base0D-hex}${opacityHex} !important;
+      --zen-primary-color: #${accent-hex}${opacityHex} !important;
     }
 
     groupbox , moz-card{
@@ -89,8 +89,8 @@ with colors;
     }
 
     .identity-color-blue {
-      --identity-tab-color: #${base0D-hex} !important;
-      --identity-icon-color: #${base0D-hex} !important;
+      --identity-tab-color: #${accent-hex} !important;
+      --identity-icon-color: #${accent-hex} !important;
     }
 
     .identity-color-turquoise {
@@ -142,7 +142,7 @@ with colors;
     :root {
       --zen-primary-color: #${base00-hex}${opacityHex} !important;
       --social-color: #${base0E-hex} !important;
-      --coockie-color: #${base0D-hex} !important;
+      --coockie-color: #${accent-hex} !important;
       --fingerprinter-color: #${base0A-hex} !important;
       --cryptominer-color: #${base0F-hex} !important;
       --tracker-color: #${base0B-hex} !important;
