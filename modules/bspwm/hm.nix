@@ -6,7 +6,7 @@ mkTarget {
       xsession.windowManager.bspwm.settings = with colors.withHashtag; {
         normal_border_color = base03;
         active_border_color = base0C;
-        focused_border_color = base0D;
+        focused_border_color = accent;
         presel_feedback_color = base00;
       };
     };
