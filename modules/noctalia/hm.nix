@@ -19,7 +19,7 @@ mkTarget {
           };
 
           customPalettes.${theme}.dark = with colors.withHashtag; {
-            mPrimary = base0D;
+            mPrimary = accent;
             mOnPrimary = base00;
             mSecondary = base0E;
             mOnSecondary = base00;
