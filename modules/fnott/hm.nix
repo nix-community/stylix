@@ -40,7 +40,7 @@ mkTarget {
             };
 
             low.border-color = fg base03;
-            normal.border-color = fg base0D;
+            normal.border-color = fg accent;
             critical.border-color = fg base08;
           };
       }
