@@ -144,6 +144,12 @@ in
       default = { };
     };
 
+    accentColor = lib.mkOption {
+      type = lib.types.str;
+      default = "base0D";
+      description = "The accent color used in stylix";
+    };
+
     paletteGenerator = lib.mkOption {
       description = "The palette generator executable.";
       type = lib.types.package;
@@ -167,7 +173,24 @@ in
   config = {
     # This attrset can be used like a function too, see
     # https://github.com/SenchoPens/base16.nix/blob/b390e87cd404e65ab4d786666351f1292e89162a/README.md#theme-step-22
-    lib.stylix.colors = (cfg.base16.mkSchemeAttrs cfg.base16Scheme).override cfg.override;
+    lib.stylix.colors =
+      let
+        scheme = (cfg.base16.mkSchemeAttrs cfg.base16Scheme).override cfg.override;
+        accent = scheme.${cfg.accentColor};
+        accentVariant = var: scheme."${cfg.accentColor}-${var}";
+      in
+      scheme
+      // {
+        inherit accent;
+        accent-hex = accent;
+        accent-rgb-r = accentVariant "rgb-r";
+        accent-rgb-g = accentVariant "rgb-g";
+        accent-rgb-b = accentVariant "rgb-b";
+        withHashtag = scheme.withHashtag // {
+          accent = "#${accent}";
+          accent-hex = "#${accent}";
+        };
+      };
 
     stylix.generated.fileTree = {
       # The raw output of the palette generator.
