@@ -28,14 +28,14 @@ mkTarget {
               emphasis_0 = base08;
               emphasis_1 = base09;
               emphasis_2 = base0F;
-              emphasis_3 = base0D;
+              emphasis_3 = accent;
             };
             ribbon_unselected = {
               base = base05;
               background = base02;
               emphasis_0 = base08;
               emphasis_1 = base05;
-              emphasis_2 = base0D;
+              emphasis_2 = accent;
               emphasis_3 = base0F;
             };
             table_title = {
@@ -100,7 +100,7 @@ mkTarget {
               emphasis_0 = base0C;
               emphasis_1 = base01;
               emphasis_2 = base0F;
-              emphasis_3 = base0D;
+              emphasis_3 = accent;
             };
             exit_code_error = {
               base = base08;
@@ -112,7 +112,7 @@ mkTarget {
             };
             multiplayer_user_colors = {
               player_1 = base0F;
-              player_2 = base0D;
+              player_2 = accent;
               player_3 = base00;
               player_4 = base0A;
               player_5 = base0C;
