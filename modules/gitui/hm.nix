@@ -20,9 +20,9 @@ mkTarget {
             diff_file_modified: Some("${base09}"),
             commit_hash: Some("${base07}"),
             commit_time: Some("${base05}"),
-            commit_author: Some("${base0D}"),
+            commit_author: Some("${accent}"),
             danger_fg: Some("${base08}"),
-            push_gauge_bg: Some("${base0D}"),
+            push_gauge_bg: Some("${accent}"),
             push_gauge_fg: Some("${base00}"),
             tag_fg: Some("${base06}"),
             branch_fg: Some("${base0C}")
