@@ -2,10 +2,7 @@
 {
   name = "VSCode";
   homepage = "https://code.visualstudio.com";
-  maintainers = with lib.maintainers; [
-    Flameopathic
-    danth
-  ];
+  maintainers = with lib.maintainers; [ Flameopathic ];
   description = ''
     When theming is enabled for VSCode, Stylix will create and apply its own
     VSCode theme, as well as configure settings concerning fonts.

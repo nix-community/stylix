@@ -8,7 +8,6 @@
   };
   maintainers = with lib.maintainers; [
     Flameopathic
-    danth
     noahbiewesch
   ];
   description = ''
