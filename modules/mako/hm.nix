@@ -19,7 +19,7 @@ mkTarget {
           {
             settings = {
               background-color = base00 + makoOpacity;
-              border-color = base0D;
+              border-color = accent;
               text-color = base05;
               progress-color = "over ${base02}";
 
