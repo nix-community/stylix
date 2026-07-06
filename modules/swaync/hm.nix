@@ -27,6 +27,7 @@ mkTarget {
             @define-color base0A ${base0A}; @define-color base0B ${base0B};
             @define-color base0C ${base0C}; @define-color base0D ${base0D};
             @define-color base0E ${base0E}; @define-color base0F ${base0F};
+            @define-color accent ${accent};
           ''
           + (builtins.readFile ./base.css);
       }
