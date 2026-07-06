@@ -16,7 +16,7 @@ mkTarget {
       {
         programs.noctalia-shell = {
           colors = with colors.withHashtag; {
-            mPrimary = base0D;
+            mPrimary = accent;
             mOnPrimary = base00;
             mSecondary = base0E;
             mOnSecondary = base00;
