@@ -85,7 +85,7 @@ mkTarget {
             core.background_color = rgb colors.base00;
 
             decoration = {
-              active_color = rgb colors.base0D;
+              active_color = rgb colors.accent;
               inactive_color = rgb colors.base03;
             };
           };
