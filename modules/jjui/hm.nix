@@ -11,7 +11,7 @@ mkTarget {
         text.bg = base00;
         dimmed.fg = base03;
         dimmed.bg = base00;
-        title.fg = base0D;
+        title.fg = accent;
         title.bold = true;
         shortcut.fg = base0E;
         matched.fg = base0A;
@@ -36,12 +36,12 @@ mkTarget {
         status.bg = base01;
         "status title" = {
           fg = base00;
-          bg = base0D;
+          bg = accent;
           bold = true;
         };
 
         "revset title" = {
-          fg = base0D;
+          fg = accent;
           bg = lib.mkIf (polarity != "dark") base01;
           bold = true;
         };
@@ -93,7 +93,7 @@ mkTarget {
         "preview border".fg = base01;
 
         confirmation.bg = base00;
-        "confirmation text".fg = base0D;
+        "confirmation text".fg = accent;
         "confirmation text".bold = true;
         "confirmation dimmed".fg = base03;
         "confirmation border".fg = base08;
@@ -121,7 +121,7 @@ mkTarget {
         "completion selected".bold = true;
         rebase.bold = true;
 
-        workspace.fg = base0D;
+        workspace.fg = accent;
         branch.fg = base09;
         commit.fg = base0B;
         file.fg = base0A;
