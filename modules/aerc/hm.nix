@@ -38,7 +38,7 @@ mkTarget {
               "msglist_flagged.bold" = true;
               "msglist_marked.bold" = true;
               "msglist_marked.reverse" = true;
-              "msglist_result.fg" = base0D;
+              "msglist_result.fg" = accent;
               "msglist_result.bold" = true;
               "msglist_pill.bg" = base01;
 
@@ -80,8 +80,8 @@ mkTarget {
               "signature.dim" = true;
 
               "diff_meta.bold" = true;
-              "diff_chunk.fg" = base0D;
-              "diff_chunk_func.fg" = base0D;
+              "diff_chunk.fg" = accent;
+              "diff_chunk_func.fg" = accent;
               "diff_chunk_func.bold" = true;
               "diff_add.fg" = base0B;
               "diff_del.fg" = base08;
