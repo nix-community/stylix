@@ -18,8 +18,8 @@ mkTarget {
             colors = {
               ACCENT_CARD = [
                 "Card mode"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--accent-card"
               ];
               ACCENT_DANGER = [
@@ -42,8 +42,8 @@ mkTarget {
               ];
               BORDER_FOCUS = [
                 "Border (focused input)"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--border-focus"
               ];
               BORDER_STRONG = [
@@ -87,26 +87,26 @@ mkTarget {
               ];
               BUTTON_PRIMARY_BG = [
                 "Button Primary Bg"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--button-primary-bg"
               ];
               BUTTON_PRIMARY_DISABLED = [
                 "Button Primary Disabled"
-                "${colors.withHashtag.base0D}80"
-                "${colors.withHashtag.base0D}80"
+                "${colors.withHashtag.accent}80"
+                "${colors.withHashtag.accent}80"
                 "--button-primary-disabled"
               ];
               BUTTON_PRIMARY_GRADIENT_END = [
                 "Button Primary Gradient End"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--button-primary-gradient-end"
               ];
               BUTTON_PRIMARY_GRADIENT_START = [
                 "Button Primary Gradient Start"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--button-primary-gradient-start"
               ];
               CANVAS = [
@@ -275,8 +275,8 @@ mkTarget {
               ];
               SHADOW_FOCUS = [
                 "Shadow (focused input)"
-                colors.withHashtag.base0D
-                colors.withHashtag.base0D
+                colors.withHashtag.accent
+                colors.withHashtag.accent
                 "--shadow-focus"
               ];
               SHADOW_INSET = [
