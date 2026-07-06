@@ -33,8 +33,8 @@ mkTarget {
             urgency_normal = {
               background = base01 + dunstOpacity;
               foreground = base05;
-              frame_color = base0D;
-              highlight = base0D;
+              frame_color = accent;
+              highlight = accent;
             };
 
             urgency_critical = {
