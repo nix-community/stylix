@@ -2,5 +2,5 @@
 {
   name = "Chromium";
   homepage = "https://www.chromium.org";
-  maintainers = [ ];
+  maintainers = [ lib.maintainers.eveeifyeve ];
 }
