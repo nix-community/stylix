@@ -6,8 +6,6 @@
   ...
 }:
 mkTarget {
-  name = "ptyxis";
-  humanName = "Ptyxis";
   options = {
     profileUUIDs = lib.mkOption {
       description = "Ptyxis UUIDs to apply styling on";
