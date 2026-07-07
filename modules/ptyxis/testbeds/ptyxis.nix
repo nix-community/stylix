@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 let
   package = pkgs.ptyxis;
+  uuid = "00000000000000000000000000000000";
 in
 {
   stylix.testbed.ui.application = {
@@ -14,10 +15,10 @@ in
       inherit package;
     };
 
-    stylix.targets.ptyxis.profileUUIDs = [ "00000000-0000-0000-0000-000000000000" ];
+    stylix.targets.ptyxis.profileUUIDs = [ uuid ];
 
     dconf.settings."org/gnome/Ptyxis" = {
-      profile-uuids = [ "00000000-0000-0000-0000-000000000000" ];
+      profile-uuids = [ uuid ];
     };
   };
 }
