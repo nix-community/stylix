@@ -29,59 +29,47 @@ mkTarget {
   };
 
   config = lib.optionals (options.programs ? zen-browser) [
-    (
-      { cfg }:
-      {
-        warnings =
-          lib.optional (config.programs.zen-browser.enable && cfg.profileNames == [ ])
-            ''stylix: zen-browser: `config.stylix.targets.zen-browser.profileNames` is not set. Declare profile names with 'config.stylix.targets.zen-browser.profileNames = [ "<PROFILE_NAME>" ];'.'';
-      }
-    )
-    (
-      { opacity }:
-      {
-        stylix.targets.zen-browser.opacityHex = lib.toHexString (
-          builtins.ceil (opacity.applications * 255)
-        );
-      }
-    )
-    (
-      { cfg, fonts }:
-      {
-        programs.zen-browser.profiles = lib.genAttrs cfg.profileNames (_: {
-          settings = {
-            "font.name.monospace.x-western" = fonts.monospace.name;
-            "font.name.sans-serif.x-western" = fonts.sansSerif.name;
-            "font.name.serif.x-western" = fonts.serif.name;
-          };
-        });
-      }
-    )
+    ({ cfg }: {
+      warnings =
+        lib.optional (config.programs.zen-browser.enable && cfg.profileNames == [ ])
+          ''stylix: zen-browser: `config.stylix.targets.zen-browser.profileNames` is not set. Declare profile names with 'config.stylix.targets.zen-browser.profileNames = [ "<PROFILE_NAME>" ];'.'';
+    })
+    ({ opacity }: {
+      stylix.targets.zen-browser.opacityHex = lib.toHexString (
+        builtins.ceil (opacity.applications * 255)
+      );
+    })
+    ({ cfg, fonts }: {
+      programs.zen-browser.profiles = lib.genAttrs cfg.profileNames (_: {
+        settings = {
+          "font.name.monospace.x-western" = fonts.monospace.name;
+          "font.name.sans-serif.x-western" = fonts.sansSerif.name;
+          "font.name.serif.x-western" = fonts.serif.name;
+        };
+      });
+    })
     (import ../firefox/reader-mode.nix {
       inherit lib;
       name = "zen-browser";
     })
-    (
-      { cfg, colors }:
-      {
-        programs.zen-browser.profiles = lib.mkIf cfg.enableCss (
-          lib.genAttrs cfg.profileNames (_: {
-            settings = {
-              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            };
+    ({ cfg, colors }: {
+      programs.zen-browser.profiles = lib.mkIf cfg.enableCss (
+        lib.genAttrs cfg.profileNames (_: {
+          settings = {
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          };
 
-            userChrome = import ./userChrome.nix {
-              inherit colors;
-              inherit (cfg) opacityHex;
-            };
+          userChrome = import ./userChrome.nix {
+            inherit colors;
+            inherit (cfg) opacityHex;
+          };
 
-            userContent = import ./userContent.nix {
-              inherit colors;
-              inherit (cfg) opacityHex;
-            };
-          })
-        );
-      }
-    )
+          userContent = import ./userContent.nix {
+            inherit colors;
+            inherit (cfg) opacityHex;
+          };
+        })
+      );
+    })
   ];
 }

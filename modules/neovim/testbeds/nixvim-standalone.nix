@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+{ config, lib, ... }: {
   stylix.testbed.ui.command = {
     text = "nvim flake-parts/flake.nix";
     useTerminal = true;

@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   # Declare the arbitrarily named __stub attribute to allow modules to evaluate
   # 'options.programs ? «OPTION»'.
   #

@@ -12,21 +12,15 @@ mkTarget {
   };
 
   config = [
-    (
-      { fonts }:
-      {
-        programs.kitty.font = {
-          inherit (fonts.monospace) package name;
-          size = fonts.sizes.terminal;
-        };
-      }
-    )
-    (
-      { opacity }:
-      {
-        programs.kitty.settings.background_opacity = toString opacity.terminal;
-      }
-    )
+    ({ fonts }: {
+      programs.kitty.font = {
+        inherit (fonts.monospace) package name;
+        size = fonts.sizes.terminal;
+      };
+    })
+    ({ opacity }: {
+      programs.kitty.settings.background_opacity = toString opacity.terminal;
+    })
     (
       {
         cfg,

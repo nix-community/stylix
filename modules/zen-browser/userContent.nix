@@ -1,5 +1,4 @@
-{ colors, opacityHex }:
-with colors;
+{ colors, opacityHex }: with colors;
 ''
   /* Common variables affecting all pages */
   @-moz-document url-prefix("about:") {

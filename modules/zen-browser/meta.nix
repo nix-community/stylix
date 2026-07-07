@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Zen Browser";
   homepage = "https://zen-browser.app";
   maintainers = with lib.maintainers; [
