@@ -9,7 +9,7 @@ mkTarget {
   name = "ptyxis";
   humanName = "Ptyxis";
   options = {
-    profileUUIDs = {
+    profileUUIDs = lib.mkOption {
       description = "Ptyxis UUIDs to apply styling on";
       type = lib.types.listOf lib.types.str;
       default = [ ];
@@ -22,7 +22,13 @@ mkTarget {
       {
         warnings =
           lib.optional (config.programs.ptyxis.enable && cfg.profileUUIDs == [ ])
-            ''stylix: ptyxis: `config.stylix.targets.ptyxis.profileUUIDs` is not set. Declare profile UUIDs with `config.stylix.targets.ptyxis.profileUUIDs = ["<UUID>"]`.'';
+            ''stylix: ptyxis: `config.stylix.targets.ptyxis.profileUUIDs` is not set. Declare profile UUIDs with `config.stylix.targets.ptyxis.profileUUIDs = ["<UUID>"]`. First listed profile will be set as default if not overwritten.'';
+
+        dconf.settings = lib.mkIf (cfg.profileUUIDs != [ ]) {
+          "org/gnome/Ptyxis".default-profile-uuid = lib.mkDefault (
+            lib.head cfg.profileUUIDs
+          );
+        };
       }
     )
     (
@@ -53,9 +59,9 @@ mkTarget {
       { opacity, cfg }:
       {
         dconf.settings =
-          lib.genAttrs (map (uuid: "org/gnome/Ptyxis/Profiles/${uuid}/") cfg.profileUUIDs)
+          lib.genAttrs (map (uuid: "org/gnome/Ptyxis/Profiles/${uuid}") cfg.profileUUIDs)
             (_: {
-              opacity = opacity.terminal;
+              opacity = lib.hm.gvariant.mkDouble opacity.terminal;
             });
       }
     )
@@ -63,7 +69,7 @@ mkTarget {
       { colors, cfg }:
       {
         dconf.settings =
-          lib.genAttrs (map (uuid: "org/gnome/Ptyxis/Profiles/${uuid}/") cfg.profileUUIDs)
+          lib.genAttrs (map (uuid: "org/gnome/Ptyxis/Profiles/${uuid}") cfg.profileUUIDs)
             (_: {
               palette = "stylix";
             });

@@ -4,14 +4,21 @@ let
 in
 {
   stylix.testbed.ui.application = {
-    name = "ptyxis";
+    name = "org.gnome.Ptyxis";
     inherit package;
   };
 
   home-manager.sharedModules = lib.singleton {
-    programs.foot = {
+    programs.ptyxis = {
       enable = true;
       inherit package;
+    };
+
+    stylix.targets.ptyxis.profileUUIDs = [ "00000000-0000-0000-0000-000000000000" ];
+
+    dconf.settings."org/gnome/Ptyxis" = {
+      default-profile-uuid = "00000000-0000-0000-0000-000000000000";
+      profile-uuids = [ "00000000-0000-0000-0000-000000000000" ];
     };
   };
 }
