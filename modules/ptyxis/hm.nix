@@ -34,9 +34,7 @@ mkTarget {
         colorTheme = if polarity == "either" then "system" else polarity;
       in
       {
-        dconf.settings = {
-          "org/gnome/Ptyxis" = {
-            interface-style = colorTheme;
+        dconf.settings."org/gnome/Ptyxis".interface-style = colorTheme;
           };
         };
       }
