@@ -22,7 +22,7 @@ mkTarget {
       {
         warnings =
           lib.optional (config.programs.ptyxis.enable && cfg.profileUUIDs == [ ])
-            ''stylix: ptyxis: `config.stylix.targets.ptyxis.profileUUIDs` is not set. Declare profile UUIDs with `config.stylix.targets.ptyxis.profileUUIDs = ["<UUID>"]`. First listed profile will be set as default if not overwritten.'';
+            ''stylix: ptyxis: `config.stylix.targets.ptyxis.profileUUIDs` is not set. Declare profile UUIDs with `config.stylix.targets.ptyxis.profileUUIDs = [ "<UUID>" ];`.'';
 
         dconf.settings = lib.mkIf (cfg.profileUUIDs != [ ]) {
           "org/gnome/Ptyxis".default-profile-uuid = lib.head cfg.profileUUIDs;
