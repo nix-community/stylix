@@ -6,8 +6,7 @@
   ...
 }:
 mkTarget {
-  options = {
-    profileUUIDs = lib.mkOption {
+  options.profileUUIDs = lib.mkOption {
       description = "Ptyxis UUIDs to apply styling on";
       type = lib.types.listOf lib.types.str;
       default = [ ];
