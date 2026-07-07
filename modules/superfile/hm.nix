@@ -2,7 +2,7 @@
 mkTarget {
   config = [
     (
-      { colors, polarity }:
+      { colors, ... }:
       {
         programs.superfile =
           let
@@ -11,9 +11,7 @@ mkTarget {
           {
             settings.theme = "stylix";
             themes.${theme} = {
-              code_syntax_highlight = "tokyonight-${
-                if polarity == "dark" then "night" else "day"
-              }";
+              code_syntax_highlight = "stylix";
               full_screen_fg = colors.withHashtag.base05;
               full_screen_bg = colors.withHashtag.base00;
               gradient_color = [
