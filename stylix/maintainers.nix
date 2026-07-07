@@ -100,13 +100,6 @@
     github = "skiletro";
     githubId = 19377854;
   };
-  thbemme = {
-    email = "thomas.bemme@googlemail.com";
-    github = "thbemme";
-    githubId = 14074615;
-    matrix = "@riza:chaos.jetzt";
-    name = "Thomas Bemme";
-  };
   vidhanio = {
     email = "me@vidhan.io";
     name = "Vidhan Bhatt";

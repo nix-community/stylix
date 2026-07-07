@@ -270,7 +270,7 @@
     name = "jamie";
   };
   thbemme = {
-    email = "thomas.bemme@googlemail.com";
+    email = "thomas.bemme@gmail.com";
     github = "thbemme";
     githubId = 14074615;
     matrix = "@riza:chaos.jetzt";
