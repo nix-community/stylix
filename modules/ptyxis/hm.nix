@@ -44,8 +44,7 @@ mkTarget {
     (
       { fonts }:
       {
-        dconf.settings = {
-          "org/gnome/Ptyxis" = {
+        dconf.settings."org/gnome/Ptyxis" = {
             use-system-font = false;
             font-name = "${fonts.monospace.name} ${toString fonts.sizes.terminal}";
           };
