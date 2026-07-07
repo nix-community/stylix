@@ -17,7 +17,6 @@ in
     stylix.targets.ptyxis.profileUUIDs = [ "00000000-0000-0000-0000-000000000000" ];
 
     dconf.settings."org/gnome/Ptyxis" = {
-      default-profile-uuid = "00000000-0000-0000-0000-000000000000";
       profile-uuids = [ "00000000-0000-0000-0000-000000000000" ];
     };
   };

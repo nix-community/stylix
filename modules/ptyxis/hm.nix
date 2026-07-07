@@ -10,6 +10,10 @@ mkTarget {
       description = "Ptyxis UUIDs to apply styling on.";
       type = lib.types.listOf lib.types.str;
       default = [ ];
+      example = [
+        "91e845fc983d56328bcae7a46a4519c6"
+        "93e38c6d643164750bcfa0ad6a4d270a"
+      ];
     };
   };
 
@@ -22,9 +26,7 @@ mkTarget {
             ''stylix: ptyxis: `config.stylix.targets.ptyxis.profileUUIDs` is not set. Declare profile UUIDs with `config.stylix.targets.ptyxis.profileUUIDs = ["<UUID>"]`. First listed profile will be set as default if not overwritten.'';
 
         dconf.settings = lib.mkIf (cfg.profileUUIDs != [ ]) {
-          "org/gnome/Ptyxis".default-profile-uuid = lib.mkDefault (
-            lib.head cfg.profileUUIDs
-          );
+          "org/gnome/Ptyxis".default-profile-uuid = lib.head cfg.profileUUIDs;
         };
       }
     )
@@ -61,16 +63,19 @@ mkTarget {
     )
     (
       { colors, cfg }:
+      let
+        palette = "stylix";
+      in
       {
         dconf.settings =
           lib.genAttrs (map (uuid: "org/gnome/Ptyxis/Profiles/${uuid}") cfg.profileUUIDs)
             (_: {
-              palette = "stylix";
+              inherit palette;
             });
 
         xdg.dataFile."org.gnome.Ptyxis/palettes/stylix.palette".text = ''
           [Palette]
-          Name=Stylix
+          Name=${palette}
 
           [Light]
           Foreground=#${colors.base05-hex}
