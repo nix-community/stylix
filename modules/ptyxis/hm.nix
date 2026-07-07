@@ -1,5 +1,5 @@
-{ mkTarget, ... }:
 {
+  mkTarget,
   lib,
   pkgs,
   config,
@@ -7,14 +7,13 @@
 }:
 mkTarget {
   options.profileUUIDs = lib.mkOption {
-      description = "Ptyxis UUIDs to apply styling on.";
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      example = [
-        "91e845fc983d56328bcae7a46a4519c6"
-        "93e38c6d643164750bcfa0ad6a4d270a"
-      ];
-    };
+    description = "Ptyxis UUIDs to apply styling on.";
+    type = lib.types.listOf lib.types.str;
+    default = [ ];
+    example = [
+      "91e845fc983d56328bcae7a46a4519c6"
+      "93e38c6d643164750bcfa0ad6a4d270a"
+    ];
   };
 
   config = [
@@ -37,17 +36,14 @@ mkTarget {
       in
       {
         dconf.settings."org/gnome/Ptyxis".interface-style = colorTheme;
-          };
-        };
       }
     )
     (
       { fonts }:
       {
         dconf.settings."org/gnome/Ptyxis" = {
-            use-system-font = false;
-            font-name = "${fonts.monospace.name} ${toString fonts.sizes.terminal}";
-          };
+          use-system-font = false;
+          font-name = "${fonts.monospace.name} ${toString fonts.sizes.terminal}";
         };
       }
     )
