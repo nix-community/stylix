@@ -5,6 +5,11 @@
   ...
 }:
 mkTarget {
+  autoEnable =
+    lib.warnIf (lib.oldestSupportedReleaseIsAtLeast 2705)
+      "stylix: `config.stylix.targets.noctalia-shell` targets the deprecated Noctalia v4 and is replaced by Noctalia v5 with `config.stylix.targets.noctalia`, with `config.stylix.targets.noctalia-shell` being removed after 27.11."
+      true;
+
   config = lib.optionals (options.programs ? noctalia-shell) [
     (
       { colors }:

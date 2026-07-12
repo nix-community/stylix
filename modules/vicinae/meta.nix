@@ -2,5 +2,8 @@
 {
   name = "Vicinae";
   homepage = "https://docs.vicinae.com";
-  maintainers = [ lib.maintainers.da157 ];
+  maintainers = with lib.maintainers; [
+    cswimr
+    da157
+  ];
 }

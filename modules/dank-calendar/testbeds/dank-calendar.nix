@@ -2,13 +2,11 @@
 {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
-    command.text = "sleep 5 && vicinae open";
+    command.text = "dcal";
+    sendNotifications = true;
   };
 
   home-manager.sharedModules = lib.singleton {
-    services.vicinae = {
-      enable = true;
-      systemd.enable = true;
-    };
+    programs.dank-calendar.enable = true;
   };
 }

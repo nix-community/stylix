@@ -39,6 +39,7 @@
             enable = true;
             settings.config.default.extend-identifiers = lib.genAttrs [
               "MrSom3body"
+              "Relm4"
               "substituters"
             ] lib.id;
           };
