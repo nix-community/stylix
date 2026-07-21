@@ -21,20 +21,20 @@ mkTarget {
                   background = base00;
                   border = base01;
                   card = base00;
-                  clear = base0D;
-                  label = base0D;
-                  scrollbar.color = base0D;
+                  clear = accent;
+                  label = accent;
+                  scrollbar.color = accent;
                   no_notifications_label = base01;
 
                   pager = {
                     background = base00;
-                    button = base0D;
+                    button = accent;
                     label = base04;
                   };
 
                   switch = {
                     disabled = base01;
-                    enabled = base0D;
+                    enabled = accent;
                     puck = base02;
                     switch_divider = base02;
                   };
@@ -55,8 +55,8 @@ mkTarget {
                   buttons = {
                     sleep = {
                       icon = base01;
-                      text = base0D;
-                      icon_background = base0D;
+                      text = accent;
+                      icon_background = accent;
                       background = base00;
                     };
 
@@ -117,7 +117,7 @@ mkTarget {
 
                   directories = {
                     right = {
-                      bottom.color = base0D;
+                      bottom.color = accent;
                       middle.color = base0E;
                       top.color = base0C;
                     };
@@ -147,7 +147,7 @@ mkTarget {
 
                     bluetooth = {
                       text = base01;
-                      background = base0D;
+                      background = accent;
                     };
 
                     wifi = {
@@ -161,7 +161,7 @@ mkTarget {
                   shortcuts = {
                     recording = base0B;
                     text = base01;
-                    background = base0D;
+                    background = accent;
                   };
 
                   powermenu = {
@@ -170,13 +170,13 @@ mkTarget {
                       deny = base0E;
                       confirm = base0C;
                       body = base06;
-                      label = base0D;
+                      label = accent;
                       border = base01;
                       background = base00;
                       card = base00;
                     };
 
-                    sleep = base0D;
+                    sleep = accent;
                     logout = base0B;
                     restart = base09;
                     shutdown = base08;
@@ -197,9 +197,9 @@ mkTarget {
                     };
 
                     thermometer = {
-                      extremelycold = base0D;
-                      cold = base0D;
-                      moderate = base0D;
+                      extremelycold = accent;
+                      cold = accent;
+                      moderate = accent;
                       hot = base09;
                       extremelyhot = base08;
                     };
@@ -265,34 +265,34 @@ mkTarget {
 
                 bluetooth = {
                   iconbutton = {
-                    iconbutton.active = base0D;
+                    iconbutton.active = accent;
                     iconbutton.passive = base06;
                   };
 
                   icons = {
-                    icons.active = base0D;
+                    icons.active = accent;
                     icons.passive = base04;
                   };
 
                   listitems = {
-                    active = base0D;
+                    active = accent;
                     passive = base06;
                   };
 
                   switch = {
                     puck = base02;
                     disabled = base01;
-                    enabled = base0D;
+                    enabled = accent;
                     switch_divider = base02;
                   };
 
                   status = base03;
                   text = base06;
-                  label.color = base0D;
+                  label.color = accent;
                   border.color = base01;
                   background.color = base00;
                   card.color = base00;
-                  scroller.color = base0D;
+                  scroller.color = accent;
                 };
 
                 network = {
@@ -366,7 +366,7 @@ mkTarget {
 
                   buttons = {
                     text = base00;
-                    background = base0D;
+                    background = accent;
                     enabled = base0C;
                     inactive = base03;
                   };
@@ -376,7 +376,7 @@ mkTarget {
                   background.color = base00;
                   album = base0E;
                   artist = base0C;
-                  song = base0D;
+                  song = accent;
                 };
               };
 
@@ -385,7 +385,7 @@ mkTarget {
 
               buttons = {
                 active = base0E;
-                default = base0D;
+                default = accent;
                 disabled = base03;
                 text = base01;
               };
@@ -393,7 +393,7 @@ mkTarget {
               cards = base00;
 
               check_radio_button = {
-                active = base0D;
+                active = accent;
                 background = base01;
               };
 
@@ -408,43 +408,43 @@ mkTarget {
               feinttext = base01;
 
               iconbuttons = {
-                active = base0D;
+                active = accent;
                 passive = base06;
               };
 
               icons = {
-                active = base0D;
+                active = accent;
                 passive = base03;
               };
 
-              label = base0D;
+              label = accent;
 
               listitems = {
-                active = base0D;
+                active = accent;
                 passive = base06;
               };
 
               popover = {
                 background = base01;
                 border = base01;
-                text = base0D;
+                text = accent;
               };
 
               progressbar = {
                 background = base02;
-                foreground = base0D;
+                foreground = accent;
               };
 
               slider = {
                 background = base03;
                 backgroundhover = base02;
-                primary = base0D;
+                primary = accent;
                 puck = base03;
               };
 
               switch = {
                 disabled = base01;
-                enabled = base0D;
+                enabled = accent;
                 puck = base02;
               };
 
@@ -457,14 +457,14 @@ mkTarget {
             };
 
             background = base00;
-            border.color = base0D;
+            border.color = accent;
             buttons = {
               background = base00;
-              borderColor = base0D;
+              borderColor = accent;
               hover = base02;
-              icon = base0D;
+              icon = accent;
               icon_background = base00;
-              text = base0D;
+              text = accent;
 
               battery = {
                 background = base00;
@@ -476,10 +476,10 @@ mkTarget {
 
               bluetooth = {
                 background = base00;
-                border = base0D;
-                icon = base0D;
-                icon_background = base0D;
-                text = base0D;
+                border = accent;
+                icon = accent;
+                icon_background = accent;
+                text = accent;
               };
 
               clock = {
@@ -498,10 +498,10 @@ mkTarget {
 
               media = {
                 background = base00;
-                border = base0D;
-                icon = base0D;
-                icon_background = base0D;
-                text = base0D;
+                border = accent;
+                icon = accent;
+                icon_background = accent;
+                text = accent;
               };
 
               modules = {
@@ -521,10 +521,10 @@ mkTarget {
                 };
                 hypridle = {
                   background = base00;
-                  border = base0D;
-                  icon = base0D;
+                  border = accent;
+                  icon = accent;
                   icon_background = base00;
-                  text = base0D;
+                  text = accent;
                 };
                 hyprsunset = {
                   background = base00;
@@ -535,10 +535,10 @@ mkTarget {
                 };
                 kbLayout = {
                   background = base00;
-                  border = base0D;
-                  icon = base0D;
+                  border = accent;
+                  icon = accent;
                   icon_background = base00;
-                  text = base0D;
+                  text = accent;
                 };
                 microphone = {
                   background = base00;
@@ -569,10 +569,10 @@ mkTarget {
                 };
                 storage = {
                   background = base00;
-                  border = base0D;
-                  icon = base0D;
+                  border = accent;
+                  icon = accent;
                   icon_background = base00;
-                  text = base0D;
+                  text = accent;
                 };
                 submap = {
                   background = base00;
@@ -614,10 +614,10 @@ mkTarget {
 
               notifications = {
                 background = base00;
-                border = base0D;
-                icon = base0D;
-                icon_background = base0D;
-                total = base0D;
+                border = accent;
+                icon = accent;
+                icon_background = accent;
+                total = accent;
               };
 
               systray = {
@@ -644,7 +644,7 @@ mkTarget {
 
               workspaces = {
                 active = base0E;
-                available = base0D;
+                available = accent;
                 background = base00;
                 border = base07;
                 hover = base02;
@@ -656,24 +656,24 @@ mkTarget {
           };
 
           notification = {
-            actions.background = base0D;
+            actions.background = accent;
             actions.text = base01;
             background = base01;
             border = base01;
-            close_button.background = base0D;
+            close_button.background = accent;
             close_button.label = base00;
-            label = base0D;
-            labelicon = base0D;
+            label = accent;
+            labelicon = accent;
             text = base06;
             time = base04;
           };
 
           osd = {
             icon = base00;
-            icon_container = base0D;
-            label = base0D;
+            icon_container = accent;
+            label = accent;
             theme = {
-              color = base0D;
+              color = accent;
               container = base00;
               empty_color = base01;
               overflow_color = base08;

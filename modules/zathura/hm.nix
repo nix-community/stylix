@@ -30,11 +30,11 @@ mkTarget {
           notification-warning-bg = rgb "base00";
           notification-warning-fg = rgb "base08";
           highlight-color = rgba "base0A" highlightTransparency;
-          highlight-active-color = rgba "base0D" highlightTransparency;
+          highlight-active-color = rgba "accent" highlightTransparency;
           completion-bg = rgb "base01";
-          completion-fg = rgb "base0D";
+          completion-fg = rgb "accent";
           completion-highlight-fg = rgb "base07";
-          completion-highlight-bg = rgb "base0D";
+          completion-highlight-bg = rgb "accent";
           recolor-lightcolor = rgb "base00";
           recolor-darkcolor = rgb "base06";
         };

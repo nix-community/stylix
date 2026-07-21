@@ -5,7 +5,7 @@ mkTarget {
     {
       programs.lazygit.settings.gui.theme = with colors.withHashtag; {
         activeBorderColor = [
-          base0D
+          accent
           "bold"
         ];
         inactiveBorderColor = [ base03 ];

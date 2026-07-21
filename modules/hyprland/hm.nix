@@ -27,18 +27,18 @@ mkTarget {
               decoration.shadow.color = rgba colors.base00 "99";
 
               general = {
-                "col.active_border" = rgb colors.base0D;
+                "col.active_border" = rgb colors.accent;
                 "col.inactive_border" = rgb colors.base03;
               };
 
               group = {
                 "col.border_inactive" = rgb colors.base03;
-                "col.border_active" = rgb colors.base0D;
+                "col.border_active" = rgb colors.accent;
                 "col.border_locked_active" = rgb colors.base0C;
 
                 groupbar = {
                   text_color = rgb colors.base05;
-                  "col.active" = rgb colors.base0D;
+                  "col.active" = rgb colors.accent;
                   "col.inactive" = rgb colors.base03;
                 };
               };

@@ -10,7 +10,7 @@
         inherit (config.stylix) cursor;
       in
       {
-        border-color-focused = mkHexColor colors.base0D;
+        border-color-focused = mkHexColor colors.accent;
         border-color-unfocused = mkHexColor colors.base03;
         border-color-urgent = mkHexColor colors.base08;
         background-color = mkHexColor colors.base00;

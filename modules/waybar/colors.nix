@@ -23,7 +23,7 @@ place: ''
   }
   .modules-${place} #upower,
   .modules-${place} #battery {
-      background-color: @base0D;
+      background-color: @accent;
       color: @base00;
   }
   .modules-${place} #upower.charging,

@@ -16,7 +16,7 @@ mkTarget {
             let
               theme = with colors.withHashtag; {
                 name = "Stylix";
-                primary = base0D;
+                primary = accent;
                 primaryText = base00;
                 primaryContainer = base0C;
                 secondary = base0E;
@@ -24,7 +24,7 @@ mkTarget {
                 surfaceText = base05;
                 surfaceVariant = base02;
                 surfaceVariantText = base04;
-                surfaceTint = base0D;
+                surfaceTint = accent;
                 background = base00;
                 backgroundText = base05;
                 outline = base03;

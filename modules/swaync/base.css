@@ -1,7 +1,7 @@
 progress,
 progressbar,
 trough {
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 trough {
@@ -17,7 +17,7 @@ trough {
 }
 
 .notification.normal {
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 .notification.normal progress {
@@ -76,7 +76,7 @@ trough {
 
 .notification-content {
   background: @base00;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 .floating-notifications.background .notification-row .notification-background {
@@ -109,7 +109,7 @@ trough {
 
 .control-center {
   background: @base00;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
   color: @base05;
 }
 
@@ -135,7 +135,7 @@ trough {
 
 .widget-title > button {
   background: @base01;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
   color: @base05;
 }
 
@@ -149,7 +149,7 @@ trough {
 
 .widget-dnd > switch {
   background: @base01;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 .widget-dnd > switch:hover {
@@ -170,7 +170,7 @@ trough {
 
 .widget-mpris .widget-mpris-player {
   background: @base01;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 .widget-mpris .widget-mpris-player button:hover {
@@ -178,10 +178,10 @@ trough {
 }
 
 .widget-mpris .widget-mpris-player > box > button {
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }
 
 .widget-mpris .widget-mpris-player > box > button:hover {
   background: @base01;
-  border: 1px solid @base0D;
+  border: 1px solid @accent;
 }

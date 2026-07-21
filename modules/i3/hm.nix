@@ -46,7 +46,7 @@ mkTarget {
       let
         text = base05;
         urgent = base08;
-        focused = base0D;
+        focused = accent;
         unfocused = base03;
       in
       {

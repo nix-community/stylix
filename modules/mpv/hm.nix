@@ -35,7 +35,7 @@ mkTarget {
               };
 
             modernz = with colors.withHashtag; {
-              seekbarfg_color = base0D;
+              seekbarfg_color = accent;
               seekbarbg_color = base03;
               seekbar_cache_color = base03;
               window_title_color = base03;
@@ -46,9 +46,9 @@ mkTarget {
               chapter_title_color = base05;
               cache_info_color = base05;
 
-              middle_buttons_color = base0D;
+              middle_buttons_color = accent;
               side_buttons_color = base03;
-              playpause_color = base0D;
+              playpause_color = accent;
               hover_effect_color = base0E;
             };
           };

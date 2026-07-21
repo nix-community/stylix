@@ -19,7 +19,7 @@ mkTarget {
           elevated = base02;
           fg = base05;
           fg-muted = base04;
-          primary = base0D;
+          primary = accent;
           red = base08;
           yellow = base0A;
           green = base0B;

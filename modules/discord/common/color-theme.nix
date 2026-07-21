@@ -14,6 +14,7 @@ colors: ''
       --base0B: #${colors.base0B}; /* Green */
       --base0C: #${colors.base0C}; /* Cyan */
       --base0D: #${colors.base0D}; /* Blue */
+      --accent: #${colors.accent}; /* Accent */
       --base0E: #${colors.base0E}; /* Purple */
       --base0F: #${colors.base0F}; /* Magenta */
 
@@ -85,12 +86,12 @@ colors: ''
       --brand-05a: var(--base01) !important;
       --brand-10a: var(--base01) !important;
       --brand-15a: var(--base01) !important;
-      --brand-260: var(--base0D) !important;
-      --brand-360: var(--base0D) !important;
+      --brand-260: var(--accent) !important;
+      --brand-360: var(--accent) !important;
       --brand-500: var(--base0F) !important;
       --brand-560: var(--base01) !important;
       --button-danger-background: var(--base08) !important;
-      --button-filled-brand-background: var(--base0D) !important;
+      --button-filled-brand-background: var(--accent) !important;
       --button-filled-brand-background-hover: var(--base03) !important;
       --button-filled-brand-text: var(--base00) !important;
       --button-filled-brand-text-hover: var(--base05) !important;
@@ -107,11 +108,11 @@ colors: ''
       --channel-text-area-placeholder: var(--base03) !important;
       --channeltextarea-background: var(--base01) !important;
       --chat-background-default: var(--base02) !important;
-      --checkbox-background-checked: var(--base0D) !important;
-      --checkbox-border-checked: var(--base0D) !important;
+      --checkbox-background-checked: var(--accent) !important;
+      --checkbox-border-checked: var(--accent) !important;
       --checkbox-background-default: var(--base02) !important;
       --checkbox-border-default: var(--base03) !important;
-      --control-brand-foreground-new: var(--base0D) !important;
+      --control-brand-foreground-new: var(--accent) !important;
       --control-brand-foreground: var(--base04) !important;
       --custom-notice-text: var(--base01) !important;
       --font-display: var(--font, "gg sans") !important;

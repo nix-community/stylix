@@ -120,8 +120,8 @@ mkTarget {
                 light = colors.withHashtag.base03;
               };
               markdownImage = {
-                dark = colors.withHashtag.base0D;
-                light = colors.withHashtag.base0D;
+                dark = colors.withHashtag.accent;
+                light = colors.withHashtag.accent;
               };
               markdownImageText = {
                 dark = colors.withHashtag.base0C;
@@ -140,7 +140,7 @@ mkTarget {
                 light = colors.withHashtag.base07;
               };
               markdownListItem = {
-                dark = colors.withHashtag.base0D;
+                dark = colors.withHashtag.accent;
                 light = colors.withHashtag.base0F;
               };
               markdownStrong = {
@@ -152,7 +152,7 @@ mkTarget {
                 light = colors.withHashtag.base00;
               };
               primary = {
-                dark = colors.withHashtag.base0D;
+                dark = colors.withHashtag.accent;
                 light = colors.withHashtag.base0F;
               };
               secondary = {

@@ -122,7 +122,7 @@ mkTarget {
             help = {
               fgColor = base05;
               bgColor = "default";
-              indicator.fgColor = base0D;
+              indicator.fgColor = accent;
             };
           };
         };

@@ -6,7 +6,7 @@ mkTarget {
       {
         programs.ashell.settings.appearance = with colors.withHashtag; {
           background_color = base00;
-          primary_color = base0D;
+          primary_color = accent;
           secondary_color = base01;
           success_color = base0B;
           danger_color = base09;
