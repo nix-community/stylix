@@ -2,7 +2,7 @@
   imports = [ inputs.git-hooks.flakeModule ];
 
   perSystem = { config, lib, ... }: {
-    ci.buildbot = { inherit (config.checks) pre-commit; };
+    ci.nixbot = { inherit (config.checks) pre-commit; };
 
     pre-commit = {
       check.enable = true;
