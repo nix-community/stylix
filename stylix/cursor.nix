@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   options.stylix.cursor = lib.mkOption {
     description = ''
       Attributes defining the systemwide cursor. Set either all or none of

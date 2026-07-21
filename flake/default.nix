@@ -1,5 +1,4 @@
-{ inputs, lib, ... }:
-{
+{ inputs, lib, ... }: {
   imports = [
     inputs.flake-parts.flakeModules.partitions
     ./deprecation

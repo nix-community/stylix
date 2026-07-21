@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   perSystem.options.stylix.aliases = lib.mkOption {
     type = lib.types.listOf (
       lib.types.submodule {

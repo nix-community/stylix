@@ -1,5 +1,4 @@
-{ inputs, self, ... }:
-{
+{ inputs, self, ... }: {
   flake = {
     nixosModules = {
       default = self.nixosModules.stylix;

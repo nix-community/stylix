@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Fnott";
   homepage = "https://codeberg.org/dnkl/fnott";
   maintainers = with lib.maintainers; [

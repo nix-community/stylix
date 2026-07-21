@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   options.stylix.listTargetIndex = lib.mkOption {
     description = ''
       The target index at which stylix inserts into lists.

@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   stylix.testbed.ui.command = {
     text = ''
       cd "$(mktemp --directory)"

@@ -7,25 +7,22 @@ mkTarget {
   };
 
   config = [
-    (
-      { cfg, fonts }:
-      {
-        programs.obsidian = {
-          defaultSettings.appearance = {
+    ({ cfg, fonts }: {
+      programs.obsidian = {
+        defaultSettings.appearance = {
+          "interfaceFontFamily" = fonts.sansSerif.name;
+          "monospaceFontFamily" = fonts.monospace.name;
+          "baseFontSize" = fonts.sizes.applications;
+        };
+        vaults = lib.genAttrs cfg.vaultNames (_: {
+          settings.appearance = {
             "interfaceFontFamily" = fonts.sansSerif.name;
             "monospaceFontFamily" = fonts.monospace.name;
             "baseFontSize" = fonts.sizes.applications;
           };
-          vaults = lib.genAttrs cfg.vaultNames (_: {
-            settings.appearance = {
-              "interfaceFontFamily" = fonts.sansSerif.name;
-              "monospaceFontFamily" = fonts.monospace.name;
-              "baseFontSize" = fonts.sizes.applications;
-            };
-          });
-        };
-      }
-    )
+        });
+      };
+    })
     (
       {
         cfg,

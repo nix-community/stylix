@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Font packages";
   maintainers = [ lib.maintainers.mightyiam ];
   description = ''
