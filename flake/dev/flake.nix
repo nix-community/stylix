@@ -63,13 +63,10 @@
   #             stylix = {
   #               url = "path:../..";
   #               inputs = {
-  #                 base16-fish.follows = "";
   #                 base16-helix.follows = "";
-  #                 base16-vim.follows = "";
   #                 base16.follows = "";
   #                 firefox-gnome-theme.follows = "";
   #                 gnome-shell.follows = "";
-  #                 nur.follows = "";
   #                 tinted-foot.follows = "";
   #                 tinted-kitty.follows = "";
   #                 tinted-schemes.follows = "";

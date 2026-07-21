@@ -1,11 +1,14 @@
 { mkTarget, ... }:
 mkTarget {
   config =
-    { colors, inputs }:
+    { colors }:
     {
       programs.fish.interactiveShellInit =
         let
-          theme = colors { templateRepo = inputs.base16-fish; };
+          theme = colors {
+            template = ./theme.mustache;
+            extension = ".fish";
+          };
         in
         ''
           source ${theme}
