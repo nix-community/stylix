@@ -245,6 +245,12 @@
     matrix = "@panchoh:matrix.org";
     name = "pancho horrillo";
   };
+  reesilva = {
+    email = "reesilva@proton.me";
+    github = "reesilva";
+    githubId = 3605032;
+    name = "Renato da Silva";
+  };
   repparw = {
     email = "ubritos@gmail.com";
     github = "repparw";
