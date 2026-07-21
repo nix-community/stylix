@@ -3,12 +3,12 @@ let
   inherit (lib) types;
 in
 {
-  perSystem.options.ci.buildbot = lib.mkOption {
+  perSystem.options.ci.nixbot = lib.mkOption {
     type = types.lazyAttrsOf types.raw;
     default = { };
     description = ''
-      A set of tests for [buildbot] to run.
-      [buildbot]: https://buildbot.nix-community.org
+      A set of tests for [nixbot] to run.
+      [nixbot]: https://nixbot.nix-community.org
     '';
   };
 
@@ -28,8 +28,6 @@ in
     };
 
     # Transpose per-system CI outputs to the top-level
-    config.ci.buildbot = lib.mapAttrs (
-      _: sysCfg: sysCfg.ci.buildbot
-    ) config.allSystems;
+    config.ci.nixbot = lib.mapAttrs (_: sysCfg: sysCfg.ci.nixbot) config.allSystems;
   };
 }
