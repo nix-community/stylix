@@ -15,11 +15,11 @@
         import ../../stylix/testbed { inherit pkgs inputs lib; }
       );
 
-      ci.buildbot = {
+      ci.nixbot = {
         packages = builtins.removeAttrs config.packages (
           builtins.attrNames config.testbeds
         );
-        # Batching testbeds by target, to avoid overwhelming buildbot
+        # Batching testbeds by target, to avoid overwhelming nixbot
         testbeds = lib.pipe config.testbeds [
           (lib.mapAttrsToList (
             name: testbed:

@@ -37,7 +37,7 @@
     {
       inherit checks;
 
-      ci.buildbot = lib.mkIf (system == "x86_64-linux") {
+      ci.nixbot = lib.mkIf (system == "x86_64-linux") {
         public-and-dev-version-consistency = pkgs.linkFarm "public-and-dev-version-consistency" checks;
       };
     };
