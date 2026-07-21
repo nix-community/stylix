@@ -14,12 +14,12 @@ defaults:
 jobs:
   conflicts:
     runs-on: ubuntu-24.04
-    if: vars.APP_ID
+    if: vars.APP_CLIENT_ID
     steps:
       - uses: actions/create-github-app-token@v3
         id: app-token
         with:
-          app-id: ${{ vars.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           permission-contents: read
           permission-pull-requests: write
