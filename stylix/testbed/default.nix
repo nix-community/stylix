@@ -43,6 +43,10 @@ let
                 inputs.dankMaterialShell.homeModules.dank-material-shell
               ];
 
+              glide-browser.home-manager.sharedModules = [
+                inputs.glide.homeModules.default
+              ];
+
               nixvim-integrated = inputs.nixvim.nixosModules.nixvim;
 
               nixvim-standalone.lib.stylix.testbed = {
