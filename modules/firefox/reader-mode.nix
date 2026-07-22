@@ -1,7 +1,5 @@
 # NOTE: also used by /modules/zen-browser
-{ name, lib }:
-{ cfg, colors }:
-{
+{ name, lib }: { cfg, colors }: {
   programs.${name}.profiles = lib.genAttrs cfg.profileNames (_: {
     settings = {
       "reader.color_scheme" = "custom";

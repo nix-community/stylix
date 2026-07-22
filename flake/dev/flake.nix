@@ -130,6 +130,11 @@
     dev-systems.url = "github:nix-systems/default";
 
     # keep-sorted start block=yes newline_separated=yes
+    dank-calendar = {
+      url = "github:AvengeMedia/dankcalendar";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs = {
@@ -144,7 +149,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
-        gitignore.follows = "";
         nixpkgs.follows = "dev-nixpkgs";
       };
     };
@@ -163,8 +167,13 @@
       };
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
         noctalia-qs.inputs = {
@@ -178,9 +187,7 @@
       url = "github:NotAShelf/nvf";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
-        systems.follows = "dev-systems";
         flake-compat.follows = "";
-        flake-parts.follows = "dev-flake-parts";
       };
     };
 
@@ -195,14 +202,6 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "dev-nixpkgs";
-    };
-
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs = {
-        nixpkgs.follows = "dev-nixpkgs";
-        systems.follows = "dev-systems";
-      };
     };
 
     zen-browser = {

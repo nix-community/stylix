@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Fontconfig";
   homepage = "https://fontconfig.org";
   maintainers = [ lib.maintainers.mightyiam ];

@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Firefox and its derivatives";
   homepage = {
     Firefox = "http://www.mozilla.com/en-US/firefox";
@@ -8,7 +7,6 @@
   };
   maintainers = with lib.maintainers; [
     Flameopathic
-    danth
     noahbiewesch
   ];
   description = ''

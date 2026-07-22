@@ -35,6 +35,10 @@ let
             {
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
+              dank-calendar.home-manager.sharedModules = [
+                inputs.dank-calendar.homeModules.default
+              ];
+
               dank-material-shell.home-manager.sharedModules = [
                 inputs.dankMaterialShell.homeModules.dank-material-shell
               ];
@@ -51,11 +55,9 @@ let
                 inputs.noctalia-shell.homeModules.default
               ];
 
-              nvf = inputs.nvf.nixosModules.default;
+              noctalia.home-manager.sharedModules = [ inputs.noctalia.homeModules.default ];
 
-              vicinae.home-manager.sharedModules = [
-                inputs.vicinae.homeManagerModules.default
-              ];
+              nvf = inputs.nvf.nixosModules.default;
 
               zen-browser.home-manager.sharedModules = [
                 inputs.zen-browser.homeModules.default

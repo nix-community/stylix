@@ -1,8 +1,10 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Zen Browser";
   homepage = "https://zen-browser.app";
-  maintainers = [ lib.maintainers.MrSom3body ];
+  maintainers = with lib.maintainers; [
+    MrSom3body
+    saadndm
+  ];
   description = ''
     This module supports the [Zen Browser](https://zen-browser.app).
 

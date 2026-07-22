@@ -1,5 +1,4 @@
-{ fonts }:
-{
+{ fonts }: {
   stylix.targets.blender.themeBody = ''
     <ThemeStyle>
       <panel_title>
