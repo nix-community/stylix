@@ -20,7 +20,6 @@ in
           inherit (cfg) name package;
           enable = true;
           size = builtins.floor (cfg.size + 0.5);
-          gtk.enable = true;
         };
       };
 }
