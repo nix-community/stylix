@@ -18,9 +18,8 @@ in
       {
         home.pointerCursor = {
           inherit (cfg) name package;
+          enable = true;
           size = builtins.floor (cfg.size + 0.5);
-          x11.enable = true;
-          gtk.enable = true;
         };
       };
 }
