@@ -41,33 +41,24 @@ mkTarget {
   };
 
   config = [
-    (
-      { cfg }:
-      {
-        programs.waybar.style = lib.mkIf (cfg.addCss && cfg.background != null) ''
-          window#waybar, tooltip {
-              background: ${cfg.background};
-          }
-        '';
-      }
-    )
-    (
-      { opacity, colors }:
-      {
-        stylix.targets.waybar.background = "alpha(@base00, ${toString opacity.desktop})";
-      }
-    )
-    (
-      { cfg, fonts }:
-      {
-        programs.waybar.style = ''
-          * {
-              font-family: "${fonts.${cfg.font}.name}";
-              font-size: ${toString fonts.sizes.desktop}pt;
-          }
-        '';
-      }
-    )
+    ({ cfg }: {
+      programs.waybar.style = lib.mkIf (cfg.addCss && cfg.background != null) ''
+        window#waybar, tooltip {
+            background: ${cfg.background};
+        }
+      '';
+    })
+    ({ opacity, colors }: {
+      stylix.targets.waybar.background = "alpha(@base00, ${toString opacity.desktop})";
+    })
+    ({ cfg, fonts }: {
+      programs.waybar.style = ''
+        * {
+            font-family: "${fonts.${cfg.font}.name}";
+            font-size: ${toString fonts.sizes.desktop}pt;
+        }
+      '';
+    })
     (
       { cfg, colors }:
       let

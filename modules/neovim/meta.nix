@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Neovim, Neovide, NixVim, nvf, and Vim";
   homepage = {
     Neovim = "https://www.neovim.io";

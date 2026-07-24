@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   options.stylix = {
     release = lib.mkOption {
       description = "The version of NixOS that Stylix is built to support";

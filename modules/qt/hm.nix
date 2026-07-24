@@ -98,13 +98,10 @@ mkTarget {
         ];
       }
     )
-    (
-      { polarity }:
-      {
-        stylix.targets.qt.recommendedStyles.gnome =
-          if polarity == "dark" then "adwaita-dark" else "adwaita";
-      }
-    )
+    ({ polarity }: {
+      stylix.targets.qt.recommendedStyles.gnome =
+        if polarity == "dark" then "adwaita-dark" else "adwaita";
+    })
     (
       { colors }:
       let
@@ -134,25 +131,19 @@ mkTarget {
         };
       }
     )
-    (
-      { icons, polarity }:
-      {
-        qt = qtctSettings {
-          Appearance.icon_theme =
-            if (polarity == "dark") then icons.dark else icons.light;
+    ({ icons, polarity }: {
+      qt = qtctSettings {
+        Appearance.icon_theme =
+          if (polarity == "dark") then icons.dark else icons.light;
+      };
+    })
+    ({ fonts }: {
+      qt = qtctSettings {
+        Fonts = {
+          fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
+          general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
         };
-      }
-    )
-    (
-      { fonts }:
-      {
-        qt = qtctSettings {
-          Fonts = {
-            fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
-            general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
-          };
-        };
-      }
-    )
+      };
+    })
   ];
 }

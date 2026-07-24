@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   options.stylix.opacity = {
     desktop = lib.mkOption {
       description = "The opacity of the windows of bars/widgets, the amount of applications supported is currently limited";

@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Wayle";
   homepage = "https://github.com/wayle-rs/wayle";
   maintainers = [ lib.maintainers.csanthiago ];

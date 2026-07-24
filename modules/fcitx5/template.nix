@@ -1,5 +1,4 @@
-{ colors }:
-with colors;
+{ colors }: with colors;
 {
   Metadata = {
     Name = "Stylix";

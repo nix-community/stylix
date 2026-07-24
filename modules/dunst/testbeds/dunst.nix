@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   stylix.testbed.ui = {
     graphicalEnvironment = "hyprland";
     sendNotifications = true;
