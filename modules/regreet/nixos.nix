@@ -30,7 +30,7 @@ mkTarget {
 
   options.extraCss = lib.mkOption {
     description = ''
-      Extra code added to `programs.regreet.extraCss` option.
+      Extra code added to `services.displayManager.regreet.extraCss` option.
     '';
     type = lib.types.lines;
     default = "";
@@ -41,18 +41,18 @@ mkTarget {
     {
       warnings =
         let
-          cfg = config.programs.regreet;
+          cfg = config.services.displayManager.regreet;
         in
         lib.optional
           (
             cfg.enable
             &&
-              # defined in https://github.com/NixOS/nixpkgs/blob/8f3e1f807051e32d8c95cd12b9b421623850a34d/nixos/modules/programs/regreet.nix#L153
+              # defined in https://github.com/NixOS/nixpkgs/blob/481fbc1f6c7a089244732d605957b61b8415680b/nixos/modules/services/display-managers/regreet.nix#L163
               config.services.greetd.settings.default_session.command
               != "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.cage} ${lib.escapeShellArgs cfg.cageArgs} -- ${lib.getExe cfg.package}"
           )
           "stylix: regreet: custom services.greetd.settings.default_session.command value may not work: ${config.services.greetd.settings.default_session.command}";
-      programs.regreet.theme = {
+      services.displayManager.regreet.theme = {
         package = pkgs.adw-gtk3;
         name = "adw-gtk3";
       };
@@ -72,16 +72,18 @@ mkTarget {
         '';
       in
       {
-        programs.regreet.extraCss = finalCss.outPath;
+        services.displayManager.regreet.extraCss = finalCss.outPath;
       }
     )
     ({ polarity }: {
-      programs.regreet.settings.GTK.application_prefer_dark_theme =
+      services.displayManager.regreet.settings.GTK.application_prefer_dark_theme =
         polarity == "dark";
     })
-    ({ image }: { programs.regreet.settings.background.path = image; })
+    ({ image }: {
+      services.displayManager.regreet.settings.background.path = image;
+    })
     ({ imageScalingMode }: {
-      programs.regreet.settings.background.fit =
+      services.displayManager.regreet.settings.background.fit =
         if imageScalingMode == "fill" then
           "Cover"
         else if imageScalingMode == "fit" then
@@ -93,13 +95,17 @@ mkTarget {
           null;
     })
     ({ fonts }: {
-      programs.regreet.font = { inherit (fonts.sansSerif) name package; };
+      services.displayManager.regreet.font = {
+        inherit (fonts.sansSerif) name package;
+      };
     })
     ({ cursor }: {
-      programs.regreet.cursorTheme = { inherit (cursor) name package; };
+      services.displayManager.regreet.cursorTheme = {
+        inherit (cursor) name package;
+      };
     })
     ({ polarity, icons }: {
-      programs.regreet.iconTheme = {
+      services.displayManager.regreet.iconTheme = {
         inherit (icons) package;
         name = if (polarity == "dark") then icons.dark else icons.light;
       };
