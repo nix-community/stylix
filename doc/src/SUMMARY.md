@@ -14,6 +14,7 @@
 - [Testbeds](testbeds.md)
 - [Style guide](styling.md)
 - [Backport Policy](backport_policy.md)
+- [LLM Review Policy](llm_review_policy.md)
 
 # Reference
 
