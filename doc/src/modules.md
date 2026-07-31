@@ -18,9 +18,6 @@ your flake every time you make an edit.
 
 Just append `--override-input stylix ~/path/to/stylix` to your
 standard `nix` (or `nix` frontend) incantation.
-Note that the tilde expansion is performed by the shell.
-See [Path-like syntax](https://nix.dev/manual/nix/2.34/nix-2.34.html#path-like-syntax)
-for the details.
 
 Nix only reads files which are tracked by Git, so you also need to `git add
 «file»` after creating a new file.
