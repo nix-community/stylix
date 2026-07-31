@@ -39,7 +39,7 @@
       '';
     in
     {
-      ci.buildbot = { inherit (config) devShells; };
+      ci.nixbot = { inherit (config) devShells; };
 
       devShells = {
         default = pkgs.mkShell {
