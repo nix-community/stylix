@@ -21,7 +21,7 @@ jobs:
 
     if: >
       (
-        vars.APP_ID &&
+        vars.APP_CLIENT_ID &&
         github.event.pull_request.merged == true &&
         (
           github.event.action != 'labeled' ||
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: app-token
         with:
-          app-id: ${{ vars.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           permission-contents: write
           permission-pull-requests: write
