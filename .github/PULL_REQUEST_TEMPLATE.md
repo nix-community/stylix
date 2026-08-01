@@ -1,6 +1,10 @@
 
 
-<!-- Describe your PR above, following Stylix commit conventions. -->
+<!--
+Describe your PR above, following Stylix commit conventions.
+
+Disclosing the scope of involved LLM tools is highly appreciated.
+-->
 
 ---
 
