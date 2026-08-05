@@ -56,7 +56,7 @@ mkTarget {
           base17
           ;
 
-        # Add lowercase color names as variables with uppercase letters are ignored by # Starship calls magenta purple.
+        # Add lowercase color names as variables with uppercase letters are ignored by Starship.
         base0a = base0A;
         base0b = base0B;
         base0c = base0C;
