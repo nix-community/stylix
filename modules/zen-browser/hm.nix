@@ -52,6 +52,17 @@ mkTarget {
       inherit lib;
       name = "zen-browser";
     })
+    ({ cfg, polarity }: {
+      programs.zen-browser.profiles = lib.genAttrs cfg.profileNames (_: {
+        settings."zen.view.window.scheme" =
+          if polarity == "dark" then
+            0
+          else if polarity == "light" then
+            1
+          else
+            2; # follow system
+      });
+    })
     ({ cfg, colors }: {
       programs.zen-browser.profiles = lib.mkIf cfg.enableCss (
         lib.genAttrs cfg.profileNames (_: {
