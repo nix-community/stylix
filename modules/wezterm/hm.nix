@@ -11,9 +11,7 @@ mkTarget {
     internal = true;
   };
   config = [
-    (
-      { colors }:
-      with colors;
+    ({ colors }: with colors;
       {
         programs.wezterm.colorSchemes.stylix = {
           ansi = [
@@ -118,27 +116,20 @@ mkTarget {
           command_palette_bg_color = "${base01}",
           command_palette_fg_color = "${base05}",
         '';
-      }
-    )
-    (
-      { fonts }:
-      {
-        stylix.targets.wezterm.luaBody = ''
-          font = wezterm.font_with_fallback {
-              "${fonts.monospace.name}",
-              "${fonts.emoji.name}",
-          },
-          font_size = ${toString fonts.sizes.terminal},
-          command_palette_font_size = ${toString fonts.sizes.popups},
-        '';
-      }
-    )
-    (
-      { opacity }:
-      {
-        stylix.targets.wezterm.luaBody = "window_background_opacity = ${toString opacity.terminal},";
-      }
-    )
+      })
+    ({ fonts }: {
+      stylix.targets.wezterm.luaBody = ''
+        font = wezterm.font_with_fallback {
+            "${fonts.monospace.name}",
+            "${fonts.emoji.name}",
+        },
+        font_size = ${toString fonts.sizes.terminal},
+        command_palette_font_size = ${toString fonts.sizes.popups},
+      '';
+    })
+    ({ opacity }: {
+      stylix.targets.wezterm.luaBody = "window_background_opacity = ${toString opacity.terminal},";
+    })
     (
       { cfg }:
       let

@@ -1,38 +1,33 @@
 { mkTarget, lib, ... }:
 mkTarget {
-  options =
-    { fonts }:
-    {
-      fontSize = lib.mkOption {
-        description = ''
-          Font size used for bemenu.
-        '';
-        type = with lib.types; nullOr int;
-        default = fonts.sizes.popups;
-        defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups";
-      }; # optional argument
+  options = { fonts }: {
+    fontSize = lib.mkOption {
+      description = ''
+        Font size used for bemenu.
+      '';
+      type = with lib.types; nullOr int;
+      default = fonts.sizes.popups;
+      defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups";
+    }; # optional argument
 
-      alternate = lib.mkOption {
-        description = ''
-          Whether to use alternating colours.
-        '';
-        type = lib.types.bool;
-        default = false;
-      };
+    alternate = lib.mkOption {
+      description = ''
+        Whether to use alternating colours.
+      '';
+      type = lib.types.bool;
+      default = false;
     };
+  };
 
   config = [
-    (
-      { cfg, fonts }:
-      {
-        programs.bemenu.settings = {
-          # Font name
-          fn = "${fonts.sansSerif.name} ${
-            lib.optionalString (cfg.fontSize != null) (toString cfg.fontSize)
-          }";
-        };
-      }
-    )
+    ({ cfg, fonts }: {
+      programs.bemenu.settings = {
+        # Font name
+        fn = "${fonts.sansSerif.name} ${
+          lib.optionalString (cfg.fontSize != null) (toString cfg.fontSize)
+        }";
+      };
+    })
     (
       {
         colors,

@@ -1,5 +1,4 @@
-{ fetchurl, runCommandLocal }:
-{
+{ fetchurl, runCommandLocal }: {
   dark = fetchurl {
     name = "mountains.jpg";
     url = "https://unsplash.com/photos/ZqLeQDjY6fY/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzE2MzY1NDY4fA&force=true";

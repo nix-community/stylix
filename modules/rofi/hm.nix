@@ -13,12 +13,9 @@ mkTarget {
     };
 
   config = [
-    (
-      { fonts }:
-      {
-        programs.rofi.font = "${fonts.monospace.name} ${toString fonts.sizes.popups}";
-      }
-    )
+    ({ fonts }: {
+      programs.rofi.font = "${fonts.monospace.name} ${toString fonts.sizes.popups}";
+    })
     (
       {
         colors,

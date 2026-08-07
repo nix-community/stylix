@@ -11,12 +11,7 @@ mkTarget {
   };
 
   config = [
-    (
-      { opacity }:
-      {
-        stylix.targets.helix.transparent = opacity.terminal != 1.0;
-      }
-    )
+    ({ opacity }: { stylix.targets.helix.transparent = opacity.terminal != 1.0; })
     (
       {
         cfg,
