@@ -1,5 +1,4 @@
-{ lib, mkTarget, ... }:
-{
+{ lib, mkTarget, ... }: {
   imports =
     lib.mapAttrsToList
       (

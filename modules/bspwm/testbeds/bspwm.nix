@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   stylix.testbed.ui = {
     graphicalEnvironment = "bspwm";
 

@@ -25,13 +25,10 @@ mkTarget {
   ];
 
   config = [
-    (
-      { fonts }:
-      {
-        wayland.windowManager.wayfire.settings.decoration.font =
-          "${fonts.monospace.name} ${toString fonts.sizes.desktop}";
-      }
-    )
+    ({ fonts }: {
+      wayland.windowManager.wayfire.settings.decoration.font =
+        "${fonts.monospace.name} ${toString fonts.sizes.desktop}";
+    })
     (
       { image, imageScalingMode }:
       let
@@ -59,13 +56,10 @@ mkTarget {
         };
       }
     )
-    (
-      { targets }:
-      {
-        wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
-          lib.mkIf targets.nixos-icons.enable "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
-      }
-    )
+    ({ targets }: {
+      wayland.windowManager.wayfire.wf-shell.settings.panel.menu_icon =
+        lib.mkIf targets.nixos-icons.enable "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+    })
     (
       { colors }:
       let

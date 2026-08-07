@@ -1,38 +1,32 @@
 { mkTarget, lib, ... }:
 mkTarget {
   config = [
-    (
-      { fonts }:
-      {
-        programs.qutebrowser.settings.fonts = with fonts; {
-          default_family = sansSerif.name;
-          default_size = "${toString sizes.applications}pt";
+    ({ fonts }: {
+      programs.qutebrowser.settings.fonts = with fonts; {
+        default_family = sansSerif.name;
+        default_size = "${toString sizes.applications}pt";
 
-          web = {
-            family = {
-              cursive = serif.name;
-              fantasy = serif.name;
-              fixed = monospace.name;
-              sans_serif = sansSerif.name;
-              serif = serif.name;
-              standard = sansSerif.name;
-            };
-
-            # TODO: Use the pixel unit:
-            # https://github.com/nix-community/stylix/issues/251.
-            size.default = builtins.floor (sizes.applications * 4 / 3 + 0.5);
+        web = {
+          family = {
+            cursive = serif.name;
+            fantasy = serif.name;
+            fixed = monospace.name;
+            sans_serif = sansSerif.name;
+            serif = serif.name;
+            standard = sansSerif.name;
           };
+
+          # TODO: Use the pixel unit:
+          # https://github.com/nix-community/stylix/issues/251.
+          size.default = builtins.floor (sizes.applications * 4 / 3 + 0.5);
         };
-      }
-    )
-    (
-      { polarity }:
-      {
-        programs.qutebrowser.settings.colors.webpage.preferred_color_scheme = lib.mkIf (
-          polarity == "dark"
-        ) "dark";
-      }
-    )
+      };
+    })
+    ({ polarity }: {
+      programs.qutebrowser.settings.colors.webpage.preferred_color_scheme = lib.mkIf (
+        polarity == "dark"
+      ) "dark";
+    })
     (
       { colors }:
       let

@@ -20,8 +20,7 @@ mkTarget {
   };
 
   imports = lib.singleton (
-    { config, ... }:
-    {
+    { config, ... }: {
       lib.stylix.i3.bar = lib.warn "stylix: `config.lib.stylix.i3.bar` has been renamed to `config.stylix.targets.i3.exportedBarConfig` and will be removed after 26.11." config.stylix.targets.i3.exportedBarConfig;
     }
   );

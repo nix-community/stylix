@@ -1,5 +1,4 @@
-{ mkTarget, lib, ... }:
-{
+{ mkTarget, lib, ... }: {
   imports = map (module: lib.modules.importApply module mkTarget) [
     ./neovim.nix
     ./neovide.nix
