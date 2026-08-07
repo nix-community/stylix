@@ -60,3 +60,7 @@ nix run github:nix-community/stylix#testbed:gnome:dark
 
 Since KDE theming is still a work in progress, some manual steps may be required
 to properly apply its theme.
+
+## Licensing
+
+Stylix is licensed under the [MIT license](./LICENSE).
