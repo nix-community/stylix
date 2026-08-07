@@ -127,7 +127,7 @@
       inputs.nixpkgs-lib.follows = "dev-nixpkgs";
     };
 
-    dev-systems.url = "github:nix-systems/default";
+    dev-systems.url = "github:nix-systems/default/future-26.11";
 
     # keep-sorted start block=yes newline_separated=yes
     dank-calendar = {

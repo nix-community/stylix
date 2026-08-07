@@ -9,7 +9,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/default/future-26.11";
 
     # keep-sorted start block=yes newline_separated=yes
     base16-fish = {

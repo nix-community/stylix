@@ -9,7 +9,7 @@ mkTarget {
         source ${theme}
 
         # See https://github.com/tomyun/base16-fish/issues/7 for why this condition exists
-        if test -z $TMUX
+        if test -z $TMUX && test -z $ZELLIJ
           base16-${colors.slug}
         end
       '';
