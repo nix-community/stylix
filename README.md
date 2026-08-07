@@ -60,3 +60,9 @@ nix run github:nix-community/stylix#testbed:gnome:dark
 
 Since KDE theming is still a work in progress, some manual steps may be required
 to properly apply its theme.
+
+## Contributing
+
+Information on how to contribute can be found on the
+[Stylix Documentation](https://nix-community.github.io/stylix/)
+under the contributing section.
