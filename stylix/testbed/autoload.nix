@@ -2,6 +2,7 @@
   pkgs,
   lib,
   testbedFieldSeparator ? ":",
+  meta ? pkgs.callPackage ../meta.nix { },
 }:
 let
   isEnabled = pkgs.callPackage ./is-enabled.nix { };
@@ -103,7 +104,10 @@ let
           themeModule
         ];
 
-        config.system.name = name;
+        config = {
+          meta.maintainers = meta.${testbed.module}.maintainers;
+          system.name = name;
+        };
       };
     };
 
