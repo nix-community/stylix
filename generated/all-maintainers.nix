@@ -24,6 +24,13 @@
     matrix = "@eveeifyeve:matrix.org";
     name = "Eveeifyeve";
   };
+  First-Non-Interesting-Username = {
+    email = "janekmusin@proton.me";
+    github = "First-Non-Interesting-Username";
+    githubId = 195055792;
+    matrix = "@youtookmyusername:matrix.org";
+    name = "first-non-interesting-username";
+  };
   Flameopathic = {
     email = "flameopathic@gmail.com";
     github = "Flameopathic";
