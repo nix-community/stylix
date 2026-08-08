@@ -11,7 +11,7 @@
     email = "andre@cosmicdivision.dev";
     name = "Andre B Clark";
     github = "andrebclark";
-    githubId = "48167848";
+    githubId = 48167848;
   };
   berber = {
     email = "git@zmberber.com";
