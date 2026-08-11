@@ -44,7 +44,7 @@ mkTarget {
       services.dunst = {
         iconTheme = {
           inherit (icons) package;
-          name = if polarity == "dark" then icons.dark else icons.light;
+          name = if polarity == "either" then icons.light else icons.${polarity};
         };
       };
     })

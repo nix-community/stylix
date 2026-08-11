@@ -30,7 +30,7 @@ mkTarget {
         polarity,
       }:
       let
-        polarity' = if polarity == "dark" then polarity else "light";
+        polarity' = if polarity == "either" then "light" else polarity;
       in
       {
         programs.obsidian.defaultSettings.cssSnippets = with colors.withHashtag; [

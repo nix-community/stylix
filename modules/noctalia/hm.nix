@@ -67,7 +67,7 @@ mkTarget {
     })
     ({ polarity }: {
       programs.noctalia.settings.theme.mode =
-        if polarity == "dark" then polarity else "light";
+        if polarity == "either" then "light" else polarity;
     })
     ({ opacity }: {
       programs.noctalia.settings = {

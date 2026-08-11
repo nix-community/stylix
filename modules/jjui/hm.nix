@@ -49,19 +49,22 @@ mkTarget {
       "revset completion matched".fg = base0A;
       "revset completion matched".bold = true;
       "revset completion dimmed".fg = base03;
-      "revset completion selected".bg = if polarity == "dark" then base02 else base06;
-      "revset completion selected".fg = if polarity == "dark" then base05 else base02;
+      "revset completion selected".bg =
+        if polarity == "dark" then base02 else base06; # TODO: ?
+      "revset completion selected".fg =
+        if polarity == "dark" then base05 else base02; # TODO: ?
 
       revisions.fg = base05;
-      "revisions selected".bg = if polarity == "dark" then base01 else base02;
+      "revisions selected".bg = if polarity == "dark" then base01 else base02; # TODO: ?
       "revisions dimmed".fg = base03;
-      "revisions details selected".bg = if polarity == "dark" then base02 else base04;
+      "revisions details selected".bg =
+        if polarity == "dark" then base02 else base04; # TODO: ?
       "oplog selected".bold = true;
 
       evolog.fg = base05;
       "evolog selected" = {
-        fg = if polarity == "dark" then base05 else base01;
-        bg = if polarity == "dark" then base02 else base06;
+        fg = if polarity == "dark" then base05 else base01; # TODO: ?
+        bg = if polarity == "dark" then base02 else base06; # TODO: ?
         bold = true;
       };
 
@@ -76,8 +79,8 @@ mkTarget {
       "menu matched".bold = true;
       "menu dimmed".fg = base03;
       "menu border".fg = base01;
-      "menu selected".fg = if polarity == "dark" then base05 else base01;
-      "menu selected".bg = if polarity == "dark" then base02 else base06;
+      "menu selected".fg = if polarity == "dark" then base05 else base01; # TODO: ?
+      "menu selected".bg = if polarity == "dark" then base02 else base06; # TODO: ?
 
       help.bg = base00;
       "help title" = {
@@ -96,13 +99,15 @@ mkTarget {
       "confirmation dimmed".fg = base03;
       "confirmation border".fg = base08;
       "confirmation border".bold = true;
-      "confirmation selected".fg = if polarity == "dark" then base05 else base01;
-      "confirmation selected".bg = if polarity == "dark" then base02 else base06;
+      "confirmation selected".fg = if polarity == "dark" then base05 else base01; # TODO: ?
+      "confirmation selected".bg = if polarity == "dark" then base02 else base06; # TODO: ?
 
       undo.bg = base00;
       "undo confirmation dimmed".fg = base03;
-      "undo confirmation selected".fg = if polarity == "dark" then base05 else base01;
-      "undo confirmation selected".bg = if polarity == "dark" then base02 else base06;
+      "undo confirmation selected".fg =
+        if polarity == "dark" then base05 else base01; # TODO: ?
+      "undo confirmation selected".bg =
+        if polarity == "dark" then base02 else base06; # TODO: ?
 
       success.fg = base0B;
       success.bold = true;

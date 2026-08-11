@@ -53,7 +53,7 @@ mkTarget {
       # settings tile is removed. The value is still used by Epiphany to
       # request dark mode for websites which support it.
       dconf.settings."org/gnome/desktop/interface".color-scheme =
-        if polarity == "dark" then "prefer-dark" else "default";
+        if polarity == "dark" then "prefer-dark" else "default"; # TODO: ?
     })
     (
       { fonts }:
