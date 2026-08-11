@@ -4,9 +4,16 @@
   config,
   options,
   ...
-}:
+}@args:
+let
+  # Home manager check
+  # This will default overlays to false *if* `home-manager.useGlobalPkgs` is enabled
+  globalPackagesEnabled = args.osConfig.home-manager.useGlobalPkgs or false;
+in
 {
-  options.stylix.overlays.enable = config.lib.stylix.mkEnableTarget "packages via overlays" true;
+  options.stylix.overlays.enable =
+    config.lib.stylix.mkEnableTarget "packages via overlays"
+      (!globalPackagesEnabled);
 
   imports = map (
     f:
