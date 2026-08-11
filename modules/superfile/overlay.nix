@@ -116,9 +116,11 @@ let
 
     func init() {
       style, err := chroma.NewXMLStyle(strings.NewReader(stylixChromaXml))
+
       if err != nil {
         panic(err)
       }
+
       styles.Register(style)
     }
   '';

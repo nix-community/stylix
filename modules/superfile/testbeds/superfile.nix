@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
   stylix.testbed.ui = {
     command = {
-      text = lib.getExe pkgs.superfile;
+      text = "${lib.getExe pkgs.superfile} flake-parts";
       useTerminal = true;
     };
   };
@@ -11,8 +11,6 @@
       enable = true;
       firstUseCheck = false;
       settings = {
-        auto_check_update = false;
-        ignore_missing_fields = true;
         nerdfont = false;
       };
     };
