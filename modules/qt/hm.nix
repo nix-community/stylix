@@ -100,7 +100,7 @@ mkTarget {
     )
     ({ polarity }: {
       stylix.targets.qt.recommendedStyles.gnome =
-        if polarity == "dark" then "adwaita-dark" else "adwaita";
+        if polarity == "dark" then "adwaita-dark" else "adwaita"; # TODO: ?
     })
     (
       { colors }:
