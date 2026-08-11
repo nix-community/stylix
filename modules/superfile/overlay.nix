@@ -134,7 +134,9 @@ in
       )
       {
         superfile = prev.superfile.overrideAttrs (old: {
-          postPatch = (old.postPatch or "") + ''
+          postPatch = ''
+            ${old.postPatch}
+
             cp ${registerGo} ./register-stylix.go
             cp ${chromaXml} ./stylix-chroma.xml
           '';
