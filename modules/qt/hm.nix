@@ -133,8 +133,7 @@ mkTarget {
     )
     ({ icons, polarity }: {
       qt = qtctSettings {
-        Appearance.icon_theme =
-          if (polarity == "dark") then icons.dark else icons.light;
+        Appearance.icon_theme = if polarity == "dark" then icons.dark else icons.light;
       };
     })
     ({ fonts }: {

@@ -107,7 +107,7 @@ mkTarget {
     ({ polarity, icons }: {
       services.displayManager.regreet.iconTheme = {
         inherit (icons) package;
-        name = if (polarity == "dark") then icons.dark else icons.light;
+        name = if polarity == "dark" then icons.dark else icons.light;
       };
     })
   ];
