@@ -1,4 +1,4 @@
-{ mkTarget }:
+{ mkTarget, ... }:
 mkTarget {
   config =
     { colors }:
