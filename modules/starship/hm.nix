@@ -44,12 +44,6 @@ mkTarget {
           base07
           base08
           base09
-          base0A
-          base0B
-          base0C
-          base0D
-          base0E
-          base0F
 
           # Add base24 names to the template for custom usage.
           base10
@@ -61,6 +55,14 @@ mkTarget {
           base16
           base17
           ;
+
+        # Add lowercase color names as variables with uppercase letters are ignored by Starship.
+        base0a = base0A;
+        base0b = base0B;
+        base0c = base0C;
+        base0d = base0D;
+        base0e = base0E;
+        base0f = base0F;
       };
     };
   };

@@ -85,6 +85,12 @@
     githubId = 150545;
     name = "Igor Rzegocki";
   };
+  andrebclark = {
+    email = "andre@cosmicdivision.dev";
+    github = "andrebclark";
+    githubId = 48167848;
+    name = "Andre B Clark";
+  };
   arunoruto = {
     email = "mirza.arnaut45@gmail.com";
     github = "arunoruto";
