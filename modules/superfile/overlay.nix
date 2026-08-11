@@ -93,7 +93,6 @@ let
         <entry type="GenericDeleted" style="${base08} bg:${base01}"/>
         <entry type="GenericInserted" style="${base0B} bg:${base01}"/>
         <entry type="GenericEmph" style="italic ${base05}"/>
-        <entry type="GenericStrong" style="bold ${base05}"/>
         <entry type="GenericUnderline" style="underline ${base05}"/>
         <entry type="GenericHeading" style="bold ${base09}"/>
         <entry type="GenericSubheading" style="bold ${base09}"/>
