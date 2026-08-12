@@ -21,7 +21,7 @@ mkTarget {
           bg =
             c:
             "${c}${
-              lib.toHexString (((builtins.floor (opacity.popups * 100 + 0.5)) * 255) / 100)
+              lib.toHexString (builtins.floor (opacity.popups * 100 + 0.5) * 255 / 100)
             }";
         in
         with colors;

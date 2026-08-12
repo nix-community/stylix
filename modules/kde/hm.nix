@@ -13,7 +13,7 @@ let
   mergeWithImage =
     default: withImage:
     let
-      satisfies = check: (check default) && (check withImage);
+      satisfies = check: check default && check withImage;
     in
     if image == null || !cfg.useWallpaper then
       default
@@ -278,9 +278,9 @@ let
           kded5rc = formatConfig kded5rc;
           kdeglobals = formatConfig kdeglobals;
         }
-        // (lib.optionalAttrs (config.stylix.cursor != null) {
+        // lib.optionalAttrs (config.stylix.cursor != null) {
           kcminputrc = formatConfig kcminputrc;
-        })
+        }
       )
       (
         ''
@@ -289,9 +289,9 @@ let
           printf '%s\n' "$kded5rc" >"$out/kded5rc"
           printf '%s\n' "$kdeglobals" >"$out/kdeglobals"
         ''
-        + (lib.optionalString (
+        + lib.optionalString (
           config.stylix.cursor != null
-        ) ''printf '%s\n' "$kcminputrc" >"$out/kcminputrc"'')
+        ) ''printf '%s\n' "$kcminputrc" >"$out/kcminputrc"''
       );
 
   # plasma-apply-wallpaperimage is necessary to change the wallpaper
