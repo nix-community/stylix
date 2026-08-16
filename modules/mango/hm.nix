@@ -1,6 +1,11 @@
-{ mkTarget, ... }:
+{
+  mkTarget,
+  lib,
+  options,
+  ...
+}:
 mkTarget {
-  config = [
+  config = lib.optionals (options.wayland.windowManager ? mango) [
     ({ colors }: {
       wayland.windowManager.mango.settings =
         let
