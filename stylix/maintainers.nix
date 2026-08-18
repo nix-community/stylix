@@ -13,12 +13,6 @@
     github = "andrebclark";
     githubId = 48167848;
   };
-  berber = {
-    email = "git@zmberber.com";
-    name = "Zeremonienmeister Berber Aab";
-    github = "zmberber";
-    githubId = 29400525;
-  };
   butzist = {
     email = "adam@szalkowski.de";
     name = "Adam M. Szalkowski";
@@ -111,6 +105,12 @@
     name = "Vidhan Bhatt";
     github = "vidhanio";
     githubId = 41439633;
+  };
+  zmberber = {
+    email = "git@zmberber.com";
+    name = "Zeremonienmeister Berber Aab";
+    github = "zmberber";
+    githubId = 29400525;
   };
   # keep-sorted end
 }

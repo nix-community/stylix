@@ -1,5 +1,5 @@
 { lib, ... }: {
   name = "Xresources file";
   homepage = "https://www.x.org";
-  maintainers = [ lib.maintainers.berber ];
+  maintainers = [ lib.maintainers.zmberber ];
 }
