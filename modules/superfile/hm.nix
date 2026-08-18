@@ -7,7 +7,7 @@ mkTarget {
     in
     {
       programs.superfile = {
-        settings.theme = theme;
+        settings = { inherit theme; };
         themes.${theme} = with colors.withHashtag; {
           code_syntax_highlight = theme;
           full_screen_fg = base05;
