@@ -135,7 +135,7 @@ in
               # Make sure the background image is .png by asking to convert it
               then
                 ''
-                  ${lib.getExe' pkgs.imagemagick "convert"} \
+                  ${lib.getExe' pkgs.imagemagick "magick"} \
                     ${lib.escapeShellArg config.stylix.image} \
                     "png32:$out/background.png"
                 ''

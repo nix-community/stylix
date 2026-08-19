@@ -19,7 +19,7 @@ let
 in
 {
   stylix.image = pkgs.runCommand "dimmed-background.png" { } ''
-    ${lib.getExe' pkgs.imagemagick "convert"} "${inputImage}" -brightness-contrast ${brightness},${contrast} -fill ${fillColor} $out
+    ${lib.getExe' pkgs.imagemagick "magick"} "${inputImage}" -brightness-contrast ${brightness},${contrast} -fill ${fillColor} $out
   '';
 }
 ```
