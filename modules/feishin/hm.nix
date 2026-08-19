@@ -9,13 +9,10 @@ mkTarget {
       polarity,
     }:
     let
-      themeDirs = [
-        ".config/feishin"
-      ]
-      ++ lib.optional cfg.dev.enable ".config/feishin-dev";
+      themeDirs = [ "feishin" ] ++ lib.optional cfg.dev.enable "feishin-dev";
     in
     {
-      home.file = builtins.listToAttrs (
+      xdg.configFile = builtins.listToAttrs (
         lib.concatMap (dir: [
           {
             name = "${dir}/Themes/stylix.json";
