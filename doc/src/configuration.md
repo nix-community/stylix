@@ -227,3 +227,8 @@ need to manually enable each target you want to be themed.
 
 Targets are different between Home Manager and NixOS, and sometimes available
 in both cases. If both are available, it is always correct to enable both.
+
+> [!NOTE]
+> Some targets may require enabling their respective module on the host
+> platform. For example, the Alacritty target requires enabling Home Manager's
+> `programs.alacritty.enable` option.
