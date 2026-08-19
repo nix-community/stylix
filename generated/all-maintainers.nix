@@ -30,6 +30,12 @@
     githubId = 64027365;
     name = "Erin Pletches";
   };
+  GBHU753 = {
+    email = "me@gurjotbhullar.com";
+    github = "GBHU753";
+    githubId = 100983240;
+    name = "Gurjot Bhullar";
+  };
   Lyndeno = {
     email = "lsanche@lyndeno.ca";
     github = "Lyndeno";
