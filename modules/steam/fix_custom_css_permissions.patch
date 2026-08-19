@@ -1,0 +1,10 @@
+diff --git a/src/custom_css.py b/src/custom_css.py
+index 44e0e82..fdcfd51 100644
+--- a/src/custom_css.py
++++ b/src/custom_css.py
+@@ -47,4 +47,4 @@ def create():
+         f.write(TEMPLATE)
+ 
+ def install():
+-    shutil.copy(paths.CUSTOM_CSS_FILE, paths.CUSTOM_CSS_FILE_DEST)
++    shutil.copyfile(paths.CUSTOM_CSS_FILE, paths.CUSTOM_CSS_FILE_DEST)
