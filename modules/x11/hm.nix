@@ -1,6 +1,23 @@
-{ mkTarget, ... }:
+{ mkTarget, lib, ... }:
 mkTarget {
+  imports = [
+    (lib.mkRenamedOptionModuleWith {
+      from = [
+        "stylix"
+        "targets"
+        "xresources"
+      ];
+      sinceRelease = 2611;
+      to = [
+        "stylix"
+        "targets"
+        "x11"
+      ];
+    })
+  ];
+
   config = [
+    ({ cursor }: { home.pointerCursor.x11.enable = true; })
     ({ fonts }: {
       xresources.properties = {
         "*.faceName" = fonts.monospace.name;
