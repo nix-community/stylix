@@ -7,6 +7,12 @@
 # [1]: https://github.com/NixOS/nixpkgs/blob/1da63e6cc622a0cb6fd5b86d49923e4eb1e33b70/maintainers/maintainer-list.nix
 {
   # keep-sorted start case=no numeric=no block=yes
+  andrebclark = {
+    email = "andre@cosmicdivision.dev";
+    name = "Andre B Clark";
+    github = "andrebclark";
+    githubId = 48167848;
+  };
   berber = {
     email = "git@zmberber.com";
     name = "Zeremonienmeister Berber Aab";
@@ -106,13 +112,6 @@
     name = "jamie";
     github = "skiletro";
     githubId = 19377854;
-  };
-  thbemme = {
-    email = "thomas.bemme@googlemail.com";
-    github = "thbemme";
-    githubId = 14074615;
-    matrix = "@riza:chaos.jetzt";
-    name = "Thomas Bemme";
   };
   vidhanio = {
     email = "me@vidhan.io";

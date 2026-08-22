@@ -4,24 +4,18 @@ mkTarget {
   name = "neovide";
   humanName = "Neovide";
   config = [
-    (
-      { fonts }:
-      {
-        programs.neovide.settings.font = {
-          normal = [ fonts.monospace.name ];
-          size = fonts.sizes.terminal;
-        };
-      }
-    )
-    (
-      { opacity }:
-      {
-        programs.neovim.initLua = lib.mkIf config.programs.neovide.enable ''
-          if vim.g.neovide then
-            vim.g.neovide_normal_opacity = ${toString opacity.terminal}
-          end
-        '';
-      }
-    )
+    ({ fonts }: {
+      programs.neovide.settings.font = {
+        normal = [ fonts.monospace.name ];
+        size = fonts.sizes.terminal;
+      };
+    })
+    ({ opacity }: {
+      programs.neovim.initLua = lib.mkIf config.programs.neovide.enable ''
+        if vim.g.neovide then
+          vim.g.neovide_normal_opacity = ${toString opacity.terminal}
+        end
+      '';
+    })
   ];
 }

@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   options.stylix.testbed.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;

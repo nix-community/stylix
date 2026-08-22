@@ -127,7 +127,7 @@
       inputs.nixpkgs-lib.follows = "dev-nixpkgs";
     };
 
-    dev-systems.url = "github:nix-systems/default";
+    dev-systems.url = "github:nix-systems/default/future-26.11";
 
     # keep-sorted start block=yes newline_separated=yes
     dank-calendar = {
@@ -149,7 +149,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
-        gitignore.follows = "";
         nixpkgs.follows = "dev-nixpkgs";
       };
     };
@@ -188,9 +187,7 @@
       url = "github:NotAShelf/nvf";
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
-        systems.follows = "dev-systems";
         flake-compat.follows = "";
-        flake-parts.follows = "dev-flake-parts";
       };
     };
 

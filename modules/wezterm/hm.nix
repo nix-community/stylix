@@ -1,9 +1,7 @@
 { mkTarget, lib, ... }:
 mkTarget {
   config = [
-    (
-      { colors }:
-      with colors;
+    ({ colors }: with colors;
       {
         programs.wezterm.colorSchemes.stylix = {
           ansi = [
@@ -108,23 +106,16 @@ mkTarget {
           command_palette_bg_color = base01;
           command_palette_fg_color = base05;
         };
-      }
-    )
-    (
-      { fonts }:
-      {
-        programs.wezterm.settings = {
-          font = lib.generators.mkLuaInline ''wezterm.font_with_fallback { "${fonts.monospace.name}", "${fonts.emoji.name}" }'';
-          font_size = fonts.sizes.terminal;
-          command_palette_font_size = fonts.sizes.popups;
-        };
-      }
-    )
-    (
-      { opacity }:
-      {
-        programs.wezterm.settings.window_background_opacity = opacity.terminal;
-      }
-    )
+      })
+    ({ fonts }: {
+      programs.wezterm.settings = {
+        font = lib.generators.mkLuaInline ''wezterm.font_with_fallback { "${fonts.monospace.name}", "${fonts.emoji.name}" }'';
+        font_size = fonts.sizes.terminal;
+        command_palette_font_size = fonts.sizes.popups;
+      };
+    })
+    ({ opacity }: {
+      programs.wezterm.settings.window_background_opacity = opacity.terminal;
+    })
   ];
 }

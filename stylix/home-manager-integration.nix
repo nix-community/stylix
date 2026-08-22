@@ -49,6 +49,12 @@ let
         {
           path = [
             "stylix"
+            "enableReleaseChecks"
+          ];
+        }
+        {
+          path = [
+            "stylix"
             "fonts"
             "emoji"
           ];

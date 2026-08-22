@@ -1,15 +1,12 @@
 { mkTarget, ... }:
 mkTarget {
   config = [
-    (
-      { fonts }:
-      {
-        services.kmscon.config = {
-          font-name = fonts.monospace.name;
-          font-size = fonts.sizes.terminal;
-        };
-      }
-    )
+    ({ fonts }: {
+      services.kmscon.config = {
+        font-name = fonts.monospace.name;
+        font-size = fonts.sizes.terminal;
+      };
+    })
     (
       { colors }:
       let

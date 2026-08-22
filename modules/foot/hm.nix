@@ -1,15 +1,12 @@
 { mkTarget, ... }:
 mkTarget {
   config = [
-    (
-      { fonts }:
-      {
-        programs.foot.settings.main = {
-          font = "${fonts.monospace.name}:size=${toString fonts.sizes.terminal}";
-          dpi-aware = "no";
-        };
-      }
-    )
+    ({ fonts }: {
+      programs.foot.settings.main = {
+        font = "${fonts.monospace.name}:size=${toString fonts.sizes.terminal}";
+        dpi-aware = "no";
+      };
+    })
     (
       {
         polarity,

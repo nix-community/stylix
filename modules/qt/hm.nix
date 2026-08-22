@@ -75,12 +75,12 @@ mkTarget {
       in
       {
         warnings =
-          (lib.optional (cfg.platform != "qtct")
+          lib.optional (cfg.platform != "qtct")
             "stylix: qt: `config.stylix.targets.qt.platform` other than 'qtct' are currently unsupported: ${cfg.platform}. Support may be added in the future."
-          )
-          ++ (lib.optional (config.qt.style.name != recommendedStyle)
-            "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
-          );
+
+          ++
+            lib.optional (config.qt.style.name != recommendedStyle)
+              "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!";
 
         qt = lib.mkMerge [
           {
@@ -98,13 +98,10 @@ mkTarget {
         ];
       }
     )
-    (
-      { polarity }:
-      {
-        stylix.targets.qt.recommendedStyles.gnome =
-          if polarity == "dark" then "adwaita-dark" else "adwaita";
-      }
-    )
+    ({ polarity }: {
+      stylix.targets.qt.recommendedStyles.gnome =
+        if polarity == "dark" then "adwaita-dark" else "adwaita";
+    })
     (
       { colors }:
       let
@@ -134,25 +131,18 @@ mkTarget {
         };
       }
     )
-    (
-      { icons, polarity }:
-      {
-        qt = qtctSettings {
-          Appearance.icon_theme =
-            if (polarity == "dark") then icons.dark else icons.light;
+    ({ icons, polarity }: {
+      qt = qtctSettings {
+        Appearance.icon_theme = if polarity == "dark" then icons.dark else icons.light;
+      };
+    })
+    ({ fonts }: {
+      qt = qtctSettings {
+        Fonts = {
+          fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
+          general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
         };
-      }
-    )
-    (
-      { fonts }:
-      {
-        qt = qtctSettings {
-          Fonts = {
-            fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
-            general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
-          };
-        };
-      }
-    )
+      };
+    })
   ];
 }

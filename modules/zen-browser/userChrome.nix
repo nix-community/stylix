@@ -1,5 +1,4 @@
-{ colors, opacityHex }:
-with colors;
+{ colors, opacityHex }: with colors;
 ''
   :root {
     --zen-colors-primary: #${base02-hex} !important;

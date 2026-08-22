@@ -9,15 +9,13 @@ mkTarget {
     };
   };
 
-  config =
-    { image, cfg }:
-    {
-      services.hyprpaper.settings = {
-        wallpaper = lib.singleton {
-          inherit (cfg) monitor;
-          path = image;
-        };
-        splash = false;
+  config = { image, cfg }: {
+    services.hyprpaper.settings = {
+      wallpaper = lib.singleton {
+        inherit (cfg) monitor;
+        path = image;
       };
+      splash = false;
     };
+  };
 }

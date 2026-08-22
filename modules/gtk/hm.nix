@@ -32,15 +32,12 @@ mkTarget {
       # programs.dconf.enable = true; required in system config
       gtk.enable = true;
     }
-    (
-      { fonts }:
-      {
-        gtk.font = {
-          inherit (fonts.sansSerif) package name;
-          size = fonts.sizes.applications;
-        };
-      }
-    )
+    ({ fonts }: {
+      gtk.font = {
+        inherit (fonts.sansSerif) package name;
+        size = fonts.sizes.applications;
+      };
+    })
     (
       { cfg, colors }:
       let

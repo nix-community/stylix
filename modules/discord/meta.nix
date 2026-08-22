@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   name = "Discord";
   homepage = {
     Discord = "https://discordapp.com";

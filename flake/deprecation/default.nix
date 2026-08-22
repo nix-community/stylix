@@ -1,5 +1,4 @@
-{ lib, self, ... }:
-{
+{ lib, self, ... }: {
   imports = [ ./per-system-option.nix ];
 
   # NOTE: the `flake` submodule has a `lazyAttrsOf` freeform type.

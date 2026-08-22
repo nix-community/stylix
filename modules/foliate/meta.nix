@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   maintainers = [ lib.maintainers.gideonwolfe ];
   name = "Foliate";
 }
