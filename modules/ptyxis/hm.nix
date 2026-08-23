@@ -1,15 +1,44 @@
 {
   mkTarget,
   lib,
-  pkgs,
   config,
   ...
 }:
 mkTarget {
   options.profileUUIDs = lib.mkOption {
-    description = "Ptyxis UUIDs to apply styling on.";
+    description = ''
+      Ptyxis profile UUIDs to apply styling on.
+
+      Ptyxis stores per profile settings under
+      `org/gnome/Ptyxis/Profiles/<UUID>`, as documented in the
+      [`org.gnome.Ptyxis` GSettings schema](https://gitlab.gnome.org/chergert/ptyxis/-/blob/main/src/org.gnome.Ptyxis.gschema.xml.in).
+
+      Profiles created through the Ptyxis user interface receive a randomly
+      generated UUID, which can be listed with:
+
+      ```bash
+      dconf read /org/gnome/Ptyxis/profile-uuids
+      ```
+
+      Since Ptyxis does not validate UUIDs, and only uses them as GSettings
+      path segments, profiles can alternatively be declared with arbitrary,
+      host independent UUIDs:
+
+      ```nix
+      {
+        dconf.settings."org/gnome/Ptyxis".profile-uuids = [ "<UUID>" ];
+        stylix.targets.ptyxis.profileUUIDs = [ "<UUID>" ];
+      }
+      ```
+
+      If unset, no profile is styled and `default-profile-uuid` is left
+      untouched. Otherwise, the first declared UUID becomes the default
+      profile.
+    '';
+
     type = lib.types.listOf lib.types.str;
     default = [ ];
+
     example = [
       "91e845fc983d56328bcae7a46a4519c6"
       "93e38c6d643164750bcfa0ad6a4d270a"
