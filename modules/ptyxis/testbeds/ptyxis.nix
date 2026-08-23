@@ -9,8 +9,7 @@ in
   };
 
   home-manager.sharedModules = lib.singleton (
-    { config, ... }:
-    {
+    { config, ... }: {
       programs.ptyxis = {
         enable = true;
         inherit package;
