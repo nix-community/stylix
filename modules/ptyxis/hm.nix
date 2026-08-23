@@ -39,6 +39,17 @@ mkTarget {
       }
     )
     (
+      { fonts }:
+      {
+        # The `font-name` key is only honored when `use-system-font` is disabled:
+        # https://gitlab.gnome.org/chergert/ptyxis/-/blob/main/src/org.gnome.Ptyxis.gschema.xml.in#L144
+        dconf.settings."org/gnome/Ptyxis" = {
+          use-system-font = false;
+          font-name = "${fonts.monospace.name} ${toString fonts.sizes.terminal}";
+        };
+      }
+    )
+    (
       { opacity, cfg }:
       {
         dconf.settings =
@@ -60,55 +71,55 @@ mkTarget {
               inherit palette;
             });
 
-        xdg.dataFile."org.gnome.Ptyxis/palettes/stylix.palette".text = ''
+        xdg.dataFile."org.gnome.Ptyxis/palettes/stylix.palette".text =  with colors.withHashtag; ''
           [Palette]
           Name=${palette}
 
           [Light]
-          Foreground=#${colors.base05-hex}
-          Background=#${colors.base00-hex}
-          TitlebarForeground=#${colors.base05-hex}
-          TitlebarBackground=#${colors.base00-hex}
-          Cursor=#${colors.base05-hex}
-          Color0=#${colors.base00-hex}
-          Color1=#${colors.base08-hex}
-          Color2=#${colors.base0B-hex}
-          Color3=#${colors.base0A-hex}
-          Color4=#${colors.base0D-hex}
-          Color5=#${colors.base0E-hex}
-          Color6=#${colors.base0C-hex}
-          Color7=#${colors.base05-hex}
-          Color8=#${colors.base03-hex}
-          Color9=#${colors.base08-hex}
-          Color10=#${colors.base0B-hex}
-          Color11=#${colors.base0A-hex}
-          Color12=#${colors.base0D-hex}
-          Color13=#${colors.base0E-hex}
-          Color14=#${colors.base0C-hex}
-          Color15=#${colors.base07-hex}
+          Foreground=${base05}
+          Background=${base00}
+          TitlebarForeground=${base05}
+          TitlebarBackground=${base00}
+          Cursor=${base05}
+          Color0=${base00}
+          Color1=${base08}
+          Color2=${base0B}
+          Color3=${base0A}
+          Color4=${base0D}
+          Color5=${base0E}
+          Color6=${base0C}
+          Color7=${base05}
+          Color8=${base03}
+          Color9=${base08}
+          Color10=${base0B}
+          Color11=${base0A}
+          Color12=${base0D}
+          Color13=${base0E}
+          Color14=${base0C}
+          Color15=${base07}
 
           [Dark]
-          Foreground=#${colors.base05-hex}
-          Background=#${colors.base00-hex}
-          TitlebarForeground=#${colors.base05-hex}
-          TitlebarBackground=#${colors.base00-hex}
-          Cursor=#${colors.base05-hex}
-          Color0=#${colors.base00-hex}
-          Color1=#${colors.base08-hex}
-          Color2=#${colors.base0B-hex}
-          Color3=#${colors.base0A-hex}
-          Color4=#${colors.base0D-hex}
-          Color5=#${colors.base0E-hex}
-          Color6=#${colors.base0C-hex}
-          Color7=#${colors.base05-hex}
-          Color8=#${colors.base03-hex}
-          Color9=#${colors.base08-hex}
-          Color10=#${colors.base0B-hex}
-          Color11=#${colors.base0A-hex}
-          Color12=#${colors.base0D-hex}
-          Color13=#${colors.base0E-hex}
-          Color14=#${colors.base0C-hex}
-          Color15=#${colors.base07-hex}
+          Foreground=${base05}
+          Background=${base00}
+          TitlebarForeground=${base05}
+          TitlebarBackground=${base00}
+          Cursor=${base05}
+          Color0=${base00}
+          Color1=${base08}
+          Color2=${base0B}
+          Color3=${base0A}
+          Color4=${base0D}
+          Color5=${base0E}
+          Color6=${base0C}
+          Color7=${base05}
+          Color8=${base03}
+          Color9=${base08}
+          Color10=${base0B}
+          Color11=${base0A}
+          Color12=${base0D}
+          Color13=${base0E}
+          Color14=${base0C}
+          Color15=${base07}
         '';
       }
     )
