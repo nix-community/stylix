@@ -46,7 +46,7 @@
   first-non-interesting-username = {
     name = "first-non-interesting-username";
     github = "First-Non-Interesting-Username";
-    githubId = 195055792;
+    githubId = 196055729;
     email = "janekmusin@proton.me";
     matrix = "@youtookmyusername:matrix.org";
   };
