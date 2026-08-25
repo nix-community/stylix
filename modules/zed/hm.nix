@@ -53,7 +53,6 @@ mkTarget {
                   "tab.active_background" = "#00000000";
                   "tab.inactive_background" = "#00000000";
                   "terminal.background" = "#00000000";
-
                 }
               else
                 { };
