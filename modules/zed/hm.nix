@@ -40,6 +40,7 @@ mkTarget {
               in
               if (opacity.desktop != 1.0) then
                 {
+                  "background.appearance" = "transparent";
                   "background" = "#${mkOpacityHexColor base00}";
                   "surface.background" = "#${mkOpacityHexColor base00}";
                   "title_bar.background" = "#${mkOpacityHexColor base00}";
