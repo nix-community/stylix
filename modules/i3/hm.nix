@@ -31,7 +31,7 @@ mkTarget {
       let
         fonts' = {
           names = [ fonts.sansSerif.name ];
-          size = fonts.sizes.desktop * 1.0;
+          size = fonts.sizes.desktop.pt;
         };
       in
       {

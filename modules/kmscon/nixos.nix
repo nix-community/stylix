@@ -4,7 +4,8 @@ mkTarget {
     ({ fonts }: {
       services.kmscon.config = {
         font-name = fonts.monospace.name;
-        font-size = fonts.sizes.terminal;
+        # kmscon requires an integer pixel size.
+        font-size = fonts.sizes.terminal.rounded.px;
       };
     })
     (

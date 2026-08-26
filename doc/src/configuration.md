@@ -155,6 +155,34 @@ The default combination of fonts is:
 
 These can be changed as you like.
 
+Font sizes use CSS reference pixels as their canonical unit. This gives the
+configured size one logical meaning while allowing targets that use points to
+receive the appropriate platform value. For example:
+
+```nix
+{
+  stylix.fonts.sizes = {
+    desktop.px = 13.333333;
+    applications.px = 16;
+    terminal.px = 16;
+    popups.px = 13.333333;
+  };
+}
+```
+
+Each size also exposes read only `pt`, `rounded.px`, and `rounded.pt` values
+for target modules. The point value uses a 1:1 logical conversion on Darwin and
+the conventional `3 / 4` conversion elsewhere. Application and display scaling
+still happen after this conversion.
+
+A reference pixel is not necessarily a physical screen pixel. Stylix leaves
+DPI and per display scaling to the application and desktop environment.
+
+For backwards compatibility, a scalar size such as
+`stylix.fonts.sizes.applications = 12` is still accepted and converted from the
+historical point based scale. New configurations should use the `px` form
+above.
+
 To make things look more uniform, you could replace the serif font with
 the sans-serif font:
 

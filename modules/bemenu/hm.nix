@@ -6,8 +6,8 @@ mkTarget {
         Font size used for bemenu.
       '';
       type = with lib.types; nullOr int;
-      default = fonts.sizes.popups;
-      defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups";
+      default = fonts.sizes.popups.rounded.pt;
+      defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups.rounded.pt";
     }; # optional argument
 
     alternate = lib.mkOption {

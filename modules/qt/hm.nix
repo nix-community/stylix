@@ -139,8 +139,8 @@ mkTarget {
     ({ fonts }: {
       qt = qtctSettings {
         Fonts = {
-          fixed = ''"${fonts.monospace.name},${toString fonts.sizes.applications}"'';
-          general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications}"'';
+          fixed = ''"${fonts.monospace.name},${toString fonts.sizes.terminal.pt}"'';
+          general = ''"${fonts.sansSerif.name},${toString fonts.sizes.applications.pt}"'';
         };
       };
     })

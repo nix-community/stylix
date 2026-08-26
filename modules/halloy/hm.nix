@@ -59,7 +59,7 @@ mkTarget {
     ({ fonts }: {
       programs.halloy.settings.font = {
         family = fonts.monospace.name;
-        size = fonts.sizes.applications;
+        size = fonts.sizes.applications.rounded.px;
       };
     })
   ];

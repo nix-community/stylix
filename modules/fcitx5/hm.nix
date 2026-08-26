@@ -3,9 +3,9 @@ mkTarget {
   config = [
     ({ fonts }: {
       i18n.inputMethod.fcitx5.settings.addons.classicui.globalSection = with fonts; {
-        Font = "${sansSerif.name} ${toString sizes.popups}";
-        MenuFont = "${sansSerif.name} ${toString sizes.popups}";
-        TrayFont = "${sansSerif.name} ${toString sizes.popups}";
+        Font = "${sansSerif.name} ${toString sizes.popups.pt}";
+        MenuFont = "${sansSerif.name} ${toString sizes.popups.pt}";
+        TrayFont = "${sansSerif.name} ${toString sizes.popups.pt}";
       };
     })
     ({ colors }: {

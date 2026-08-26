@@ -36,7 +36,7 @@ mkTarget {
     ({ fonts }: {
       gtk.font = {
         inherit (fonts.sansSerif) package name;
-        size = fonts.sizes.applications;
+        size = fonts.sizes.applications.pt;
       };
     })
     (

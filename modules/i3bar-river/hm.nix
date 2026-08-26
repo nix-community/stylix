@@ -3,7 +3,7 @@ mkTarget {
   config = [
     ({ fonts }: {
       programs.i3bar-river.settings = {
-        font = "${fonts.monospace.name} ${toString fonts.sizes.desktop}";
+        font = "${fonts.monospace.name} ${toString fonts.sizes.desktop.pt}";
       };
     })
     (

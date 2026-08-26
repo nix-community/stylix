@@ -6,11 +6,11 @@ mkTarget {
   config = { fonts }: {
     xfconf.settings = with fonts; {
       xfwm4 = {
-        "general/title_font" = "${sansSerif.name} ${toString sizes.desktop}";
+        "general/title_font" = "${sansSerif.name} ${toString sizes.desktop.pt}";
       };
       xsettings = {
-        "Gtk/FontName" = "${sansSerif.name} ${toString sizes.applications}";
-        "Gtk/MonospaceFontName" = "${monospace.name} ${toString sizes.applications}";
+        "Gtk/FontName" = "${sansSerif.name} ${toString sizes.applications.pt}";
+        "Gtk/MonospaceFontName" = "${monospace.name} ${toString sizes.applications.pt}";
       };
     };
   };

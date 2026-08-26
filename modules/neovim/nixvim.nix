@@ -84,7 +84,7 @@ mkTarget {
     })
     ({ fonts }: {
       stylix.targets.nixvim.module.opts.guifont =
-        "${fonts.monospace.name}:h${toString fonts.sizes.terminal}";
+        "${fonts.monospace.name}:h${toString fonts.sizes.terminal.pt}";
     })
     ({ opacity }: {
       stylix.targets.nixvim.module = lib.modules.importApply ./neovide-common.nix opacity;
