@@ -1,4 +1,4 @@
-_: {
+{ inputs, ... }: {
   perSystem =
     {
       config,
@@ -23,6 +23,27 @@ _: {
         terminal.px = 15.5;
       };
       legacy = evaluate { applications = 12; };
+
+      bemenuConfig =
+        (inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            inputs.self.homeModules.stylix
+            {
+              home = {
+                username = "test";
+                homeDirectory = "/home/test";
+                stateVersion = "26.05";
+              };
+
+              stylix = {
+                enable = true;
+                base16Scheme = "${inputs.self.inputs.tinted-schemes}/base16/catppuccin-macchiato.yaml";
+                fonts.sizes.popups.px = 15.5;
+              };
+            }
+          ];
+        }).config;
 
       pointSize =
         px: if pkgs.stdenv.hostPlatform.isDarwin then px else px * 3.0 / 4.0;
@@ -53,6 +74,13 @@ _: {
         assert lib.assertMsg (
           legacy.terminal.pt == legacy.applications.pt
         ) "terminal point inheritance is incorrect";
+        assert lib.assertMsg (
+          bemenuConfig.stylix.targets.bemenu.fontSize == pointSize 15.5
+        ) "Bemenu font-size conversion is incorrect";
+        assert lib.assertMsg (
+          bemenuConfig.programs.bemenu.settings.fn
+          == "${bemenuConfig.stylix.fonts.sansSerif.name} ${toString (pointSize 15.5)}"
+        ) "Bemenu must preserve fractional Pango point sizes";
         pkgs.runCommand "font-size-units" { } ''
           touch "$out"
         '';
