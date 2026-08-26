@@ -3,11 +3,12 @@ mkTarget {
   options = { fonts }: {
     fontSize = lib.mkOption {
       description = ''
-        Font size used for bemenu.
+        Pango point size used for bemenu. May be fractional; set to `null` to
+        omit the size from the font description.
       '';
-      type = with lib.types; nullOr int;
-      default = fonts.sizes.popups.rounded.pt;
-      defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups.rounded.pt";
+      type = with lib.types; nullOr numbers.nonnegative;
+      default = fonts.sizes.popups.pt;
+      defaultText = lib.literalExpression "config.stylix.fonts.sizes.popups.pt";
     }; # optional argument
 
     alternate = lib.mkOption {
