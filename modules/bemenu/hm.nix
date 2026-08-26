@@ -3,8 +3,10 @@ mkTarget {
   options = { fonts }: {
     fontSize = lib.mkOption {
       description = ''
-        Pango point size used for bemenu. May be fractional; set to `null` to
-        omit the size from the font description.
+        Font size in points in bemenu's
+        [Pango font description](https://docs.gtk.org/Pango/pango_fonts.html).
+        May be fractional; set to `null` to omit the size from the font
+        description.
       '';
       type = with lib.types; nullOr numbers.nonnegative;
       default = fonts.sizes.popups.pt;
