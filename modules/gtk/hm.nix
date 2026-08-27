@@ -32,6 +32,7 @@ mkTarget {
       # programs.dconf.enable = true; required in system config
       gtk.enable = true;
     }
+    ({ cursor }: { home.pointerCursor.gtk.enable = true; })
     ({ fonts }: {
       gtk.font = {
         inherit (fonts.sansSerif) package name;
