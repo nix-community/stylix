@@ -8,7 +8,7 @@ mkTarget {
   # TODO: Add support for integrated noctalia-greeter
   # Looks like we can share all of the following options
   # https://github.com/NixOS/nixpkgs/pull/540530
-  config = lib.optionals (options.programs ? noctalia) [
+  config = lib.optionals (options.programs ? noctalia-greeter) [
     ({ colors }: {
       programs.noctalia-greeter.settings.appearance = {
         scheme = "Synced";
