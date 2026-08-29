@@ -51,6 +51,8 @@ let
                   ;
               };
 
+              noctalia-greeter-standalone = inputs.noctalia-greeter.nixosModules.default;
+
               noctalia-shell.home-manager.sharedModules = [
                 inputs.noctalia-shell.homeModules.default
               ];

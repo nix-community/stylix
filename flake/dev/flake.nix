@@ -172,6 +172,11 @@
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "dev-nixpkgs";
+    };
+
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs = {
