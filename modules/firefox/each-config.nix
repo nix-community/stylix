@@ -21,6 +21,18 @@ mkTarget {
       default = [ ];
     };
 
+    themeExtension.enable = lib.mkOption {
+      default = false;
+      description = ''
+        Whether to enable the theme extension on ${humanName}.
+
+        > [!WARNING]
+        > Since this extension is dynamically generated, it cannot be signed. This option enables installing unsigned extensions on browsers that support it. Supported browsers include: Firefox ESR, Firefox Developer Edition, Firefox Nightly, LibreWolf and Floorp.
+      '';
+      example = true;
+      type = lib.types.bool;
+    };
+
     colorTheme.enable = lib.mkEnableOption "[Firefox Color](https://color.firefox.com) on ${humanName}";
 
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
@@ -51,6 +63,56 @@ mkTarget {
       });
     })
     (import ./reader-mode.nix { inherit name lib; })
+    (
+      { cfg, colors }:
+      let
+        addonId = "theme@stylix.nix-community.github.io";
+        package = config.programs.${name}.package;
+        browser = package.unwrapped or package;
+
+        manifest = colors {
+          template = ./manifest.json.mustache;
+          extension = ".json";
+        };
+
+        extension = pkgs.stdenvNoCC.mkDerivation {
+          name = "stylix-firefox-theme-extension";
+          src = manifest;
+          passthru = { inherit addonId; };
+          nativeBuildInputs = [ pkgs.web-ext ];
+
+          buildCommand = /* bash */ ''
+            dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+
+            cp "$src" ./manifest.json
+            web-ext build --filename theme.zip
+
+            install -D ./web-ext-artifacts/theme.zip "$dst/${addonId}.xpi"
+          '';
+        };
+      in
+      {
+        assertions = lib.singleton {
+          assertion = !(cfg.themeExtension.enable && browser.requireSigning);
+          message = ''
+            stylix: `programs.${name}.themeExtension` can only be enabled on browsers that support unsigned extensions.
+          '';
+        };
+
+        programs.${name} = {
+          profiles = lib.mkIf cfg.themeExtension.enable (
+            lib.genAttrs cfg.profileNames (_: {
+              extensions.packages = [ extension ];
+
+              settings = {
+                "extensions.activeThemeID" = addonId;
+                "xpinstall.signatures.required" = false;
+              };
+            })
+          );
+        };
+      }
+    )
     (
       {
         cfg,
