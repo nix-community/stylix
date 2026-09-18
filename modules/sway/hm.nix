@@ -80,10 +80,11 @@ in
 
           output."*".bg =
             lib.mkIf cfg.useWallpaper "${config.stylix.image} ${config.stylix.imageScalingMode}";
-          seat."*".xcursor_theme = lib.mkIf (
-            config.stylix.cursor != null
-          ) ''"${config.stylix.cursor.name}" ${toString config.stylix.cursor.size}'';
         };
+      })
+
+      (lib.mkIf (config.stylix.enable && cfg.enable && config.stylix.cursor != null) {
+        home.pointerCursor.sway.enable = true;
       })
 
       {

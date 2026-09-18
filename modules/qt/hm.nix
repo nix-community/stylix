@@ -75,12 +75,12 @@ mkTarget {
       in
       {
         warnings =
-          (lib.optional (cfg.platform != "qtct")
+          lib.optional (cfg.platform != "qtct")
             "stylix: qt: `config.stylix.targets.qt.platform` other than 'qtct' are currently unsupported: ${cfg.platform}. Support may be added in the future."
-          )
-          ++ (lib.optional (config.qt.style.name != recommendedStyle)
-            "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!"
-          );
+
+          ++
+            lib.optional (config.qt.style.name != recommendedStyle)
+              "stylix: qt: Changing `config.qt.style` is unsupported and may result in breakage! Use with caution!";
 
         qt = lib.mkMerge [
           {
@@ -133,8 +133,7 @@ mkTarget {
     )
     ({ icons, polarity }: {
       qt = qtctSettings {
-        Appearance.icon_theme =
-          if (polarity == "dark") then icons.dark else icons.light;
+        Appearance.icon_theme = if polarity == "dark" then icons.dark else icons.light;
       };
     })
     ({ fonts }: {

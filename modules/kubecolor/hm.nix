@@ -1,9 +1,8 @@
-{ mkTarget, ... }:
+{ mkTarget, lib, ... }:
 mkTarget {
   config = [
     ({ polarity }: {
-      programs.kubecolor.settings.preset =
-        if polarity == "either" then "" else polarity;
+      programs.kubecolor.settings.preset = lib.mkIf (polarity != "either") polarity;
     })
     ({ colors }: {
       programs.kubecolor.settings.theme = with colors.withHashtag; {

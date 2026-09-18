@@ -23,7 +23,7 @@ mkTarget {
           @define-color base0C ${base0C}; @define-color base0D ${base0D};
           @define-color base0E ${base0E}; @define-color base0F ${base0F};
         ''
-        + (builtins.readFile ./base.css);
+        + builtins.readFile ./base.css;
     })
   ];
 }

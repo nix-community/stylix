@@ -64,7 +64,7 @@ mkTarget {
       { colors }:
       let
         rgba = rgb: a: "\\#${rgb}${a}";
-        rgb = (lib.flip rgba) "ff";
+        rgb = lib.flip rgba "ff";
       in
       {
         wayland.windowManager.wayfire = {

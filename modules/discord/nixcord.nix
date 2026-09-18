@@ -23,7 +23,7 @@ mkTarget {
     };
   };
 
-  config = (import ./common/theme-elements.nix "nixcord") ++ [
+  config = import ./common/theme-elements.nix "nixcord" ++ [
     (
       { cfg }:
       let
@@ -43,7 +43,7 @@ mkTarget {
           ];
       in
       lib.mkIf
-        (cfg.themeBody != (import ./common/theme-header.nix) || cfg.extraCss != "")
+        (cfg.themeBody != import ./common/theme-header.nix || cfg.extraCss != "")
         (
           lib.optionalAttrs (options.programs ? nixcord) (
             lib.mkMerge [

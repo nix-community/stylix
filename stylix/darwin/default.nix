@@ -27,7 +27,7 @@ in
       (
         config.stylix.enable
         && config.stylix.enableReleaseChecks
-        && (config.stylix.release != config.system.darwinRelease)
+        && config.stylix.release != config.system.darwinRelease
       )
       [
         ''

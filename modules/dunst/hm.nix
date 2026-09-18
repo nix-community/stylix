@@ -10,7 +10,7 @@ mkTarget {
         with colors.withHashtag;
         let
           dunstOpacity = lib.toHexString (
-            ((builtins.floor (opacity.popups * 100 + 0.5)) * 255) / 100
+            builtins.floor (opacity.popups * 100 + 0.5) * 255 / 100
           );
         in
         {

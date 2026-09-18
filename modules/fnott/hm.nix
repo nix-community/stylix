@@ -21,7 +21,7 @@ mkTarget {
           bg =
             c:
             "${c}${
-              lib.toHexString (((builtins.floor (opacity.popups * 100 + 0.5)) * 255) / 100)
+              lib.toHexString (builtins.floor (opacity.popups * 100 + 0.5) * 255 / 100)
             }";
         in
         with colors;
@@ -41,7 +41,7 @@ mkTarget {
     })
     ({ polarity, icons }: {
       services.fnott.settings.main."icon-theme" =
-        if (polarity == "dark") then icons.dark else icons.light;
+        if polarity == "dark" then icons.dark else icons.light;
     })
   ];
 }
