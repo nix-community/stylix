@@ -1,12 +1,34 @@
-{ mkTarget, ... }:
-mkTarget {
-  config = { colors }: {
-    programs.chromium = {
-      # This enables policies without installing the browser. Policies take up a
-      # negligible amount of space, so it's reasonable to have this always on.
-      enable = true;
+{ mkTarget, pkgs, ... }:
 
-      extraOpts.BrowserThemeColor = colors.withHashtag.base00;
+mkTarget {
+  config =
+    { colors }:
+    let
+      crx3rs = pkgs.callPackage ./crx3rs.nix { };
+
+      manifest = colors {
+        template = ../firefox/manifest.json.mustache;
+        extension = ".json";
+      };
+
+      themeExtension = pkgs.callPackage ./themeExtension.nix {
+        inherit manifest crx3rs;
+      };
+
+      updateManifest =
+        pkgs.writeText "stylix-chromium-theme-extension-update-manifest"
+          /* xml */ ''
+            <?xml version="1.0" encoding="UTF-8"?>
+            <gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">
+              <app appid="${themeExtension.id}">
+                <updatecheck codebase="file://${themeExtension}" version="${themeExtension.version}" />
+              </app>
+            </gupdate>
+          '';
+    in
+    {
+      programs.chromium.extensions = [
+        "${themeExtension.id};file://${updateManifest}"
+      ];
     };
-  };
 }
