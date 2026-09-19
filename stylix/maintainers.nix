@@ -37,9 +37,9 @@
     github = "cswimr";
     githubId = 102361830;
   };
-  first-non-interesting-username = {
-    name = "first-non-interesting-username";
-    github = "First-Non-Interesting-Username";
+  first-uninteresting-username = {
+    name = "first-uninteresting-username";
+    github = "first-uninteresting-username";
     githubId = 196055729;
     email = "janekmusin@proton.me";
     matrix = "@youtookmyusername:matrix.org";
