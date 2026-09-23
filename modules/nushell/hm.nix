@@ -47,8 +47,7 @@ mkTarget {
         shape_literal: $base05 # reserved
         empty: $base05
       
-        # dim foreground
-        # comments
+        # least foreground
         hints: $base03
         separator: $base03
       
@@ -69,9 +68,6 @@ mkTarget {
         # red
         shape_variable: $base08
         shape_vardecl: $base08
-        shape_flag: { fg: $base08 attr: b }
-        shape_externalarg: { fg: $base08 attr: b }
-      
         # orange
         shape_nothing: $base09
         nothing: $base09
@@ -93,7 +89,6 @@ mkTarget {
         semver-range: { fg: $base09 attr: b }
       
         # yellow
-        # classes
         header: { fg: $base0A attr: b }
         row_index: { fg: $base0A attr: b }
         shape_signature: { fg: $base0A attr: b }
@@ -101,21 +96,22 @@ mkTarget {
         # green
         shape_string: $base0B
         string: $base0B
-        shape_string_interpolation: { fg: $base0B attr: b }
         shape_raw_string: $base0B
         shape_directory: { fg: $base0B attr: b }
         shape_filepath: { fg: $base0B attr: b }
-        shape_globpattern: { fg: $base0B attr: b }
-        glob: { fg: $base0B attr: b }
+        shape_flag: { fg: $base0B attr: b }
+        shape_externalarg: { fg: $base0B attr: b }
         cell-path: $base0B
       
         # cyan
-        # escape characters
+        shape_string_interpolation: { fg: $base0C attr: b }
+        shape_globpattern: { fg: $base0C attr: b }
+        glob: { fg: $base0C attr: b }
       
         # blue
         shape_internalcall: { fg: $base0D attr: b }
-        shape_external_resolved: $base0D
-        shape_external: { fg: $base0D attr: i }
+        shape_external_resolved: { fg: $base0D attr: b }
+        shape_external: $base0D
       
         # purple
         shape_keyword: { fg: $base0E attr: b } # reserved
