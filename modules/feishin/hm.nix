@@ -26,11 +26,14 @@ mkTarget {
                   surface-foreground = base06;
                   foreground = base05;
                   foreground-muted = base03;
+   
                   primary = base0D;
+   
                   state-info = base0D;
                   state-success = base0B;
                   state-warning = base0A;
                   state-error = base08;
+   
                   black = base00;
                   white = base07;
                 };
