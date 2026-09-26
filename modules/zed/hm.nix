@@ -11,14 +11,25 @@ mkTarget {
         };
       };
     })
-    ({ colors, inputs }: {
-      programs.zed-editor = {
-        userSettings.theme = "Base16 ${colors.scheme-name}";
-        themes.stylix = colors {
-          templateRepo = inputs.tinted-zed;
-          target = "base16";
+    (
+      {
+        colors,
+        inputs,
+        polarity,
+      }:
+      {
+        programs.zed-editor = {
+          userSettings.theme = "Base16 ${colors.scheme-name}";
+          themes.stylix =
+            (colors.override {
+              variant = if polarity == "either" then "light" else polarity;
+            })
+              {
+                templateRepo = inputs.tinted-zed;
+                target = "base16";
+              };
         };
-      };
-    })
+      }
+    )
   ];
 }
