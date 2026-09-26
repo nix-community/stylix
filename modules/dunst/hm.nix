@@ -3,7 +3,7 @@ mkTarget {
   config = [
     ({ fonts }: {
       services.dunst.settings.global.font =
-        "${fonts.sansSerif.name} ${toString fonts.sizes.popups}";
+        "${fonts.sansSerif.name} ${toString fonts.sizes.popups.pt}";
     })
     ({ colors, opacity }: {
       services.dunst.settings =

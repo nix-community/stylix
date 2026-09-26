@@ -7,8 +7,7 @@ mkTarget {
       programs.rio.settings.fonts = with fonts; {
         family = monospace.name;
         emoji.family = emoji.name;
-        # converting font size to px
-        size = sizes.terminal * 4.0 / 3.0;
+        size = sizes.terminal.px;
       };
     })
     ({ opacity }: { programs.rio.settings.window.opacity = opacity.terminal; })

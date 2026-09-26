@@ -21,7 +21,7 @@ mkTarget {
     ({ fonts }: {
       xresources.properties = {
         "*.faceName" = fonts.monospace.name;
-        "*.faceSize" = toString fonts.sizes.terminal;
+        "*.faceSize" = toString fonts.sizes.terminal.pt;
         "*.renderFont" = true;
       };
     })
