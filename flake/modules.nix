@@ -11,7 +11,7 @@
               stylix = {
                 inherit inputs;
                 paletteGenerator =
-                  self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
+                  self.packages.${pkgs.stdenv.buildPlatform.system}.palette-generator;
                 base16 = inputs.base16.lib args;
                 homeManagerIntegration.module = self.homeModules.stylix;
               };
@@ -31,7 +31,7 @@
               stylix = {
                 inherit inputs;
                 paletteGenerator =
-                  self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
+                  self.packages.${pkgs.stdenv.buildPlatform.system}.palette-generator;
                 base16 = inputs.base16.lib args;
               };
             }
@@ -50,7 +50,7 @@
               stylix = {
                 inherit inputs;
                 paletteGenerator =
-                  self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
+                  self.packages.${pkgs.stdenv.buildPlatform.system}.palette-generator;
                 base16 = inputs.base16.lib args;
                 homeManagerIntegration.module = self.homeModules.stylix;
               };
@@ -69,7 +69,7 @@
             {
               stylix = {
                 paletteGenerator =
-                  self.packages.${pkgs.stdenv.hostPlatform.system}.palette-generator;
+                  self.packages.${pkgs.stdenv.buildPlatform.system}.palette-generator;
                 base16 = inputs.base16.lib args;
                 homeManagerIntegration.module = self.homeModules.stylix;
               };
