@@ -37,6 +37,12 @@
     github = "cswimr";
     githubId = 102361830;
   };
+  darkguibrine = {
+    email = "darkgui@protonmail.com";
+    name = "Guilherme Hermando";
+    github = "DarkGuibrine";
+    githubId = 112888817;
+  };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
     name = "Gideon Wolfe";
