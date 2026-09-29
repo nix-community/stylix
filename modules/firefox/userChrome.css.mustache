@@ -1,0 +1,252 @@
+/* Drop-down */
+menupopup, panel {
+  --panel-background-color: #{{base01-hex}} !important;
+  --panel-border-color: transparent !important;
+  --panel-text-color: #{{base05-hex}} !important;
+
+  &:where([_moz-menuactive]:not([disabled])) {
+    color: #{{base05-hex}} !important;
+    background-color: #{{base02-hex}} !important;
+  }
+
+  menu, menuitem {
+    &:where([_moz-menuactive]:not([disabled])) {
+      color: #{{base05-hex}} !important;
+      background-color: #{{base02-hex}} !important;
+    }
+  }
+}
+
+/* Dialog */
+@-moz-document url("chrome://global/content/commonDialog.xhtml"), url("chrome://global/content/print.html") {
+  :root {
+    --background-color-box: #{{base01-hex}} !important;
+    --background-color-canvas: #{{base00-hex}} !important;
+    --text-color: #{{base05-hex}} !important;
+
+    /* Button */
+    --button-background-color-active: #{{base02-hex}} !important;
+    --button-background-color-hover: #{{base02-hex}} !important;
+    --button-background-color-primary-active: #{{base02-hex}} !important;
+    --button-background-color-primary-hover: #{{base02-hex}} !important;
+    --button-background-color-primary: #{{base01-hex}} !important;
+    --button-background-color: #{{base01-hex}} !important;
+    --button-text-color-primary: #{{base05-hex}} !important;
+    --button-text-color-selected: #{{base05-hex}} !important;
+    --button-text-color: #{{base05-hex}} !important;
+  }
+}
+
+/* Main window */
+@-moz-document url("chrome://browser/content/browser.xhtml") {
+  :root {
+    --chrome-content-separator-color: #{{base00-hex}} !important;
+    --color-accent-primary: #{{base0D-hex}} !important;
+    --devtools-splitter-color: #{{base01-hex}} !important;
+    --info-bar-text-color: #{{base05-hex}} !important;
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+    --link-color: #{{base0D-hex}} !important;
+    --lwt-accent-color: #{{base0D-hex}} !important;
+    --lwt-text-color: #{{base05-hex}} !important;
+    --message-bar-icon-background-color: transparent !important;
+    --message-bar-icon-color: #{{base05-hex}} !important;
+    --panel-background-color: #{{base01-hex}} !important;
+    --panel-border-color: transparent !important;
+    --panel-text-color: #{{base05-hex}} !important;
+    --sidebar-background-color: #{{base01-hex}} !important;
+    --sidebar-text-color: #{{base05-hex}} !important;
+    --tab-selected-text-color: #{{base05-hex}} !important;
+    --tabpanel-background-color: #{{base00-hex}} !important;
+    --urlbar-box-background-color: #{{base02-hex}} !important;
+
+    /* Toolbar */
+    --lwt-toolbar-field-highlight-text: #{{base05-hex}} !important;
+    --lwt-toolbar-field-highlight: #{{base0D-hex}} !important;
+    --toolbar-background-color: #{{base01-hex}} !important;
+    --toolbar-field-background-color-focus: #{{base02-hex}} !important;
+    --toolbar-field-background-color: #{{base02-hex}} !important;
+    --toolbar-field-border-color-focus: #{{base0D-hex}} !important;
+    --toolbar-field-border-color: transparent !important;
+    --toolbar-field-text-color-focus: #{{base05-hex}} !important;
+    --toolbar-field-text-color: #{{base05-hex}} !important;
+    --toolbar-text-color: #{{base05-hex}} !important;
+    --toolbarbutton-icon-fill-attention: #{{base0D-hex}} !important;
+    --toolbarbutton-icon-fill: #{{base05-hex}} !important;
+
+    /* Toolbox */
+    --toolbox-background-color-inactive: #{{base00-hex}} !important;
+    --toolbox-background-color: #{{base00-hex}} !important;
+    --toolbox-text-color-inactive: #{{base04-hex}} !important;
+    --toolbox-text-color: #{{base05-hex}} !important;
+  }
+
+  .browserContainer {
+    --rdm-background-color: #{{base00-hex}} !important;
+  }
+
+  #navigator-toolbox {
+    border-bottom: none !important;
+  }
+
+  #sidebar-splitter {
+    background-color: transparent !important;
+  }
+
+  .notificationbox-stack notification-message {
+    background-color: #{{base01-hex}} !important;
+  }
+}
+
+/* Sidebar */
+@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml"), url("chrome://browser/content/places/historySidebar.xhtml") {
+  :root {
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+    --panel-background-color: #{{base02-hex}} !important;
+    --panel-text-color: #{{base02-hex}} !important;
+    --sidebar-text-color: #{{base05-hex}} !important;
+  }
+
+  #viewButton {
+    background-color: #{{base02-hex}} !important;
+  }
+}
+
+/* Bookmarks and history window */
+@-moz-document url("chrome://browser/content/places/places.xhtml") {
+  treechildren::-moz-tree-cell-text,
+  treechildren::-moz-tree-image {
+    color: #{{base05-hex}} !important;
+  }
+
+  treechildren::-moz-tree-row(hover) {
+    background-color: #{{base02-hex}} !important;
+  }
+
+  treechildren::-moz-tree-row(selected){
+    background-color: #{{base02-hex}} !important;
+  }
+
+  :root {
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+  }
+
+  treecol {
+    background-color: #{{base01-hex}} !important;
+  }
+
+  richlistbox  {
+    background-color: #{{base00-hex}} !important;
+  }
+
+  #places {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #placesToolbar {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #placesList {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  splitter {
+    background-color: #{{base01-hex}} !important;
+    border: none !important;
+  }
+
+  #placesView {
+    background-color: #{{base00-hex}} !important;
+  }
+
+  #placeContent {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+}
+
+/* Page info window */
+@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml") {
+  :root {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+
+    --input-text-color: #{{base04-hex}} !important;
+  }
+
+  treecol, .tree-columnpicker-button {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #topBar {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+    border-bottom-color: #{{base01-hex}} !important;
+  }
+
+  #viewGroup > radio {
+    color: #{{base05-hex}} !important;
+
+    &[selected] {
+      background-color: #{{base02-hex}} !important;
+    }
+  }
+
+  tree {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+    border-color: #{{base01-hex}} !important;
+  }
+}
+
+@-moz-document url-prefix("chrome://devtools/content/") {
+  :root {
+    --theme-body-alternate-emphasized-background: #{{base01-hex}} !important;
+    --theme-body-background: #{{base00-hex}} !important;
+    --theme-body-color: #{{base05-hex}} !important;
+
+    /* Popup */
+    --theme-arrowpanel-background: #{{base01-hex}} !important;
+    --theme-arrowpanel-border-color: transparent !important;
+    --theme-arrowpanel-color: #{{base05-hex}} !important;
+    --theme-popup-hover-color: #{{base05-hex}} !important;
+    --theme-popup-hover-background: #{{base02-hex}} !important;
+
+    /* Splitter */
+    --theme-emphasized-splitter-color: #{{base01-hex}} !important;
+    --theme-splitter-color: #{{base01-hex}} !important;
+
+    /* Icon */
+    --theme-icon-alternate-hover-color: #{{base0D-hex}} !important;
+    --theme-icon-checked-color: #{{base0D-hex}} !important;
+    --theme-icon-color: #{{base05-hex}} !important;
+    --theme-icon-error-color: #{{base08-hex}} !important;
+    --theme-icon-warning-color: #{{base0A-hex}} !important;
+
+    /* Toolbar */
+    --tab-line-selected-color: #{{base02-hex}} !important;
+    --theme-tab-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-background-hover: #{{base02-hex}} !important;
+    --theme-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-color: #{{base05-hex}} !important;
+    --theme-toolbar-hover-active: #{{base01-hex}} !important;
+    --theme-toolbar-hover: #{{base02-hex}} !important;
+    --theme-toolbar-reordering-background: #{{base02-hex}} !important;
+    --theme-toolbar-selected-color: #{{base05-hex}} !important;
+    --theme-toolbar-selected-hover: #{{base02-hex}} !important;
+    --theme-toolbarbutton-checked-color: #{{base0D-hex}} !important;
+    --theme-toolbarbutton-color: #{{base05-hex}} !important;
+    --theme-toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --theme-toolbarbutton-hover-color: #{{base05-hex}} !important;
+    --toolbarbutton-background: #{{base01-hex}} !important;
+    --toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --toolbarbutton-hover-color: #{{base05-hex}} !important;
+  }
+}
