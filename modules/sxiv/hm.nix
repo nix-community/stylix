@@ -3,7 +3,7 @@ mkTarget {
   config = [
     ({ fonts }: {
       xresources.properties."Sxiv.font" =
-        "${fonts.sansSerif.name}-${toString fonts.sizes.applications}";
+        "${fonts.sansSerif.name}-${toString fonts.sizes.applications.pt}";
     })
     ({ colors }: {
       xresources.properties = {

@@ -49,7 +49,7 @@ mkTarget {
           family = fonts.monospace.name;
           style = "Regular";
         };
-        size = fonts.sizes.terminal;
+        size = fonts.sizes.terminal.pt;
       };
     })
     ({ opacity }: {

@@ -25,7 +25,7 @@ let
         )
 
         # Convert to .pf2
-        ${lib.getExe' pkgs.grub2 "grub-mkfont"} $font --output $out --size ${toString fonts.sizes.applications}
+        ${lib.getExe' pkgs.grub2 "grub-mkfont"} $font --output $out --size ${toString fonts.sizes.applications.rounded.px}
       '';
 
   image-scale =

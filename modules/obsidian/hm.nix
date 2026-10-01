@@ -12,13 +12,13 @@ mkTarget {
         defaultSettings.appearance = {
           "interfaceFontFamily" = fonts.sansSerif.name;
           "monospaceFontFamily" = fonts.monospace.name;
-          "baseFontSize" = fonts.sizes.applications;
+          "baseFontSize" = fonts.sizes.applications.rounded.px;
         };
         vaults = lib.genAttrs cfg.vaultNames (_: {
           settings.appearance = {
             "interfaceFontFamily" = fonts.sansSerif.name;
             "monospaceFontFamily" = fonts.monospace.name;
-            "baseFontSize" = fonts.sizes.applications;
+            "baseFontSize" = fonts.sizes.applications.rounded.px;
           };
         });
       };
