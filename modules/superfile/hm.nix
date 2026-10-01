@@ -12,7 +12,10 @@ mkTarget {
           code_syntax_highlight = theme;
           full_screen_fg = base05;
           full_screen_bg = base00;
-          gradient_color = [ base0E ];
+          gradient_color = [
+            base0D
+            base0E
+          ];
           file_panel_fg = base05;
           file_panel_bg = base00;
           file_panel_border = base03;
