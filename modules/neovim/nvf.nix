@@ -43,7 +43,7 @@ mkTarget {
               ;
           };
         };
-        statusline = lib.mkIf (cfg.plugin == "base16") { lualine.theme = "base16"; };
+        statusline = lib.mkIf (cfg.plugin == "base16") { lualine.setupOpts.options.theme = "base16"; };
       };
     })
     ({ cfg }: {
