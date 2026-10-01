@@ -17,13 +17,6 @@
     matrix = "@da157:catgirl.cloud";
     name = "0xda157";
   };
-  Eveeifyeve = {
-    email = "eveeg1971@gmail.com";
-    github = "Eveeifyeve";
-    githubId = 88671402;
-    matrix = "@eveeifyeve:matrix.org";
-    name = "Eveeifyeve";
-  };
   Flameopathic = {
     email = "flameopathic@gmail.com";
     github = "Flameopathic";
@@ -150,6 +143,13 @@
     github = "einetuer";
     githubId = 54070204;
     name = "0x5a4";
+  };
+  eveeifyeve = {
+    email = "open-source@eveeifyeve.dev";
+    github = "eveeifyeve";
+    githubId = 88671402;
+    matrix = "@eveeifyeve:matrix.org";
+    name = "Eveeifyeve";
   };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
