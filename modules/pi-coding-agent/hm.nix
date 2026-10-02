@@ -19,7 +19,9 @@ mkTarget {
   autoEnable = hasPiCodingAgent && config.programs.pi-coding-agent.enable;
   autoEnableExpr = "options.programs ? pi-coding-agent && config.programs.pi-coding-agent.enable";
 
-  config = lib.optionals hasPiCodingAgent [
+  # The function is listed unconditionally, so that this target's options are
+  # documented; without Home Manager's module it configures nothing.
+  config = [
     (
       { colors }:
       let
@@ -179,12 +181,15 @@ mkTarget {
           };
         };
       in
-      {
-        home.file."${config.programs.pi-coding-agent.configDir}/themes/stylix.json".source =
-          jsonFormat.generate "pi-coding-agent-theme-stylix.json" theme;
+      if hasPiCodingAgent then
+        {
+          home.file."${config.programs.pi-coding-agent.configDir}/themes/stylix.json".source =
+            jsonFormat.generate "pi-coding-agent-theme-stylix.json" theme;
 
-        programs.pi-coding-agent.settings.theme = "stylix";
-      }
+          programs.pi-coding-agent.settings.theme = "stylix";
+        }
+      else
+        { }
     )
   ];
 }
