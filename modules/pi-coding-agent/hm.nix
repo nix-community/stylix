@@ -109,9 +109,11 @@ mkTarget {
 
           inherit vars;
 
+          # `base04` is too faint to be read on the tinted backgrounds
+          # above, so secondary text uses `base06` instead.
           colors = {
             accent = "blue";
-            border = "overlay";
+            border = "textAlt";
             borderAccent = "blue";
             borderMuted = "muted";
             success = "green";
@@ -132,35 +134,35 @@ mkTarget {
             toolSuccessBg = "successBg";
             toolErrorBg = "errorBg";
             toolTitle = "text";
-            toolOutput = "muted";
+            toolOutput = "textAlt";
 
             mdHeading = "yellow";
             mdLink = "blue";
             mdLinkUrl = "muted";
             mdCode = "cyan";
-            mdCodeBlock = "text";
-            mdCodeBlockBorder = "overlay";
-            mdQuote = "muted";
-            mdQuoteBorder = "overlay";
-            mdHr = "overlay";
+            mdCodeBlock = "green";
+            mdCodeBlockBorder = "muted";
+            mdQuote = "textAlt";
+            mdQuoteBorder = "muted";
+            mdHr = "muted";
             mdListBullet = "cyan";
 
             toolDiffAdded = "green";
             toolDiffRemoved = "red";
             toolDiffContext = "muted";
 
-            syntaxComment = "muted";
+            syntaxComment = "textAlt";
             syntaxKeyword = "purple";
             syntaxFunction = "blue";
             syntaxVariable = "red";
             syntaxString = "green";
             syntaxNumber = "orange";
             syntaxType = "yellow";
-            syntaxOperator = "text";
-            syntaxPunctuation = "muted";
+            syntaxOperator = "textAlt";
+            syntaxPunctuation = "textAlt";
 
-            thinkingOff = "overlay";
-            thinkingMinimal = "muted";
+            thinkingOff = "muted";
+            thinkingMinimal = "textAlt";
             thinkingLow = "cyan";
             thinkingMedium = "blue";
             thinkingHigh = "purple";
