@@ -11,6 +11,8 @@ let
 
   jsonFormat = pkgs.formats.json { };
 
+  # `programs.pi-coding-agent` is not available in every Home Manager
+  # release, so only touch it when the module exists.
   hasPiCodingAgent = options.programs ? pi-coding-agent;
 in
 mkTarget {
@@ -21,25 +23,22 @@ mkTarget {
     (
       { colors }:
       let
-        hex = name: "#${colors.${name}}";
-
-        base = hex "base00";
-        surface = hex "base01";
-        surfaceAlt = hex "base02";
-        overlay = hex "base03";
-        muted = hex "base04";
-        text = hex "base05";
-        textAlt = hex "base06";
-        textBright = hex "base07";
-
-        red = hex "base08";
-        orange = hex "base09";
-        yellow = hex "base0A";
-        green = hex "base0B";
-        cyan = hex "base0C";
-        blue = hex "base0D";
-        purple = hex "base0E";
-        brown = hex "base0F";
+        # `colors.withHashtag` is `colors` with every value prefixed by `#`.
+        inherit (colors.withHashtag)
+          base00
+          base01
+          base03
+          base04
+          base05
+          base06
+          base08
+          base09
+          base0A
+          base0B
+          base0C
+          base0D
+          base0E
+          ;
 
         # One channel of the base16 colour `«name»`, as a float between
         # 0 and 1.
@@ -69,13 +68,33 @@ mkTarget {
           + 0.7152 * channel name "g"
           + 0.0722 * channel name "b";
 
-        selected = mix 0.14 "base02" "base0D";
-        userBg = mix 0.04 "base01" "base05";
-        customBg = mix 0.10 "base01" "base0E";
-        pendingBg = mix 0.10 "base01" "base0C";
-        successBg = mix 0.12 "base01" "base0B";
-        errorBg = mix 0.12 "base01" "base08";
-        exportInfoBg = mix 0.12 "base01" "base0A";
+        vars = {
+          base = base00;
+          surface = base01;
+          overlay = base03;
+          muted = base04;
+          text = base05;
+          textAlt = base06;
+
+          red = base08;
+          orange = base09;
+          yellow = base0A;
+          green = base0B;
+          cyan = base0C;
+          blue = base0D;
+          purple = base0E;
+
+          # Tinted backgrounds. Pi distinguishes the selection, the
+          # user's messages and every kind of tool output by hue, which
+          # base16 alone does not provide.
+          selected = mix 0.14 "base02" "base0D";
+          userBg = mix 0.04 "base01" "base05";
+          customBg = mix 0.10 "base01" "base0E";
+          pendingBg = mix 0.10 "base01" "base0C";
+          successBg = mix 0.12 "base01" "base0B";
+          errorBg = mix 0.12 "base01" "base08";
+          exportInfoBg = mix 0.12 "base01" "base0A";
+        };
 
         theme = {
           "$schema" =
@@ -88,32 +107,7 @@ mkTarget {
           appearance =
             if brightness "base00" < brightness "base05" then "dark" else "light";
 
-          vars = {
-            inherit
-              base
-              surface
-              surfaceAlt
-              overlay
-              muted
-              text
-              textAlt
-              textBright
-              red
-              orange
-              yellow
-              green
-              cyan
-              blue
-              purple
-              brown
-              selected
-              userBg
-              customBg
-              pendingBg
-              successBg
-              errorBg
-              ;
-          };
+          inherit vars;
 
           colors = {
             accent = "blue";
@@ -177,9 +171,9 @@ mkTarget {
           };
 
           export = {
-            pageBg = base;
-            cardBg = surface;
-            infoBg = exportInfoBg;
+            pageBg = vars.base;
+            cardBg = vars.surface;
+            infoBg = vars.exportInfoBg;
           };
         };
       in
