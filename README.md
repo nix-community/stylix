@@ -14,6 +14,8 @@ Unlike color scheme utilities such as
 applying themes to supported applications, following the "it just works"
 philosophy.
 
+Stylix is licensed under the [MIT license](./LICENSE).
+
 ## Resources
 
 - [Documentation](https://nix-community.github.io/stylix)
