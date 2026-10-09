@@ -9,7 +9,7 @@ mkTarget {
       programs.vim.extraConfig = ''
         set guifont=${
           lib.escape [ " " ] fonts.monospace.name
-        }:h${toString fonts.sizes.terminal}
+        }:h${toString fonts.sizes.terminal.pt}
       '';
     })
     ({ colors, inputs }: {

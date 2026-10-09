@@ -7,7 +7,7 @@ mkTarget {
     ({ fonts }: {
       programs.vicinae.settings.font.normal = {
         family = fonts.sansSerif.name;
-        size = fonts.sizes.applications;
+        size = fonts.sizes.applications.pt;
       };
     })
     ({ colors, polarity }: {

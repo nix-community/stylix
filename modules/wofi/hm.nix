@@ -5,7 +5,7 @@ mkTarget {
       programs.wofi.style = ''
         window {
           font-family: "${fonts.monospace.name}";
-          font-size: ${toString fonts.sizes.popups}pt;
+          font-size: ${toString fonts.sizes.popups.pt}pt;
         }
       '';
     })

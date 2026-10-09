@@ -39,14 +39,9 @@ mkTarget {
           "font.name.sans-serif.x-western" = fonts.sansSerif.name;
           "font.name.serif.x-western" = fonts.serif.name;
 
-          # 4/3 factor used for pt to px;
-          # adding 0.5 before flooring for rounding as Firefox requires an int
-          "font.size.monospace.x-western" = builtins.floor (
-            (fonts.sizes.terminal * 4.0 / 3.0) + 0.5
-          );
-          "font.size.variable.x-western" = builtins.floor (
-            (fonts.sizes.applications * 4.0 / 3.0) + 0.5
-          );
+          # Firefox requires integer pixel sizes.
+          "font.size.monospace.x-western" = fonts.sizes.terminal.rounded.px;
+          "font.size.variable.x-western" = fonts.sizes.applications.rounded.px;
         };
       });
     })

@@ -5,7 +5,7 @@ mkTarget {
       services.swaync.style = ''
         * {
             font-family: "${fonts.sansSerif.name}";
-            font-size: ${toString fonts.sizes.desktop}pt;
+            font-size: ${toString fonts.sizes.desktop.pt}pt;
         }
       '';
     })

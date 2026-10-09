@@ -10,9 +10,7 @@ mkTarget {
     })
     ({ fonts }: {
       programs.emacs.extraConfig = ''
-        (set-face-attribute 'default nil :font (font-spec :family "${fonts.monospace.name}" :size ${
-          toString (fonts.sizes.terminal * 1.0)
-        }))
+        (set-face-attribute 'default nil :font (font-spec :family "${fonts.monospace.name}" :size ${toString fonts.sizes.terminal.pt}))
       '';
     })
     ({ colors }: {

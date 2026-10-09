@@ -3,7 +3,7 @@ mkTarget {
   config = [
     ({ fonts }: {
       programs.fuzzel.settings.main.font =
-        "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups}";
+        "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups.pt}";
     })
     (
       { colors, opacity }:
