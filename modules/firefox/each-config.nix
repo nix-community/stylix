@@ -21,6 +21,13 @@ mkTarget {
       default = [ ];
     };
 
+    userContent.enable =
+      lib.mkEnableOption "userContent.css styling for built-in pages"
+      // {
+        default = true;
+        example = false;
+      };
+
     colorTheme.enable = lib.mkEnableOption "[Firefox Color](https://color.firefox.com) on ${humanName}";
 
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
@@ -51,6 +58,24 @@ mkTarget {
       });
     })
     (import ./reader-mode.nix { inherit name lib; })
+    ({ cfg, colors }: {
+      programs.${name}.profiles = lib.mkIf cfg.userContent.enable (
+        lib.genAttrs cfg.profileNames (_: {
+          settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+          userContent =
+            let
+              userContent = colors {
+                template = ./userContent.css.mustache;
+                extension = ".css";
+              };
+            in
+            ''
+              @import "${userContent}";
+            '';
+        })
+      );
+    })
     (
       {
         cfg,
