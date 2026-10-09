@@ -21,6 +21,8 @@ mkTarget {
         cellpath: "${base08}"
         hints: dark_gray
 
+        selection: { bg: "${base02}" }
+
         shape_garbage: { fg: "${base07}" bg: "${base08}" }
         shape_bool: "${base0D}"
         shape_int: { fg: "${base0E}" attr: b }
