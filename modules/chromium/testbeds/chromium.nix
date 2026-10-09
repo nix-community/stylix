@@ -9,4 +9,5 @@ in
   };
 
   environment.systemPackages = [ package ];
+  programs.chromium.enable = true;
 }
