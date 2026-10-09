@@ -55,6 +55,11 @@
     matrix = "@noodlez1232:matrix.org";
     name = "Nathaniel Barragan";
   };
+  ReStranger = {
+    github = "ReStranger";
+    githubId = 69393944;
+    name = "ReStranger";
+  };
   Swarsel = {
     email = "leon@swarsel.win";
     github = "Swarsel";
