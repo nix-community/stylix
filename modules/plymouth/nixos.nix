@@ -41,14 +41,14 @@ mkTarget {
         themeDir="$out/share/plymouth/themes/stylix"
         mkdir -p $themeDir
 
-        ${lib.getExe' pkgs.imagemagick "convert"} \
+        ${lib.getExe' pkgs.imagemagick "magick"} \
+          ${cfg.logo} \
           -background transparent \
           -bordercolor transparent \
           ${
             # A transparent border ensures the image is not clipped when rotated
             lib.optionalString cfg.logoAnimated "-border 42%"
           } \
-          ${cfg.logo} \
           $themeDir/logo.png
 
         cp ${themeScript} $themeDir/stylix.script

@@ -70,13 +70,13 @@
   }
 
   #zenEditBookmarkPanelFaviconContainer {
-    background: #${base00-hex} !important;
+    background-color: #${base00-hex} !important;
   }
 
   #zen-media-controls-toolbar {
     & #zen-media-progress-bar {
       &::-moz-range-track {
-        background: #${base02-hex}${opacityHex} !important;
+        background-color: #${base02-hex}${opacityHex} !important;
       }
     }
   }

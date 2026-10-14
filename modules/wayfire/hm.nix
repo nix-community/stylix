@@ -33,7 +33,7 @@ mkTarget {
       { image, imageScalingMode }:
       let
         wayfireBackground = pkgs.runCommand "wayfire-background.png" { } ''
-          ${lib.getExe' pkgs.imagemagick "convert"} ${image} $out
+          ${lib.getExe' pkgs.imagemagick "magick"} ${image} $out
         '';
       in
       {
