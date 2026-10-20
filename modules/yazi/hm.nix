@@ -26,7 +26,7 @@ mkTarget {
           };
 
           cwd = mkFg cyan;
-          find_keyword = (mkFg green) // {
+          find_keyword = mkFg green // {
             bold = true;
           };
           find_position = mkFg magenta;
@@ -41,29 +41,29 @@ mkTarget {
         };
 
         indicator = rec {
-          current = (mkBg base02) // {
+          current = mkBg base02 // {
             bold = true;
           };
           preview = current;
         };
 
         tabs = {
-          active = (mkBoth base00 blue) // {
+          active = mkBoth base00 blue // {
             bold = true;
           };
           inactive = mkBoth blue base01;
         };
 
         mode = {
-          normal_main = (mkBoth base00 blue) // {
+          normal_main = mkBoth base00 blue // {
             bold = true;
           };
           normal_alt = mkBoth blue base00;
-          select_main = (mkBoth base00 green) // {
+          select_main = mkBoth base00 green // {
             bold = true;
           };
           select_alt = mkBoth green base00;
-          unset_main = (mkBoth base00 brown) // {
+          unset_main = mkBoth base00 brown // {
             bold = true;
           };
           unset_alt = mkBoth brown base00;
@@ -163,7 +163,7 @@ mkTarget {
               let
                 mkDirIcon =
                   name: text: fg:
-                  ((mkIcon text fg) // { inherit name; });
+                  mkIcon text fg // { inherit name; };
               in
               [
                 (mkDirIcon ".config" "" orange)
@@ -186,7 +186,7 @@ mkTarget {
               let
                 mkCondsIcon =
                   cond: text: fg:
-                  ((mkIcon text fg) // { "if" = cond; });
+                  mkIcon text fg // { "if" = cond; };
               in
               [
                 # Special files

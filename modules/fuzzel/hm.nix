@@ -28,7 +28,7 @@ mkTarget {
     )
     ({ polarity, icons }: {
       programs.fuzzel.settings.main."icon-theme" =
-        if (polarity == "dark") then icons.dark else icons.light;
+        if polarity == "dark" then icons.dark else icons.light;
     })
   ];
 }

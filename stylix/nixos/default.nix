@@ -30,7 +30,7 @@ in
       (
         config.stylix.enable
         && config.stylix.enableReleaseChecks
-        && (config.stylix.release != config.system.nixos.release)
+        && config.stylix.release != config.system.nixos.release
       )
       [
         ''

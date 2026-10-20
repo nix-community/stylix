@@ -30,7 +30,7 @@ in
       (
         config.stylix.enable
         && config.stylix.enableReleaseChecks
-        && (config.stylix.release != config.home.version.release)
+        && config.stylix.release != config.home.version.release
       )
       [
         ''

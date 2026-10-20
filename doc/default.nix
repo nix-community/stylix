@@ -446,18 +446,18 @@ let
         "</colgroup>"
         "<tbody>"
       ]
-      ++ (lib.optional (option ? type) (renderDetailsRow "Type" option.type))
-      ++ (lib.optional (option ? default) (
+      ++ lib.optional (option ? type) (renderDetailsRow "Type" option.type)
+      ++ lib.optional (option ? default) (
         renderDetailsRow "Default" (renderValue option.default)
-      ))
-      ++ (lib.optional (option ? example) (
+      )
+      ++ lib.optional (option ? example) (
         renderDetailsRow "Example" (renderValue option.example)
-      ))
-      ++ (lib.optional (option ? declarations) (
+      )
+      ++ lib.optional (option ? declarations) (
         renderDetailsRow "Source" (
           lib.concatLines (map renderDeclaration option.declarations)
         )
-      ))
+      )
       ++ [
         "</tbody>"
         "</table>"

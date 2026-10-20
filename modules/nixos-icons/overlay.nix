@@ -48,7 +48,7 @@
                     # convert each to hex string
                     (map toHexString)
                     # add leading 0 if necessary
-                    (map (hex: if (stringLength hex < 2) then "0" + hex else hex))
+                    (map (hex: if stringLength hex < 2 then "0" + hex else hex))
                     # to one string
                     concatStrings
                   ];

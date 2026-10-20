@@ -12,8 +12,8 @@ mkTarget {
           contrast-multiplier = 1.0;
           background-color = rgb-to-hsl "base00";
           primary-color = rgb-to-hsl "base05";
-          positive-color = rgb-to-hsl "base01";
-          negative-color = rgb-to-hsl "base04";
+          positive-color = rgb-to-hsl "base0B";
+          negative-color = rgb-to-hsl "base08";
         };
       }
     )
