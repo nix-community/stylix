@@ -110,8 +110,8 @@ mkTarget {
     ({ fonts }: {
       programs.wezterm.settings = {
         font = lib.generators.mkLuaInline ''wezterm.font_with_fallback { "${fonts.monospace.name}", "${fonts.emoji.name}" }'';
-        font_size = fonts.sizes.terminal;
-        command_palette_font_size = fonts.sizes.popups;
+        font_size = fonts.sizes.terminal.pt;
+        command_palette_font_size = fonts.sizes.popups.pt;
       };
     })
     ({ opacity }: {

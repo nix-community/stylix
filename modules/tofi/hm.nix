@@ -4,7 +4,8 @@ mkTarget {
     ({ fonts }: {
       programs.tofi.settings = {
         font = fonts.monospace.name;
-        font-size = toString fonts.sizes.popups;
+        # tofi requires an unsigned integer point size.
+        font-size = fonts.sizes.popups.rounded.pt;
       };
     })
     ({ colors, opacity }: {

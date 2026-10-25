@@ -3,7 +3,7 @@ mkTarget {
   # Referenced https://github.com/stacyharper/base16-mako
   config = [
     ({ fonts }: {
-      services.mako.settings.font = "${fonts.sansSerif.name} ${toString fonts.sizes.popups}";
+      services.mako.settings.font = "${fonts.sansSerif.name} ${toString fonts.sizes.popups.pt}";
     })
     ({ colors, opacity }: {
       services.mako =

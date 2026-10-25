@@ -55,7 +55,7 @@ mkTarget {
       programs.waybar.style = ''
         * {
             font-family: "${fonts.${cfg.font}.name}";
-            font-size: ${toString fonts.sizes.desktop}pt;
+            font-size: ${toString fonts.sizes.desktop.pt}pt;
         }
       '';
     })

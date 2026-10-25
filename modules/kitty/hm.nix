@@ -15,7 +15,7 @@ mkTarget {
     ({ fonts }: {
       programs.kitty.font = {
         inherit (fonts.monospace) package name;
-        size = fonts.sizes.terminal;
+        size = fonts.sizes.terminal.pt;
       };
     })
     ({ opacity }: {

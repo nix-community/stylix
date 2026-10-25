@@ -4,7 +4,7 @@ mkTarget {
     ({ fonts }: {
       programs.qutebrowser.settings.fonts = with fonts; {
         default_family = sansSerif.name;
-        default_size = "${toString sizes.applications}pt";
+        default_size = "${toString sizes.applications.pt}pt";
 
         web = {
           family = {
@@ -16,9 +16,7 @@ mkTarget {
             standard = sansSerif.name;
           };
 
-          # TODO: Use the pixel unit:
-          # https://github.com/nix-community/stylix/issues/251.
-          size.default = builtins.floor (sizes.applications * 4 / 3 + 0.5);
+          size.default = sizes.applications.rounded.px;
         };
       };
     })

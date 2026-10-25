@@ -257,9 +257,9 @@ let
     KDE.LookAndFeelPackage = makeImmutable Id;
 
     General = with config.stylix.fonts; rec {
-      font = makeImmutable "${sansSerif.name},${toString sizes.applications},-1,5,50,0,0,0,0,0";
-      fixed = makeImmutable "${monospace.name},${toString sizes.terminal},-1,5,50,0,0,0,0,0";
-      desktopFont = makeImmutable "${sansSerif.name},${toString sizes.desktop},-1,5,50,0,0,0,0,0";
+      font = makeImmutable "${sansSerif.name},${toString sizes.applications.pt},-1,5,50,0,0,0,0,0";
+      fixed = makeImmutable "${monospace.name},${toString sizes.terminal.pt},-1,5,50,0,0,0,0,0";
+      desktopFont = makeImmutable "${sansSerif.name},${toString sizes.desktop.pt},-1,5,50,0,0,0,0,0";
       menuFont = desktopFont;
       taskbarFont = desktopFont;
       toolBarFont = desktopFont;

@@ -86,6 +86,7 @@ let
             "fonts"
             "sizes"
             "applications"
+            "px"
           ];
         }
         {
@@ -94,6 +95,7 @@ let
             "fonts"
             "sizes"
             "desktop"
+            "px"
           ];
         }
         {
@@ -102,6 +104,7 @@ let
             "fonts"
             "sizes"
             "popups"
+            "px"
           ];
         }
         {
@@ -110,6 +113,7 @@ let
             "fonts"
             "sizes"
             "terminal"
+            "px"
           ];
         }
         {

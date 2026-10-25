@@ -58,8 +58,8 @@ mkTarget {
     (
       { fonts }:
       let
-        fontSize = toString fonts.sizes.applications;
-        documentFontSize = toString (fonts.sizes.applications - 1);
+        fontSize = toString fonts.sizes.applications.pt;
+        documentFontSize = toString (fonts.sizes.applications.pt - 1);
       in
       {
         dconf.settings."org/gnome/desktop/interface" = {

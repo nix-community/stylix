@@ -4,7 +4,7 @@ mkTarget {
     ({ fonts }: {
       services.fnott.settings =
         let
-          font = "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups}";
+          font = "${fonts.sansSerif.name}:size=${toString fonts.sizes.popups.pt}";
         in
         {
           main = {

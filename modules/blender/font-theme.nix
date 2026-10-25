@@ -3,7 +3,7 @@
     <ThemeStyle>
       <panel_title>
         <ThemeFontStyle
-          points="${toString fonts.sizes.desktop}"
+          points="${toString fonts.sizes.desktop.pt}"
           character_weight="400"
           shadow="1"
           shadow_offset_x="0"
@@ -14,7 +14,7 @@
       </panel_title>
       <widget_label>
         <ThemeFontStyle
-          points="${toString fonts.sizes.popups}"
+          points="${toString fonts.sizes.popups.pt}"
           character_weight="400"
           shadow="3"
           shadow_offset_x="0"
@@ -25,7 +25,7 @@
       </widget_label>
       <widget>
         <ThemeFontStyle
-          points="${toString fonts.sizes.popups}"
+          points="${toString fonts.sizes.popups.pt}"
           character_weight="400"
           shadow="0"
           shadow_offset_x="0"

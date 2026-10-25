@@ -7,7 +7,7 @@ mkTarget {
     ({ fonts }: {
       programs.neovide.settings.font = {
         normal = [ fonts.monospace.name ];
-        size = fonts.sizes.terminal;
+        size = fonts.sizes.terminal.pt;
       };
     })
     ({ opacity }: {

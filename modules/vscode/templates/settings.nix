@@ -10,18 +10,16 @@ fonts: with fonts; {
   "chat.fontFamily" = sansSerif.name;
   "notebook.markup.fontFamily" = sansSerif.name;
 
-  # 4/3 factor used for pt to px;
-  "editor.fontSize" = sizes.terminal * 4.0 / 3.0;
-  "debug.console.fontSize" = sizes.terminal * 4.0 / 3.0;
-  "markdown.preview.fontSize" = sizes.terminal * 4.0 / 3.0;
-  "terminal.integrated.fontSize" = sizes.terminal * 4.0 / 3.0;
-  "chat.editor.fontSize" = sizes.terminal * 4.0 / 3.0;
+  "editor.fontSize" = sizes.terminal.px;
+  "debug.console.fontSize" = sizes.terminal.px;
+  "markdown.preview.fontSize" = sizes.terminal.px;
+  "terminal.integrated.fontSize" = sizes.terminal.px;
+  "chat.editor.fontSize" = sizes.terminal.px;
 
   # other factors (9/14, 13/14, 56/14) based on default for given value
   # divided by default for `editor.fontSize` (14) from
   # https://code.visualstudio.com/docs/getstarted/settings#_default-settings.
-  "editor.minimap.sectionHeaderFontSize" =
-    sizes.terminal * 4.0 / 3.0 * 9.0 / 14.0;
-  "scm.inputFontSize" = sizes.terminal * 4.0 / 3.0 * 13.0 / 14.0;
-  "screencastMode.fontSize" = sizes.terminal * 4.0 / 3.0 * 56.0 / 14.0;
+  "editor.minimap.sectionHeaderFontSize" = sizes.terminal.px * 9.0 / 14.0;
+  "scm.inputFontSize" = sizes.terminal.px * 13.0 / 14.0;
+  "screencastMode.fontSize" = sizes.terminal.px * 56.0 / 14.0;
 }

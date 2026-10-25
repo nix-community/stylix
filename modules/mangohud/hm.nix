@@ -3,12 +3,9 @@ mkTarget {
   config = [
     ({ fonts }: {
       programs.mangohud.settings = {
-        font_size = fonts.sizes.applications;
-        font_size_text = fonts.sizes.applications;
-
-        # TODO: Use the point unit:
-        # https://github.com/nix-community/stylix/issues/251.
-        font_scale = 1.33333;
+        font_size = fonts.sizes.applications.px;
+        font_size_text = fonts.sizes.applications.px;
+        font_scale = 1.0;
       };
     })
     ({ opacity }: {

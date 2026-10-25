@@ -27,7 +27,7 @@ mkTarget {
   config = [
     ({ fonts }: {
       wayland.windowManager.wayfire.settings.decoration.font =
-        "${fonts.monospace.name} ${toString fonts.sizes.desktop}";
+        "${fonts.monospace.name} ${toString fonts.sizes.desktop.pt}";
     })
     (
       { image, imageScalingMode }:
