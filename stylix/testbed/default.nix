@@ -61,8 +61,6 @@ let
                 inputs.noctalia-shell.homeModules.default
               ];
 
-              noctalia.home-manager.sharedModules = [ inputs.noctalia.homeModules.default ];
-
               nvf = inputs.nvf.nixosModules.default;
 
               zen-browser.home-manager.sharedModules = [
