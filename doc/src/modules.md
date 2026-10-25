@@ -250,8 +250,9 @@ number of maintainers:
   }
   ```
 
-The main responsibility of module maintainers is to update and fix their
-modules.
+Module maintainers are responsible for updating and fixing their modules, and
+may be consulted on relevant matters. Module maintainers are free to resign and
+may be removed after prolonged inactivity.
 
 > [!NOTE]
 > If this is the first time you're adding yourself as a maintainer in Stylix,
