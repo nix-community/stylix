@@ -1,0 +1,49 @@
+---
+name: Stale
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Once a week
+
+jobs:
+  stale:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: read
+          permission-issues: write
+          permission-pull-requests: write
+
+      - uses: actions/stale@v11
+        with:
+          repo-token: ${{ steps.app-token.outputs.token }}
+
+          days-before-stale: 365
+          days-before-close: 28
+          days-before-issue-close: -1
+
+          stale-issue-label: "status: stale"
+          stale-issue-message: |
+            This issue has been quiet for a year, so we are marking it as
+            stale.
+
+            Please check whether it is still relevant, and close it if it has
+            been resolved or is no longer needed.
+
+            We do not close issues automatically.
+
+          stale-pr-label: "status: stale"
+          stale-pr-message: |
+            This pull request been quiet for a year, so we are marking it as
+            stale.
+
+            Please check whether it is still relevant, ensure that there are no
+            merge conflicts, and respond to review comments.
+
+            The pull request will be closed if there is no activity in the next
+            month.
+
