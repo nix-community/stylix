@@ -43,12 +43,19 @@
 
   `config` (Attribute set)
 
-  : `autoEnable` (Boolean)
+  : `autoEnable` (Boolean or module function)
     : Whether the target should be automatically enabled by default according
       to the `stylix.autoEnable` option.
 
       This should be disabled if manual setup is required or if auto-enabling
       causes issues.
+
+      A module function can be used when automatic enablement depends on the
+      module configuration. For example:
+
+      ```nix
+      { config, ... }: config.programs.example.enable
+      ```
 
       The default (`true`) is inherited from `mkEnableTargetWith`.
 
@@ -171,7 +178,7 @@ let
   mkTargetConfig = config;
 
   module =
-    { config, lib, ... }:
+    { config, lib, ... }@moduleArgs:
     let
       callModule =
         let
@@ -314,7 +321,10 @@ let
           enableArgs = {
             name = humanName;
           }
-          // lib.optionalAttrs (args ? autoEnable) { inherit autoEnable; }
+          // lib.optionalAttrs (args ? autoEnable) {
+            autoEnable =
+              if builtins.isFunction autoEnable then autoEnable moduleArgs else autoEnable;
+          }
           // lib.optionalAttrs (args ? autoEnableExpr) { inherit autoEnableExpr; }
           // lib.optionalAttrs (args ? autoWrapEnableExpr) {
             autoWrapExpr = autoWrapEnableExpr;
