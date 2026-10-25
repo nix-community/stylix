@@ -36,6 +36,12 @@
     githubId = 13490857;
     name = "Lyndon Sanche";
   };
+  MortenMunk = {
+    email = "mortenmunk97@gmail.com";
+    github = "MortenMunk";
+    githubId = 92527083;
+    name = "Morten Munk";
+  };
   MrSom3body = {
     email = "nix@sndh.dev";
     github = "MrSom3body";
