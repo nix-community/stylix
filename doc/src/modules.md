@@ -16,7 +16,7 @@ frontends: `nixos-rebuild`, `nix-on-droid` and even `nh`). It allows you to
 deploy your changes in one fell swoop, without having to update the lock file of
 your flake every time you make an edit.
 
-Just append `--override-input stylix git+file:/home/user/path/to/stylix` to your
+Just append `--override-input stylix ~/path/to/stylix` to your
 standard `nix` (or `nix` frontend) incantation.
 
 Nix only reads files which are tracked by Git, so you also need to `git add
