@@ -76,6 +76,12 @@
     github = "michaelgoldenn";
     githubId = 95949544;
   };
+  nsrkn2n = {
+    email = "w4v3n@protonmail.com";
+    name = "Nasr Rizkallah";
+    github = "nsrkn2n";
+    githubId = 163405194;
+  };
   omega-800 = {
     email = "gshevoroshkin@gmail.com";
     name = "Georgiy Shevoroshkin";
