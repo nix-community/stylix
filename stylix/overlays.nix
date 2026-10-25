@@ -4,9 +4,20 @@
   config,
   options,
   ...
-}:
+}@args:
+let
+  # Only passed when Home Manager runs as a NixOS module, which is where
+  # `home-manager.useGlobalPkgs` is defined. Not declared as a function
+  # argument, so the module system does not require it to exist.
+  useGlobalPkgs = args.osConfig.home-manager.useGlobalPkgs or false;
+in
 {
   options.stylix.overlays.enable = config.lib.stylix.mkEnableTarget "packages via overlays" true;
+
+  # `home-manager.useGlobalPkgs` forbids `nixpkgs.overlays`. Stylix's
+  # home-manager-integration only disables overlays when it auto-imports the
+  # module, so a manually imported Home Manager module must disable them here.
+  config.stylix.overlays.enable = lib.mkIf useGlobalPkgs false;
 
   imports = map (
     f:
