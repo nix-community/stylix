@@ -13,7 +13,8 @@ let
       ${oldAttrs.postFixup or ""}
       styles_dir="$out/share/gtksourceview-${version}/styles"
       mkdir --parents "$styles_dir"
-      cp ${style} "$styles_dir/stylix.xml"
+      # --force: the overlay can be applied twice, and the first copy is read-only.
+      cp --force ${style} "$styles_dir/stylix.xml"
     '';
   };
 in
