@@ -1,0 +1,13 @@
+diff --git a/src/adw-style-manager.c b/src/adw-style-manager.c
+index 1119af72..3364061b 100644
+--- a/src/adw-style-manager.c
++++ b/src/adw-style-manager.c
+@@ -489,7 +489,7 @@ adw_style_manager_constructed (GObject *object)
+                              self,
+                              G_CONNECT_SWAPPED);
+ 
+-    if (!adw_is_granite_present () && !g_getenv ("GTK_THEME")) {
++    if (0) {
+       g_object_set (self->gtk_settings,
+                     "gtk-theme-name", "Adwaita-empty",
+                     NULL);
