@@ -15,5 +15,5 @@ in
 
   environment.systemPackages = [ package ];
   nixpkgs.config.allowUnfreePredicate =
-    pkg: builtins.elem (lib.getName pkg) [ "discord" ];
+    pkg: builtins.elem (lib.getName pkg) [ "discord-unwrapped" ];
 }
