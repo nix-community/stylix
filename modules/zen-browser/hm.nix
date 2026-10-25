@@ -68,6 +68,8 @@ mkTarget {
         lib.genAttrs cfg.profileNames (_: {
           settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "ui.highlight" = "#${colors.base0D}";
+            "ui.highlighttext" = "#${colors.base00}";
           };
 
           userChrome = import ./userChrome.nix {
