@@ -158,6 +158,12 @@
       inputs.nixpkgs.follows = "dev-nixpkgs";
     };
 
+    # Pinned nixpkgs branches providing each OpenCode major version, used by
+    # the OpenCode testbeds.
+    nixpkgs-opencode-1.url = "github:NixOS/nixpkgs/nixos-26.05";
+
+    nixpkgs-opencode-2.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
