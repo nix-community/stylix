@@ -34,6 +34,8 @@
         };
         typos = {
           enable = true;
+          # "EDE" appears in a GPG fingerprint in generated/all-maintainers.nix.
+          settings.config.default.extend-words.EDE = "EDE";
           settings.config.default.extend-identifiers = lib.genAttrs [
             "MrSom3body"
             "Relm4"
