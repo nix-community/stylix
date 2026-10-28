@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   stylix.testbed.ui.command = {
     text = "posting";
     useTerminal = true;
