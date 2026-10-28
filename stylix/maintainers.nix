@@ -88,6 +88,12 @@
     github = "osipog";
     githubId = 87434959;
   };
+  reesilva = {
+    email = "reesilva@proton.me";
+    name = "Renato da Silva";
+    github = "reesilva";
+    githubId = 3605032;
+  };
   rwxae = {
     email = "wardxela@gmail.com";
     name = "Alexander";
