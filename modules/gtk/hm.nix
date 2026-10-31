@@ -15,7 +15,7 @@ mkTarget {
       type = lib.types.lines;
       default = "";
       example = ''
-        // Remove rounded corners
+        /* Remove rounded corners */
         window.background { border-radius: 0; }
       '';
     };
