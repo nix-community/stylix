@@ -6,7 +6,8 @@
     saadndm
   ];
   description = ''
-    This module supports the [Zen Browser](https://zen-browser.app).
+    This module supports the [Zen Browser](https://zen-browser.app) provided by
+    [0xc000022070's Zen Browser flake](https://github.com/0xc000022070/zen-browser-flake).
 
     > [!IMPORTANT]
     >

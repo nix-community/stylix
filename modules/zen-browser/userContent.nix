@@ -74,12 +74,12 @@
     }
 
     groupbox , moz-card{
-      background: #${base00-hex}${opacityHex} !important;
+      background-color: #${base00-hex}${opacityHex} !important;
     }
 
     button,
     groupbox menulist {
-      background: #${base02-hex} !important;
+      background-color: #${base02-hex} !important;
       color: #${base05-hex} !important;
     }
 
