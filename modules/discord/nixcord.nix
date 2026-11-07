@@ -53,6 +53,7 @@ mkTarget {
                 writePath "Equicord"
               ))
               (lib.mkIf nixcord.equibop.enable (writePath "equibop"))
+              (lib.mkIf nixcord.legcord.enable (writePath "legcord"))
               { programs.nixcord.config.enabledThemes = [ "stylix.theme.css" ]; }
             ]
           )
