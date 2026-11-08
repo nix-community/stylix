@@ -32,6 +32,7 @@
           "tray"
           "custom/power"
         ];
+        "hyprland/workspaces"."persistent-workspaces"."*" = 5;
       };
     };
   };
