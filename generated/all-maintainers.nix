@@ -151,6 +151,13 @@
     githubId = 54070204;
     name = "0x5a4";
   };
+  first-uninteresting-username = {
+    email = "janekmusin@proton.me";
+    github = "first-uninteresting-username";
+    githubId = 196055729;
+    matrix = "@youtookmyusername:matrix.org";
+    name = "first-uninteresting-username";
+  };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
     github = "gideonwolfe";
