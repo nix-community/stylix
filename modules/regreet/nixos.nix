@@ -28,35 +28,51 @@ mkTarget {
   autoEnable = pkgs.stdenv.hostPlatform.isLinux;
   autoEnableExpr = "pkgs.stdenv.hostPlatform.isLinux";
 
-  options.extraCss = lib.mkOption {
-    description = ''
-      Extra code added to `services.displayManager.regreet.extraCss` option.
-    '';
-    type = lib.types.lines;
-    default = "";
-    example = "window.background { border-radius: 0; }";
+  options = {
+    extraCss = lib.mkOption {
+      description = ''
+        Extra code added to `services.displayManager.regreet.extraCss` option.
+      '';
+      type = lib.types.lines;
+      default = "";
+      example = "window.background { border-radius: 0; }";
+    };
+
+    silenceCustomSessionCommandWarning = lib.mkOption {
+      description = ''
+        Silences the warning produced by this module when using custom `services.greetd.settings.default_session.command`.
+      '';
+      type = lib.types.bool;
+      default = false;
+      example = true;
+    };
   };
 
   config = [
-    {
+    ({ cfg }: {
       warnings =
         let
-          cfg = config.services.displayManager.regreet;
+          rgCfg = config.services.displayManager.regreet;
         in
         lib.optional
           (
-            cfg.enable
-            &&
+            rgCfg.enable
+            && (!cfg.silenceCustomSessionCommandWarning)
+            && (
               # defined in https://github.com/NixOS/nixpkgs/blob/481fbc1f6c7a089244732d605957b61b8415680b/nixos/modules/services/display-managers/regreet.nix#L163
               config.services.greetd.settings.default_session.command
-              != "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.cage} ${lib.escapeShellArgs cfg.cageArgs} -- ${lib.getExe cfg.package}"
+              != "${lib.getExe' pkgs.dbus "dbus-run-session"} ${lib.getExe pkgs.cage} ${lib.escapeShellArgs rgCfg.cageArgs} -- ${lib.getExe rgCfg.package}"
+            )
           )
-          "stylix: regreet: custom services.greetd.settings.default_session.command value may not work: ${config.services.greetd.settings.default_session.command}";
+          ''
+            stylix: regreet: custom `services.greetd.settings.default_session.command` value may not work: ${config.services.greetd.settings.default_session.command}
+            You may silence this warning by setting `stylix.targets.regreet.silenceCustomSessionCommandWarning = true;`.
+          '';
       services.displayManager.regreet.theme = {
         package = pkgs.adw-gtk3;
         name = "adw-gtk3";
       };
-    }
+    })
     (
       { cfg, colors }:
       let
