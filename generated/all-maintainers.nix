@@ -223,6 +223,12 @@
     githubId = 635591;
     name = "Shahar \"Dawn\" Or";
   };
+  nsrkn2n = {
+    email = "w4v3n@protonmail.com";
+    github = "nsrkn2n";
+    githubId = 163405194;
+    name = "Nasr Rizkallah";
+  };
   nukdokplex = {
     email = "nukdokplex@nukdokplex.ru";
     github = "nukdokplex";

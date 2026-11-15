@@ -1,11 +1,11 @@
 { colors, colorScheme }: with colors;
 ''
   /* Stylix palette for the Thunderbird user interface. Thunderbird's own
-     stylesheets take their colors from the custom properties below, so
-     overriding them (plus `color-scheme`, which their `light-dark()` tokens
-     resolve against) themes the folder pane, thread pane, tab bar and
-     toolbars in one place. The names were read off Thunderbird's omni.ja
-     (about3Pane.css and the shared stylesheets). */
+    stylesheets take their colors from the custom properties below, so
+    overriding them (plus `color-scheme`, which their `light-dark()` tokens
+    resolve against) themes the folder pane, thread pane, tab bar and
+    toolbars in one place. The names were read off Thunderbird's omni.ja
+    (about3Pane.css and the shared stylesheets). */
 
   :root {
     color-scheme: ${colorScheme} !important;
@@ -37,7 +37,7 @@
     --lwt-text-color: #${base05-hex} !important;
 
     /* Buttons otherwise follow the platform accent (amber on some GTK
-       themes), which has nothing to do with the palette. */
+      themes), which has nothing to do with the palette. */
     --button-primary-background-color: #${base0D-hex} !important;
     --button-primary-text-color: #${base00-hex} !important;
     --button-primary-hover-background-color: #${base0E-hex} !important;
@@ -45,7 +45,7 @@
     --color-accent-primary: #${base0D-hex} !important;
 
     /* Selection follows Thunderbird's own model: accent-tinted while the
-       pane has focus, a quiet raise while it does not. */
+      pane has focus, a quiet raise while it does not. */
     --selected-item-color: #${base0D-hex} !important;
     --selected-item-text-color: #${base00-hex} !important;
     --treeitem-background-active: #${base0D-hex} !important;
@@ -83,8 +83,8 @@
   }
 
   /* Belt and braces: the badge colors above are plain custom properties, and
-     any later !important rule (or a theme redefining them in a narrower
-     scope) would still win. These selectors pin them where they are used. */
+    any later !important rule (or a theme redefining them in a narrower
+    scope) would still win. These selectors pin them where they are used. */
   #folderPane .unread-count,
   #folderPane .folder-count-badge {
     background-color: var(--folderpane-unread-count-background) !important;
@@ -97,10 +97,10 @@
   }
 
   /* The top strip (tab bar, global search, window buttons) and the window's
-     status bar (activity manager, Today Pane toggle) have no background of
-     their own - #tabs-toolbar paints only a 1px separator gradient - and the
-     native widget backgrounds they fall back on stop rendering under the
-     forced dark color-scheme above. Paint them from the palette. */
+    status bar (activity manager, Today Pane toggle) have no background of
+    their own - #tabs-toolbar paints only a 1px separator gradient - and the
+    native widget backgrounds they fall back on stop rendering under the
+    forced dark color-scheme above. Paint them from the palette. */
   #messengerWindow,
   #titlebar,
   #tabs-toolbar,
