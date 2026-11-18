@@ -1,6 +1,6 @@
 place: ''
   window .modules-${place} #workspaces button {
-      background-color: @base07;
+      background-color: @base03;
       color: @base00;
   }
   .modules-${place} #wireplumber,
@@ -11,7 +11,7 @@ place: ''
   }
   .modules-${place} #workspaces button.focused,
   .modules-${place} #workspaces button.active {
-      background: @base03;
+      background: @base0D;
   }
   .modules-${place} #workspaces button.urgent {
       background-color: @base08;
