@@ -294,6 +294,14 @@ mandatory.
 
 ## Common Mistakes
 
+### Using `lib.mkOverride`
+
+When writing modules, using `lib.mkOverride`, `lib.mkDefault`, or `lib.mkForce`
+should be avoided. Stylix modules should aim to declare only the options
+necessary for satisfactory theming. It is preferable for end users to use `lib.mkForce`
+than for their configuration to silently override/silently be overridden by values
+set by Stylix.
+
 ### `home.activation` Scripts
 
 Any script run by `home.activation` must be preceded by `run` if the script is
