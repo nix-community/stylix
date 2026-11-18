@@ -17,6 +17,12 @@
     matrix = "@da157:catgirl.cloud";
     name = "0xda157";
   };
+  ErinaYip = {
+    email = "erinayip@outlook.com";
+    github = "ErinaYip";
+    githubId = 227132255;
+    name = "erina";
+  };
   Eveeifyeve = {
     email = "eveeg1971@gmail.com";
     github = "Eveeifyeve";
