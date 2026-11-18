@@ -1,0 +1,238 @@
+/* Built-in page */
+@-moz-document url-prefix("about:") {
+  :root {
+    background: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+
+    --background-color-box-info: #{{base01-hex}} !important;
+    --background-color-box: #{{base01-hex}} !important;
+    --background-color-canvas: #{{base00-hex}} !important;
+    --background-color-information: #{{base01-hex}} !important;
+    --background-color-list-item-hover: #{{base02-hex}} !important;
+    --background-color-warning: #{{base01-hex}} !important;
+    --border-color-deemphasized: transparent !important;
+    --border-color: transparent !important;
+    --card-background-color: #{{base01-hex}} !important;
+    --feature-banner-color: #{{base02-hex}} !important;
+    --fieldpair-text-color: #{{base04-hex}} !important;
+    --input-text-background-color: #{{base01-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+    --message-bar-background-color: #{{base01-hex}} !important;
+    --selected-tab-text-color: #{{base0D-hex}} !important;
+    --sidebar-selected-color: #{{base05-hex}} !important;
+    --text-color: #{{base05-hex}} !important;
+
+    /* Accent color */
+    --color-accent-primary-hover: #{{base0D-hex}} !important;
+    --color-accent-primary-selected: #{{base0D-hex}} !important;
+    --color-accent-primary: #{{base0D-hex}} !important;
+
+    /* Button */
+    --button-background-color-active: #{{base02-hex}} !important;
+    --button-background-color-hover: #{{base02-hex}} !important;
+    --button-background-color-primary-active: #{{base02-hex}} !important;
+    --button-background-color-primary-hover: #{{base02-hex}} !important;
+    --button-background-color-primary: #{{base01-hex}} !important;
+    --button-background-color: #{{base01-hex}} !important;
+    --button-text-color-primary: #{{base05-hex}} !important;
+    --button-text-color-selected: #{{base05-hex}} !important;
+    --button-text-color: #{{base05-hex}} !important;
+
+    /* Icon */
+    --icon-color-success: #{{base0B-hex}} !important;
+    --icon-color-warning: #{{base0A-hex}} !important;
+    --icon-color: #{{base05-hex}} !important;
+    --icon-info-color: #{{base05-hex}} !important;
+
+    /* Table */
+    --table-background-color: #{{base00-hex}} !important;
+    --table-header-background-color: #{{base01-hex}} !important;
+    --table-header-text-color: #{{base05-hex}} !important;
+    --table-row-background-color-alternate: #{{base01-hex}} !important;
+  }
+
+
+  body {
+    background: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  /* Settings tab */
+  moz-page-nav-button {
+    --page-nav-button-indicator-color: #{{base05-hex}} !important;
+  }
+
+  moz-promo {
+    --promo-background-color: #{{base01-hex}} !important;
+  }
+
+  /* Policy description */
+  .content-style {
+    color: #{{base05-hex}} !important;
+  }
+}
+
+/* New tab */
+@-moz-document url("about:newtab"), url("about:home"), url("about:firefoxview") {
+  :root {
+    --newtab-background-card: #{{base01-hex}} !important;
+    --newtab-background-color-secondary: #{{base01-hex}} !important;
+    --newtab-background-color: #{{base00-hex}} !important;
+    --newtab-primary-action-background: #{{base0D-hex}} !important;
+    --newtab-wordmark-color: #{{base05-hex}} !important;
+  }
+}
+
+/* Developer Tools */
+@-moz-document url-prefix("chrome://devtools/content/") {
+  :root {
+    scrollbar-color: #{{base02-hex}} #{{base00-hex}} !important;
+
+    --accessibility-unfocused-tree-focused-node-background: #{{base01-hex}} !important;
+    --badge-background-color: #{{base01-hex}} !important;
+    --badge-color: #{{base05-hex}} !important;
+    --bg-color: #{{base00-hex}} !important;
+    --button-background-color-primary: #{{base05-hex}} !important;
+    --dimmed-icon-color: #{{base04-hex}} !important;
+    --error-color: #{{base08-hex}} !important;
+    --row-striped-background: #{{base01-hex}} !important;
+    --rule-header-background-color: #{{base01-hex}} !important;
+    --theme-accordion-header-background: #{{base00-hex}} !important;
+    --theme-accordion-header-hover-background: #{{base02-hex}} !important;
+    --theme-accordion-header-hover-color: #{{base05-hex}} !important;
+    --theme-contrast-background: #{{base0A-hex}} !important;
+    --theme-select-background: #{{base01-hex}} !important;
+    --theme-select-color: #{{base05-hex}} !important;
+    --theme-selection-background-hover: #{{base02-hex}} !important;
+    --theme-selection-background: #{{base02-hex}} !important;
+    --theme-sidebar-background: #{{base00-hex}} !important;
+    --theme-tooltip-background: #{{base01-hex}} !important;
+    --timing-blocked-color: #{{base08-hex}} !important;
+
+    /* Console */
+    --console-error-background: #{{base01-hex}} !important;
+    --console-error-color: #{{base08-hex}} !important;
+    --console-message-color: #{{base05-hex}} !important;
+    --console-output-color: #{{base05-hex}} !important;
+    --console-warning-background: #{{base01-hex}} !important;
+    --console-warning-color: #{{base0A-hex}} !important;
+
+    /* Diff */
+    --diff-add-background-color: #{{base01-hex}} !important;
+    --diff-add-text-color: #{{base0B-hex}} !important;
+    --diff-remove-background-color: #{{base01-hex}} !important;
+    --diff-remove-text-color: #{{base08-hex}} !important;
+
+    /* Link */
+    --link-color-active: #{{base0D-hex}} !important;
+    --link-color-hover: #{{base0D-hex}} !important;
+    --theme-internal-link-color: #{{base0D-hex}} !important;
+    --theme-link-color: #{{base0D-hex}} !important;
+
+    /* Table */
+    --table-selection-background-hover: #{{base02-hex}} !important;
+    --table-zebra-background: #{{base01-hex}} !important;
+  }
+
+  .devtools-button.devtools-button-standalone {
+    color: var(--theme-body-color) !important;
+  }
+
+  /* CSS property checkboxes in style inspector */
+  .ruleview-enableproperty {
+    fill: #{{base03-hex}} !important;
+
+    &:checked {
+      stroke: #{{base03-hex}} !important;
+    }
+  }
+
+  /* "Start recording" button in performance tab */
+  .perf-photon-button-primary {
+    background-color: #{{base01-hex}} !important;
+
+    &:hover {
+      background-color: #{{base02-hex}} !important;
+    }
+  }
+
+  /* Highlighting */
+  /* TODO: Adapt to style guide */
+  :root {
+    --markup-hidden-attr-color: #{{base03-hex}} !important;
+    --markup-hidden-punctuation-color: #{{base03-hex}} !important;
+    --markup-hidden-tag-color: #{{base03-hex}} !important;
+    --theme-comment: #{{base04-hex}} !important;
+    --theme-highlight-blue: #{{base0D-hex}} !important;
+    --theme-highlight-bluegrey: #{{base0C-hex}} !important;
+    --theme-highlight-gray: #{{base03-hex}} !important;
+    --theme-highlight-green: #{{base0B-hex}} !important;
+    --theme-highlight-lightorange: #{{base13-hex}} !important;
+    --theme-highlight-orange: #{{base09-hex}}  !important;
+    --theme-highlight-pink: #{{base12-hex}} !important;
+    --theme-highlight-purple: #{{base0E-hex}} !important;
+    --theme-highlight-red: #{{base08-hex}} !important;
+    --theme-highlight-yellow: #{{base0A-hex}} !important;
+    --theme-text-color-alt: #{{base03-hex}} !important;
+    --theme-text-color-inactive: #{{base03-hex}} !important;
+  }
+
+  /* Variables */
+  .cm-s-mozilla .cm-def,
+  .cm-s-mozilla .cm-variable-2,
+  :is(.cm-editor, .cm-highlighted) :is(.tok-variableName.tok-definition, .tok-variableName) {
+    color: var(--theme-highlight-blue) !important;
+  }
+
+  /* Keywords */
+  .cm-s-mozilla .cm-variable,
+  .cm-editor .tok-keyword:has(+ .tok-punctuation):not(.tok-number ~ .tok-keyword),
+  :is(.cm-editor, .cm-highlighted) .tok-variableName2 {
+    color: var(--theme-highlight-purple) !important;
+  }
+}
+
+@-moz-document url-prefix("chrome://devtools/content/"), url-prefix("about:devtools-toolbox") {
+  :root {
+    --theme-body-alternate-emphasized-background: #{{base01-hex}} !important;
+    --theme-body-background: #{{base00-hex}} !important;
+    --theme-body-color: #{{base05-hex}} !important;
+
+    /* Popup */
+    --theme-arrowpanel-background: #{{base01-hex}} !important;
+    --theme-arrowpanel-border-color: transparent !important;
+    --theme-arrowpanel-color: #{{base05-hex}} !important;
+    --theme-popup-hover-color: #{{base05-hex}} !important;
+    --theme-popup-hover-background: #{{base02-hex}} !important;
+
+    /* Splitter */
+    --theme-emphasized-splitter-color: #{{base01-hex}} !important;
+    --theme-splitter-color: #{{base01-hex}} !important;
+
+    /* Icon */
+    --theme-icon-alternate-hover-color: #{{base0D-hex}} !important;
+    --theme-icon-checked-color: #{{base0D-hex}} !important;
+    --theme-icon-color: #{{base05-hex}} !important;
+    --theme-icon-error-color: #{{base08-hex}} !important;
+    --theme-icon-warning-color: #{{base0A-hex}} !important;
+
+    /* Toolbar */
+    --tab-line-selected-color: #{{base02-hex}} !important;
+    --theme-tab-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-background-hover: #{{base02-hex}} !important;
+    --theme-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-color: #{{base05-hex}} !important;
+    --theme-toolbar-hover-active: #{{base01-hex}} !important;
+    --theme-toolbar-hover: #{{base02-hex}} !important;
+    --theme-toolbar-reordering-background: #{{base02-hex}} !important;
+    --theme-toolbar-selected-color: #{{base05-hex}} !important;
+    --theme-toolbar-selected-hover: #{{base02-hex}} !important;
+    --theme-toolbarbutton-checked-color: #{{base0D-hex}} !important;
+    --theme-toolbarbutton-color: #{{base05-hex}} !important;
+    --theme-toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --theme-toolbarbutton-hover-color: #{{base05-hex}} !important;
+    --toolbarbutton-background: #{{base01-hex}} !important;
+    --toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --toolbarbutton-hover-color: #{{base05-hex}} !important;
+  }
+}

@@ -21,6 +21,13 @@ mkTarget {
       default = [ ];
     };
 
+    userCss.enable =
+      lib.mkEnableOption "userChrome.css and userContent.css styles on ${humanName}"
+      // {
+        default = true;
+        example = false;
+      };
+
     colorTheme.enable = lib.mkEnableOption "[Firefox Color](https://color.firefox.com) on ${humanName}";
 
     firefoxGnomeTheme.enable = lib.mkEnableOption "[Firefox GNOME theme](https://github.com/rafaelmardojai/firefox-gnome-theme) on ${humanName}";
@@ -52,11 +59,40 @@ mkTarget {
     })
     (import ./reader-mode.nix { inherit name lib; })
     (
+      { cfg, colors }:
+      let
+        userChrome = colors {
+          template = ./userChrome.css.mustache;
+          extension = ".css";
+        };
+
+        userContent = colors {
+          template = ./userContent.css.mustache;
+          extension = ".css";
+        };
+      in
+      {
+        programs.${name}.profiles = lib.mkIf cfg.userCss.enable (
+          lib.genAttrs cfg.profileNames (_: {
+            settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            userChrome = ''@import "${userChrome}";'';
+            userContent = ''@import "${userContent}";'';
+          })
+        );
+      }
+    )
+    (
       {
         cfg,
         colors,
         inputs,
       }:
+      let
+        theme = colors {
+          template = ./firefoxGnomeTheme.css.mustache;
+          extension = ".css";
+        };
+      in
       {
         programs.${name}.profiles = lib.mkIf cfg.firefoxGnomeTheme.enable (
           lib.genAttrs cfg.profileNames (_: {
@@ -65,20 +101,14 @@ mkTarget {
               "svg.context-properties.content.enabled" = true;
             };
 
-            userChrome =
-              let
-                template = colors {
-                  template = ./userChrome.css.mustache;
-                  extension = ".css";
-                };
-              in
-              ''
-                @import "${inputs.firefox-gnome-theme}/userChrome.css";
-                @import "${template}";
-              '';
+            userChrome = ''
+              @import "${inputs.firefox-gnome-theme}/userChrome.css";
+              @import "${theme}";
+            '';
 
             userContent = ''
               @import "${inputs.firefox-gnome-theme}/userContent.css";
+              @import "${theme}";
             '';
           })
         );
