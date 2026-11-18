@@ -17,6 +17,12 @@
     matrix = "@da157:catgirl.cloud";
     name = "0xda157";
   };
+  DarkGuibrine = {
+    email = "darkgui@protonmail.com";
+    github = "DarkGuibrine";
+    githubId = 112888817;
+    name = "Guilherme Hermando";
+  };
   Eveeifyeve = {
     email = "eveeg1971@gmail.com";
     github = "Eveeifyeve";
