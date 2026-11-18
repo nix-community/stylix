@@ -77,9 +77,9 @@
     Bottom = 7;
   };
   "InputPanel/TextMargin" = {
-    Left = 9;
-    Right = 9;
-    Top = 6;
+    Left = 10;
+    Right = 10;
+    Top = 7;
     Bottom = 7;
   };
   "InputPanel/PrevPage" = { };
