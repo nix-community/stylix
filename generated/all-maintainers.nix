@@ -229,12 +229,6 @@
     githubId = 635591;
     name = "Shahar \"Dawn\" Or";
   };
-  nukdokplex = {
-    email = "nukdokplex@nukdokplex.ru";
-    github = "nukdokplex";
-    githubId = 25458915;
-    name = "Viktor Titov";
-  };
   omega-800 = {
     email = "gshevoroshkin@gmail.com";
     github = "omega-800";
