@@ -3,6 +3,20 @@ mkTarget:
 mkTarget {
   name = "neovide";
   humanName = "Neovide";
+
+  requiredOptions = [
+    [
+      "programs"
+      "neovide"
+      "settings"
+    ]
+    [
+      "programs"
+      "neovim"
+      "initLua"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.neovide.settings.font = {

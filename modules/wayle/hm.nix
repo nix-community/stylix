@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "wayle"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.wayle.settings.general = {

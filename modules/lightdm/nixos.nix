@@ -1,5 +1,15 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "xserver"
+      "displayManager"
+      "lightdm"
+      "background"
+    ]
+  ];
+
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "obsidian"
+      "defaultSettings"
+    ]
+    [
+      "programs"
+      "obsidian"
+      "vaults"
+    ]
+  ];
+
   options.vaultNames = lib.mkOption {
     description = "The obsidian vault names to apply styling on.";
     type = lib.types.listOf lib.types.str;

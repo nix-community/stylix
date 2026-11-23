@@ -1,5 +1,14 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "boot"
+      "loader"
+      "limine"
+      "style"
+    ]
+  ];
+
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "dunst"
+      "settings"
+    ]
+    [
+      "services"
+      "dunst"
+      "iconTheme"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.dunst.settings.global.font =

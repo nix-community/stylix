@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "nushell"
+      "extraConfig"
+    ]
+  ];
+
   # Adapted from https://www.nushell.sh/book/coloring_and_theming.html#theming
   config = { colors }: {
     programs.nushell.extraConfig = with colors.withHashtag; ''

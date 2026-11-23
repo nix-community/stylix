@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "fish"
+      "interactiveShellInit"
+    ]
+  ];
+
   config = { colors, inputs }: {
     programs.fish.interactiveShellInit =
       let

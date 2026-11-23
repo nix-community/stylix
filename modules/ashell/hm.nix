@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "ashell"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ colors }: {
       programs.ashell.settings.appearance = with colors.withHashtag; {

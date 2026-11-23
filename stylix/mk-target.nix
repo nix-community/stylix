@@ -120,6 +120,11 @@
     : The target name used to generate options in the `stylix.targets.${name}`
       namespace.
 
+    `requiredOptions` (List of lists of strings)
+    : Option paths that must exist in `options` for this target to be
+      considered available. When any required option path is absent, the
+      target defaults to disabled and its `config` is omitted.
+
   # Environment
 
   The function is provided alongside module arguments in any modules imported
@@ -166,13 +171,22 @@ in
   imports ? [ ],
   name ? name',
   options ? [ ],
+  requiredOptions ? [ ],
 }@args:
 let
   mkTargetConfig = config;
+  mkTargetOptions = options;
 
   module =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      options,
+      ...
+    }:
     let
+      available = builtins.all (path: lib.hasAttrByPath path options) requiredOptions;
+
       callModule =
         let
           areArgumentsEnabled = lib.flip lib.pipe [
@@ -259,7 +273,7 @@ let
         )) (lib.toList config);
 
       normalizedConfig = normalize mkTargetConfig;
-      normalizedOptions = normalize options;
+      normalizedOptions = normalize mkTargetOptions;
     in
     {
       imports =
@@ -320,11 +334,15 @@ let
             autoWrapExpr = autoWrapEnableExpr;
           }
           // lib.optionalAttrs (args ? enableExample) { example = enableExample; };
-        in
-        config.lib.stylix.mkEnableTargetWith enableArgs;
 
-      config = lib.mkIf (config.stylix.enable && cfg.enable) (
-        lib.mkMerge (map (callModule true) normalizedConfig)
+          enableOption = config.lib.stylix.mkEnableTargetWith enableArgs;
+        in
+        enableOption // { default = available && enableOption.default; };
+
+      config = lib.optionalAttrs available (
+        lib.mkIf (config.stylix.enable && cfg.enable) (
+          lib.mkMerge (map (callModule true) normalizedConfig)
+        )
       );
     };
 in

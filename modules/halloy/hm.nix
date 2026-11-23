@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "halloy"
+      "settings"
+    ]
+    [
+      "programs"
+      "halloy"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ colors }: {
       programs.halloy = {

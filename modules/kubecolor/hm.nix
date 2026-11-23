@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "kubecolor"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ polarity }: {
       programs.kubecolor.settings.preset = lib.mkIf (polarity != "either") polarity;

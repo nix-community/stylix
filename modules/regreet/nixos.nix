@@ -6,6 +6,15 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "displayManager"
+      "regreet"
+      "settings"
+    ]
+  ];
+
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

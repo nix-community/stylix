@@ -4,6 +4,14 @@ mkTarget {
   name = "vesktop";
   humanName = "Vesktop";
 
+  requiredOptions = [
+    [
+      "programs"
+      "vesktop"
+      "vencord"
+    ]
+  ];
+
   options.themeBody = lib.mkOption {
     type = lib.types.lines;
     default = "";

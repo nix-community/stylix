@@ -5,6 +5,21 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "wayland"
+      "windowManager"
+      "wayfire"
+      "settings"
+    ]
+    [
+      "wayland"
+      "windowManager"
+      "wayfire"
+      "wf-shell"
+    ]
+  ];
+
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

@@ -5,6 +5,15 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "wayland"
+      "windowManager"
+      "hyprland"
+      "settings"
+    ]
+  ];
+
   options = { image }: {
     hyprpaper.enable = config.lib.stylix.mkEnableTargetWith {
       name = "Hyprpaper";

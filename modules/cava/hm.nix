@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "cava"
+      "settings"
+    ]
+  ];
+
   options.rainbow.enable = lib.mkEnableOption "rainbow gradient theming";
 
   config =

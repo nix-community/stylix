@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "prismlauncher"
+      "settings"
+    ]
+    [
+      "programs"
+      "prismlauncher"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.prismlauncher.settings = {

@@ -1,5 +1,14 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "xsession"
+      "windowManager"
+      "i3"
+      "config"
+    ]
+  ];
+
   options.exportedBarConfig = lib.mkOption {
     type = lib.types.attrs;
     default = { };

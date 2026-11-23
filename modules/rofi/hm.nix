@@ -5,6 +5,19 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "rofi"
+      "settings"
+    ]
+    [
+      "programs"
+      "rofi"
+      "theme"
+    ]
+  ];
+
   options.alternatePattern =
     lib.mkEnableOption "alternating item background pattern"
     // {

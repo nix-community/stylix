@@ -1,5 +1,23 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "kitty"
+      "settings"
+    ]
+    [
+      "programs"
+      "kitty"
+      "extraConfig"
+    ]
+    [
+      "programs"
+      "kitty"
+      "font"
+    ]
+  ];
+
   options = {
     variant256Colors = lib.mkOption {
       description = ''

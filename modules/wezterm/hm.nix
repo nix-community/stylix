@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "wezterm"
+      "settings"
+    ]
+    [
+      "programs"
+      "wezterm"
+      "colorSchemes"
+    ]
+  ];
+
   config = [
     ({ colors }: with colors;
       {

@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "sioyek"
+      "config"
+    ]
+  ];
+
   config = { colors }: {
     programs.sioyek.config = with colors.withHashtag; {
       startup_commands = [ "toggle_custom_color" ];

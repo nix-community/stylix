@@ -3,6 +3,14 @@
 # - `man 5 alacritty`
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "alacritty"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ colors }: {
       programs.alacritty.settings.colors = with colors.withHashtag; {

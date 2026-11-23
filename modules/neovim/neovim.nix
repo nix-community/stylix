@@ -3,6 +3,15 @@ mkTarget:
 mkTarget {
   name = "neovim";
   humanName = "Neovim";
+
+  requiredOptions = [
+    [
+      "programs"
+      "neovim"
+      "plugins"
+    ]
+  ];
+
   options = {
     plugin = lib.mkOption {
       type = lib.types.enum [

@@ -6,6 +6,14 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "swaylock"
+      "settings"
+    ]
+  ];
+
   # When the state version is older than 23.05, Swaylock enables itself
   # automatically if `settings != {}` [1]. Therefore, Swaylock theming
   # shouldn't be enabled by default for such state versions, to avoid

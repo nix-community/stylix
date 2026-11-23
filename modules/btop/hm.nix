@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "btop"
+      "settings"
+    ]
+    [
+      "programs"
+      "btop"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ opacity }: {
       programs.btop.settings.theme_background = lib.mkIf (

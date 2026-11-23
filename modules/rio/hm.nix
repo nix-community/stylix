@@ -2,6 +2,14 @@
 # - https://raphamorim.io/rio/docs/config
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "rio"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.rio.settings.fonts = with fonts; {

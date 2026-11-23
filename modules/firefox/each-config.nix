@@ -14,6 +14,14 @@
 mkTarget {
   inherit humanName name;
 
+  requiredOptions = [
+    [
+      "programs"
+      name
+      "profiles"
+    ]
+  ];
+
   options = {
     profileNames = lib.mkOption {
       description = "The ${humanName} profile names to apply styling on.";

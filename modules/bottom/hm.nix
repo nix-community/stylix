@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "bottom"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     programs.bottom.settings.styles = with colors.withHashtag; {
       cpu = {

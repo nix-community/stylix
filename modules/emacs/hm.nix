@@ -1,5 +1,18 @@
 { mkTarget, pkgs, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "emacs"
+      "extraConfig"
+    ]
+    [
+      "programs"
+      "emacs"
+      "extraPackages"
+    ]
+  ];
+
   config = [
     ({ opacity }: {
       programs.emacs.extraConfig = ''

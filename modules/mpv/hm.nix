@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "mpv"
+      "config"
+    ]
+    [
+      "programs"
+      "mpv"
+      "scriptOpts"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.mpv.config = {

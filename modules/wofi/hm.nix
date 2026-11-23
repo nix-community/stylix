@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "wofi"
+      "style"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.wofi.style = ''

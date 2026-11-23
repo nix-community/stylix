@@ -5,6 +5,19 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "boot"
+      "plymouth"
+      "theme"
+    ]
+    [
+      "boot"
+      "plymouth"
+      "themePackages"
+    ]
+  ];
+
   options = {
     logo = lib.mkOption {
       description = "Logo to be used on the boot screen.";

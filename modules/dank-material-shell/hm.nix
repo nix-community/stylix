@@ -1,12 +1,19 @@
-{
-  mkTarget,
-  lib,
-  options,
-  pkgs,
-  ...
-}:
+{ mkTarget, pkgs, ... }:
 mkTarget {
-  config = lib.optionals (options.programs ? dank-material-shell) [
+  requiredOptions = [
+    [
+      "programs"
+      "dank-material-shell"
+      "settings"
+    ]
+    [
+      "programs"
+      "dank-material-shell"
+      "session"
+    ]
+  ];
+
+  config = [
     ({ fonts }: {
       programs.dank-material-shell.settings = {
         fontFamily = fonts.sansSerif.name;

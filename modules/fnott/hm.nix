@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "fnott"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.fnott.settings =

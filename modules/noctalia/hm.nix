@@ -3,6 +3,19 @@ let
   theme = "stylix";
 in
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "noctalia"
+      "settings"
+    ]
+    [
+      "programs"
+      "noctalia"
+      "customPalettes"
+    ]
+  ];
+
   config = [
     ({ colors }: {
       programs.noctalia = {

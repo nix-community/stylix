@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "vivid"
+      "activeTheme"
+    ]
+    [
+      "programs"
+      "vivid"
+      "themes"
+    ]
+  ];
+
   config =
     { colors }:
     let

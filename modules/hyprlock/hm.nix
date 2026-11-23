@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "hyprlock"
+      "settings"
+    ]
+  ];
+
   imports = [
     (lib.mkRenamedOptionModuleWith {
       from = [

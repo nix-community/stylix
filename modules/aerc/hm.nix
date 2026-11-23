@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "aerc"
+      "extraConfig"
+    ]
+    [
+      "programs"
+      "aerc"
+      "stylesets"
+    ]
+  ];
+
   config = { colors }: {
     programs.aerc =
       let

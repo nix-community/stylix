@@ -3,12 +3,19 @@ mkTarget:
   lib,
   config,
   pkgs,
-  options,
   ...
 }:
 mkTarget {
   name = "nixcord";
   humanName = "Nixcord";
+
+  requiredOptions = [
+    [
+      "programs"
+      "nixcord"
+      "config"
+    ]
+  ];
 
   options = {
     themeBody = lib.mkOption {
@@ -45,17 +52,15 @@ mkTarget {
       lib.mkIf
         (cfg.themeBody != import ./common/theme-header.nix || cfg.extraCss != "")
         (
-          lib.optionalAttrs (options.programs ? nixcord) (
-            lib.mkMerge [
-              (lib.mkIf nixcord.discord.enable (writePath "Vencord"))
-              (lib.mkIf nixcord.vesktop.enable (writePath "vesktop"))
-              (lib.mkIf (nixcord.discord.equicord.enable && nixcord.discord.enable) (
-                writePath "Equicord"
-              ))
-              (lib.mkIf nixcord.equibop.enable (writePath "equibop"))
-              { programs.nixcord.config.enabledThemes = [ "stylix.theme.css" ]; }
-            ]
-          )
+          lib.mkMerge [
+            (lib.mkIf nixcord.discord.enable (writePath "Vencord"))
+            (lib.mkIf nixcord.vesktop.enable (writePath "vesktop"))
+            (lib.mkIf (nixcord.discord.equicord.enable && nixcord.discord.enable) (
+              writePath "Equicord"
+            ))
+            (lib.mkIf nixcord.equibop.enable (writePath "equibop"))
+            { programs.nixcord.config.enabledThemes = [ "stylix.theme.css" ]; }
+          ]
         )
     )
   ];

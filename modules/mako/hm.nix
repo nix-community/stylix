@@ -1,6 +1,14 @@
 { mkTarget, lib, ... }:
 mkTarget {
   # Referenced https://github.com/stacyharper/base16-mako
+  requiredOptions = [
+    [
+      "services"
+      "mako"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.mako.settings.font = "${fonts.sansSerif.name} ${toString fonts.sizes.popups}";

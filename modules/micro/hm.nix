@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "micro"
+      "settings"
+    ]
+  ];
+
   config = {
     # TODO: Provide a real colorscheme once [1] is resolved.
     #

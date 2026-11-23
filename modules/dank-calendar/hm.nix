@@ -1,12 +1,14 @@
-{
-  mkTarget,
-  lib,
-  options,
-  pkgs,
-  ...
-}:
+{ mkTarget, pkgs, ... }:
 mkTarget {
-  config = lib.optionals (options.programs ? dank-calendar) [
+  requiredOptions = [
+    [
+      "programs"
+      "dank-calendar"
+      "settings"
+    ]
+  ];
+
+  config = [
     ({ colors }: {
       programs.dank-calendar.settings = {
         colorSource = "custom";

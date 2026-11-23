@@ -5,6 +5,14 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "anki"
+      "addons"
+    ]
+  ];
+
   config = { colors }: {
     programs.anki.addons = lib.singleton (
       pkgs.ankiAddons.recolor.withConfig {

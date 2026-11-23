@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "zellij"
+      "themes"
+    ]
+  ];
+
   config = { colors }: {
     programs.zellij.themes.stylix = {
       themes = with colors.withHashtag; {

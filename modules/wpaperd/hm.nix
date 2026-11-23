@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "wpaperd"
+      "settings"
+    ]
+  ];
+
   config =
     { imageScalingMode, image }:
     (

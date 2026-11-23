@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "fuzzel"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.fuzzel.settings.main.font =

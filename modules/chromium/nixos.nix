@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "chromium"
+      "extraOpts"
+    ]
+  ];
+
   config = { colors }: {
     programs.chromium = {
       # This enables policies without installing the browser. Policies take up a

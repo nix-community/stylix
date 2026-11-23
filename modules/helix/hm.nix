@@ -5,6 +5,19 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "helix"
+      "settings"
+    ]
+    [
+      "programs"
+      "helix"
+      "themes"
+    ]
+  ];
+
   options.transparent = lib.mkEnableOption "transparent theming" // {
     internal = true;
     default = false;

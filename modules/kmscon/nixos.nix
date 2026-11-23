@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "kmscon"
+      "config"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.kmscon.config = {

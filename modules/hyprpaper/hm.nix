@@ -1,5 +1,13 @@
 { lib, mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "hyprpaper"
+      "settings"
+    ]
+  ];
+
   options = {
     monitor = lib.mkOption {
       type = lib.types.str;

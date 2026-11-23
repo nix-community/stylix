@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "wob"
+      "settings"
+    ]
+  ];
+
   options._opacity = lib.mkOption {
     type = lib.types.str;
     internal = true;
