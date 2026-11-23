@@ -1,4 +1,13 @@
-{ mkTarget, lib, ... }:
+{
+  mkTarget,
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+let
+  wallpaper = import ./wallpaper.nix { inherit lib pkgs; };
+in
 mkTarget {
   imports = [
     (lib.mkRenamedOptionModuleWith {
@@ -14,10 +23,40 @@ mkTarget {
         "x11"
       ];
     })
-  ];
+  ]
+  ++ wallpaper.renamedOptions;
+
+  options.wallpaper.enable = config.lib.stylix.mkEnableTargetWith {
+    name = "X11 wallpaper (via feh)";
+    autoEnable =
+      with config.xsession.windowManager;
+      bspwm.enable
+      || herbstluftwm.enable
+      || i3.enable
+      || spectrwm.enable
+      || xmonad.enable;
+    autoEnableExpr = ''
+      with config.xsession.windowManager;
+      bspwm.enable
+      || herbstluftwm.enable
+      || i3.enable
+      || spectrwm.enable
+      || xmonad.enable
+    '';
+  };
 
   config = [
     ({ cursor }: { home.pointerCursor.x11.enable = true; })
+    (
+      {
+        cfg,
+        image,
+        imageScalingMode,
+      }:
+      lib.mkIf cfg.wallpaper.enable {
+        xsession.initExtra = wallpaper.mkCommand { inherit image imageScalingMode; };
+      }
+    )
     ({ fonts }: {
       xresources.properties = {
         "*.faceName" = fonts.monospace.name;
