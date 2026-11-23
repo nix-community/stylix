@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   imports = [
     # added 2026-11-22
     (lib.mkRemovedOptionModule [ "stylix" "targets" "wayprompt" "enable" ]
