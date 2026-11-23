@@ -9,9 +9,7 @@ let
 in
 {
   imports = [
-    (lib.mkRemovedOptionModule [ "stylix" "targets" "wayprompt" "enable" ]
-      "The wayprompt target was removed because nixpkgs dropped the wayprompt package, so 'programs.wayprompt' no longer has any effect. Remove this option from your configuration."
-    )
+    ./removed-modules.nix
     ./cursor.nix
     ./icons.nix
     ./palette.nix
