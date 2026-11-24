@@ -1,5 +1,8 @@
 { mkTarget, ... }:
 mkTarget {
+  autoEnable = { config, ... }: config.stylix.targets.x11.enable;
+  autoEnableExpr = "config.stylix.targets.x11.enable";
+
   config = [
     ({ fonts }: {
       xresources.properties."Sxiv.font" =
