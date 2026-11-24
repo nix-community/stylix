@@ -115,8 +115,8 @@ readable when the background is more vibrant.
 - Item off background color: base0D
 - Alternate item on background color: base09
 - Alternate item off background color: base02
-- List unselected background: base0D
-- List selected background: base03
+- List unselected background: base03
+- List selected background: base0D
 
 ## Images
 
