@@ -23,19 +23,6 @@
     githubId = 227132255;
     name = "erina";
   };
-  Eveeifyeve = {
-    email = "eveeg1971@gmail.com";
-    github = "Eveeifyeve";
-    githubId = 88671402;
-    matrix = "@eveeifyeve:matrix.org";
-    name = "Eveeifyeve";
-  };
-  Flameopathic = {
-    email = "flameopathic@gmail.com";
-    github = "Flameopathic";
-    githubId = 64027365;
-    name = "Erin Pletches";
-  };
   Lyndeno = {
     email = "lsanche@lyndeno.ca";
     github = "Lyndeno";
@@ -103,9 +90,9 @@
     githubId = 21687187;
     name = "Mirza Arnaut";
   };
-  brckd = {
+  bricked-dev = {
     email = "hello@bricked.dev";
-    github = "brckd";
+    github = "bricked-dev";
     githubId = 92804487;
     keys = [
       { fingerprint = "58A2 81E6 2FBD 6E4E 664C  B603 7B4D 2A02 BB0E C28C"; }
@@ -156,6 +143,13 @@
     github = "einetuer";
     githubId = 54070204;
     name = "0x5a4";
+  };
+  eveeifyeve = {
+    email = "open-source@eveeifyeve.dev";
+    github = "eveeifyeve";
+    githubId = 88671402;
+    matrix = "@eveeifyeve:matrix.org";
+    name = "Eveeifyeve";
   };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
@@ -290,6 +284,12 @@
       { fingerprint = "5FC6 088A FB1A 609D 4532  F919 0C1C 177B 3B64 68E0"; }
     ];
     name = "Noah Biewesch";
+  };
+  urocylus = {
+    email = "flameopathic@gmail.com";
+    github = "urocylus";
+    githubId = 64027365;
+    name = "Erin Pletches";
   };
   vidhanio = {
     email = "me@vidhan.io";
