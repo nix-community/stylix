@@ -1,116 +1,252 @@
-/* This is strongly inspired by ../gtk/gtk.mustache. */
-:root {
-  /* Palette */
-  --gnome-palette-blue-1: #{{base0D-hex}};
-  --gnome-palette-blue-2: #{{base0D-hex}};
-  --gnome-palette-blue-3: #{{base0D-hex}};
-  --gnome-palette-blue-4: #{{base0D-hex}};
-  --gnome-palette-blue-5: #{{base0D-hex}};
-  --gnome-palette-green-1: #{{base0B-hex}};
-  --gnome-palette-green-2: #{{base0B-hex}};
-  --gnome-palette-green-3: #{{base0B-hex}};
-  --gnome-palette-green-4: #{{base0B-hex}};
-  --gnome-palette-green-5: #{{base0B-hex}};
-  --gnome-palette-yellow-1: #{{base0A-hex}};
-  --gnome-palette-yellow-2: #{{base0A-hex}};
-  --gnome-palette-yellow-3: #{{base0A-hex}};
-  --gnome-palette-yellow-4: #{{base0A-hex}};
-  --gnome-palette-yellow-5: #{{base0A-hex}};
-  --gnome-palette-orange-1: #{{base09-hex}};
-  --gnome-palette-orange-2: #{{base09-hex}};
-  --gnome-palette-orange-3: #{{base09-hex}};
-  --gnome-palette-orange-4: #{{base09-hex}};
-  --gnome-palette-orange-5: #{{base09-hex}};
-  --gnome-palette-red-1: #{{base08-hex}};
-  --gnome-palette-red-2: #{{base08-hex}};
-  --gnome-palette-red-3: #{{base08-hex}};
-  --gnome-palette-red-4: #{{base08-hex}};
-  --gnome-palette-red-5: #{{base08-hex}};
-  --gnome-palette-purple-1: #{{base0E-hex}};
-  --gnome-palette-purple-2: #{{base0E-hex}};
-  --gnome-palette-purple-3: #{{base0E-hex}};
-  --gnome-palette-purple-4: #{{base0E-hex}};
-  --gnome-palette-purple-5: #{{base0E-hex}};
-  --gnome-palette-brown-1: #{{base0F-hex}};
-  --gnome-palette-brown-2: #{{base0F-hex}};
-  --gnome-palette-brown-3: #{{base0F-hex}};
-  --gnome-palette-brown-4: #{{base0F-hex}};
-  --gnome-palette-brown-5: #{{base0F-hex}};
-  --gnome-palette-light-1: #{{base05-hex}};
-  --gnome-palette-light-2: #{{base05-hex}};
-  --gnome-palette-light-3: #{{base05-hex}};
-  --gnome-palette-light-4: #{{base05-hex}};
-  --gnome-palette-light-5: #{{base05-hex}};
-  --gnome-palette-dark-1: #{{base05-hex}};
-  --gnome-palette-dark-2: #{{base05-hex}};
-  --gnome-palette-dark-3: #{{base05-hex}};
-  --gnome-palette-dark-4: #{{base05-hex}};
-  --gnome-palette-dark-5: #{{base05-hex}};
+/* Drop-down */
+menupopup, panel {
+  --panel-background-color: #{{base01-hex}} !important;
+  --panel-border-color: transparent !important;
+  --panel-text-color: #{{base05-hex}} !important;
 
+  &:where([_moz-menuactive]:not([disabled])) {
+    color: #{{base05-hex}} !important;
+    background-color: #{{base02-hex}} !important;
+  }
 
-  /* Accent */
-  --gnome-accent-bg: #{{base0D-hex}};
-  --gnome-accent: #{{base0D-hex}};
-  --gnome-accent-bg-hover: #{{base0D-hex}};
-  --gnome-accent-hover: #{{base0D-hex}};
+  menu, menuitem {
+    &:where([_moz-menuactive]:not([disabled])) {
+      color: #{{base05-hex}} !important;
+      background-color: #{{base02-hex}} !important;
+    }
+  }
+}
 
-  /* Colors */
-  --gnome-destructive-bg: var(--gnome-palette-red-3);
+/* Dialog */
+@-moz-document url("chrome://global/content/commonDialog.xhtml"), url("chrome://global/content/print.html") {
+  :root {
+    --background-color-box: #{{base01-hex}} !important;
+    --background-color-canvas: #{{base00-hex}} !important;
+    --text-color: #{{base05-hex}} !important;
 
-  --gnome-success-bg: var(--gnome-palette-green-5);
-  --gnome-warning-bg: var(--gnome-palette-yellow-3);
-  --gnome-error-bg: var(--gnome-palette-red-4);
+    /* Button */
+    --button-background-color-active: #{{base02-hex}} !important;
+    --button-background-color-hover: #{{base02-hex}} !important;
+    --button-background-color-primary-active: #{{base02-hex}} !important;
+    --button-background-color-primary-hover: #{{base02-hex}} !important;
+    --button-background-color-primary: #{{base01-hex}} !important;
+    --button-background-color: #{{base01-hex}} !important;
+    --button-text-color-primary: #{{base05-hex}} !important;
+    --button-text-color-selected: #{{base05-hex}} !important;
+    --button-text-color: #{{base05-hex}} !important;
+  }
+}
 
-  --gnome-toolbar-star-button: var(--gnome-palette-yellow-1);
+/* Main window */
+@-moz-document url("chrome://browser/content/browser.xhtml") {
+  :root {
+    --chrome-content-separator-color: #{{base00-hex}} !important;
+    --color-accent-primary: #{{base0D-hex}} !important;
+    --devtools-splitter-color: #{{base01-hex}} !important;
+    --info-bar-text-color: #{{base05-hex}} !important;
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+    --link-color: #{{base0D-hex}} !important;
+    --lwt-accent-color: #{{base0D-hex}} !important;
+    --lwt-text-color: #{{base05-hex}} !important;
+    --message-bar-icon-background-color: transparent !important;
+    --message-bar-icon-color: #{{base05-hex}} !important;
+    --panel-background-color: #{{base01-hex}} !important;
+    --panel-border-color: transparent !important;
+    --panel-text-color: #{{base05-hex}} !important;
+    --sidebar-background-color: #{{base01-hex}} !important;
+    --sidebar-text-color: #{{base05-hex}} !important;
+    --tab-selected-text-color: #{{base05-hex}} !important;
+    --tabpanel-background-color: #{{base00-hex}} !important;
+    --urlbar-box-background-color: #{{base02-hex}} !important;
 
-  /* Window */
-  --gnome-window-background: #{{base00-hex}};
-  --gnome-window-color: #{{base05-hex}};
-  --gnome-view-background: #{{base00-hex}};
-  --gnome-sidebar-background: #{{base01-hex}};
-  --gnome-secondary-sidebar-background: #{{base01-hex}};
+    /* Toolbar */
+    --lwt-toolbar-field-highlight-text: #{{base05-hex}} !important;
+    --lwt-toolbar-field-highlight: #{{base0D-hex}} !important;
+    --toolbar-background-color: #{{base01-hex}} !important;
+    --toolbar-field-background-color-focus: #{{base02-hex}} !important;
+    --toolbar-field-background-color: #{{base02-hex}} !important;
+    --toolbar-field-border-color-focus: #{{base0D-hex}} !important;
+    --toolbar-field-border-color: transparent !important;
+    --toolbar-field-text-color-focus: #{{base05-hex}} !important;
+    --toolbar-field-text-color: #{{base05-hex}} !important;
+    --toolbar-text-color: #{{base05-hex}} !important;
+    --toolbarbutton-icon-fill-attention: #{{base0D-hex}} !important;
+    --toolbarbutton-icon-fill: #{{base05-hex}} !important;
 
-  /* UI Elements */
-  --gnome-entry-background: color-mix(in srgb, #{{base01-hex}} 40%, #{{base02-hex}} 100%);
+    /* Toolbox */
+    --toolbox-background-color-inactive: #{{base00-hex}} !important;
+    --toolbox-background-color: #{{base00-hex}} !important;
+    --toolbox-text-color-inactive: #{{base04-hex}} !important;
+    --toolbox-text-color: #{{base05-hex}} !important;
+  }
 
-  /* Card */
-  --gnome-card-background: #{{base01-hex}};
-  --gnome-card-shade-color: rgba(0, 0, 0, 0.07);
+  .browserContainer {
+    --rdm-background-color: #{{base00-hex}} !important;
+  }
 
-  /* Menu */
-  --gnome-menu-background: #{{base01-hex}};
+  #navigator-toolbox {
+    border-bottom: none !important;
+  }
 
-  /* Headerbar */
-  --gnome-headerbar-background: #{{base01-hex}};
-  --gnome-headerbar-shade-color: rgba(0, 0, 0, 0.07);
+  #sidebar-splitter {
+    background-color: transparent !important;
+  }
 
-  /* Toolbar */
-  --toolbox-textcolor: #{{base05-hex}} !important;
-  --toolbox-textcolor-inactive: #{{base05-hex}} !important;
-  --toolbar-color: #{{base05-hex}} !important;
-  --gnome-toolbar-icon-fill: #{{base05-hex}};
+  .notificationbox-stack notification-message {
+    background-color: #{{base01-hex}} !important;
+  }
+}
 
-  /* Tabs */
-  --gnome-tabbar-tab-hover-background: color-mix(in srgb, #{{base01-hex}} 50%, #{{base02-hex}} 52%);
-  --gnome-tabbar-tab-active-background: color-mix(in srgb, #{{base01-hex}} 40%, #{{base02-hex}} 100%);
-  --gnome-tabbar-tab-active-background-contrast: #{{base02-hex}};
-  --gnome-tabbar-tab-active-hover-background: color-mix(in oklab, #{{base01-hex}} 5.8%, #{{base02-hex}} 100%);
+/* Sidebar */
+@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml"), url("chrome://browser/content/places/historySidebar.xhtml") {
+  :root {
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+    --panel-background-color: #{{base02-hex}} !important;
+    --panel-text-color: #{{base02-hex}} !important;
+    --sidebar-text-color: #{{base05-hex}} !important;
+  }
 
-  --gnome-tabbar-identity-color-blue: var(--gnome-palette-blue-2);
-  --gnome-tabbar-identity-color-green: var(--gnome-palette-green-1);
-  --gnome-tabbar-identity-color-yellow: var(--gnome-palette-yellow-2);
-  --gnome-tabbar-identity-color-orange: var(--gnome-palette-orange-3);
-  --gnome-tabbar-identity-color-red: var(--gnome-palette-red-1);
-  --gnome-tabbar-identity-color-purple: var(--gnome-palette-purple-1);
+  #viewButton {
+    background-color: #{{base02-hex}} !important;
+  }
+}
 
-  /* Private Tabs */
-  --gnome-private-wordmark: #{{base04-hex}};
-  --gnome-private-in-content-page-background: #{{base00-hex}};
-  --gnome-private-text-primary-color: #{{base04-hex}};
+/* Bookmarks and history window */
+@-moz-document url("chrome://browser/content/places/places.xhtml") {
+  treechildren::-moz-tree-cell-text,
+  treechildren::-moz-tree-image {
+    color: #{{base05-hex}} !important;
+  }
 
-  &:-moz-window-inactive {
-    --gnome-tabbar-tab-hover-background: var(--gnome-tabbar-tab-hover-background);
-    --gnome-tabbar-tab-active-background: color-mix(in oklab, #{{base01-hex}} 50%, #{{base02-hex}} 77.5%);
-    --gnome-entry-background: color-mix(in oklab, #{{base01-hex}} 50%, #{{base02-hex}} 77.5%);
+  treechildren::-moz-tree-row(hover) {
+    background-color: #{{base02-hex}} !important;
+  }
+
+  treechildren::-moz-tree-row(selected){
+    background-color: #{{base02-hex}} !important;
+  }
+
+  :root {
+    --input-text-background-color: #{{base02-hex}} !important;
+    --input-text-color: #{{base05-hex}} !important;
+  }
+
+  treecol {
+    background-color: #{{base01-hex}} !important;
+  }
+
+  richlistbox  {
+    background-color: #{{base00-hex}} !important;
+  }
+
+  #places {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #placesToolbar {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #placesList {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  splitter {
+    background-color: #{{base01-hex}} !important;
+    border: none !important;
+  }
+
+  #placesView {
+    background-color: #{{base00-hex}} !important;
+  }
+
+  #placeContent {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+}
+
+/* Page info window */
+@-moz-document url("chrome://browser/content/pageinfo/pageInfo.xhtml") {
+  :root {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+
+    --input-text-color: #{{base04-hex}} !important;
+  }
+
+  treecol, .tree-columnpicker-button {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+  }
+
+  #topBar {
+    background-color: #{{base01-hex}} !important;
+    color: #{{base05-hex}} !important;
+    border-bottom-color: #{{base01-hex}} !important;
+  }
+
+  #viewGroup > radio {
+    color: #{{base05-hex}} !important;
+
+    &[selected] {
+      background-color: #{{base02-hex}} !important;
+    }
+  }
+
+  tree {
+    background-color: #{{base00-hex}} !important;
+    color: #{{base05-hex}} !important;
+    border-color: #{{base01-hex}} !important;
+  }
+}
+
+@-moz-document url-prefix("chrome://devtools/content/") {
+  :root {
+    --theme-body-alternate-emphasized-background: #{{base01-hex}} !important;
+    --theme-body-background: #{{base00-hex}} !important;
+    --theme-body-color: #{{base05-hex}} !important;
+
+    /* Popup */
+    --theme-arrowpanel-background: #{{base01-hex}} !important;
+    --theme-arrowpanel-border-color: transparent !important;
+    --theme-arrowpanel-color: #{{base05-hex}} !important;
+    --theme-popup-hover-color: #{{base05-hex}} !important;
+    --theme-popup-hover-background: #{{base02-hex}} !important;
+
+    /* Splitter */
+    --theme-emphasized-splitter-color: #{{base01-hex}} !important;
+    --theme-splitter-color: #{{base01-hex}} !important;
+
+    /* Icon */
+    --theme-icon-alternate-hover-color: #{{base0D-hex}} !important;
+    --theme-icon-checked-color: #{{base0D-hex}} !important;
+    --theme-icon-color: #{{base05-hex}} !important;
+    --theme-icon-error-color: #{{base08-hex}} !important;
+    --theme-icon-warning-color: #{{base0A-hex}} !important;
+
+    /* Toolbar */
+    --tab-line-selected-color: #{{base02-hex}} !important;
+    --theme-tab-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-background-hover: #{{base02-hex}} !important;
+    --theme-toolbar-background: #{{base00-hex}} !important;
+    --theme-toolbar-color: #{{base05-hex}} !important;
+    --theme-toolbar-hover-active: #{{base01-hex}} !important;
+    --theme-toolbar-hover: #{{base02-hex}} !important;
+    --theme-toolbar-reordering-background: #{{base02-hex}} !important;
+    --theme-toolbar-selected-color: #{{base05-hex}} !important;
+    --theme-toolbar-selected-hover: #{{base02-hex}} !important;
+    --theme-toolbarbutton-checked-color: #{{base0D-hex}} !important;
+    --theme-toolbarbutton-color: #{{base05-hex}} !important;
+    --theme-toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --theme-toolbarbutton-hover-color: #{{base05-hex}} !important;
+    --toolbarbutton-background: #{{base01-hex}} !important;
+    --toolbarbutton-hover-background: #{{base02-hex}} !important;
+    --toolbarbutton-hover-color: #{{base05-hex}} !important;
   }
 }
