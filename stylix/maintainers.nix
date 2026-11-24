@@ -82,6 +82,12 @@
     github = "michaelgoldenn";
     githubId = 95949544;
   };
+  mputz86 = {
+    email = "matthias@simpl-rocks.com";
+    name = "Matthias Putz";
+    github = "mputz86";
+    githubId = 3016731;
+  };
   omega-800 = {
     email = "gshevoroshkin@gmail.com";
     name = "Georgiy Shevoroshkin";
