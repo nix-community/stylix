@@ -132,7 +132,10 @@
     # keep-sorted start block=yes newline_separated=yes
     dank-calendar = {
       url = "github:AvengeMedia/dankcalendar";
-      inputs.nixpkgs.follows = "dev-nixpkgs";
+      inputs = {
+        nixpkgs.follows = "dev-nixpkgs";
+        dux-qt-base.inputs.nixpkgs.follows = "dev-nixpkgs";
+      };
     };
 
     dankMaterialShell = {
@@ -140,6 +143,7 @@
       inputs = {
         nixpkgs.follows = "dev-nixpkgs";
         flake-compat.follows = "flake-compat";
+        dux-qt-base.inputs.nixpkgs.follows = "dev-nixpkgs";
       };
     };
 

@@ -12,6 +12,11 @@
     systems.url = "github:nix-systems/default/future-26.11";
 
     # keep-sorted start block=yes newline_separated=yes
+    base16 = {
+      url = "github:SenchoPens/base16.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     base16-fish = {
       # Lock the base16-fish input to a custom patchset that cherry-picks
       # pending patches [2], since it is currently impossible to apply patches
@@ -39,8 +44,6 @@
       url = "github:tinted-theming/base16-vim/577fe8125d74ff456cf942c733a85d769afe58b7";
       flake = false;
     };
-
-    base16.url = "github:SenchoPens/base16.nix";
 
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
