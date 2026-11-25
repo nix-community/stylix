@@ -1,14 +1,9 @@
-{
-  mkTarget,
-  lib,
-  options,
-  ...
-}:
+{ mkTarget, ... }:
 let
   theme = "stylix";
 in
 mkTarget {
-  config = lib.optionals (options.programs ? noctalia) [
+  config = [
     ({ colors }: {
       programs.noctalia = {
         settings.theme = {

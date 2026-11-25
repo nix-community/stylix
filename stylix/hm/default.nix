@@ -12,6 +12,7 @@ in
     ./cursor.nix
     ./icons.nix
     ./palette.nix
+    ./removed-modules.nix
     ../colors.nix
     ../cursor.nix
     ../fonts.nix
