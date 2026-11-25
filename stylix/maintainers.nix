@@ -37,6 +37,12 @@
     github = "cswimr";
     githubId = 102361830;
   };
+  erina = {
+    email = "erinayip@outlook.com";
+    name = "erina";
+    github = "ErinaYip";
+    githubId = 227132255;
+  };
   first-uninteresting-username = {
     email = "janekmusin@proton.me";
     name = "first-uninteresting-username";

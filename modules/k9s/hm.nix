@@ -34,8 +34,8 @@ mkTarget {
 
         frame = {
           border = {
-            fgColor = base02;
-            focusColor = base01;
+            fgColor = base03;
+            focusColor = base0D;
           };
 
           menu = {
@@ -47,7 +47,7 @@ mkTarget {
           crumbs = {
             fgColor = base05;
             bgColor = base01;
-            activeColor = base02;
+            activeColor = base03;
           };
 
           status = {

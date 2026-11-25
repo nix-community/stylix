@@ -17,6 +17,12 @@
     matrix = "@da157:catgirl.cloud";
     name = "0xda157";
   };
+  ErinaYip = {
+    email = "erinayip@outlook.com";
+    github = "ErinaYip";
+    githubId = 227132255;
+    name = "erina";
+  };
   Eveeifyeve = {
     email = "eveeg1971@gmail.com";
     github = "Eveeifyeve";
@@ -229,12 +235,6 @@
     github = "mightyiam";
     githubId = 635591;
     name = "Shahar \"Dawn\" Or";
-  };
-  nukdokplex = {
-    email = "nukdokplex@nukdokplex.ru";
-    github = "nukdokplex";
-    githubId = 25458915;
-    name = "Viktor Titov";
   };
   omega-800 = {
     email = "gshevoroshkin@gmail.com";
