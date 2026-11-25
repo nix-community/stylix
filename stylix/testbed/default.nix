@@ -33,6 +33,12 @@ let
               )
             )
             {
+              opencode-v1.lib.stylix.testbed.opencode =
+                inputs.nixpkgs-opencode-1.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode;
+
+              opencode-v2.lib.stylix.testbed.opencode =
+                inputs.nixpkgs-opencode-2.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode;
+
               inherit (inputs.spicetify-nix.nixosModules) spicetify;
 
               dank-calendar.home-manager.sharedModules = [
