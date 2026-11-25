@@ -43,6 +43,12 @@
     github = "ErinaYip";
     githubId = 227132255;
   };
+  first-uninteresting-username = {
+    email = "janekmusin@proton.me";
+    name = "first-uninteresting-username";
+    github = "first-uninteresting-username";
+    githubId = 196055729;
+  };
   gideonwolfe = {
     email = "wolfegideon@gmail.com";
     name = "Gideon Wolfe";
