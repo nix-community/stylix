@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "bemenu"
+      "settings"
+    ]
+  ];
+
   options = { fonts }: {
     fontSize = lib.mkOption {
       description = ''

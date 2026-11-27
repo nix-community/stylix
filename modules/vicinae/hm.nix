@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "vicinae"
+      "settings"
+    ]
+    [
+      "programs"
+      "vicinae"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ opacity }: {
       programs.vicinae.settings.launcher_window.opacity = opacity.popups;

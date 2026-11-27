@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "opencode"
+      "tui"
+    ]
+    [
+      "programs"
+      "opencode"
+      "themes"
+    ]
+  ];
+
   config = { colors }: {
     programs.opencode =
       let

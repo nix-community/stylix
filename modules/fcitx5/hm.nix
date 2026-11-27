@@ -1,5 +1,20 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "i18n"
+      "inputMethod"
+      "fcitx5"
+      "settings"
+    ]
+    [
+      "i18n"
+      "inputMethod"
+      "fcitx5"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       i18n.inputMethod.fcitx5.settings.addons.classicui.globalSection = with fonts; {

@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "broot"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     programs.broot.settings = {
       # Override import section to force custom skin to be used

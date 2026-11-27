@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "foliate"
+      "settings"
+    ]
+    [
+      "programs"
+      "foliate"
+      "themes"
+    ]
+  ];
+
   config = { colors }: {
     programs.foliate = {
       settings."viewer/view" = {

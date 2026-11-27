@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "qutebrowser"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.qutebrowser.settings.fonts = with fonts; {

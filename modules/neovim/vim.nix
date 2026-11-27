@@ -4,6 +4,19 @@ mkTarget {
   name = "vim";
   humanName = "Vim";
 
+  requiredOptions = [
+    [
+      "programs"
+      "vim"
+      "extraConfig"
+    ]
+    [
+      "programs"
+      "vim"
+      "plugins"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.vim.extraConfig = ''

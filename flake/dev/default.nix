@@ -6,6 +6,7 @@
     ./pre-commit.nix
     ./public-and-dev-version-consistency.nix
     ./subsystem-maintainers.nix
+    ./target-availability.nix
     ./treefmt.nix
   ];
 }

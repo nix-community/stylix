@@ -1,6 +1,14 @@
 { mkTarget, ... }:
 mkTarget {
   # Referenced https://github.com/stacyharper/base16-mako
+  requiredOptions = [
+    [
+      "services"
+      "avizo"
+      "settings"
+    ]
+  ];
+
   config = { colors, opacity }: {
     services.avizo = {
       settings = {

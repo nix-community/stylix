@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "i3bar-river"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.i3bar-river.settings = {

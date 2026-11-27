@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "zathura"
+      "options"
+    ]
+  ];
+
   config = { colors, opacity }: {
     programs.zathura.options =
       let

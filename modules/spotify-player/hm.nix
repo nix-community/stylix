@@ -1,5 +1,18 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "spotify-player"
+      "settings"
+    ]
+    [
+      "programs"
+      "spotify-player"
+      "themes"
+    ]
+  ];
+
   config = { colors }: {
     programs.spotify-player = {
       settings.theme = "stylix";

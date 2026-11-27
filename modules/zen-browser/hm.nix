@@ -2,7 +2,6 @@
   mkTarget,
   lib,
   config,
-  options,
   ...
 }:
 mkTarget {
@@ -28,7 +27,15 @@ mkTarget {
     };
   };
 
-  config = lib.optionals (options.programs ? zen-browser) [
+  requiredOptions = [
+    [
+      "programs"
+      "zen-browser"
+      "profiles"
+    ]
+  ];
+
+  config = [
     ({ cfg }: {
       warnings =
         lib.optional (config.programs.zen-browser.enable && cfg.profileNames == [ ])

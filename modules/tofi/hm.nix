@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "tofi"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.tofi.settings = {

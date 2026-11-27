@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "gitui"
+      "theme"
+    ]
+  ];
+
   config = { colors }: {
     programs.gitui.theme = with colors.withHashtag; ''
       (

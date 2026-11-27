@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "bat"
+      "themes"
+    ]
+    [
+      "programs"
+      "bat"
+      "config"
+    ]
+  ];
+
   config = { colors }: {
     programs.bat = {
       # This theme is reused for yazi. Changes to the template

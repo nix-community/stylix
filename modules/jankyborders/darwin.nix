@@ -5,6 +5,14 @@
   ...
 }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "jankyborders"
+      "active_color"
+    ]
+  ];
+
   config = { colors, opacity }: {
     services.jankyborders =
       let

@@ -1,6 +1,14 @@
 # Starship configuration documentation: https://starship.rs/config
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "starship"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     programs.starship.settings = {
       palette = "base16";

@@ -1,5 +1,5 @@
 mkTarget:
-{ lib, options, ... }:
+{ lib, ... }:
 mkTarget {
   name = "nvf";
   humanName = "nvf";
@@ -16,7 +16,15 @@ mkTarget {
     transparentBackground = lib.mkEnableOption "background transparency for the main Neovim window";
   };
 
-  config = lib.optionals (options.programs ? nvf) [
+  requiredOptions = [
+    [
+      "programs"
+      "nvf"
+      "settings"
+    ]
+  ];
+
+  config = [
     ({ colors, cfg }: {
       programs.nvf.settings.vim = {
         theme = {

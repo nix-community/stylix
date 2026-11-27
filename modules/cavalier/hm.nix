@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "cavalier"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     programs.cavalier.settings.general = {
       ColorProfiles = lib.singleton {

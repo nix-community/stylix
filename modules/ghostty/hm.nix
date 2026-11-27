@@ -3,6 +3,19 @@
 # - `man 5 ghostty`
 { mkTarget, pkgs, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "ghostty"
+      "settings"
+    ]
+    [
+      "programs"
+      "ghostty"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.ghostty.settings = {

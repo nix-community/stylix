@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "foot"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.foot.settings.main = {

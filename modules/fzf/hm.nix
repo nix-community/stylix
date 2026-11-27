@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "fzf"
+      "colors"
+    ]
+  ];
+
   config = { colors }: {
     programs.fzf.colors = with colors.withHashtag; {
       "bg" = base00;

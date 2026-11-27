@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "jjui"
+      "settings"
+    ]
+  ];
+
   config = { colors, polarity }: {
     programs.jjui.settings.ui.colors = with colors.withHashtag; {
       # Original template author: Victor Borja <vborja@apache.org> (https://github.com/vic)

@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "swaync"
+      "style"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       services.swaync.style = ''

@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "services"
+      "glance"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ polarity }: { services.glance.settings.theme.light = polarity == "light"; })
     (

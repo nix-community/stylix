@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "tmux"
+      "extraConfig"
+    ]
+  ];
+
   config = { colors, inputs }: {
     programs.tmux.extraConfig = ''
       source-file ${

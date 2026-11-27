@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "mangohud"
+      "settings"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.mangohud.settings = {

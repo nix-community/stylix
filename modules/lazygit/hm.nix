@@ -1,5 +1,13 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "lazygit"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     programs.lazygit.settings.gui.theme = with colors.withHashtag; {
       activeBorderColor = [

@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "k9s"
+      "settings"
+    ]
+    [
+      "programs"
+      "k9s"
+      "skins"
+    ]
+  ];
+
   config = { colors }: {
     programs.k9s = {
       settings.ui.skin = "stylix";

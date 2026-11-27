@@ -1,5 +1,14 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "xsession"
+      "windowManager"
+      "bspwm"
+      "settings"
+    ]
+  ];
+
   config = { colors }: {
     xsession.windowManager.bspwm.settings = with colors.withHashtag; {
       normal_border_color = base03;

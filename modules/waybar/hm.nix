@@ -1,5 +1,13 @@
 { mkTarget, lib, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "waybar"
+      "style"
+    ]
+  ];
+
   options = {
     background = lib.mkOption {
       type = lib.types.nullOr lib.types.str;

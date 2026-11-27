@@ -1,5 +1,18 @@
 { mkTarget, ... }:
 mkTarget {
+  requiredOptions = [
+    [
+      "programs"
+      "zed-editor"
+      "userSettings"
+    ]
+    [
+      "programs"
+      "zed-editor"
+      "themes"
+    ]
+  ];
+
   config = [
     ({ fonts }: {
       programs.zed-editor = {
