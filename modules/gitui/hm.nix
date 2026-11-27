@@ -5,7 +5,7 @@ mkTarget {
       (
           selected_tab: Some("Reset"),
           command_fg: Some("${base05}"),
-          selection_bg: Some("${base04}"),
+          selection_bg: Some("${base03}"),
           selection_fg: Some("${base05}"),
           cmdbar_bg: Some("${base01}"),
           cmdbar_extra_lines_bg: Some("${base01}"),
